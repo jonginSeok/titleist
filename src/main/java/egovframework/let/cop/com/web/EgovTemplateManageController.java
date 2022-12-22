@@ -15,6 +15,7 @@ import egovframework.rte.fdl.security.userdetails.util.EgovUserDetailsHelper;
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -67,9 +68,16 @@ public class EgovTemplateManageController {
 	 * @throws Exception
 	 */
 	@RequestMapping("/cop/com/selectTemplateInfs.do")
-	public String selectTemplateInfs(@ModelAttribute("searchVO") TemplateInfVO tmplatInfVO, ModelMap model) throws Exception {
+	public String selectTemplateInfs(@ModelAttribute("searchVO") TemplateInfVO tmplatInfVO
+			, HttpSession session, @RequestParam(value = "baseMenuNo", required = false) String baseMenuNo
+			, ModelMap model) throws Exception {
 		tmplatInfVO.setPageUnit(propertyService.getInt("pageUnit"));
 		tmplatInfVO.setPageSize(propertyService.getInt("pageSize"));
+		
+		// 선택된 메뉴정보를 세션으로 등록한다.
+		if (baseMenuNo != null && !baseMenuNo.equals("") && !baseMenuNo.equals("null")) {
+			session.setAttribute("baseMenuNo", baseMenuNo);
+		}
 
 		PaginationInfo paginationInfo = new PaginationInfo();
 

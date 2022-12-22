@@ -35,9 +35,10 @@ console.log('topnaviTemplate.jsp');
         }
     }
     function goMenuPage(baseMenuNo){
-    	document.getElementById("baseMenuNo").value=baseMenuNo;
     	//document.getElementById("link").value=getLastLink(baseMenuNo);
         //document.menuListForm.chkURL.value=url;
+        
+    	document.getElementById("baseMenuNo").value=baseMenuNo;
         document.menuListForm.action = "<c:url value='/'/>"+getLastLink(baseMenuNo).substring(1);
         document.menuListForm.submit();
     }
@@ -45,6 +46,7 @@ console.log('topnaviTemplate.jsp');
     {
         document.selectOne.action = "<c:url value='/uat/uia/actionLogout.do'/>";
         document.selectOne.submit();
+        
         //document.location.href = "<c:url value='/j_spring_security_logout'/>";
     }
 //-->

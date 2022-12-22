@@ -39,20 +39,15 @@
 		if (loginVO == null) {
 		%><ul>
 			<li>로그인정보 없음</li>
-			<li><a href="<c:url value='/uat/uia/egovLoginUsr.do'/>"><img
-					src="<c:url value='/images/leftmenu/login.jpg' />" alt="로그인" /></a></li>
+			<li><a href="<c:url value='/uat/uia/egovLoginUsr.do'/>"><img src="<c:url value='/images/leftmenu/login.jpg' />" alt="로그인" /></a></li>
 			<li>로그인후 사용하십시오</li>
 		</ul>
 		<%
 			} else {
 		%><c:set var="loginName" value="<%=loginVO.getName()%>" />
 		<ul>
-			<li><a href="#LINK"
-				onclick="alert('개인정보 확인 등의 링크 제공'); return false;"> <c:out
-						value="${loginName}" /> 님
-			</a></li>
-			<li><a href="<c:url value='/uat/uia/actionLogout.do'/>"> <img
-					src="<c:url value='/images/leftmenu/logout.jpg' />" alt="로그아웃" /></a></li>
+			<li><a href="#LINK" onclick="alert('개인정보 확인 등의 링크 제공'); return false;"> <c:out value="${loginName}" /> 님</a></li>
+			<li><a href="<c:url value='/uat/uia/actionLogout.do'/>"> <img src="<c:url value='/images/leftmenu/logout.jpg' />" alt="로그아웃" /></a></li>
 			<li>최근접속:2011-10-12 13:24</li>
 		</ul>
 		<%
@@ -63,16 +58,18 @@
 <div id="nav">
 	<div class="top"></div>
 	<div class="nav_style">
-		<script type="text/javascript">
+		<script type="text/javascript" defer="defer">
 		<!--
 			var Tree = new Array;
+			console.log("#sidebarTemplate.jsp tmp_menuNm :" + document.menuListForm.tmp_menuNm);
+			console.log("#sidebarTemplate.jsp baseMenuNo :" + document.getElementById("baseMenuNo").value);
+			
 			if (document.menuListForm.tmp_menuNm != null) {
-
 				for (var j = 0; j < document.menuListForm.tmp_menuNm.length; j++) {
 					Tree[j] = document.menuListForm.tmp_menuNm[j].value;
 				}
 			}
-			console.log('createTree call.');
+			console.log('sidebarTemplate.jsp createTree call.');
 			createTree(Tree, true, document.getElementById("baseMenuNo").value);
 		//-->
 		</script>

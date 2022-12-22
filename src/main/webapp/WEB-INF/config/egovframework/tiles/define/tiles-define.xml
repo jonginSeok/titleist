@@ -6,9 +6,9 @@
 <tiles-definitions>
 	
 	<!-- default layout -->
-	<definition name="default-layout-tiles" template="/WEB-INF/config/egovframework/tiles/layout/default/tiles-layout.jsp">
-		<put-attribute name="header" value="/WEB-INF/config/egovframework/tiles/layout/headerTemplate.jsp" />
-		<put-attribute name="foot" value="/WEB-INF/config/egovframework/tiles/layout/footerTemplate.jsp" />
+	<definition name="default-layout-tiles" template="/WEB-INF/jsp/tiles/layout/default/tiles-layout.jsp">
+		<put-attribute name="header" value="/WEB-INF/jsp/tiles/layout/headerTemplate.jsp" />
+		<put-attribute name="foot" value="/WEB-INF/jsp/tiles/layout/footerTemplate.jsp" />
 		<put-attribute name="body" value="" />
 	</definition>
 	<definition name="cmm/*/*" extends="default-layout-tiles">
@@ -45,7 +45,6 @@
 	</definition>
 	<definition name="uat/*/*" extends="default-layout-tiles">
 		<put-attribute name="body" value="/WEB-INF/jsp/uat/{1}/{2}.jsp" />
-		<put-attribute name="topnaviUrl" value="/sym/mms/EgovMainMenuHead.do" />
 		<put-attribute name="title" value="업무제목 부분" />
 	</definition>
 	<definition name="uss/*/*" extends="default-layout-tiles">
@@ -58,10 +57,10 @@
 	</definition>
 	
 	<!-- main layout -->
-	<definition name="main-layout-tiles" template="/WEB-INF/config/egovframework/tiles/layout/main/tiles-layout.jsp">
+	<definition name="main-layout-tiles" template="/WEB-INF/jsp/tiles/layout/main/tiles-layout.jsp">
 		<put-attribute name="body" value="" />
-		<put-attribute name="header" value="/WEB-INF/config/egovframework/tiles/layout/headerTemplate.jsp" />
-		<put-attribute name="foot" value="/WEB-INF/config/egovframework/tiles/layout/footerTemplate.jsp" />
+		<put-attribute name="header" value="/WEB-INF/jsp/tiles/layout/headerTemplate.jsp" />
+		<put-attribute name="foot" value="/WEB-INF/jsp/tiles/layout/footerTemplate.jsp" />
 	</definition>
 	<definition name="main/EgovMainView" extends="main-layout-tiles">
 		<put-attribute name="body" value="/WEB-INF/jsp/main/EgovMainView.jsp" />

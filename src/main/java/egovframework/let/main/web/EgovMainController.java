@@ -147,8 +147,8 @@ public class EgovMainController {
     		//model.addAttribute("list_headmenu", menuManageService.selectMainMenuHeadAnonymous(menuManageVO));
     		//model.addAttribute("list_menulist", menuManageService.selectMainMenuLeftAnonymous(menuManageVO));
     	}
-        return "main/inc/EgovIncTopnav"; // 내부업무의 상단메뉴 화면
-    	//return "tiles/layout/topnaviTemplate"; // 내부업무의 상단메뉴 화면 //tiles
+        //return "main/inc/EgovIncTopnav"; // 내부업무의 상단메뉴 화면
+    	return "tiles/layout/topnaviTemplate"; // 내부업무의 상단메뉴 화면 //tiles
     }
 
 
@@ -171,8 +171,8 @@ public class EgovMainController {
     		model.addAttribute("lastLogoutDateTime", "로그아웃 타임: 2011-11-10 11:30");
     		//최근 로그아웃 시간 등에 대한 확보 후 메인 컨텐츠로 활용
     	}
-    	return "main/inc/EgovIncLeftmenu";
-      	//return "tiles/layout/sidebarTemplate";
+    	//return "main/inc/EgovIncLeftmenu";
+      	return "tiles/layout/sidebarTemplate";
     }
 
 }
