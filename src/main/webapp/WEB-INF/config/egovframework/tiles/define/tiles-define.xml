@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+ 
+<tiles-definitions>
+	
+	<!-- default layout -->
+	<definition name="default-layout-tiles" template="/WEB-INF/config/egovframework/tiles/layout/default/tiles-layout.jsp">
+		<put-attribute name="header" value="/WEB-INF/config/egovframework/tiles/layout/headerTemplate.jsp" />
+		<put-attribute name="foot" value="/WEB-INF/config/egovframework/tiles/layout/footerTemplate.jsp" />
+		<put-attribute name="body" value="" />
+	</definition>
+	<definition name="cmm/*/*" extends="default-layout-tiles">
+		<put-attribute name="body" value="/WEB-INF/jsp/cmm/{1}/{2}.jsp" />
+		<put-attribute name="title" value="업무제목 부분" />
+	</definition>
+	<definition name="cmm/*/*/*" extends="default-layout-tiles">
+		<put-attribute name="body" value="/WEB-INF/jsp/cmm/{1}/{2}/{3}.jsp" />
+		<put-attribute name="title" value="업무제목 부분" />
+	</definition>
+	<definition name="cop/*/*" extends="default-layout-tiles">
+		<put-attribute name="body" value="/WEB-INF/jsp/cop/{1}/{2}.jsp" />
+		<put-attribute name="title" value="업무제목 부분" />
+	</definition>
+	<definition name="sam/*/*" extends="default-layout-tiles">
+		<put-attribute name="body" value="/WEB-INF/jsp/sam/{1}/{2}.jsp" />
+		<put-attribute name="title" value="업무제목 부분" />
+	</definition>
+	<definition name="sec/*/*" extends="default-layout-tiles">
+		<put-attribute name="body" value="/WEB-INF/jsp/sec/{1}/{2}.jsp" />
+		<put-attribute name="title" value="업무제목 부분" />
+	</definition>
+	<definition name="sts/*/*" extends="default-layout-tiles">
+		<put-attribute name="body" value="/WEB-INF/jsp/sts/{1}/{2}.jsp" />
+		<put-attribute name="title" value="업무제목 부분" />
+	</definition>
+	<definition name="sym/*/*" extends="default-layout-tiles">
+		<put-attribute name="body" value="/WEB-INF/jsp/sym/{1}/{2}.jsp" />
+		<put-attribute name="title" value="업무제목 부분" />
+	</definition>
+	<definition name="sym/*/*/*" extends="default-layout-tiles">
+		<put-attribute name="body" value="/WEB-INF/jsp/sym/{1}/{2}/{3}.jsp" />
+		<put-attribute name="title" value="업무제목 부분" />
+	</definition>
+	<definition name="uat/*/*" extends="default-layout-tiles">
+		<put-attribute name="body" value="/WEB-INF/jsp/uat/{1}/{2}.jsp" />
+		<put-attribute name="topnaviUrl" value="/sym/mms/EgovMainMenuHead.do" />
+		<put-attribute name="title" value="업무제목 부분" />
+	</definition>
+	<definition name="uss/*/*" extends="default-layout-tiles">
+		<put-attribute name="body" value="/WEB-INF/jsp/uss/{1}/{2}.jsp" />
+		<put-attribute name="title" value="업무제목 부분" />
+	</definition>
+	<definition name="uss/*/*/*" extends="default-layout-tiles">
+		<put-attribute name="body" value="/WEB-INF/jsp/uss/{1}/{2}/{3}.jsp" />
+		<put-attribute name="title" value="업무제목 부분" />
+	</definition>
+	
+	<!-- main layout -->
+	<definition name="main-layout-tiles" template="/WEB-INF/config/egovframework/tiles/layout/main/tiles-layout.jsp">
+		<put-attribute name="body" value="" />
+		<put-attribute name="header" value="/WEB-INF/config/egovframework/tiles/layout/headerTemplate.jsp" />
+		<put-attribute name="foot" value="/WEB-INF/config/egovframework/tiles/layout/footerTemplate.jsp" />
+	</definition>
+	<definition name="main/EgovMainView" extends="main-layout-tiles">
+		<put-attribute name="body" value="/WEB-INF/jsp/main/EgovMainView.jsp" />
+		<put-attribute name="title" value="team titleist" />
+	</definition>
+	
+</tiles-definitions>
