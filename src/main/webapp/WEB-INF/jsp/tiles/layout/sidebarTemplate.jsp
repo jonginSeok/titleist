@@ -22,10 +22,7 @@
 	 ******************************************************** */
 	function fn_MovePage(nodeNum) {
 		var nodeValues = treeNodes[nodeNum].split("|");
-		//parent.main_right.location.href = nodeValues[5];
-		document.menuListForm.action = "${pageContext.request.contextPath}"
-				+ nodeValues[5];
-		//alert(document.menuListForm.action);
+		document.menuListForm.action = "${pageContext.request.contextPath}" + nodeValues[5];
 		document.menuListForm.submit();
 	}
 //-->
