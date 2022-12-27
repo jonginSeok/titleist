@@ -1,0 +1,318 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>그리드 페이징</title>
+<link rel="stylesheet" type="text/css" href="/css/style.css" />
+<style>
+#k1_pop_wrap .k1_page_num {
+	margin: 10px auto;
+	width: 350px;
+	height: 16px;
+	text-align: center;
+	font-weight: bold;
+}
+
+#k1_pop_wrap .k1_page_num a.active {
+	color: #4272d4;
+}
+
+#k1_pop_wrap .k1_page_num img {
+	vertical-align: middle;
+}
+</style>
+<link rel="stylesheet" type="text/css" href="/css/ui.jqgrid.css" />
+<script type="text/javascript" src="/js/plugin/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="/js/plugin/XSLTransform.js"></script>
+<!-- pager 표시를 위해서 grid.locale-kr.js include 해야 한다.  -->
+<script type="text/javascript" src="/js/plugin/grid.locale-kr.js"></script>
+<script type="text/javascript" src="/js/plugin/jquery.jqGrid.src.js"></script>
+<script type="text/javascript" src="/js/lib/jquery.com.grid.js"></script>
+<script type="text/javascript" src="/js/lib/jquery.com.form.js"></script>
+<script type="text/javascript" src="/js/lib/jquery.com.util.js"></script>
+<script type="text/javascript" src="/js/lib/jquery.com.uitab.js"></script>
+<script type="text/javascript" src="/js/lib/jquery.com.pager.js"></script>
+<script type="text/javascript" src="/js/lib/jquery.com.js"></script>
+<script type="text/javascript">
+if(window.console == undefined){console = {log : function(){}};}
+var $k1 = jQuery.noConflict();
+$k1(document).ready(function() {
+	
+	/* Paging Navigator (Client Side)  Start */
+	//Grid title 
+	var gTitle = ['Inv No', 'Date', 'Client', 'Amount','Tax','Total','Notes'];
+	//Grid Model 
+	var gModel = [
+			   		{name:'id',index:'id', width:40, key:true, align:"center"}, 
+			   		{name:'invdate',index:'invdate', width:100, sorttype:"date", align:"center"},
+			   		{name:'name',index:'name', width:100, align:"center"},
+			   		{name:'amount',index:'amount', width:100, align:"right",sorttype:"float",formatter:"number", summaryType:"sum"},
+			   		{name:'tax',index:'tax', width:100, align:"right",sorttype:"float"},		
+			   		{name:'total',index:'total', width:100,align:"right",sorttype:"float"},		
+			   		{name:'note',index:'note', width:200, sortable:false}		
+			   	];
+	
+	//var options = {multiselect:true, sortname:"id", sortorder:"desc"};
+	
+	var options = 	{
+		height : 'auto', 
+		width : '100%',		//895 
+		autowidth : true, 
+		rowNum:5,
+	   	loadonce : true, 		//client side page 구현을 할려면 loadonce 옵션을 true로 주어야 한다. 	   	
+	   	xmlReader: {
+			root : "data",
+			row: "list", 
+			page: "data>page", 			//
+		    total: "data>total", 		//
+		    records : "data>records", 	//
+			repeatitems: false,
+			id: "id",
+			userdata: "statusInfo"		//userdata
+			}
+			
+	};
+	
+	var events = {loadComplete:gfnPaging1LoadComplete};
+	var groupHeaders = [
+	        			{startColumnName: 'amount', numberOfColumns: 3, titleText: 'Price'}
+	        		];
+	
+	//1. 기본적인 Grid을 만든다. : 화면 로딩시 바로 데이타 조회
+	$k1("#tbl_page1").grid('../xsl/paging_data1.xml', gTitle, gModel, options, events);
+	$k1("#tbl_page1").grid('setGroupHeaders', groupHeaders);
+		
+	//client side page 구현을 할려면 loadonce 옵션을 true로 주어야 한다. 
+	//$k1('#tbl_page1').grid('setGridParam', {loadonce : true});	
+	
+	/* Paging Navigator (Client Side)  End */
+
+	/* Paging Navigator (Server Side)  Start */
+	//Grid title 
+	var gTitle = ['Inv No', 'group', 'Date', 'Client', 'Amount','Tax','Total','Notes'];
+	//Grid Model 
+	var gModel = [
+			   		{name:'id',index:'id', width:40, key:true, align:"center"}, 
+			   		{name:'group',index:'group', width:1, align:"center", hidden:true}, 
+			   		{name:'invdate',index:'invdate', width:100, sorttype:"date", align:"center"},
+			   		{name:'name',index:'name', width:100, align:"center"},
+			   		{name:'amount',index:'amount', width:100, align:"right",sorttype:"float",formatter:"number", summaryType:"sum"},
+			   		{name:'tax',index:'tax', width:100, align:"right",sorttype:"float", summaryType:"sum"},		
+			   		{name:'total',index:'total', width:100,align:"right",sorttype:"float", summaryType:"sum"},		
+			   		{name:'note',index:'note', width:200, sortable:false}		
+			   	];
+	
+	//var options = {multiselect:true, sortname:"id", sortorder:"desc"};
+	
+	var options = 	{
+		height : 'auto', 
+		width : '100%',		//895 
+		autowidth : true, 
+		rowNum:5,
+		footerrow:true,
+		//grouping:true,
+	   	//groupingView : {
+	   	//	groupField : ['group'],
+	   	//	groupSummary : [true],
+	   	//	groupColumnShow : [false],
+	   	//	groupText : [''],
+	   	//	groupCollapse : false,
+		//	groupOrder: ['asc']
+	   	//},
+	   	xmlReader: {
+			root : "data",
+			row: "list", 
+			page: "data>page", 			//
+		    total: "data>total", 		//
+		    records : "data>records", 	//
+			repeatitems: false,
+			id: "id"
+			}
+			
+	};
+	
+	var events = {loadComplete:gfnPaging2LoadComplete};
+	
+	//1. 기본적인 Grid을 만든다. : 화면 로딩시 바로 데이타 조회
+	$k1("#tbl_page2").grid('../xsl/paging_data2.xml', gTitle, gModel, options, events);
+
+	/* Paging Navigator (Server Side)  End */
+	
+	/* Scroll Paging (Client Side)  Start */
+	//Grid title 
+	var gTitle = ['Inv No', 'Date', 'Client', 'Amount','Tax','Total','Notes'];
+	//Grid Model 
+	var gModel = [
+			   		{name:'id',index:'id', width:40, key:true, align:"center"}, 
+			   		{name:'invdate',index:'invdate', width:100, sorttype:"date", align:"center"},
+			   		{name:'name',index:'name', width:100, align:"center"},
+			   		{name:'amount',index:'amount', width:100, align:"right",sorttype:"float",formatter:"number", summaryType:"sum"},
+			   		{name:'tax',index:'tax', width:100, align:"right",sorttype:"float"},		
+			   		{name:'total',index:'total', width:100,align:"right",sorttype:"float"},		
+			   		{name:'note',index:'note', width:200, sortable:false}		
+			   	];
+	
+	//var options = {multiselect:true, sortname:"id", sortorder:"desc"};
+	
+	var options = 	{
+		height : '120', 
+		width : '100%',		//895 
+		autowidth : true, 
+		rowNum:10,
+		scroll: 1,	
+		pager : '#pager3', 
+	   	//loadonce : true, 		//client side page 구현을 할려면 loadonce 옵션을 true로 주어야 한다. 
+	   	xmlReader: {
+			root : "data",
+			row: "list", 
+			page: "data>page", 			//
+		    total: "data>total", 		//
+		    records : "data>records", 	//
+			repeatitems: false,
+			id: "id"
+			}
+			
+	};
+	
+	var events = {loadComplete:gfnPaging3LoadComplete};
+	
+	//1. 기본적인 Grid을 만든다. : 화면 로딩시 바로 데이타 조회
+	$k1("#tbl_page3").grid('../xsl/paging_data1.xml?sss=한글', gTitle, gModel, options, events);
+
+	//client side scroll page 구현을 할려면 아래 옵션을 넣어 줘야 한다. 
+	$k1('#tbl_page3').grid('setGridParam', {loadonce : true, gridview: true});	
+	
+	/* Scroll Paging (Client Side)  End */
+	
+});
+
+function gfnPaging1LoadComplete () {
+	
+	//그리드 스타일 지정
+	$k1("#tbl_page1").grid('setGridStyle', 'vof_list');
+	
+	//Paging 
+	var currentPage = $k1('#tbl_page1').grid('getGridParam', 'page');		//현재 페이지
+	var pageSize = $k1('#tbl_page1').grid('getGridParam', 'rowNum');			//한 페이지당 보여 주는 row수
+	var pageTotal = $k1('#tbl_page1').grid('getGridParam', 'records');		//총 row 수
+	var pageBlock = 10;														//block으로 보여 주는 page 수
+	var url = $k1('#tbl_page1').grid('getGridParam', 'url');					//페이지 이동시 url
+	var formid = '';														//페이지 이동시 param으로 넘겨야 하는 form id 
+	
+	//Client Side Or Server Side 여부 
+	var side = 'C';	//C:client, S:server 
+	
+	$k1("#page_num1").pager({pageSize: pageSize, 
+								pageBlock: pageBlock, 
+								currentPage: currentPage, 
+								pageTotal: pageTotal, 
+								url:url, 
+								formid:formid
+							},
+							{type:'grid', id:'tbl_page1', style:'vof_list'/* , pageVariableName : 'spage' */},
+							side);
+	
+	
+	
+	
+	
+	//userdata
+	var user_data = $k1("#tbl_page1").grid('getGridParam', 'userData');
+	console.log(user_data['status'] + ' : ' + user_data['returnMessage']);
+	
+}
+
+function gfnPaging2LoadComplete () {
+	//그리드 스타일 지정
+	$k1("#tbl_page2").grid('setGridStyle', 'vof_list');
+	
+	//Paging 
+	var currentPage = $k1('#tbl_page2').grid('getGridParam', 'page');		//현재 페이지
+	var pageSize = $k1('#tbl_page2').grid('getGridParam', 'rowNum');			//한 페이지당 보여 주는 row수
+	var pageTotal = $k1('#tbl_page2').grid('getGridParam', 'records');		//총 row 수
+	var pageBlock = 10;														//block으로 보여 주는 page 수
+	//var url = $k1('#tbl_page2').grid('getGridParam', 'url');					//페이지 이동시 url
+	var url = '../xsl/paging_data2.xml';
+
+	var formid = '';														//페이지 이동시 param으로 넘겨야 하는 form id 
+	
+	//Client Side Or Server Side 여부 
+	var side = 'S';	//C:client, S:server 
+	
+	$k1("#page_num2").pager({pageSize: pageSize, 
+								pageBlock: pageBlock, 
+								currentPage: currentPage, 
+								pageTotal: pageTotal, 
+								url:url, 
+								formid:formid
+								}, {type:'grid', id:'tbl_page2', style:'vof_list'}, side);
+	//console.log($k1("#tbl1").html());
+	
+	var footerOption = {
+		col:['amount', 'tax', 'total'],
+		cal:['sum', 'avg', 'count']
+	};
+	$k1('#tbl_page2').grid('setSummaryFooter', footerOption);			
+	//console.log($k1('#tbl1').html());
+}
+
+function gfnPaging3LoadComplete () {
+	
+	//그리드 스타일 지정
+	$k1("#tbl_page3").grid('setGridStyle', 'vof_list');
+
+}
+</script>
+<body>
+	<div id="k1_pop_wrap">
+		<div class="header">
+			<h1 class="tit">판매 형태</h1>
+			<img src="/imgs/airA/btn/btn_p_close.gif" alt="닫기" class="close" />
+		</div>
+		<div class="popup">
+			<div class="contents">
+				<!-- 컨텐츠 -->
+				<div id="k1_sale_wrap">
+					<div id="tab_div_1" class="sale_form2 k1_mt5">
+						<div class="detail4">
+							<div class="tit_set">
+								<h2 class="k1_tit_dot1">Paging Navigator (Client Side)</h2>
+								<div class="k1_btn01"></div>
+							</div>
+							<div class="k1_mt5">
+								<table id="tbl_page1"></table>
+							</div>
+							<div class="k1_page_num" id="page_num1"></div>
+						</div>
+						<br />
+						<!--  -->
+						<div class="detail4">
+							<div class="tit_set">
+								<h2 class="k1_tit_dot1">Paging Navigator (Server Side)</h2>
+								<div class="k1_btn01"></div>
+							</div>
+							<div id="tbl1" class="k1_mt5">
+								<table id="tbl_page2"></table>
+							</div>
+							<div class="k1_page_num" id="page_num2"></div>
+						</div>
+						<br />
+						<!--  -->
+						<div class="detail4">
+							<div class="tit_set">
+								<h2 class="k1_tit_dot1">Scroll Paging (Client Side)</h2>
+								<div class="k1_btn01"></div>
+							</div>
+							<div class="k1_mt5">
+								<table id="tbl_page3"></table>
+								<div id="pager3"></div>
+							</div>
+						</div>
+						<!--  -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

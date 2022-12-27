@@ -26,7 +26,7 @@
 <html lang="ko">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link href="<c:url value='/css/egovframework/com/cmm/com.css' />" rel="stylesheet" type="text/css">
+<link href="<c:url value='/css/egovframework/com.css' />" rel="stylesheet" type="text/css">
 
 <title>시스템 로그 상세보기</title>
 </head>

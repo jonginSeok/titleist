@@ -57,7 +57,7 @@ function loadScript(src, f) {
   head.appendChild(script);
 }
 
-loadScript(getContextPath() + '/js/showModalDialog.js');
+loadScript(getContextPath() + '/js/egovframework/showModalDialog.js');
 
 /**********************************************
  * 함수명 : fn_egov_ZipSearch

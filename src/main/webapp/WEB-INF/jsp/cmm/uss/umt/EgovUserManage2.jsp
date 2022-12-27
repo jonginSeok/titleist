@@ -21,7 +21,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv="content-language" content="ko">
-<link href="<c:url value='/'/>css/common.css" rel="stylesheet"
+<link href="<c:url value='/'/>css/egovframework/common.css" rel="stylesheet"
 	type="text/css">
 <title>사용자 목록</title>
 <script type="text/javaScript" defer="defer">

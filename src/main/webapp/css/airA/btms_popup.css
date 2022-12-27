@@ -1,0 +1,66 @@
+@charset "utf-8";
+/************************************************************************************************************ 
+Basic Style Sheet (for version 4 browsers)	
+	version: 0.1
+	author: 박수연 과장
+	email: suudjin@nate.com
+	설명: BTMS
+	
+-css수정시-
+************************************************************************************************************/
+
+/*:DATE :2013.01.21
+:author:*/
+/************************************************************************************************************/
+
+/************************************************************************************************************
+ btms_Popup
+************************************************************************************************************/
+#k1_btmspop_wrap{position:relative; padding:0; margin:0;}
+#k1_btmspop_header{height:53px; width:100%; background:url(/air/imgs/airA/btms/bg_btmsbox_top_C.gif) repeat-x 0 -1px; position:relative;}
+#k1_btmspop_header h1{position:absolute; top:20px; left:20px; color:#3e3b3b; font-size:14px; line-height:14px; font-weight:bold;}
+.k1_popbtn_close{position:absolute; top:18px; right:20px; background:url(/air/wfw/imgs/airA/btn/btms_iconset.png) no-repeat -52px 0; width:19px; height:19px; cursor:pointer; font-size:0;}
+span.box_l{position:absolute; top:0; left:0; width:7px;}
+span.box_r{position:absolute; top:0; right:0; width:7px;}
+#k1_btmspop_header span.box_l{background:url(/air/imgs/airA/btms/bg_btmsbox_top_L.gif) no-repeat 0 -1px;  height:54px;}
+#k1_btmspop_header span.box_r{background:url(/air/imgs/airA/btms/bg_btmsbox_top_R.gif) no-repeat 0 -1px; height:54px;}
+#k1_btmspop_container{height:100%; width:100%; position:relative;}
+#k1_btmspop_container span.box_l{background:url(/air/imgs/airA/btms/bg_btmsbox_body_L.gif) repeat-y 0 0; height:100%;}
+#k1_btmspop_container span.box_r{background:url(/air/imgs/airA/btms/bg_btmsbox_body_R.gif) repeat-y 0 0; height:100%;}
+#k1_btmspop_footer{height:8px; position:relative; background:url(/air/imgs/airA/btms/bg_btmsbox_bottom_C.gif) repeat-x 0 0;}
+#k1_btmspop_footer span.box_l{height:8px; background:url(/air/imgs/airA/btms/bg_btmsbox_bottom_L.gif) no-repeat 0 0;}
+#k1_btmspop_footer span.box_r{height:8px; background:url(/air/imgs/airA/btms/bg_btmsbox_bottom_R.gif) no-repeat 0 0;}
+.k1_btmspop_content{padding:5px 15px 15px 12px;}
+.k1_btmspop_content2{padding:0 6px 0 0;}
+.k1_btmspop_content h2,
+.k1_btmspop_content2 h2,
+.k1_btms_tit{background:url(/air/imgs/airA/btms/h3_btms_bul.gif) no-repeat 0 50%; padding-left:15px; font-size:14px; color:#5e5e5e; font-weight:bold;}
+.k1_btmspop_searchbox{height:19px; margin-bottom:10px; padding:7px 13px; border:#cfdef2 1px solid; background:#f6f9fc;}
+.k1_btmspop_searchbox h3{float:left; color:#3775c7; font-weight:bold; padding-top:3px;}
+.k1_btmspop_searchbox fieldset{float:right; position:relative; width:80%; padding-left:5px;}
+.k1_btmspop_searchbox fieldset.w83{width:83%;}
+.k1_btmspop_searchbox fieldset label{position:absolute; top:3px; left:10px; font-size:11px; color:#777;}
+.k1_btmspop_searchbox fieldset input{border:#e2e3ea 1px solid; height:13px; line-height:13px; padding:2px; vertical-align:middle; margin-right:10px;}
+.k1_btmspop_searchbox input.textbox{margin-right:0;}
+.k1_btmspop_searchbox select{border:#cfcfcf 1px solid; color:#8a8a8a; font-size:11px; height:19px; vertical-align:middle; margin-right:10px;}
+.k1_btmspop_searchbox p.btn_r{position:absolute; right:13px; top:7px;}
+
+.k1_btmspop_searchbox2{border:#cfdef2 1px solid; background:#f6f9fc; padding:7px 13px; position:relative; margin-bottom:10px;}
+.k1_btmspop_searchbox2 label{color:#3775c7; font-weight:bold; padding-top:1px;}
+.k1_btmspop_searchbox2 input{border:#e2e3ea 1px solid; font-size:11px; color:#777; height:13px; line-height:13px; padding:2px; vertical-align:middle; margin-right:10px;}
+.k1_btmspop_searchbox2 input.textbox{margin-right:0;}
+.k1_btmspop_searchbox2 select{border:#cfcfcf 1px solid; color:#8a8a8a; font-size:11px; height:19px; vertical-align:middle; margin-right:10px;}
+.k1_btmspop_searchbox2 p.btn_r{position:absolute; right:13px; top:7px;}
+
+.k1_btmspop_yscroll{height:638px; overflow-y:scroll; padding:5px 15px;}/*팝업내부스크롤 생성시 필요*/
+/* 팝업 메세지 */
+.k1_message_area{padding:10px 15px 0;}
+.k1_messeage_box {background:url(/air/imgs/airA/btms/bg_error_box.gif) no-repeat 0 0; height:83px; width:487px; text-align:center; margin-bottom:10px;}
+.k1_messeage_box2 {display:inline-block; text-align:center; }
+.k1_messeage_box2 .bg_t {background:url(/air/imgs/airA/btms/bg_massage_top.gif) no-repeat 0 0; height:6px; width:487px; text-align:center;}
+.k1_messeage_box2 .bg_c {background:url(/air/imgs/airA/btms/bg_massage_center.gif) repeat-y; width:487px; padding:13px 0; text-align:center; }
+.k1_messeage_box2 .bg_b {background:url(/air/imgs/airA/btms/bg_massage_bottom.gif) no-repeat 0 0; height:6px; width:487px; text-align:center;}
+
+p.k1_inquiry{background:url(/air/imgs/airA/btms/bg_line1.gif) no-repeat 0 18px; text-align:right; height:24px; color:#8a8a8a; font-weight:bold;}
+p.k1_inquiry span{color:#235ba5; background:url(/air/wfw/imgs/airA/common/bul_gray_bar.gif) no-repeat 2px 0; padding-left:10px;}
+

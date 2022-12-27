@@ -1,0 +1,37 @@
+@charset "UTF-8";
+
+/* ------------------------------------------------------------------------------------
+Basic Style Sheet (for version 4 browsers)
+
+version: 0.1
+author: 서현진
+email: hjseo@toursoft.co.kr
+
+-css수정시-
+--------------------------------------------------------------------------------------- */
+
+/*:DATE :2013.01.04 
+:author:*/
+
+/*------------------------------------------------------------------------------------- */
+/* for styles */
+
+/* 공통 */
+@import url("/css/common.css");		/* common */
+@import url("/css/airA/typo.css");	/* typo */
+@import url("/css/airA/ico.css");		/* icon */
+@import url("/css/airA/btn.css");		/* btn */
+@import url("/css/airA/cont.css");	/* contents */
+@import url("/css/airA/board.css");	/* board */
+@import url("/css/airA/popup.css");	/* popup */
+@import url("/css/airA/calendar.css");/* calendar */
+@import url("/css/ie7.css");		    /* ie7전용핵 */
+
+/* b2b b2c */
+@import url("/css/airA/contents.css");	/* contents */
+@import url("/css/airA/air_popup.css");	/* popup */
+@import url("/css/airA/air_board.css");	/* board */
+@import url("/css/airA/air_btn.css");		/* air_btn */
+@import url("/css/airA/tooltip.css");		/* tooltip */
+
+

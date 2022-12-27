@@ -14,7 +14,7 @@
 <%@ page import ="egovframework.com.cmm.LoginVO" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script type="text/javascript">console.log('EgovIncLeftmenu.jsp');</script>
-<script type="text/javascript" src="<c:url value="/js/EgovMainMenu.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/js/egovframework/EgovMainMenu.js"/>"></script>
 <script type="text/javascript">
 <!--
 /* ********************************************************

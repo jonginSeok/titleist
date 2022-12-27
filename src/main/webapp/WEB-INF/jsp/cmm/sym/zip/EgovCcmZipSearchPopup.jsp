@@ -21,8 +21,8 @@
 <head>
 <title>우편번호 찾기</title>
 <meta http-equiv="content-language" content="ko">
-<link type="text/css" rel="stylesheet" href="<c:url value='/css/zip.css'/>" >
-<link href="<c:url value='/'/>css/common.css" rel="stylesheet" type="text/css" >
+<link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/zip.css'/>" >
+<link type="text/css" rel="stylesheet" href="<c:url value='/'/>css/egovframework/common.css" >
 </head>
 <body>
 <form name="pForm" action="<c:url value='sym/cmm/EgovCcmZipSearchPopup.do'/>">

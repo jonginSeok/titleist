@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="Stylesheet" type="text/css" href="/vof/css/pilot/p_style.css" />
+<style>
+#k1_pop_wrap .k1_page_num {margin:10px auto; width:350px; height:16px; text-align:center; font-weight:bold;}
+#k1_pop_wrap .k1_page_num a.active{color:#4272d4;}
+#k1_pop_wrap .k1_page_num img { vertical-align:middle;}
+
+</style>
+
+<link rel="stylesheet" type="text/css" href="/vof/wfw/css/ui.jqgrid.css" />
+<script src="/air/wfw/js/plugin/jquery-1.7.2.min.js" type="text/javascript"></script>
+
+
+
+<script src="/air/wfw/js/plugin/jquery.jqGrid.src.js" type="text/javascript"></script>
+
+
+<script src="/air/wfw/js/plugin/XSLTransform.js" type="text/javascript"></script>
+<!-- pager 표시를 위해서 grid.locale-kr.js include 해야 한다.  -->
+<script src="/air/wfw/js/plugin/grid.locale-kr.js" type="text/javascript"></script>
+<script src="/air/wfw/js/lib/jquery.com.grid.js" type="text/javascript"></script>
+<script src="/air/wfw/js/lib/jquery.com.form.js" type="text/javascript"></script>
+<script src="/air/wfw/js/lib/jquery.com.util.js" type="text/javascript"></script>
+<script src="/air/wfw/js/lib/jquery.com.uitab.js" type="text/javascript"></script>
+<script src="/air/wfw/js/lib/jquery.com.pager.js" type="text/javascript"></script>
+<script src="/air/wfw/js/lib/jquery.com.js" type="text/javascript"></script>
+<script type="text/javascript">
+var $k1 = jQuery.noConflict();
+var xmlData = new Object();
+$k1(document).ready(function() {	
+	//Grid title 
+	var gTitle = ['Inv No', 'Date', 'Client', 'Amount','Tax','Total','DateTest','ChkDate'];
+	//Grid Model 
+	var gModel = [
+{name:'id',index:'id', width:40, align:"center", editable: true}, 
+{name:'invdate',index:'invdate', width:100, sorttype:"date", align:"center", editable: true},
+{name:'name',index:'name', width:100, align:"center", editable: true, formatter:'select', edittype:"select", editoptions:{value:"1:aaa;2:bbb;3:ccc"}},
+{name:'amount',index:'amount', width:100, align:"right",sorttype:"float", editable:true, formatter:'number'/* or 'currency' */, formatoptions:{thousandsSeparator:','}},
+{name:'tax',index:'tax', width:100, align:"right",sorttype:"float", editable:true, /*validate:{fnc : [$k1.gridvalidate.require, $k1.gridvalidate.number, $k1.gridvalidate.minvalue, $k1.gridvalidate.maxvalue], limit : ['none', 'none', '10', '50']}*/},		
+{name:'total',index:'total', width:100,align:"right",sorttype:"float", editable:true},		
+{name:'nal',index:'nal', width:200, sorttype:"date", sortable:false, editable:true, formatter : $k1.gridformatter.dateTimeFormat, formatoptions:{dateformat:'date'}, unformat:$k1.gridformatter.removeFormatter},
+{name:'nal2',index:'nal2', width:200, sorttype:"date", sortable:false, editable:true, validate:{fnc : [$k1.gridvalidate.require, $k1.gridvalidate.number, $k1.gridvalidate.minlength, $k1.gridvalidate.maxlength, $k1.gridvalidate.isdate], limit : ['none', 'none', '8', '8']}, formatter : $k1.gridformatter.dateTimeFormat, formatoptions:{dateformat:'date'}, unformat:$k1.gridformatter.removeFormatter}
+];
+
+/*
+{ name: "nal3", index: "nal3", width: 85, editable: true, edittype: "text", editoptions: { size: 20, maxlength: 30,
+                        dataInit: function (elem) {$(elem).mask("99:99");}
+                    }, align: "center", editrules: { custom: true, custom_func: validHourEntry }
+}
+
+*/
+	var options = 	{
+		multiselect : true,
+		//multiboxonly:true ,
+		height : 'auto', 
+		width : '100%',		//895 
+		autowidth : true,	
+		sortfnc : sort_fnc,
+		rowEditable : true,	
+		constraints : {pkey : ['id', 'invdate'], editable : [true, false]},
+		prmNames : {
+			page : "spage",
+			rows : "srows",
+			sort : "sortcol",
+			order : "orderby"
+		},
+	   	xmlReader: {
+			root : "data",
+			row: "list",			
+			repeatitems: false,
+			id: "id"
+		}
+			
+	};
+	
+	var events = {loadComplete:gfnPaging1LoadComplete};
+		
+	//1. 기본적인 Grid을 만든다. : 화면 로딩시 바로 데이타 조회
+	$k1("#tbl_page1").grid('../../xsl/paging_data4.xml', gTitle, gModel, options, events);
+	
+	$k1('#tbl_page1').grid('setGridParam', {onSelectRow : function(id){		
+		var editOption = {
+			"rowid" : id,
+			"keys" : true,
+			"oneditfunc" : onEdit
+			//"successfunc" : success,
+			//"url" : null,
+		    //"extraparam" : {},
+			//"aftersavefunc" : afterSave,
+			//"errorfunc": null,
+			//"afterrestorefunc" : afterRestore,
+			//"restoreAfterError" : true,
+			//"mtype" : "POST"
+		};
+		//그리드 옵션의 rowEditable의 값에 영향을 받음.
+		$k1('#tbl_page1').grid('openRowEdit', editOption);
+		
+	}
+	//, beforeSelectRow : function(rowid, e){
+	//	var i = $k1.jgrid.getCellIndex($k1(e.target).closest('td')[0]);
+	//	//var i = e.target.cellIndex;
+	//	var cm = $k1('#tbl_page1').grid('getGridParam', 'colModel');
+	//	console.log(e);
+	//	console.log(i);
+	//	console.log(cm[i]);
+	//	return (cm[i].name === 'cb');
+	//}
+	});	
+	
+	
+	$k1('#addBtn').bind('click', function() {		
+		$k1("#tbl_page1").grid('addRowWithoutUpdate');
+		$k1("#tbl_page1").grid('setGridStyle', 'vof_list');
+	});
+	
+	$k1('#searchBtn').bind('click', function() {
+		$k1('#addBtn').attr('disabled', false);
+		$k1("#tbl_page1").grid('selectData', '../../xsl/paging_data4.xml', 'frm');
+	});
+	
+	$k1('#tojsonBtn').bind('click', function() {
+		var lastSelRow = $k1("#tbl_page1").grid('getGridParam', 'lastSelRow');
+		if(lastSelRow != 'none'){
+			if($k1("#tbl_page1").grid('getGridParam', 'rowEditable')){
+				var flag = $k1("#tbl_page1").grid('setEditRowToGrid', lastSelRow);	
+				if(!flag) return;
+				if($k1.util.isNull($k1("#tbl_page1").grid('getGridParam', 'updateData'))){
+					$k1("#tbl_page1").grid('setGridParamNoReload', {lastSelRow:'none'});
+					return;
+				}
+			}
+			
+			var jsonStr = $k1("#tbl_page1").grid('getUpdateColDataByJsonString');
+			alert(jsonStr);
+		}
+	});
+	
+	$k1('#removeBtn').bind('click', function() {	
+		$k1("#tbl_page1").grid('getSelectedRowsPKey2JsonString');
+		$k1("#tbl_page1").grid('restoreInputRow');
+		$k1("#tbl_page1").grid('setGridParamNoReload', {rowEditable:true});
+	});
+	
+	$k1('#vBtn').bind('click', function() {
+		var ret = $k1("#tbl_page1").grid('newDataValidate');
+		if(ret){
+			//submit
+		}
+	});
+});
+
+function validHourEntry(value, colname) {
+	alert("11111111111=="+value);
+    var editSuccess = true;
+    var errorMsg = "";
+    if (/^([0-1][0-9]|2[0-3]:[0-5][0-9])$/.test(value)) {
+        return [true, ""];
+    } else {
+        return [false, "is wrong time.<br/>Please enter the time in the form <b>hh:mm</b>"];
+    }
+}
+
+
+
+function fncMask(elem,cellvalue, options, rowObject){
+	alert(cellvalue);
+	$(elem).mask("##:##");
+}
+function gfnPaging1LoadComplete () {
+	//그리드 스타일 지정
+	$k1("#tbl_page1").grid('setGridStyle', 'vof_list');
+	
+	$k1("#tbl_page1").grid('setGridParamNoReload', {aaaaa: 'aaa'}); 
+	//console.log('aaaaa : '+ $k1("#tbl_page1").grid('getGridParam', 'aaaaa'));
+	//console.log('pagingType : ' + $k1("#tbl_page1").grid('getGridParam', 'pagingType'));
+	//console.log('===========================================');
+	//console.log(xmlData);	
+	
+   	//console.log('grid header > '+$k1(".ui-jqgrid-btable").html());
+}
+
+function onEdit(){	
+	$k1('#addBtn').attr('disabled', true);
+	//그리드 edit row에서 엔터 키 막음
+	$k1("#tbl_page1 tr").unbind('keydown');
+}
+
+function success(){
+	//alert('success');
+}
+
+function afterSave(){
+	//alert('afterSave');
+}
+
+function afterRestore(){
+	//alert('afterRestore');
+}
+
+function sort_fnc(){
+	$k1("#tbl_page1").grid('setPostDataFromForm', 'frm');
+	//console.log($k1("#frm").serialize());
+}
+
+function openForm(str){
+	alert(str);
+}
+</script>
+</head>
+<body>	
+	<div id="k1_pop_wrap">
+	<div class="header"><h1 class="tit">판매 형태</h1><img src="/vof/imgs/airA/btn/btn_p_close.gif" alt="닫기" class="close"/></div>
+	<div class="popup">		
+		<div class="contents">		
+		<!-- 컨텐츠 -->
+			<div id="k1_sale_wrap">	
+	<div id="tab_div_1" class="sale_form2 k1_mt5">
+		<div class="detail4">
+                     <div class="tit_set">
+                     	<h2 class="k1_tit_dot1">Paging Navigator (Client Side)</h2>
+                     	<input id="tojsonBtn" type="button" value="get Json String"/>
+                     	<input id="searchBtn" type="button" value="search"/>
+                     	<input id="addBtn" type="button" value="add row"/>
+                     	<input id="removeBtn" type="button" value="cancel"/>
+                     	<input id="vBtn" type="button" value="new data validate"/>
+                     	<div class="k1_btn01"></div>
+                     </div>
+                     <div class="k1_mt5">
+				<table id="tbl_page1">
+				</table>
+			</div>
+			<div class="k1_page_num" id="page_num1">
+			</div>
+			<form id="frm">
+				<input type="hidden" name="aaa" value="aaa&bbb"/>
+				<input type="hidden" name="bbb" value="한글"/>
+				<label for="txt_ccc">입력</label> <input type="text" name="ccc" id="txt_ccc"/>
+			</form>	
+		</div>	
+		
+	</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

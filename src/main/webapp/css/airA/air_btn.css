@@ -1,0 +1,259 @@
+@charset "utf-8"; 
+
+/* ------------------------------------------------------------------------------------
+Basic Style Sheet (for version 4 browsers)
+
+version: 0.1
+author: 서현진
+email: hjseo@toursoft.co.kr
+설명: 공통
+
+-css수정시-
+--------------------------------------------------------------------------------------- */
+
+/*:DATE :2013.08.09
+version: 0.2
+author: 박수연
+email: hjseo@toursoft.co.kr
+설명: 공통
+:author:*/
+.k1_btn_wrap {text-align: center;}
+
+/************************************************************************************************************
+ 이미지 버튼
+************************************************************************************************************/
+.btn_search {display:block; width:128px; height:35px; margin:0 auto; border:0 none; background:url(/imgs/airA/btn/btn_search.gif) no-repeat; vertical-align:middle; cursor:pointer;}
+.btn_search2 {display:inline-block; width:156px; height:37px; border:0 none; background: url(/imgs/airA/btn/btn_search2.gif) no-repeat 0 0; color:#fff; font-size:11px; text-align:center; line-height:17px; vertical-align:middle; cursor:pointer;}
+.btn_resevation {display:inline-block; width:144px; height:39px; border:0 none; background:url(/imgs/airA/btn/btn_reservation2.gif) no-repeat 0 0; vertical-align:middle; cursor:pointer;}
+.btn_price_search {display:block; width:148px; height:35px; margin:0 auto; border:0 none; background:url(/imgs/airA/btn/btn_price_search.gif) no-repeat 0 0; vertical-align:middle; cursor:pointer;}
+.btn_aged {display:inline-block; width:55px; height:19px; border:0 none; background:url(/imgs/airA/btn/btn_aged.gif) no-repeat 0 0; vertical-align:middle; cursor:pointer;}
+
+/************************************************************************************************************
+ k1_btn_b01
+************************************************************************************************************/
+.k1_btn_b01,
+.k1_btn_b01 *{overflow:visible; background:url(/imgs/airA/btn/btn_air_logo.gif) no-repeat; color:#235ba5; font-size:11px; font-weight:bold; text-align:center; text-decoration:none; white-space:nowrap; cursor:pointer; vertical-align:middle; line-height:20px;}
+.k1_btn_b01{display:inline-block; position:relative; height:26px; width:37px; background-position:right top;}
+.k1_btn_b01 span{display:block; height:20px; padding:3px 0;}
+.k1_btn_b01 button,
+.k1_btn_b01 input{display:block; height:26px; width:37px; padding:3px 0; border:0 none;}
+.k1_btn_b01 img{position:absolute; top:5px; left:10px; border:0 none; background:none;}
+
+/************************************************************************************************************
+ k1_btn1
+************************************************************************************************************/
+.k1_btn1,
+.k1_btn1 *{overflow:visible; background-image:url(/imgs/airA/btn/btn_airbg1.gif); white-space:nowrap; cursor:pointer;}
+.k1_btn1{display:inline-block; position:relative; height:17px; padding-right:1px; background-position:right top; vertical-align:middle; cursor:pointer;}
+.k1_btn1 span{display:block; height:14px; padding:2px 5px 1px 6px; background-position:left top; color:#fff; line-height:14px;}
+.k1_btn1 button,
+.k1_btn1 input{display:block; height:17px; border:0 none; padding:2px 5px 2px 6px; background-position:left top; color:#fff; line-height:14px;}
+
+/************************************************************************************************************
+ k1_btn1_2
+************************************************************************************************************/
+.k1_btn1_2,
+.k1_btn1_2 *{overflow:visible; background-image:url(/imgs/airA/btn/btn_airbg1.gif); white-space:nowrap; cursor:pointer;}
+.k1_btn1_2{display:inline-block; position:relative; height:17px; padding-right:1px; background-position:right -224px; vertical-align:middle; cursor:pointer;}
+.k1_btn1_2 span{display:block; height:14px; padding:2px 5px 1px 6px; background-position:left -224px; color:#fff; line-height:14px;}
+.k1_btn1_2 button,
+.k1_btn1_2 input{display:block; height:17px; border:0 none; padding:2px 5px 2px 6px; background-position:left -224px; color:#fff; line-height:14px;}
+
+/************************************************************************************************************
+ k1_btn2
+************************************************************************************************************/
+.k1_btn2,
+.k1_btn2 *{overflow:visible; background-image:url(/imgs/airA/btn/btn_airbg1.gif); color:#494949; font-size:11px; white-space:nowrap; cursor:pointer;}
+.k1_btn2{display:inline-block; position:relative; height:19px; padding-right:2px; background-position:right -17px; vertical-align:middle; cursor:pointer;}
+.k1_btn2 span{display:block; height:16px; padding:2px 5px 1px 6px; background-position:left -17px; line-height:16px;}
+.k1_btn2 button,
+.k1_btn2 input{display:block; height:19px; padding:2px 5px 3px 6px; border:0 none; background-position:left -17px; line-height:16px;}
+
+/************************************************************************************************************
+ k1_btn3
+************************************************************************************************************/
+.k1_btn3,
+.k1_btn3 *{overflow:visible; background-image:url(/imgs/airA/btn/btn_airbg1.gif); color:#fff; white-space:nowrap; cursor:pointer;}
+.k1_btn3{display:inline-block; position:relative; height:19px; padding-right:1px; background-position:right -36px; vertical-align:middle; cursor:pointer;}
+.k1_btn3 span{display:block; height:15px; padding:3px 5px 1px 6px; background-position:left -36px; line-height:15px;}
+.k1_btn3 button,
+.k1_btn3 input{display:block; height:19px; padding:1px 5px 2px 6px; border:0 none; background-position:left -36px; line-height:18px;}
+
+/************************************************************************************************************
+ k1_btn5
+************************************************************************************************************/
+.k1_btn5,
+.k1_btn5 *{overflow:visible; background-image:url(/imgs/airA/btn/btn_airbg1.gif); text-decoration:none; white-space:nowrap; cursor:pointer;}
+.k1_btn5 {display:inline-block; position:relative; height:20px; padding-right:1px; background-position:right -75px; vertical-align:middle; cursor:pointer;}
+.k1_btn5 span{display:block; height:16px; padding:3px 8px 1px 9px; background-position:left -75px; line-height:16px;}
+.k1_btn5 button,
+.k1_btn5 input{display:block; height:20px; padding:3px 8px 2px 9px; border:0 none; background-position:left -75px; line-height:17px;}
+
+/************************************************************************************************************
+ k1_btn9
+************************************************************************************************************/
+.k1_btn9,
+.k1_btn9 *{overflow:visible; background-image:url(/imgs/airA/btn/btn_airbg1.gif); color:#fff; text-align:center; text-decoration:none; white-space:nowrap; cursor:pointer;}
+.k1_btn9{display:inline-block; position:relative; height:17px; padding-right:3px; background-position:right -152px; vertical-align:middle; cursor:pointer;}
+.k1_btn9 span{display:block; height:14px; padding:2px 3px 1px 7px; background-position:left -152px; line-height:15px;}
+.k1_btn9 button,
+.k1_btn9 input{display:block; height:17px; border:0 none; padding:1px 3px 1px 7px; background-position:left -152px; line-height:16px;}
+
+/************************************************************************************************************
+ k1_btn10
+************************************************************************************************************/
+.k1_btn10,
+.k1_btn10 *{overflow:visible; background-image:url(/imgs/airA/btn/btn_airbg1.gif); color:#fff; text-align:center; text-decoration:none; white-space:nowrap; cursor:pointer;}
+.k1_btn10{display:inline-block; position:relative; height:17px; padding-right:3px; background-position:right -169px; vertical-align:middle; cursor:pointer;}
+.k1_btn10 span{display:block; height:14px; padding:2px 3px 1px 7px; background-position:left -169px; line-height:15px;}
+.k1_btn10 button,
+.k1_btn10 input{display:block; height:17px; padding:1px 3px 1px 7px; border:0 none; background-position:left -169px; line-height:16px;}
+
+/************************************************************************************************************
+ k1_btn_01
+************************************************************************************************************/
+.k1_btn_01,
+.k1_btn_01 *{overflow:visible; background-image:url(/imgs/airA/btn/btn_01.gif); color:#fff; font-weight:bold; text-align:center; text-decoration:none; white-space:nowrap; cursor:pointer;}
+.k1_btn_01{display:inline-block; position:relative; width:93px; height:31px; padding-right:3px; background-position:right top; vertical-align:middle; cursor:pointer;}
+.k1_btn_01 span{display:block; height:21px; padding:5px 5px 5px 7px; background-position:left top; line-height:21px;}
+.k1_btn_01 button,
+.k1_btn_01 input{display:block; width:93px; height:31px; border:0 none; padding:5px 5px 5px 7px; background-position:left top; line-height:21px;}
+
+/************************************************************************************************************
+ k1_btn_01_over
+************************************************************************************************************/
+.k1_btn_01_over,
+.k1_btn_01_over *{overflow:visible; background-image:url(/imgs/airA/btn/btn_01.gif); color:#fff; font-weight:bold; text-align:center; text-decoration:none; white-space:nowrap; cursor:pointer;}
+.k1_btn_01_over {display:inline-block; position:relative; height:31px; padding-right:15px; background-position:right top; vertical-align:middle; cursor:pointer;}
+.k1_btn_01_over span {display:block; height:21px; padding:5px 5px 5px 19px; background-position:left top; line-height:21px;}
+.k1_btn_01_over button,
+.k1_btn_01_over input{display:block; height:31px; border:0 none; padding:5px 2px 5px 16px; background-position:left top; line-height:21px;}
+
+/************************************************************************************************************
+ k1_btn_02
+************************************************************************************************************/
+.k1_btn_02,
+.k1_btn_02 *{overflow:visible; background-image:url(/imgs/airA/btn/btn_02.gif); color:#fff; font-weight:bold; text-decoration:none; text-align:center; white-space:nowrap; cursor:pointer;}
+.k1_btn_02{display:inline-block; position:relative; height:31px; width:93px; padding-right:3px; background-position:right top; vertical-align:middle; cursor:pointer;}
+.k1_btn_02 span {display:block; height:21px; padding:5px 5px 5px 7px; background-position:left top; line-height:21px;}
+.k1_btn_02 button,
+.k1_btn_02 input{display:block; height:31px; width:93px; padding:5px 5px 5px 7px; border:0 none; background-position:left top; line-height:21px;}
+
+/************************************************************************************************************
+ k1_btn_02_over
+************************************************************************************************************/
+.k1_btn_02_over,
+.k1_btn_02_over *{overflow:visible; background-image:url(/imgs/airA/btn/btn_02.gif); color:#fff; font-weight:bold; text-decoration:none; text-align:center; white-space:nowrap; cursor:pointer;}
+.k1_btn_02_over {display:inline-block; position:relative; height:31px; height:31px; padding-right:15px; background-position:right top; vertical-align:middle; cursor:pointer;}
+.k1_btn_02_over span{display:block; height:21px; padding:5px 5px 5px 19px; background-position:left top; line-height:21px;}
+.k1_btn_02_over button,
+.k1_btn_02_over input{display:block; height:31px; border:0 none; padding:5px 2px 5px 16px; background-position:left top; line-height:21px;}
+
+/************************************************************************************************************
+ k1_btn02
+************************************************************************************************************/
+.k1_btn02,
+.k1_btn02 *{overflow:visible; background-image:url(/imgs/airA/btn/btn_airbg2.gif); color:#fff; font-size:12px; font-weight:bold; text-decoration:none; white-space:nowrap; cursor:pointer;}
+.k1_btn02 {display:inline-block; height:31px; padding-right:20px; background-position:right -31px; vertical-align:middle; cursor:pointer;}
+.k1_btn02 span{display:block; height:28px; padding:2px 10px 1px 30px; background-position:left -31px; line-height:28px;}
+.k1_btn02 button,
+.k1_btn02 input{display:block; height:31px; padding:1px 10px 1px 30px; border:0 none; background-position:left -31px; line-height:28px;}
+
+/************************************************************************************************************
+ k1_btn03
+************************************************************************************************************/
+.k1_btn03,
+.k1_btn03 *{overflow:visible; background-image:url(/imgs/airA/btn/btn_airbg2.gif); color:#fff; font-size:12px; font-weight:bold; text-decoration:none; white-space:nowrap; cursor:pointer;}
+.k1_btn03 {display:inline-block; height:30px; padding-right:15px; background-position:right -114px; vertical-align:middle; cursor:pointer;}
+.k1_btn03 span{display:block; height:28px; padding:1px 1px 1px 15px; background-position:left -114px; line-height:30px;}
+.k1_btn03 button,
+.k1_btn03 input{display:block; height:30px; padding:1px 1px 1px 15px; border:0 none; background-position:left -114px; line-height:30px;}
+
+/************************************************************************************************************
+ k1_btn04
+************************************************************************************************************/
+.k1_btn04,
+.k1_btn04 *{overflow:visible; background-image:url(/imgs/airA/btn/btn_airbg2.gif); color:#fff; font-size:12px; font-weight:bold; text-decoration:none; white-space:nowrap; cursor:pointer;}
+.k1_btn04 {display:inline-block; height:30px; padding-right:10px; background-position:right -144px; vertical-align:middle; cursor:pointer;}
+.k1_btn04 span{display:block; height:28px; padding:1px 1px 1px 10px; background-position:left -144px; line-height:30px;}
+.k1_btn04 button,
+.k1_btn04 input{display:block; height:30px; padding:1px 1px 1px 10px; border:0 none; background-position:left -144px; line-height:30px;}
+
+/************************************************************************************************************
+ k1_btn05
+************************************************************************************************************/
+.k1_btn05,
+.k1_btn05 *{overflow:visible; background-image:url(/imgs/airA/btn/btn_airbg2.gif); color:#fff; font-size:12px; font-weight:bold; text-decoration:none; white-space:nowrap; cursor:pointer;}
+.k1_btn05 {display:inline-block; height:30px; padding-right:10px; background-position:right -174px; vertical-align:middle; cursor:pointer;}
+.k1_btn05 span{display:block; height:28px; padding:1px 1px 1px 10px; background-position:left -174px; line-height:30px;}
+.k1_btn05 button,
+.k1_btn05 input{display:block; height:30px; padding:1px 1px 1px 10px; border:0 none; background-position:left -174px; line-height:30px;}
+
+/************************************************************************************************************
+ k1_btn06
+************************************************************************************************************/
+.k1_btn06,
+.k1_btn06 *{overflow:visible; background-image:url(/imgs/airA/btn/btn_airbg2.gif); color:#fff; font-size:12px; text-decoration:none; white-space:nowrap; cursor:pointer;}
+.k1_btn06 {display:inline-block; height:28px; padding-right:9px; background-position:right -235px; vertical-align:middle; cursor:pointer;}
+.k1_btn06 span{display:block; height:24px; padding:1px 1px 1px 10px; background-position:left -235px; line-height:25px;}
+.k1_btn06 button,
+.k1_btn06 input{display:block; height:28px; padding:1px 1px 1px 10px; border:0 none; background-position:left -235px; line-height:25px;}
+
+/************************************************************************************************************
+ k1_btn06_off
+************************************************************************************************************/
+.k1_btn06_off,
+.k1_btn06_off *{overflow:visible; background-image:url(/imgs/airA/btn/btn_airbg2.gif); color:#fff; font-size:12px; text-decoration:none; white-space:nowrap; cursor:pointer;}
+.k1_btn06_off {display:inline-block; height:28px; padding-right:9px; background-position:right -263px; vertical-align:middle; cursor:pointer;}
+.k1_btn06_off span{display:block; height:26px; padding:1px 1px 1px 10px; background-position:left -263px; line-height:25px;}
+.k1_btn06_off button,
+.k1_btn06_off input{display:block; height:28px; padding:1px 1px 1px 10px; border:0 none; background-position:left -263px; line-height:25px;}
+
+/************************************************************************************************************
+ k1_btn07
+************************************************************************************************************/
+.k1_btn07,
+.k1_btn07 *{overflow:visible; background-image:url(/imgs/airA/btn/btn_airbg2.gif); color:#fff; font-size:12px; text-align:center; font-weight:bold; text-decoration:none; white-space:nowrap; cursor:pointer;}
+.k1_btn07 {display:inline-block; height:23px; padding-right:8px; background-position:right -291px; vertical-align:middle; cursor:pointer;}
+.k1_btn07 span{display:block; height:21px; padding:1px 1px 1px 9px; background-position:left -291px; line-height:23px;}
+.k1_btn07 button,
+.k1_btn07 input{display:block; height:23px; padding:1px 0 1px 6px; border:0 none; background-position:left -291px; line-height:23px;}
+
+/************************************************************************************************************
+ k1_btn08
+************************************************************************************************************/
+.k1_btn08,
+.k1_btn08 *{overflow:visible; background-image:url(/imgs/airA/btn/btn_airbg2.gif); font-size:12px; font-weight:bold; text-align:center; text-decoration:none; white-space:nowrap; cursor:pointer;}
+.k1_btn08 {display:inline-block; height:23px; padding-right:8px; background-position:right -314px; vertical-align:middle; cursor:pointer;}
+.k1_btn08 span{display:block; height:21px; padding:1px 1px 1px 9px; background-position:left -314px; line-height:23px;}
+.k1_btn08 button,
+.k1_btn08 input{display:block; height:23px; padding:1px 0 1px 6px; border:0 none; background-position:left -314px; line-height:23px;}
+/************************************************************************************************************
+ k1_btn09
+************************************************************************************************************/
+.k1_btn09,
+.k1_btn09 *{overflow:visible; background-image:url(/imgs/airA/btn/btn_airbg2.gif); color:#fff; font-size:12px; text-align:center; text-decoration:none; white-space:nowrap; cursor:pointer;}
+.k1_btn09 {display:inline-block; height:21px; padding-right:8px; background-position:right -337px; vertical-align:middle; cursor:pointer;}
+.k1_btn09 span{display:block; height:19px; padding:1px 4px 1px 3px; background-position:left -337px; line-height:21px;}
+.k1_btn09 button,
+.k1_btn09 input{display:block; height:21px; padding:1px 3px 1px 3px; border:0 none; background-position:left -337px; line-height:21px;}
+
+/************************************************************************************************************
+ k1_btn_input02
+************************************************************************************************************/
+.k1_btn_input02,
+.k1_btn_input02 *{overflow:visible; background-image:url(/imgs/airA/btn/btn_login.gif); color:#fff; font-weight:bold; text-align:center; text-decoration:none; white-space:nowrap; cursor:pointer;}
+.k1_btn_input02{display:inline-block; height:44px; padding-right:1px; background-position:right 0; vertical-align:middle; cursor:pointer;}
+.k1_btn_input02 span{display:block; width:62px; height:9px; padding:15px 1px 20px 2px; background-position:left 0; line-height:14px;}
+.k1_btn_input02 button,
+.k1_btn_input02 input{display:block; width:64px; height:44px; padding:15px 1px 20px 2px; border:0 none; background-position:left 0; line-height:14px;}
+
+/************************************************************************************************************
+ k1_btn_input03
+************************************************************************************************************/
+.k1_btn_input03,
+.k1_btn_input03 *{overflow:visible; background-image:url(/imgs/airA/btn/btn_log2.gif); color:#fff; text-align:center; text-decoration:none; white-space:nowrap; cursor:pointer;}
+.k1_btn_input03{display:inline-block; height:19px; padding-right:1px; background-position:right 0; vertical-align:middle; cursor:pointer;}
+.k1_btn_input03 span{display:block; width:86px; height:11px; padding:4px 0 4px 0; background-position:left 0; line-height:12px; text-align:center;}
+.k1_btn_input03 button,
+.k1_btn_input03 input{display:block; width:86px; height:19px; padding:4px 0 4px 0; border:0 none; background-position:left 0; line-height:12px;}

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Insert title here</title>
+	
+	<script type="text/javascript" src="/js/plugin/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript">
+	var $k1 = jQuery.noConflict();
+
+	$k1(document).ready(function() {
+		var addr = unescape(location.href);
+		var param = (addr.slice(addr.indexOf('?') + 1, addr.length));
+		var paramVal = (param.slice(param.indexOf('=') + 1, param.length));
+		var img = "<img src='" + paramVal + "'/>";
+		
+		console.log(paramVal);
+		$k1("#printImg").html(img);		
+		
+		console.log($k1("#printImg").html());
+		window.print();
+	});
+	</script>
+
+</head>
+
+<body>
+<div id="printImg" style="width:500px;height:500px;"></div>
+<!-- 
+​<img src="http://maps.google.com/maps/api/staticmap?center=35.4437078,139.6380256&zoom=12&size=642x482&maptype=roadmap&language=ko&region=kr&sensor=false&markers=icon:http://aux.iconpedia.net/uploads/12017270681878234919.png|35.4679771,139.61836240000002&markers=icon:http://aux.iconpedia.net/uploads/12017270681878234919.png|35.4568951,139.63518350000004&markers=icon:http://aux.iconpedia.net/uploads/12017270681878234919.png|35.44644359999999,139.63672829999996&markers=icon:http://aux.iconpedia.net/uploads/12017270681878234919.png|35.4437078,139.6380256&markers=icon:http://aux.iconpedia.net/uploads/12017270681878234919.png|35.4446993,139.64217800000006&markers=icon:http://aux.iconpedia.net/uploads/12017270681878234919.png|35.4548426,139.64404409999997">
+ -->
+</body>
+</html>

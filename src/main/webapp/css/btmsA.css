@@ -1,0 +1,40 @@
+@charset "UTF-8";
+
+/* ------------------------------------------------------------------------------------
+Basic Style Sheet (for version 4 browsers)
+
+version: 0.1
+author: 박수연
+email: suudjin@nate.com
+
+-css수정시-
+--------------------------------------------------------------------------------------- */
+
+/*:DATE :2013.01.04 
+:author:*/
+
+/*------------------------------------------------------------------------------------- */
+/* for styles */
+
+/* 공통 - 추후 wfw로 이동 */
+@import url("/air/wfw/css/common.css");		/* common */
+@import url("/air/wfw/css/airA/typo.css");	/* typo */
+@import url("/air/wfw/css/airA/ico.css");		/* icon */
+@import url("/air/wfw/css/airA/btn.css");		/* btn */
+@import url("/air/wfw/css/airA/cont.css");	/* contents */
+@import url("/air/wfw/css/airA/board.css");	/* board */
+@import url("/air/wfw/css/airA/calendar.css");/* calendar */
+@import url("/air/wfw/css/ie7.css");		    /* ie7전용핵 */
+
+/* b2b b2c */
+/*@import url("/air/css/airA/contents.css");	 contents */
+/*@import url("/air/css/airA/air_popup.css");	popup */
+/*@import url("/air/css/airA/air_board.css");	board */
+/*@import url("/air/css/airA/air_btn.css");		 air_btn */
+
+/* btms */
+@import url("/air/css/airA/btms_contents.css");/* btms_contents */
+@import url("/air/css/airA/btms_board.css");	/* btms_board */
+@import url("/air/css/airA/btms_popup.css");	/* btms_popup */
+@import url("/air/css/airA/btms_btn.css");	/* btms_btn */
+@import url("/air/css/airA/btms_htl.css");	/* htl-커스터마이징 */

@@ -1,0 +1,389 @@
+@charset "utf-8"; 
+
+/* ------------------------------------------------------------------------------------
+Basic Style Sheet (for version 4 browsers)
+
+version: 0.1
+author: 박수연
+email: suudjin@nate.com
+설명: 공통
+
+-css수정시-
+--------------------------------------------------------------------------------------- */
+
+/*:DATE :2013.03.20
+:author:*/
+
+
+/*************************************************** air 버튼 공통사용**************************************************************/
+.k1_btn_wrap {text-align: center;}
+
+/*************************************************** 텍스트 버튼 *******************************************************************/
+
+/************************************************************************************************************
+ k1_btn4 - htl 사용
+************************************************************************************************************/
+.k1_btn4,
+.k1_btn4 *{background-image:url(/imgs/airA/btn/btn_bg.png); color:#235ba5; cursor:pointer; line-height:17px; text-decoration:none;}
+.k1_btn4{display:inline-block; height:20px; padding-right:2px; background-position:right top; vertical-align:middle;}
+.k1_btn4 span{display:block; height:17px; padding:2px 4px 1px 6px; background-position:left top;}
+.k1_btn4 button,
+.k1_btn4 input{display:block; height:20px; padding:2px 4px 1px 6px; border:0 none; background-position:left top;}
+
+/************************************************************************************************************
+ k1_btn6 - htl 사용
+************************************************************************************************************/
+.k1_btn6,
+.k1_btn6 *{background-image:url(/imgs/airA/btn/btn_bg.png); color:#fff; text-decoration:none; white-space:nowrap; cursor:pointer; line-height:17px}
+.k1_btn6{display:inline-block; height:20px; padding-right:2px; background-position:right -20px; vertical-align:middle;}
+.k1_btn6 span{display:block; height:17px; padding:2px 9px 1px 10px; background-position:left -20px;}
+.k1_btn6 button,
+.k1_btn6 input{display:block; height:20px; padding:2px 9px 2px 10px; background-position:left -20px; border:0 none;}
+
+/************************************************************************************************************
+ k1_btn7 - htl 사용
+************************************************************************************************************/
+.k1_btn7,
+.k1_btn7 *{overflow:visible; background-image:url(/imgs/airA/btn/btn_bg.png); color:#fff; text-decoration:none; line-height:17px; white-space:nowrap; cursor:pointer;}
+.k1_btn7{display:inline-block; position:relative; height:20px; padding-right:2px; background-position:right -40px; vertical-align:middle;}
+.k1_btn7 strong{background:none; border:0 none;}
+.k1_btn7 span{display:block; height:17px; padding:2px 16px 1px 27px; background-position:left -40px;}
+.k1_btn7 button,
+.k1_btn7 input{display:block; height:20px; padding:2px 16px 2px 27px; border:0 none; background-position:left -40px;}
+
+/************************************************************************************************************
+ k1_btn8 - htl 사용
+************************************************************************************************************/
+.k1_btn8,
+.k1_btn8 *{overflow:visible; background-image:url(/imgs/airA/btn/btn_bg.png); color:#fff; text-align:center; line-height:15px; text-decoration:none; cursor:pointer; vertical-align:middle; white-space:nowrap;}
+.k1_btn8{display:inline-block; position:relative; height:17px; padding-right:3px; background-position:right -60px;}
+.k1_btn8 span{display:block; height:14px; padding:2px 3px 1px 7px; background-position:left -60px;}
+.k1_btn8 button,
+.k1_btn8 input{display:block; height:17px; padding:2px 3px 1px 7px; background-position:left -60px; border:0 none;}
+.k1_btn8 em.ico1{display:inline-block; padding:0 3px; width:5px; height:9px; background:url(/imgs/airA/btn/btn_icon.png) no-repeat 0 -55px;}
+
+/************************************************************************************************************
+ k1_btn9
+************************************************************************************************************/
+.k1_btn9,
+.k1_btn9 *{overflow:visible; background-image:url(/imgs/airA/btn/btn_bg.png); color:#fff; text-align:center; text-decoration:none; cursor:pointer; line-height:15px; vertical-align:middle; white-space:nowrap;}
+.k1_btn9{display:inline-block; height:17px; padding-right:4px; background-position:right -77px;}
+.k1_btn9 span{display:block; height:14px; padding:2px 3px 1px 7px; background-position:left -77px;}
+.k1_btn9 button,
+.k1_btn9 input{display:block; height:17px; border:0 none; padding:2px 3px 1px 7px; background-position:left -77px;}
+
+/************************************************************************************************************
+ k1_btn11 - btms 사용
+************************************************************************************************************/
+.k1_btn11,
+.k1_btn11 *{overflow:visible; background-image:url(/imgs/airA/btn/btn_bg.png); color:#fff; text-decoration:none; cursor:pointer; vertical-align:middle; line-height:14px;}
+.k1_btn11{display:inline-block; height:21px; padding-right:1px; background-position:right -94px;}
+.k1_btn11 span{display:block; height:14px; padding:5px 8px 2px 9px; background-position:left -94px;}
+.k1_btn11 button,
+.k1_btn11 input{display:block; height:21px; padding:5px 8px 2px 9px; background-position:left -94px; border:0 none;}
+
+/************************************************************************************************************
+ k1_btn12 - btms 사용
+************************************************************************************************************/
+.k1_btn12,
+.k1_btn12 *{overflow:visible; background-image:url(/imgs/airA/btn/btn_bg.png); color:#494949; text-decoration:none; cursor:pointer; vertical-align:middle; line-height:1.2em; font-size:11px;}
+.k1_btn12{display:inline-block; height:17px; padding-right:1px; background-position:right -115px;}
+.k1_btn12 span{display:block; height:12px; padding:4px 7px 1px 8px; background-position:left -115px;}
+.k1_btn12 button,
+.k1_btn12 input{display:block; height:17px; padding:4px 7px 1px 8px; background-position:left -115px; border:0 none;}
+a.k1_btn12:hover{text-decoration:none !important;}
+
+/************************************************************************************************************
+ k1_btn01 - htl 사용
+************************************************************************************************************/
+.k1_btn01,
+.k1_btn01 *{overflow:visible; background-image:url(/imgs/airA/btn/btn_bg.png); color:#fff; font-size:12px; font-weight:bold; text-decoration:none; vertical-align:middle; cursor:pointer; line-height:1.35em;}
+.k1_btn01 {display:inline-block; height:31px; padding-right:10px; background-position:right -132px;}
+.k1_btn01 span{display:block; height:12px; padding:9px 10px 10px 20px; background-position:left -132px;}
+.k1_btn01 button,
+.k1_btn01 input{display:block; height:31px; padding:9px 10px 8px 20px; background-position:left -132px; border:0 none;}
+
+/************************************************************************************************************
+ k1_btn01_off - htl 사용
+************************************************************************************************************/
+.k1_btn01_off,
+.k1_btn01_off *{overflow:visible; background-image:url(/imgs/airA/btn/btn_bg.png); color:#fff; font-size:12px; font-weight:bold; text-decoration:none; vertical-align:middle; cursor:pointer; line-height:1.35em;}
+.k1_btn01_off {display:inline-block; height:31px; padding-right:10px; background-position:right -163px;}
+.k1_btn01_off span{display:block; height:12px; padding:9px 10px 10px 20px; background-position:left -163px;}
+.k1_btn01_off button,
+.k1_btn01_off input{display:block; height:31px; padding:9px 10px 8px 20px; background-position:left -163px; border:0 none;}
+
+/************************************************************************************************************
+ k1_dbtn01 - HTL공통사용
+************************************************************************************************************/
+.k1_dbtn01,
+.k1_dbtn01 *{overflow:visible; background-image:url(/imgs/airA/btn/btn_bg.png); color:#fff; font-size:11px; text-decoration:none; cursor:pointer; vertical-align:middle; line-height:1.3em;}
+.k1_dbtn01{display:inline-block; width:100px; height:20px; padding-right:2px; background-position:right -194px; text-align:center;}
+.k1_dbtn01 span{display:block; height:14px; padding:4px 1px 2px 3px; background-position:left -194px;}
+.k1_dbtn01 button,
+.k1_dbtn01 input{display:block; width:100px; height:20px; padding:2px 1px 1px 3px; border:0 none; background-position:left -194px;}
+
+/************************************************************************************************************
+ k1_dbtn02 - HTL공통사용
+************************************************************************************************************/
+.k1_dbtn02,
+.k1_dbtn02 *{overflow:visible; background-image:url(/imgs/airA/btn/btn_bg.png); color:#fff; font-size:11px; text-align:center; text-decoration:none; vertical-align:middle; cursor:pointer; line-height:1.2em;}
+.k1_dbtn02{display:inline-block; height:33px; width:100px; padding-right:2px; background-position:right -215px;}
+.k1_dbtn02 span{display:block; height:27px; padding:4px 1px 2px 3px; background-position:left -215px;}
+.k1_dbtn02 button,
+.k1_dbtn02 input{display:block; width:100px; height:33px; padding:2px 1px 1px 3px; border:0 none; background-position:left -215px;}
+
+/************************************************************************************************************
+ btn_reserch1 - htl 사용
+************************************************************************************************************/
+.btn_reserch1,
+.btn_reserch1 *{background-image:url(/imgs/airA/btn/btn_bg.png); color:#fff; text-align:center; text-decoration:none; white-space:nowrap; cursor:pointer; vertical-align:middle; line-height:1.3em;}
+.btn_reserch1{display:inline-block; height:24px; width:64px; padding-right:2px; background-position:right -249px;}
+.btn_reserch1 span{display:block; height:15px; padding:5px 1px 4px 3px; background-position:left -249px;}
+.btn_reserch1 button,
+.btn_reserch1 input{display:block; width:64px; height:24px; padding:5px 1px 4px 3px; border:0 none; background-position:left -249px;}
+
+/************************************************************************************************************
+ k1_btn_input01 - btms 사용(댓글)
+************************************************************************************************************/
+.k1_btn_input01,
+.k1_btn_input01 *{background-image:url(/imgs/airA/btn/btn_bg.png); color:#fff; font-weight:bold; text-align:center; text-decoration:none; vertical-align:middle; cursor:pointer; line-height:1.2em;}
+.k1_btn_input01{display:inline-block; height:60px; width:68px; padding-right:2px; background-position:right -273px;}
+.k1_btn_input01 span{display:block; height:14px; padding:23px 1px 23px 3px; background-position:left -273px;}
+.k1_btn_input01 button,
+.k1_btn_input01 input{display:block; height:60px; width:68px; padding:23px 1px 23px 3px; border:0 none; background-position:left -273px;}
+
+/************************************************************************************************************
+ btn_bg01 - htl 사용
+************************************************************************************************************/
+.btn_bg01 {display:inline-block; width:93px; height:17px; padding:1px 0; border:0 none; background:url(/imgs/airA/btn/btn_bg.png) no-repeat 0 -333px; line-height:17px; color:#fff; font-size:11px; text-align:center; vertical-align:middle; cursor:pointer; text-decoration:none;}
+a.btn_bg01{height:16px; line-height:16px;}
+a.btn_bg01:hover{text-decoration:none;}
+
+/*************************************************** htl btn -btms 호텔버튼 공통사용***************************************************************************/
+/************************************************************************************************************
+ k1_htlbtn_01
+************************************************************************************************************/
+.k1_htlbtn_01,
+.k1_htlbtn_01 *{overflow:visible; background-image:url(/imgs/airA/btn/btn_htlbg.gif); color:#fff; line-height:14px; font-weight:bold; white-space:nowrap; cursor:pointer; vertical-align:middle;}
+.k1_htlbtn_01{display:inline-block; position:relative; height:34px; padding-right:2px; background-position:right top;}
+.k1_htlbtn_01 span{display:block; height:15px; padding:10px 29px 9px 40px; background-position:left top;}
+.k1_htlbtn_01 button,
+.k1_htlbtn_01 input{display:block; height:34px; border:0 none; padding:10px 29px 9px 40px; background-position:left top;}
+.k1_htlbtn_01 em{display:block; position:absolute; top:13px; left:30px; height:7px; width:6px; background:url(/imgs/airA/btn/htl_iconset.gif) no-repeat;  line-height:14px; vertical-align:middle;}
+.k1_htlbtn_01 em.ico1 {background-position:0 0;}
+a.k1_htlbtn_01:hover{text-decoration:none !important;}
+
+/************************************************************************************************************
+ k1_htlbtn_02
+************************************************************************************************************/
+.k1_htlbtn_02,
+.k1_htlbtn_02 *{overflow:visible; background-image:url(/imgs/airA/btn/btn_htlbg.gif); color:#fff; line-height:14px; font-weight:bold; white-space:nowrap; cursor:pointer; vertical-align:middle;}
+.k1_htlbtn_02{display:inline-block; position:relative; height:48px; padding-right:2px; background-position:right -92px;}
+.k1_htlbtn_02 span{display:block; height:15px; padding:17px 20px 16px 30px; background-position:left -92px;}
+.k1_htlbtn_02 button,
+.k1_htlbtn_02 input{display:block; height:48px; border:0 none; padding:17px 20px 16px 30px; background-position:left -92px;}
+.k1_htlbtn_02 em{display:block; position:absolute; top:20px; left:20px; height:7px; width:6px; background:url(/imgs/airA/btn/htl_iconset.gif) no-repeat; vertical-align:middle;}
+.k1_htlbtn_02 em.ico1 {background-position:0 0;}
+a.k1_htlbtn_02:hover{text-decoration:none !important;}
+
+/************************************************************************************************************
+ k1_htlbtn_03
+************************************************************************************************************/
+.k1_htlbtn_03,
+.k1_htlbtn_03 *{overflow:visible; background-image:url(/imgs/airA/btn/btn_htlbg.gif); color:#fff; line-height:14px; font-weight:bold; white-space:nowrap; cursor:pointer; vertical-align:middle;}
+.k1_htlbtn_03{display:inline-block; position:relative; height:29px; padding-right:2px; background-position:right -226px;}
+.k1_htlbtn_03 span{display:block; height:14px; padding:8px 18px 7px 20px; background-position:left -226px;}
+.k1_htlbtn_03 button,
+.k1_htlbtn_03 input{display:block; height:29px; border:0 none; padding:8px 18px 7px 20px; background-position:left -226px;}
+.k1_htlbtn_03 span.w100{width:90px; padding:8px 4px 7px 6px; text-align:center;}
+.k1_htlbtn_03 button.w100,
+.k1_htlbtn_03 input.w100{width:100px; text-align:center;}
+a.k1_htlbtn_03:hover{text-decoration:none !important;}
+
+/************************************************************************************************************
+ k1_htlbtn_03_off
+************************************************************************************************************/
+.k1_htlbtn_03_off,
+.k1_htlbtn_03_off *{overflow:visible; background-image:url(/imgs/airA/btn/btn_htlbg.gif); color:#fff; line-height:14px; font-weight:bold; white-space:nowrap; cursor:pointer; vertical-align:middle;}
+.k1_htlbtn_03_off{display:inline-block; position:relative; height:29px; padding-right:2px; background-position:right -255px;}
+.k1_htlbtn_03_off span{display:block; height:14px; padding:8px 18px 7px 20px; background-position:left -255px;}
+.k1_htlbtn_03_off button,
+.k1_htlbtn_03_off input{display:block; height:29px; border:0 none; padding:8px 18px 7px 20px; background-position:left -255px;}
+.k1_htlbtn_03_off span.w100{width:90px; padding:8px 4px 7px 6px; text-align:center;}
+.k1_htlbtn_03_off button.w100,
+.k1_htlbtn_03_off input.w100{width:100px; text-align:center;}
+a.k1_htlbtn_03_off:hover{text-decoration:none !important;}
+
+/************************************************************************************************************
+ k1_htlbtn_04
+************************************************************************************************************/
+.k1_htlbtn_04,
+.k1_htlbtn_04 *{overflow:visible; background-image:url(/imgs/airA/btn/btn_htlbg.gif); font-size:12px; cursor:pointer; vertical-align:middle; line-height:12px; color:#fff; font-weight:bold;}
+.k1_htlbtn_04{display:inline-block; position:relative; height:27px; padding-right:2px; background-position:right -303px; text-align:center;}
+.k1_htlbtn_04 span{display:block; height:13px; padding:8px 8px 6px 10px; background-position:left -303px;}
+.k1_htlbtn_04 button,
+.k1_htlbtn_04 input{display:block; height:27px; border:0 none; padding:6px 8px 6px 10px; background-position:left -303px;}
+a.k1_htlbtn_04:hover{text-decoration:none !important;}
+.k1_htlbtn_04 span.w80{width:80px;}
+.k1_htlbtn_04 button.w80,
+.k1_htlbtn_04 input.w80{width:98px;}
+
+/************************************************************************************************************
+ k1_htlbtn_05
+************************************************************************************************************/
+.k1_htlbtn_05,
+.k1_htlbtn_05 *{overflow:visible; background-image:url(/imgs/airA/btn/btn_htlbg.gif); font-size:12px; cursor:pointer; vertical-align:middle; line-height:1.2em; color:#fff;}
+.k1_htlbtn_05{display:inline-block; position:relative; height:20px; padding-right:10px; background-position:right -347px; text-align:center;}
+.k1_htlbtn_05 span{display:block; height:14px; padding:3px 8px 3px 28px; background-position:left -347px;}
+.k1_htlbtn_05 button,
+.k1_htlbtn_05 input{display:block; height:20px; border:0 none; padding:4px 8px 2px 28px; background-position:left -347px;}
+a.k1_htlbtn_05:hover{text-decoration:none !important;}
+.k1_htlbtn_05 em{display:block; position:absolute; top:5px; left:17px; height:9px; width:6px; background:url(/imgs/airA/btn/htl_iconset.gif) no-repeat; vertical-align:middle;}
+.k1_htlbtn_05 em.ico{background-position:-56px 0;}
+.k1_htlbtn_05 strong{background:none;}
+
+/************************************************************************************************************
+ k1_htlsbtn_01
+************************************************************************************************************/
+.k1_htlsbtn_01,
+.k1_htlsbtn_01 *{overflow:visible; background-image:url(/imgs/airA/btn/btn_htlbg.gif); color:#696969; line-height:14px; font-weight:bold; white-space:nowrap; cursor:pointer; vertical-align:middle;}
+.k1_htlsbtn_01{display:inline-block; position:relative; height:21px; padding-right:2px; background-position:right -34px;}
+.k1_htlsbtn_01 span{display:block; height:14px; padding:4px 10px 3px 12px; background-position:left -34px;}
+.k1_htlsbtn_01 button,
+.k1_htlsbtn_01 input{display:block; height:21px; border:0 none; padding:4px 10px 3px 12px; background-position:left -34px; color:#696969;}
+a.k1_htlsbtn_01:hover{text-decoration:none !important;}
+
+/************************************************************************************************************
+ k1_htlsbtn_012
+************************************************************************************************************/
+.k1_htlsbtn_012,
+.k1_htlsbtn_012 *{overflow:visible; background-image:url(/imgs/airA/btn/btn_htlbg.gif); color:#696969; line-height:14px; font-weight:bold; white-space:nowrap; cursor:pointer; vertical-align:middle; font-size:11px;}
+.k1_htlsbtn_012{display:inline-block; position:relative; height:21px; padding-right:2px; background-position:right -34px;}
+.k1_htlsbtn_012 span{display:block; height:14px; padding:4px 8px 3px 10px; background-position:left -34px;}
+.k1_htlsbtn_012 button,
+.k1_htlsbtn_012 input{display:block; height:21px; border:0 none; padding:4px 8px 3px 10px; background-position:left -34px; color:#696969;}
+a.k1_htlsbtn_012:hover{text-decoration:none !important;}
+
+/************************************************************************************************************
+ k1_htlsbtn_02
+************************************************************************************************************/
+.k1_htlsbtn_02,
+.k1_htlsbtn_02 *{overflow:visible; background-image:url(/imgs/airA/btn/btn_htlbg.gif); line-height:14px; font-size:11px; color:#fff; white-space:nowrap; cursor:pointer; vertical-align:middle;}
+.k1_htlsbtn_02{display:inline-block; position:relative; height:17px; padding-right:4px; background-position:right -55px;}
+.k1_htlsbtn_02 span{display:block; height:14px; padding:2px 3px 1px 7px; background-position:left -55px;}
+.k1_htlsbtn_02 button,
+.k1_htlsbtn_02 input{display:block; height:17px; border:0 none; padding:2px 3px 1px 7px; background-position:left -55px;}
+a.k1_htlsbtn_02:hover{text-decoration:none !important;}
+
+/************************************************************************************************************
+ k1_htlsbtn_03
+************************************************************************************************************/
+.k1_htlsbtn_03,
+.k1_htlsbtn_03 *{overflow:visible; background-image:url(/imgs/airA/btn/btn_htlbg.gif); font-size:12px; white-space:nowrap; cursor:pointer; vertical-align:middle; line-height:14px;}
+.k1_htlsbtn_03{display:inline-block; position:relative; height:20px; padding-right:2px; background-position:right -72px;}
+.k1_htlsbtn_03 span{display:block; height:14px; padding:3px 26px 3px 28px; background-position:left -72px;}
+.k1_htlsbtn_03 button,
+.k1_htlsbtn_03 input{display:block; height:20px; border:0 none; padding:3px 26px 3px 28px; background-position:left -72px;}
+a.k1_htlsbtn_03:hover{text-decoration:none !important;}
+
+/************************************************************************************************************
+ k1_htlsbtn_04
+************************************************************************************************************/
+.k1_htlsbtn_04,
+.k1_htlsbtn_04 *{overflow:visible; background-image:url(/imgs/airA/btn/btn_htlbg.gif); font-size:12px; white-space:nowrap; cursor:pointer; vertical-align:middle; line-height:14px; color:#fff;}
+.k1_htlsbtn_04{display:inline-block; position:relative; height:20px; padding-right:2px; background-position:right -140px;}
+.k1_htlsbtn_04 span{display:block; height:14px; padding:3px 6px 3px 8px; background-position:left -140px;}
+.k1_htlsbtn_04 button,
+.k1_htlsbtn_04 input{display:block; height:20px; border:0 none; padding:3px 6px 3px 8px; background-position:left -140px;}
+a.k1_htlsbtn_04:hover{text-decoration:none !important;}
+
+/************************************************************************************************************
+ k1_htlsbtn_05
+************************************************************************************************************/
+.k1_htlsbtn_05,
+.k1_htlsbtn_05 *{overflow:visible; background-image:url(/imgs/airA/btn/btn_htlbg.gif); font-size:11px; white-space:nowrap; cursor:pointer; vertical-align:middle; line-height:13px; color:#494949;}
+.k1_htlsbtn_05{display:inline-block; height:19px; padding-right:3px; background-position:right -160px;}
+.k1_htlsbtn_05 span{display:block; height:13px; padding:4px 5px 2px 10px; background-position:left -160px;}
+.k1_htlsbtn_05 button,
+.k1_htlsbtn_05 input{display:block; height:19px; border:0 none; padding:4px 5px 2px 10px; background-position:left -160px;}
+.k1_htlsbtn_05 .sbtn{padding:4px 2px 2px 5px;}
+a.k1_htlsbtn_05:hover{text-decoration:none !important;}
+
+/************************************************************************************************************
+ k1_htlsbtn_06
+************************************************************************************************************/
+.k1_htlsbtn_06,
+.k1_htlsbtn_06 *{overflow:visible; background-image:url(/imgs/airA/btn/btn_htlbg.gif); font-size:12px; white-space:nowrap; cursor:pointer; vertical-align:middle; line-height:14px; color:#fff;}
+.k1_htlsbtn_06{display:inline-block; height:24px; padding-right:3px; background-position:right -179px;}
+.k1_htlsbtn_06 span{display:block; height:14px; padding:5px 7px 5px 10px; background-position:left -179px;}
+.k1_htlsbtn_06 button,
+.k1_htlsbtn_06 input{display:block; height:24px; border:0 none; padding:5px 7px 5px 10px; background-position:left -179px;}
+a.k1_htlsbtn_06:hover{text-decoration:none !important;}
+
+/************************************************************************************************************
+ k1_htlsbtn_07
+************************************************************************************************************/
+.k1_htlsbtn_07,
+.k1_htlsbtn_07 *{overflow:visible; background-image:url(/imgs/airA/btn/btn_htlbg.gif); font-size:11px; cursor:pointer; vertical-align:middle; line-height:12px; color:#5e5e5e;}
+.k1_htlsbtn_07{display:inline-block; position:relative; height:19px; padding-right:2px; background-position:right -284px;}
+.k1_htlsbtn_07 span{display:block; height:13px; padding:4px 2px 2px 4px; background-position:left -284px;}
+.k1_htlsbtn_07 button,
+.k1_htlsbtn_07 input{display:block; height:19px; border:0 none; padding:4px 2px 2px 4px; background-position:left -284px;}
+a.k1_htlsbtn_07:hover{text-decoration:none !important;}
+
+/************************************************************************************************************
+ k1_htlsbtn_08
+************************************************************************************************************/
+.k1_htlsbtn_08,
+.k1_htlsbtn_08 *{overflow:visible; background-image:url(/imgs/airA/btn/btn_htlbg.gif); font-size:12px; white-space:nowrap; cursor:pointer; vertical-align:middle; line-height:1.3em;}
+.k1_htlsbtn_08{display:inline-block; position:relative; height:20px; padding-right:2px; background-position:right -72px;}
+.k1_htlsbtn_08 span{display:block; height:14px; padding:3px 8px 3px 10px; background-position:left -72px;}
+.k1_htlsbtn_08 button,
+.k1_htlsbtn_08 input{display:block; height:20px; border:0 none; padding:3px 8px 3px 10px; background-position:left -72px;}
+a.k1_htlsbtn_08:hover{text-decoration:none !important;}
+
+/************************************************************************************************************
+ k1_htlsbtn_09
+************************************************************************************************************/
+.k1_htlsbtn_09,
+.k1_htlsbtn_09 *{overflow:visible; background-image:url(/imgs/airA/btn/btn_htlbg.gif); font-size:12px; white-space:nowrap; cursor:pointer; vertical-align:middle; line-height:1.2em; color:#fff;}
+.k1_htlsbtn_09{display:inline-block; position:relative; height:17px; padding-right:2px; background-position:right -330px;}
+.k1_htlsbtn_09 span{display:block; height:14px; padding:2px 5px 1px 7px; background-position:left -330px;}
+.k1_htlsbtn_09 button,
+.k1_htlsbtn_09 input{display:block; height:17px; border:0 none; padding:2px 5px 1px 7px; background-position:left -330px;}
+a.k1_htlsbtn_09:hover{text-decoration:none !important;}
+
+.k1_btn_more{position:absolute; display:inline-block; top:19px; right:12px; width:8px; height:8px; border:0 none; background:url(/imgs/airA/btn/htl_iconset.gif) no-repeat -8px 0; vertical-align:middle; cursor:pointer; font-size:0;}
+
+/*************************************************** //htl btn -btms 호텔버튼 공통사용**************************************************************/
+
+/************************************************************************************************************
+ 공통버튼
+************************************************************************************************************/
+/*공지사항버튼*/
+.k1_btn_arrow_prev2 {display:inline-block; width:15px; height:15px; background:url(/imgs/airA/btn/btn_arrow.gif) no-repeat 0 0; vertical-align:middle; line-height:21px;}
+.k1_btn_arrow_next2 {display:inline-block; width:15px; height:15px; background:url(/imgs/airA/btn/btn_arrow.gif) no-repeat -15px 0; vertical-align:middle;}
+
+/************************************************************************************************************
+ icon button - 전체 공통
+************************************************************************************************************/
+.k1_detail {display:inline-block; width:20px; height:19px; border:0 none; background:url(/imgs/airA/btn/btn_icon.png) no-repeat 0 0; vertical-align:middle; cursor:pointer;}
+.k1_detail2 {display:inline-block; width:18px; height:18px; border:0 none; background:url(/imgs/airA/btn/btn_icon.png) no-repeat -24px 0; vertical-align:middle; cursor:pointer;}
+.k1_detail3 {display:inline-block; width:18px; height:18px; border:0 none; background:url(/imgs/airA/btn/btn_icon.png) no-repeat -48px 0; vertical-align:middle; cursor:pointer;}
+.k1_details {display:inline-block; width:15px; height:16px; border:0 none; background:url(/imgs/airA/btn/btn_icon.png) no-repeat -72px 0; vertical-align:middle; cursor:pointer;}
+.k1_detail_info_s {display:inline-block; width:15px; height:16px; border:0 none; background:url(/imgs/airA/btn/btn_icon.png) no-repeat -120px 0; vertical-align:middle; cursor:pointer;}
+.k1_btn_cal {display:inline-block; width:20px; height:19px; border:0 none; background:url(/imgs/airA/btn/btn_icon.png) no-repeat -144px 0; vertical-align:middle; cursor:pointer;}
+.k1_btn_cal_b {display:inline-block; width:18px; height:18px; border:0 none; background:url(/imgs/airA/btn/btn_icon.png) no-repeat -168px 0; vertical-align:middle; cursor:pointer;}
+.k1_btn_cal_s {display:inline-block; width:15px; height:15px; border:0 none; background:url(/imgs/airA/btn/btn_icon.png) no-repeat -216px 0; vertical-align:middle; cursor:pointer;}
+.k1_btn_q {display:inline-block; width:15px; height:15px; border:0 none; background:url(/imgs/airA/btn/btn_icon.png) no-repeat -240px 0; vertical-align:middle; cursor:pointer; font-size:0;}
+.k1_rules {display:inline-block; width:15px; height:16px; border:0 none; background:url(/imgs/airA/btn/btn_icon.png) no-repeat -264px 0; vertical-align:middle; cursor:pointer;}
+.k1_btn_file {display:inline-block; width:13px; height:16px; border:0 none; background:url(/imgs/airA/btn/btn_icon.png) no-repeat -352px 0; vertical-align:middle; cursor:pointer; font-size:0;}
+.k1_btn_docu {display:inline-block; width:19px; height:23px; border:0 none; background:url(/imgs/airA/btn/btn_icon.png) no-repeat -24px -24px; vertical-align:middle; cursor:pointer;}
+.k1_btn_docu2 {display:inline-block; width:21px; height:26px; border:0 none; background:url(/imgs/airA/btn/btn_icon.png) no-repeat 0 -24px; vertical-align:middle; cursor:pointer;}
+.k1_btn_p_close1 {position:absolute; display:inline-block; top:12px; right:12px; width:13px; height:13px; border:0 none; background:url(/imgs/airA/btn/btn_icon.png) no-repeat -48px -24px; font-size:0; cursor:pointer; vertical-align:middle;}
+.k1_btn_close1 {display:inline-block; width:15px; height:15px; border:0 none; background:url(/imgs/airA/btn/btn_icon.png) no-repeat -96px -24px; vertical-align:middle; font-size:0; cursor: pointer;}
+.k1_btn_p_close2 {position:absolute; display:inline-block; top:5px; right:10px; width:15px; height:15px; border:0 none; background:url(/imgs/airA/btn/btn_icon.png) no-repeat -120px -24px; font-size:0; cursor:pointer; vertical-align:middle;}
+.k1_htlpop_close2{position:absolute; display:inline-block; width:15px; height:15px; border:0 none; background:url(/imgs/airA/btn/btn_icon.png) no-repeat -120px -24px; font-size:0; cursor:pointer; vertical-align:middle;}
+.k1_dfile {display:inline-block; width:12px; height:12px; border:0 none; background:url(/imgs/airA/btn/btn_icon.png) no-repeat -192px -24px; vertical-align:middle; cursor:pointer; font-size:0;}
+.k1_btn_refresh {display:inline-block; width:12px; height:12px; border:0 none; background:url(/imgs/airA/btn/btn_icon.png) no-repeat -216px -24px; vertical-align:middle; font-size:0; cursor: pointer;}

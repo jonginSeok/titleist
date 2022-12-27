@@ -55,7 +55,7 @@ function loadScript(src, f) {
   head.appendChild(script);
 }
 
-loadScript(getContextPath() + '/js/showModalDialog.js');
+loadScript(getContextPath() + '/js/egovframework/showModalDialog.js');
 
 function fn_egov_NormalCalendar(frm, sDate, vDate) {
 	var retVal;
@@ -78,8 +78,8 @@ function fn_egov_NormalCalendar(frm, sDate, vDate) {
 		openParam = "dialogWidth:275px;dialogHeight:200px;scroll:no;status:no;center:yes;resizable:yes;";
 	}
 	
-retVal = window.showModalDialog(url, varParam, openParam, "calendarCallback");
-	
+	retVal = window.showModalDialog(url, varParam, openParam, "calendarCallback");
+	console.log("#fn_egov_NormalCalendar.arguments.length:"+fn_egov_NormalCalendar.arguments.length);
 	otherParameters[0] = fn_egov_NormalCalendar.arguments.length;
 	otherParameters[1] = sDate;
 	otherParameters[2] = vDate;

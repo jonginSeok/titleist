@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="/js/plugin/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="/js/plugin/jquery.maskedinput.min.js"></script>
+<script type="text/javascript" src="/js/lib/jquery.com.util.js"></script>
+
+<script type="text/javascript">
+var $k1 = jQuery.noConflict();
+
+$k1(document).ready(function() {
+	$k1.util.formatter('frm');
+	//$k1.util.mask('frm');	//한글 입력이 filtering되지 않음
+});
+</script>
+
+</head>
+<body>
+	<form id="frm">
+	숫자포맷 : <input type="text" id="on" format="onlynumber"><br/>
+	숫자포맷(콤마) : <input type="text" id="n" format="number"><br/>
+	날짜포맷 : <input type="text" id="d" format="date" mask="9999-99-99"><br/>
+	시간포맷 : <input type="text" id="t" format="time" mask="9999-99-99 99:99"><br/>
+	날짜시간 : <input type="text" id="dt" format="datetime"><br/>
+	포맷없음 : <input type="text" id="none"><br/>
+	</form>
+</body>
+</html>

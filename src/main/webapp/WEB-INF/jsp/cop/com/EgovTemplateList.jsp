@@ -18,7 +18,7 @@
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<link rel="stylesheet" type="text/css" href="<c:url value='/'/>css/common.css">
+<link rel="stylesheet" type="text/css" href="<c:url value='/'/>css/egovframework/common.css">
 <title>템플릿 목록</title>
 <script type="text/javascript">
 	console.log('EgovTemplateList.jsp');

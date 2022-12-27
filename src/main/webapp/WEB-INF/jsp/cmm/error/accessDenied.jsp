@@ -9,7 +9,7 @@
 <meta http-equiv="content-language" content="ko">
 <title>eGovFrame 템플릿</title>
 
-<link href="<c:url value='/'/>css/common.css" rel="stylesheet" type="text/css" >
+<link href="<c:url value='/'/>css/egovframework/common.css" rel="stylesheet" type="text/css" >
 
 <script type="text/javascript">
 function fncGoAfterErrorPage(){

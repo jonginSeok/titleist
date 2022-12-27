@@ -21,9 +21,9 @@
 <head>
 <meta http-equiv="Content-Language" content="ko" >
 <title>게시판 목록조회</title>
-<link href="<c:url value='/'/>css/common.css" rel="stylesheet" type="text/css" >
+<link href="<c:url value='/'/>css/egovframework/common.css" rel="stylesheet" type="text/css" >
 
-<script type="text/javascript" src="<c:url value='/js/EgovBBSMng.js' />"></script>
+<script type="text/javascript" src="<c:url value='/js/egovframework/EgovBBSMng.js' />"></script>
 <script type="text/javascript">
     function press(event) {
         if (event.keyCode==13) {

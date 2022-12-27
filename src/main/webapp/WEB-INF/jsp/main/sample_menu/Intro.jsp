@@ -17,7 +17,7 @@
 <head>
 <meta http-equiv="Content-Language" content="ko" >
 <title>표준프레임워크 경량환경 내부업무 템플릿 소개</title>
-<link href="<c:url value='/'/>css/common.css" rel="stylesheet" type="text/css" >
+<link href="<c:url value='/'/>css/egovframework/common.css" rel="stylesheet" type="text/css" >
 </head>
 <body style="margin-left:10px">
 <!-- 전체 레이어 시작 -->

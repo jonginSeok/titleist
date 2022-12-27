@@ -1,0 +1,58 @@
+@charset "utf-8"; 
+
+/* ------------------------------------------------------------------------------------
+Basic Style Sheet (for version 4 browsers)
+
+version: 0.1
+author: 서현진
+email: hjseo@toursoft.co.kr
+설명: 공통
+
+-css수정시-
+--------------------------------------------------------------------------------------- */
+
+/*:DATE :2013.01.21
+:author:*/
+
+/*------------------------------------------------------------------------------------- */
+
+
+/* // --Air_search--// */
+/* k1_tool_tip1 */
+.k1_tool .tl {width:5px; height:5px; background:url(/air/imgs/airA/popup/tool_tl.png) left top no-repeat; font-size:0;}
+* html .k1_tool .tl {background:none; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/air/imgs/airA/popup/tool_tl.png',sizingMethod='corp');}
+.k1_tool .t {background:url(/air/imgs/airA/popup/tool_t.png) repeat-x; font-size:0;}
+* html .k1_tool .t {background:none; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/air/imgs/airA/popup/tool_t.png',sizingMethod='scale');}
+.k1_tool .tr {width:5px; height:5px; background: url(/air/imgs/airA/popup/tool_tr.png) right top no-repeat; font-size:0;}
+*html .k1_tool .tr {background:none; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/air/imgs/airA/popup/tool_tr.png',sizingMethod='corp');}
+
+.k1_tool .bgl {background:url(/air/imgs/airA/popup/tool_l.png) repeat-y;}
+* html .k1_tool .bgl {background:none; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/air/imgs/airA/popup/tool_l.png',sizingMethod='scale');}
+.k1_tool .txt {padding:0 5px; background-color:#fff; line-height:18px;}
+.k1_tool .bgr {background:url(/air/imgs/airA/popup/tool_r.png) repeat-y;}
+* html .k1_tool .bgr {background:none; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/air/imgs/airA/popup/tool_r.png',sizingMethod='scale');}
+
+.k1_tool .bl {height:6px; background:url(/air/imgs/airA/popup/tool_bl.png) no-repeat; font-size:0;}
+* html .k1_tool .bl {background:none; filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/air/imgs/airA/popup/tool_bl.png',sizingMethod='corp');}
+.k1_tool .b {background:url(/air/imgs/airA/popup/tool_b.png) repeat-x; font-size:0; text-align:right;}
+* html .k1_tool .b {background:none; filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/air/imgs/airA/popup/tool_b.png',sizingMethod='scale');}
+.k1_tool .br {background:url(/air/imgs/airA/popup/tool_br.png) no-repeat; font-size:0;}
+*html .k1_tool .br {width:5px; height:6px; background:none; filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/air/imgs/airA/popup/tool_br.png',sizingMethod='corp');}
+
+.k1_tool .point_area {position:relative; height: 100%;}
+	.k1_tool .point_area .point_img { position:absolute;background:none; top:-1px; left:40%; width:13px; height:15px; background:url(/air/imgs/airA/popup/tool_point.png) no-repeat;}
+	* html. k1_tool .point_area .point_img {background:none; filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/air/imgs/airA/popup/tool_point.png',sizingMethod='corp');}
+
+/*  k1_tool_tip2 */ 
+.tool_tip {position:absolute;z-index:10; margin-bottom:6px; border:1px solid #a7a6a6; background:#fff;}
+.tool_tip p {margin:5px 10px 5px 10px; font-size:11px;color:#828282; line-height:16px;}
+.tool_tip .bg_barrow {position:absolute;left:45%;width:10px; height:6px; background:url(/air/imgs/airA/popup/bg_layer_barrow.png) no-repeat 0 0;font-size:0;}
+
+/* k1_tool_tip3 */
+.ly_help {position:absolute;z-index:10;margin-top:6px;border:1px solid #a7a6a6;background:#fff;text-align:left}
+.ly_help .clse {position:absolute;top:3px;right:4px}
+.ly_help strong {display:block;margin-bottom:-5px;padding:9px 0 0 9px;font-size:11px;color:#2c2c2c;letter-spacing:-1px}
+.ly_help p {padding:8px 0 6px 9px;font-size:11px;color:#828282;line-height:18px;letter-spacing:-1px}
+.ly_help p em {color:#5e5e5e}
+.ly_help .edge_cen {position:absolute;top:0;left:50%;width:11px;height:6px;margin:-6px 0 0 -5px;background:url(/air/imgs/airA/popup/bg_layer_tarrow.png) no-repeat 0 0;font-size:0}
+.ly_help .edge_rgt {position:absolute;top:0;right:0;width:11px;height:6px;margin-top:-6px;background:url(/air/imgs/airA/popup/bg_layer_tarrow.png) no-repeat 0 0;font-size:0}

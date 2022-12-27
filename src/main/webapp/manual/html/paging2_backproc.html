@@ -1,0 +1,199 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>페이징</title>
+<link rel="Stylesheet" type="text/css" href="http://airlocal.topas.net:20000/vof/css/style.css" />
+<link rel="Stylesheet" type="text/css" href="http://airlocal.topas.net:20000/vof/css/vof_contents.css" />
+<link rel="stylesheet" type="text/css" href="http://airlocal.topas.net:20000/vof/wfw/css/ui.jqgrid.css" />
+
+<script src="http://airlocal.topas.net:20000/vof/wfw/js/plugin/jquery-1.7.2.min.js" type="text/javascript"></script>
+<script src="http://airlocal.topas.net:20000/vof/wfw/js/plugin/XSLTransform.js" type="text/javascript"></script>
+<script src="http://airlocal.topas.net:20000/vof/wfw/js/plugin/jquery.jqGrid.src.js" type="text/javascript"></script>
+<script src="http://airlocal.topas.net:20000/vof/wfw/js/plugin/jquery.blockUI.js" type="text/javascript"></script>
+<script src="http://airlocal.topas.net:20000/vof/wfw/js/lib/jquery.com.grid.js" type="text/javascript"></script>
+<script src="http://airlocal.topas.net:20000/vof/wfw/js/lib/jquery.com.util.js" type="text/javascript"></script>
+<script src="http://airlocal.topas.net:20000/vof/wfw/js/lib/jquery.com.uitab.js" type="text/javascript"></script>
+<script src="http://airlocal.topas.net:20000/vof/wfw/js/lib/jquery.com.pager.js" type="text/javascript"></script>
+<script src="http://airlocal.topas.net:20000/vof/wfw/js/lib/jquery.com.js" type="text/javascript"></script>
+<script src="http://airlocal.topas.net:20000/air/wfw/js/lib/jquery.com.map.js" type="text/javascript"></script>
+
+<script type="text/javascript"> 
+var $k1 = jQuery.noConflict();
+
+$k1(document).ready(function (){
+	$k1(window).resize(function(){
+		var width = document.body.clientWidth; // 현재 창의 width 
+		var height = document.body.clientHeight; // 현재 창의 height 
+		
+		console.log(width + " X " + height);
+	});
+	//Grid title 
+	gTitle = ['Inv No', 'Date', 'Client', 'Amount','Tax','Total','Notes'];
+	//Grid Model 
+	gModel = [
+			   		{name:'id',index:'id', width:60, key:true, sortable:false}, 
+			   		{name:'invdate',index:'invdate', width:90, sorttype:"date", sortable:false},
+			   		{name:'name',index:'name', width:100, sortable:false},
+			   		{name:'amount',index:'amount', width:80, align:"right",sorttype:"float",formatter:"number", summaryType:"sum", sortable:false},
+			   		{name:'tax',index:'tax', width:80, align:"right",sorttype:"float", sortable:false},		
+			   		{name:'total',index:'total', width:80,align:"right",sorttype:"float", sortable:false},		
+			   		{name:'note',index:'note', width:150, sortable:false}		
+			   	];
+	
+	
+	//orgSortable = [];
+	//for(var i = 0;i < gModel.length;i++){
+	//	orgSortable[i] = gModel[i]['sortable'] === undefined ? true : gModel[i]['sortable'];
+	//}
+	
+	//데이터 가져와서 뒤에 붙이기
+	options = 	{
+			height: "400",			
+			mtype: "GET",
+			rowNum: 10,
+			prmNames:{
+				page : 'spage',
+				rows : 'srows'
+			},
+		   	xmlReader: {
+				root : "data",
+				row: "list", 
+				page: "data>page", 			//
+			    total: "data>total", 		//
+			    records : "data>records", 	//
+				repeatitems: false,
+				id: "id"
+				}
+	};
+	
+	
+	hiddenGridEvents = {gridComplete:gfnHiddenGridComplete};
+	
+	viewGridEvents = {loadBeforeSend:function(){				
+				var searchWidth = $k1.util.intSize($k1('.cont_wrap').css('width'), 'px');
+				$k1("#v_grid").setGridWidth(searchWidth, true);				
+			},
+			onSelectRow : function(rowid){
+				console.log(rowid);
+				console.log($k1("#v_grid").grid('getRowData', rowid));
+			}
+	};
+	
+	groupHeaders = [{startColumnName: 'amount', numberOfColumns: 3, titleText: '<em>Price</em>'}];
+	
+	//1. 기본적인 Grid을 만든다. : 화면 로딩시 바로 데이타 조회
+	$k1("#h_grid").grid(null, gTitle, gModel, options, hiddenGridEvents);
+	$k1("#v_grid").grid(null, gTitle, gModel, options, viewGridEvents);
+
+	//그리드의 Header 정보를 2줄로 보이게 세팅한다. 	
+	$k1("#v_grid").grid('setGroupHeaders', groupHeaders);
+	
+	$k1("#h_grid").grid('setGridStyle', 'vof_list');		
+	$k1("#v_grid").grid('setGridStyle', 'vof_list');	
+	
+	$k1('#btn').bind('click', function() {
+		$k1("#v_div").html('<table id="v_grid"></table>');
+		$k1("#h_div").html('<table id="h_grid"></table>');
+				
+		$k1("#v_grid").grid(null, gTitle, gModel, options, viewGridEvents);			
+		$k1("#v_grid").grid('setGroupHeaders', groupHeaders);		
+		$k1("#v_grid").grid('setGridStyle', 'vof_list');		
+		
+		$k1.extend(true, options, {page : 1, sortorder:'asc', sortname:''});
+		$k1("#h_grid").grid('jsp/paging_data4.jsp', gTitle, gModel, options, hiddenGridEvents);
+			
+	});
+	
+});
+
+function gfnHiddenGridComplete(){
+	$k1("#h_grid").grid('setGridStyle', 'vof_list');
+	
+	var page = $k1('#h_grid').grid('getGridParam', 'page');	
+	var total = $k1('#h_grid').grid('getGridParam', 'records');
+	var row = $k1('#h_grid').grid('getGridParam', 'rowNum');
+	
+	var trs = $k1("#h_grid tbody tr:not(.jqgfirstrow)");
+	
+	$k1.each(trs, function(idx, elem){		
+		$k1(this).attr('id', (page - 1) * row + (idx + 1));		
+	});
+	
+	$k1('#v_grid tbody').append(trs);		
+		
+	var totalPage = (total % row == 0)? total /row : total/row + 1;
+		
+	if(parseInt(totalPage) > page){		
+		$k1("#h_div").html('<table id="h_grid"></table>');		
+		
+		var url = 'jsp/paging_data4.jsp';
+		
+		$k1.extend(true, options, {page : ++page});		
+		
+		$k1("#h_grid").grid(url, gTitle, gModel, options, hiddenGridEvents);
+		
+		//console.log($k1("#h_grid").grid('getGridParam', 'page'));
+		//console.log($k1("#h_grid").grid('getGridParam', 'sortorder'));
+		//console.log($k1("#h_grid").grid('getGridParam', 'sortname'));
+	}else{		
+		$k1('#v_div .ui-jqgrid-htable th').click(function(){			
+			var thisId = $k1(this).attr('id');
+			if(thisId === undefined) return;	
+			
+			var colNm = thisId.replace('v_grid_', '');						
+			var order = $k1("#v_grid").grid('getGridParam', 'sortorder') == 'asc' ? 'desc':'asc';
+						
+			$k1("#v_div").html('<table id="v_grid"></table>');
+			$k1("#h_div").html('<table id="h_grid"></table>');
+			
+			$k1.extend(true, options, {page : 1, sortorder:order, sortname:colNm});
+					
+			$k1("#v_grid").grid(null, gTitle, gModel, options, viewGridEvents);			
+			$k1("#v_grid").grid('setGroupHeaders', groupHeaders);		
+			$k1("#v_grid").grid('setGridStyle', 'vof_list');			
+						
+			$k1("#h_grid").grid('jsp/paging_data4.jsp', gTitle, gModel, options, hiddenGridEvents);			
+		});		
+	}
+}
+
+function resize(){
+	var width = document.body.clientWidth; // 현재 창의 width 
+	var height = document.body.clientHeight; // 현재 창의 height 
+	
+	console.log(width + " X " + height);
+}
+</script>
+
+</head>
+<body>
+	<div id="k1_content_wrap">
+		<!-- //content -->
+		<div class="cont_bg">
+			<div class="cont_wrap">
+				<div id="gridDiv">
+					<span>- Big Data Loading</span><input type="button" id="btn" value="조회"></input>
+					<div style="height: 500px;">
+						<div id="v_div">
+							<table id="v_grid">
+							</table>
+						</div>
+
+						<div id="h_div" style="display: none;">
+							<table id="h_grid">
+							</table>
+						</div>
+					</div>
+					<br /> <br />
+
+				</div>
+
+			</div>
+		</div>
+		<!-- //content -->
+	</div>
+
+</body>
+</html>

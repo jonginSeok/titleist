@@ -18,9 +18,8 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <title>접속통계 조회</title>
-<script type="text/javascript"
-	src="<c:url value='/js/EgovCalPopup.js' />"></script>
-<script type="text/javaScript" language="javascript">
+<script type="text/javascript" src="<c:url value='/js/egovframework/EgovCalPopup.js' />"></script>
+<script type="text/javaScript">
 /* ********************************************************
  * 기간구분 변경
  ******************************************************** */
@@ -216,8 +215,7 @@ function getNextWeek(v,t){
 		<!-- 서비스별 결과 -->
 		<c:if test='${statsInfo.statsKind == "SERVICE" }'>
 			<div class="default_tablestyle">
-				<table summary="기간, 기간구분, 통계구분을 입력하여 MOPAS 접속통계를 조회한다."
-					cellpadding="0" cellspacing="0">
+				<table summary="기간, 기간구분, 통계구분을 입력하여 MOPAS 접속통계를 조회한다."><!-- cellpadding="0" cellspacing="0" -->
 					<caption>서비스별 접속 통계</caption>
 					<colgroup>
 						<col width="10%">
@@ -270,7 +268,7 @@ function getNextWeek(v,t){
 			<div class="">
 				<!-- 막대그래프 시작 -->
 				<span><b>1. 그래프 (단위, 횟수)</b></span>
-				<table width="660" cellpadding="8" border="0">
+				<table style="width: 660px;"><!--  width="660" cellpadding="8" border="0" -->
 					<c:forEach items="${conectStats}" var="resultInfo"
 						varStatus="status">
 						<tr>
@@ -286,7 +284,7 @@ function getNextWeek(v,t){
 
 				<!-- 테이블표 시작 -->
 				<br /> <span><b>2. 텍스트 (단위, 횟수)</b></span>
-				<table width="660" cellpadding="8" class="table-search" border="0">
+				<table style="width: 660px;"><!--  width="660" cellpadding="8" class="table-search" border="0" -->
 					<c:forEach items="${conectStats}" var="resultInfo"
 						varStatus="status">
 						<!-- loop 시작 -->

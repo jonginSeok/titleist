@@ -142,8 +142,7 @@ A:hover {
 	</div>
 	<!-- table add start -->
 	<div class="default_tablestyle">
-		<table summary="번호,게시판명,사용 커뮤니티 명,사용 동호회 명,등록일시,사용여부   목록입니다"
-			cellpadding="0" cellspacing="0">
+		<table summary="번호,게시판명,사용 커뮤니티 명,사용 동호회 명,등록일시,사용여부   목록입니다"><!-- cellpadding="0" cellspacing="0" -->
 			<caption>사용자목록관리</caption>
 			<colgroup>
 				<col width="10%">

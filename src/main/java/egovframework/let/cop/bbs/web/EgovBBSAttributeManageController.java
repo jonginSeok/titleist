@@ -122,12 +122,18 @@ public class EgovBBSAttributeManageController {
 	 * @throws Exception
 	 */
 	@RequestMapping("/cop/bbs/insertBBSMasterInf.do")
-	public String insertBBSMasterInf(@ModelAttribute("searchVO") BoardMasterVO boardMasterVO, @ModelAttribute("boardMaster") BoardMaster boardMaster, BindingResult bindingResult,
-			SessionStatus status, ModelMap model) throws Exception {
+	public String insertBBSMasterInf(
+			@ModelAttribute("searchVO") BoardMasterVO boardMasterVO,
+			@ModelAttribute("boardMaster") BoardMaster boardMaster,
+			BindingResult bindingResult,
+			SessionStatus status,
+			ModelMap model) throws Exception {
+
 		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
 
 		beanValidator.validate(boardMaster, bindingResult);
+
 		if (bindingResult.hasErrors()) {
 
 			ComDefaultCodeVO vo = new ComDefaultCodeVO();

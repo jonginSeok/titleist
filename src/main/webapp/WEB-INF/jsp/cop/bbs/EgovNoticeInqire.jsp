@@ -22,9 +22,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Language" content="ko" >
-<link href="<c:url value='/'/>css/common.css" rel="stylesheet" type="text/css" >
+<link href="<c:url value='/'/>css/egovframework/common.css" rel="stylesheet" type="text/css" >
 <link href="<c:url value='${brdMstrVO.tmplatCours}' />" rel="stylesheet" type="text/css">
-<script type="text/javascript" src="<c:url value='/js/EgovBBSMng.js' />"></script>
+<script type="text/javascript" src="<c:url value='/js/egovframework/EgovBBSMng.js' />"></script>
 <c:if test="${anonymous == 'true'}"><c:set var="prefix" value="/anonymous"/></c:if>
 <script type="text/javascript">
     function onloading() {

@@ -21,10 +21,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
 <meta http-equiv="content-language" content="ko">
-<link rel="stylesheet" type="text/css" href="<c:url value='/css/zip.css'/>" >
-<link href="<c:url value='/'/>css/common.css" rel="stylesheet" type="text/css" >
+<link rel="stylesheet" type="text/css" href="<c:url value='/css/egovframework/zip.css'/>" >
+<link rel="stylesheet" type="text/css" href="<c:url value='/'/>css/egovframework/common.css" >
 <title>우편번호 찾기</title>
-<script type="text/javascript" src="<c:url value='/js/showModalDialogCallee.js'/>" ></script>
+<script type="text/javascript" src="<c:url value='/js/egovframework/showModalDialogCallee.js'/>" ></script>
 <script type="text/javaScript" language="JavaScript">
 <!--
 /* ********************************************************

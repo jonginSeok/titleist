@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<!-- <html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko"> -->
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title></title>
+<link rel="Stylesheet" type="text/css" href="/vof/css/style.css" />
+<link rel="Stylesheet" type="text/css" href="/vof/css/vof_contents.css" />
+<link rel="stylesheet" type="text/css" href="/vof/wfw/css/ui.jqgrid.css" />
+
+<link rel="Stylesheet" type="text/css" href="/vof/css/vof_local.css" />
+<style type="text/css">
+body,td,th {
+	font-family: "돋움", Dotum, "굴림", Gulim, AppleGothic, sans-serif;
+}
+</style>
+<script type="text/javascript" src="/vof/wfw/js/plugin/jquery-1.7.2.min.js"       ></script>
+<script type="text/javascript" src="/vof/wfw/js/plugin/XSLTransform.js"           ></script>
+<script type="text/javascript" src="/vof/wfw/js/plugin/jquery.jqGrid.min.js"      ></script>
+<script type="text/javascript" src="/vof/wfw/js/plugin/jquery-ui-1.8.24.custom.js"></script>
+<script type="text/javascript" src="/vof/wfw/js/plugin/jquery.simplemodal.js"     ></script>
+<script type="text/javascript" src="/vof/wfw/js/plugin/jquery.validate.js"        ></script>
+<script type="text/javascript" src="/vof/wfw/js/lib/jquery.com.toxslt.js"         ></script>
+<script type="text/javascript" src="/vof/wfw/js/lib/jquery.com.datepicker.js"     ></script>
+<script type="text/javascript" src="/vof/wfw/js/lib/jquery.com.form.js"           ></script>
+<script type="text/javascript" src="/vof/wfw/js/lib/jquery.com.grid.js"           ></script>
+<script type="text/javascript" src="/vof/wfw/js/lib/jquery.com.util.js"           ></script>
+<script type="text/javascript" src="/vof/wfw/js/lib/jquery.com.uitab.js"          ></script>
+<script type="text/javascript" src="/vof/wfw/js/lib/jquery.com.pager.js"          ></script>
+<script type="text/javascript" src="/vof/wfw/js/lib/jquery.com.js"                ></script>
+<script type="text/javascript" src="/vof/wfw/js/plugin/jquery.blockUI.js"></script>
+
+<script type="text/javascript">
+var $k1 = jQuery.noConflict();
+
+$k1(document).ready(function() {
+	$k1('.k1_pop_tabs').uitab('popuptabselect', onSelect);	
+});
+
+function onSelect(idx){
+	console.log(idx);
+}
+</script>
+</head>
+<body>
+	
+<!-- <img src='/vof/imgs/sb/air/AIRRSVPUW1110010160.jpg' style='width:900px; height:400px;'/> -->
+<!-- 테두리를 포함한 가로사이즈 k1_pop_wrap="965px" -->
+<div id="k1_pop_wrap" style="width:965px;">
+	<div class="k1_pop_header">
+		<h1>오프라인예약등록</h1>
+		<a class="k1_pop_close" href="" title="팝업창 닫기"></a>
+	</div>
+	<!-- //k1_pop_header -->
+	<div class="k1_pop_container">
+		<!-- contents -->
+		<div class="contents">
+			<div class="k1_pop_formbox">
+				<ul class="spot1">
+					<li class="k1_mr10 k1_arrow_dot2"><label for="a1">판매형태</label>
+						<select id="a1" name="" class="k1_select_border" style="width:60px;">
+						<option value="">B2B2C</option>
+						</select>
+					</li>
+					<li class="k1_mr5 k1_arrow_dot2"><label for="a2">예약번호</label>
+						<input type="text" id="a2" class="k1_input_text" value="" style="width:58px;" />
+					</li>
+				</ul>
+				<ul class="spot2">
+					<li class="k1_mr10 k1_arrow_dot2"><label for="a3">판매자</label>
+						<select id="a3" name="" class="k1_select_border" style="width:60px;">
+						<option value="">전 체</option>
+						</select>
+					</li>
+					<li class="k1_mr10 k1_arrow_dot2"><label for="a4">담당자</label>
+						<select id="a4" name="" class="k1_select_border" style="width:60px;">
+						<option value="">전 체</option>
+						</select>
+					</li>
+					<li class="k1_mr5 k1_arrow_dot2"><label for="a5">발권자</label>
+						<select id="a5" name="" class="k1_select_border" style="width:60px;">
+						<option value="">전 체</option>
+						</select>
+					</li>
+				</ul>
+			</div>
+			<div class="k1_pop_tabs k1_mt10">
+				<a href="#" class="active"><span class="iconpr"><em class="ico ico1"></em>기본정보</span></a>
+				<a href="#"><span class="iconpr"><em class="ico ico2"></em>입금/환불</span></a>
+				<a href="#"><span class="iconpr"><em class="ico ico2"></em>판매/발권정보</span></a>
+				<a href="#"><span class="iconpr"><em class="ico ico2"></em>마일리지</span></a>
+				<a href="#"><span class="iconpr"><em class="ico ico2"></em>기내식</span></a>
+				<a href="#"><span class="iconpr"><em class="ico ico2"></em>사전좌석</span></a>
+				<a href="#"><span class="iconpr"><em class="ico ico2"></em>이력조회</span></a>
+			</div>
+			
+			
+			
+			
+			
+			<div class="detail1 k1_mt5">
+				<div class="spot1" style="height:165px;">
+					<ul>
+						<li><label for="b1_1">ON/OFF</label>
+							<select id="b1_1" name="" class="k1_select_border" style="width:110px;">
+							<option value="">전 체</option></select>
+						</li>
+						<li><label for="b1_2">GDS</label>
+							<select id="b1_2" name="" class="k1_select_border" style="width:110px;">
+							<option value="">WORLDSPAN</option></select>
+						</li>
+						<li><label for="b1_3">예약일시</label>
+							<input id="b1_3" class="k1_input_text k1_mr_1" type="text" value="" style="width:68px;"/>
+							<input class="k1_input_text" type="text" value="" style="width:35px;"/></li>
+						<li><label for="b1_4">결제시한</label>
+							<input id="b1_4" class="k1_input_text k1_mr_1" type="text" value="" style="width:68px;"/>
+							<input class="k1_input_text" type="text" value="" style="width:35px;"/>
+						</li>
+						<li><label for="b1_5">항공사TL</label>
+							<input id="b1_5" class="k1_input_text k1_mr_1" type="text" value="" style="width:68px;"/>
+							<input class="k1_input_text" type="text" value="" style="width:35px;"/>
+						</li>
+						<li><label for="b1_6">개인/단체</label>
+							<select id="b1_6" name="" class="k1_select_border" style="width:110px;">
+							<option value="">개 인</option>
+							</select>
+						</li>
+					</ul>
+				</div>
+				<div class="spot2 k1_ml5" style="height:165px;">
+					<ul>
+						<li><label for="b2_1">지역</label>
+							<select id="b2_1" name="" class="k1_select_border" style="width:100px;">
+							<option value="">전 체</option>
+							</select>
+						</li>
+						<li><label for="b2_2">여정형태</label>
+							<select id="b2_2" name="" class="k1_select_border" style="width:100px;">
+							<option value="">다구간</option>
+							</select>
+						</li>
+						<li><label for="b2_3">탑승객수</label>
+							<input id="b2_3" class="k1_input_text" type="text" value="" style="width:87px;"/>
+						</li>
+						<li><label for="b2_4">총 운임</label>
+							<input id="b2_4" class="k1_input_text" type="text" value="" style="width:87px;"/> TAX포함
+						</li>
+						<li><label for="b2_5">유효기간</label>
+							<input id="b2_5" class="k1_input_text" type="text" value="" style="width:98px;"/>
+						</li>
+						<li><label for="b2_6">증빙여부</label>
+							<select id="b2_6" name="" class="k1_select_border" style="width:100px;">
+							<option value="">불필요</option>
+							</select>
+						</li>
+						<li><label for="b2_7">자동발권</label>
+							<select id="b2_7" name="" class="k1_select_border" style="width:100px;">
+							<option value="">Y/N</option>
+							</select>
+						</li>
+					</ul>
+				</div>
+				<div class="spot3 k1_ml5" style="height:165px;">
+					<ul>
+						<li><label for="b3_1">예약상태</label>
+							<select id="b3_1" name="" class="k1_select_border" style="width:63px;">
+							<option value="">대기마감</option>
+							</select>
+						</li>
+						<li><label for="b3_2">운임상태</label>
+							<select id="b3_2" name="" class="k1_select_border" style="width:100px;">
+							<option value="">WORLDSPAN</option>
+							</select>
+						</li>
+						<li><label for="b3_3">결제상태</label>
+							<select id="b3_3" name="" class="k1_select_border" style="width:100px;">
+							<option value="">발권의뢰(요청)</option>
+							</select>
+						<li><label for="b3_4">발권상태</label>
+							<select id="b3_4" name="" class="k1_select_border" style="width:100px;">
+							<option value="">결제요청전</option>
+							</select>
+						</li>
+						<li><label for="b3_5">예약내역게시</label>
+							<select id="b3_5" name="" class="k1_select_border" style="width:100px;">
+							<option value="">보이기</option>
+							</select>
+						</li>
+						<li><label for="b3_6">Tax업데이트</label>
+							<select id="b3_6" name="" class="k1_select_border" style="width:100px;">
+							<option value="">사 용</option>
+							</select>
+						</li>
+						<li><label for="b3_7">취소사유</label>
+							<select id="b3_7" name="" class="k1_select_border" style="width:100px;">
+							<option value="">전 체</option>
+							</select>
+						</li>
+					</ul>
+				</div>
+				<div class="spot4 k1_ml5" style="height:165px;">
+					<ul>
+						<li><label for="b4_1">지점구분</label>
+							<select id="b4_1" name="" class="k1_select_border" style="width:110px;">
+							<option value="">전 체</option>
+							</select>
+						</li>
+						<li><label for="b4_2">거래처</label>
+							<select id="b4_2" name="" class="k1_select_border" style="width:110px;">
+							<option value="">전 체</option>
+							</select>
+						</li>
+						<li><label for="b4_3">담당자</label>
+							<select id="b4_3" name="" class="k1_select_border" style="width:110px;">
+							<option value="">전 체</option>
+							</select>
+						</li>
+						<li><label for="b4_4">이메일</label>
+							<input id="b4_4" class="k1_input_text" type="text" value="" style="width:108px;"/>
+						</li>
+						<li><label for="b4_5">휴대폰</label>
+							<input type="text" id="b4_5" class="k1_input_text k1_mr_1" value="" style="width:32px;"/>
+							<input class="k1_input_text k1_mr_1" type="text" value="" style="width:33px;"/>
+							<input class="k1_input_text" type="text" value="" style="width:33px;"/>
+						</li>
+						<li><label for="b4_6" class="w58">세금계산서</label>
+							<select id="b4_6" name="" class="k1_select_border" style="width:100px;">
+							<option value="">전 체</option>
+							</select>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<!-- //detail1 -->
+			<div class="detail2 k1_mt5">
+				<fieldset>
+				<legend>예약자명 ID 이메일 휴대폰 입력</legend>
+					<label for="c1" class="k1_tit_arrow">예약자명</label>
+					<select id="c1" name="" class="k1_select_border k1_mr5" style="width:60px;">
+					<option value="">B2B2C</option >
+					</select>
+					<label for="c2" class="k1_tit_arrow">예약자ID</label>
+					<input type="text" id="c2" class="k1_input_text k1_mr5" value="" style="width:58px;"/>
+					<label for="c3" class="k1_tit_arrow">이메일</label>
+					<input type="text" id="c3" class="k1_input_text k1_mr5" value="" style="width:118px;"/>
+					<label for="c4" class="k1_tit_arrow">휴대폰</label>
+					<input type="text" id="c4"  class="k1_input_text" value="" style="width:32px;"/>
+					<input type="text" class="k1_input_text" value="" style="width:33px;"/>
+					<input type="text" class="k1_input_text" value="" style="width:33px;"/>
+				</fieldset>
+				<div class="spot2">
+					<a href="#" class="k1_btn01"><span>예약저장</span></a>
+					<!--비활성화버튼<a href="#" class="k1_btn01_off"><span>예약저장</span></a>-->
+				</div>
+			</div>
+			<!-- //detail2 -->
+			<div id="popuptab_0" class="detail4 k1_mt5">
+				<h2>여정 정보
+				<select class="k1_select_border" style="width:60px;">
+				<option value="">3개</option >
+				</select></h2>
+
+				<div id="grid01BoxDiv" style="width:100%; margin-top:5px;">
+					<table id="grid01">
+					</table>
+					<div id="grid01PageNum" class="k1_page_num">
+					</div>
+				</div>
+
+
+
+
+<!-- 				<table class="k1_vof_board k1_mt5"> -->
+<!-- 					<caption>여정 정보 조회</caption> -->
+<!-- 					<colgroup> -->
+<!-- 						<col style="" /> -->
+<!-- 						<col style="" /> -->
+<!-- 						<col style="" /> -->
+<!-- 						<col style="" /> -->
+<!-- 						<col style="" /> -->
+<!-- 						<col style="" /> -->
+<!-- 						<col style="" /> -->
+<!-- 						<col style="" /> -->
+<!-- 						<col style="" /> -->
+<!-- 						<col style="" /> -->
+<!-- 						<col style="" /> -->
+<!-- 						<col style="" /> -->
+<!-- 						<col style="" /> -->
+<!-- 						<col style="" /> -->
+<!-- 						<col style="" /> -->
+<!-- 					</colgroup> -->
+<!-- 					<thead> -->
+<!-- 						<tr> -->
+<!-- 							<th scope="col"><a href="">NO</a></th> -->
+<!-- 							<th scope="col" colspan="2">항공편명</th> -->
+<!-- 							<th scope="col">출발지</th> -->
+<!-- 							<th scope="col">출발일</th> -->
+<!-- 							<th scope="col">출발시간</th> -->
+<!-- 							<th scope="col">도착지</th> -->
+<!-- 							<th scope="col">도착일</th> -->
+<!-- 							<th scope="col">도착시간</th> -->
+<!-- 							<th scope="col">클래스</th> -->
+<!-- 							<th scope="col">좌석</th> -->
+<!-- 							<th scope="col">좌석상태</th> -->
+<!-- 							<th scope="col">항공사PNR</th> -->
+<!-- 							<th scope="col">출발지</th> -->
+<!-- 							<th scope="col" class="last">목적지</th> -->
+<!-- 						</tr> -->
+<!-- 					</thead> -->
+<!-- 					<tbody> -->
+<!-- 						<tr> -->
+<!-- 							<td>1</td> -->
+<!-- 							<td>KE</td> -->
+<!-- 							<td>657</td> -->
+<!-- 							<td>ICN</td> -->
+<!-- 							<td>2012-06-10(수)</td> -->
+<!-- 							<td>19:30</td> -->
+<!-- 							<td>BKK</td> -->
+<!-- 							<td>2012-06-11(수)</td> -->
+<!-- 							<td>01:00</td> -->
+<!-- 							<td>Y</td> -->
+<!-- 							<td>1석</td> -->
+<!-- 							<td>HK</td> -->
+<!-- 							<td>CLI8HB</td> -->
+<!-- 							<td><input type="radio" /></td> -->
+<!-- 							<td class="last"><input type="radio" /></td> -->
+<!-- 						</tr> -->
+<!-- 						<tr> -->
+<!-- 							<td>2</td> -->
+<!-- 							<td>KE</td> -->
+<!-- 							<td>657</td> -->
+<!-- 							<td>ICN</td> -->
+<!-- 							<td>2012-06-10(수)</td> -->
+<!-- 							<td>19:30</td> -->
+<!-- 							<td>BKK</td> -->
+<!-- 							<td>2012-06-11(수)</td> -->
+<!-- 							<td>01:00</td> -->
+<!-- 							<td>Y</td> -->
+<!-- 							<td>1석</td> -->
+<!-- 							<td>HK</td> -->
+<!-- 							<td>CLI8HB</td> -->
+<!-- 							<td><input type="radio" /></td> -->
+<!-- 							<td class="last"><input type="radio" /></td> -->
+<!-- 						</tr> -->
+<!-- 					</tbody> -->
+<!-- 				</table> -->
+
+				<h2 class="k1_mt15">탑승객
+				<select class="k1_select_border" style="width:60px;">
+				<option value="">3명</option >
+				</select></h2>
+
+				<div id="grid02BoxDiv" style="width:100%; margin-top:5px;">
+					<table id="grid02">
+					</table>
+					<div id="grid02PageNum" class="k1_page_num">
+					</div>
+				</div>
+
+
+<!-- 				<table class="k1_vof_board k1_mt5"> -->
+<!-- 					<caption>탑승객정보 조회 결과</caption> -->
+<!-- 					<colgroup> -->
+<!-- 						<col style="" /> -->
+<!-- 						<col style="" /> -->
+<!-- 						<col style="" /> -->
+<!-- 						<col style="" /> -->
+<!-- 						<col style="" /> -->
+<!-- 						<col style="" /> -->
+<!-- 						<col style="" /> -->
+<!-- 						<col style="" /> -->
+<!-- 						<col style="" /> -->
+<!-- 						<col style="" /> -->
+<!-- 						<col style="" /> -->
+<!-- 						<col style="" /> -->
+<!-- 						<col style="" /> -->
+<!-- 						<col style="" /> -->
+<!-- 					</colgroup> -->
+<!-- 					<thead> -->
+<!-- 						<tr> -->
+<!-- 							<th scope="col">선택</th> -->
+<!-- 							<th scope="col">NO</th> -->
+<!-- 							<th scope="col">한글명</th> -->
+<!-- 							<th scope="col" colspan="2">영문명</th> -->
+<!-- 							<th scope="col">구분</th> -->
+<!-- 							<th scope="col">생년월일</th> -->
+<!-- 							<th scope="col">여권번호</th> -->
+<!-- 							<th scope="col">여권만료일</th> -->
+<!-- 							<th scope="col">비자종류</th> -->
+<!-- 							<th scope="col">비자만료일</th> -->
+<!-- 							<th scope="col">비자국가</th> -->
+<!-- 							<th scope="col">체류지</th> -->
+<!-- 							<th scope="col" class="last">취소</th> -->
+<!-- 						</tr> -->
+<!-- 					</thead> -->
+<!-- 					<tbody> -->
+<!-- 						<tr> -->
+<!-- 							<td><input type="checkbox" /></td> -->
+<!-- 							<td>1</td> -->
+<!-- 							<td>홍길동</td> -->
+<!-- 							<td>aaaaa</td> -->
+<!-- 							<td>aaaaaaaaaaa</td> -->
+<!-- 							<td>성인</td> -->
+<!-- 							<td>12-11-09</td> -->
+<!-- 							<td>1234-5678-123444</td> -->
+<!-- 							<td>12-11-09</td> -->
+<!-- 							<td></td> -->
+<!-- 							<td>12-11-09</td> -->
+<!-- 							<td></td> -->
+<!-- 							<td></td> -->
+<!-- 							<td class="last"></td> -->
+<!-- 						</tr> -->
+<!-- 						<tr> -->
+<!-- 							<td><input type="checkbox" /></td> -->
+<!-- 							<td>2</td> -->
+<!-- 							<td>홍길동</td> -->
+<!-- 							<td>aaaaa</td> -->
+<!-- 							<td>aaaaaaaaaaa</td> -->
+<!-- 							<td>성인</td> -->
+<!-- 							<td>12-11-09</td> -->
+<!-- 							<td>1234-5678-123444</td> -->
+<!-- 							<td>12-11-09</td> -->
+<!-- 							<td></td> -->
+<!-- 							<td>12-11-09</td> -->
+<!-- 							<td></td> -->
+<!-- 							<td></td> -->
+<!-- 							<td class="last"></td> -->
+<!-- 						</tr> -->
+<!-- 						<tr> -->
+<!-- 							<td><input type="checkbox" /></td> -->
+<!-- 							<td>3</td> -->
+<!-- 							<td>홍길동</td> -->
+<!-- 							<td>aaaaa</td> -->
+<!-- 							<td>aaaaaaaaaaa</td> -->
+<!-- 							<td>성인</td> -->
+<!-- 							<td>12-11-09</td> -->
+<!-- 							<td>1234-5678-123444</td> -->
+<!-- 							<td>12-11-09</td> -->
+<!-- 							<td></td> -->
+<!-- 							<td>12-11-09</td> -->
+<!-- 							<td></td> -->
+<!-- 							<td></td> -->
+<!-- 							<td class="last"></td> -->
+<!-- 						</tr> -->
+<!-- 					</tbody> -->
+<!-- 				</table> -->
+
+				<div class="tit_set k1_mt15">
+					<h2>탑승객별 판매요금</h2>
+					<div class="k1_btn_area_r">
+						<a href="#" class="k1_btn01"><span>운임규정조회</span></a>
+						<!--비활성화버튼<a href="#" class="k1_btn01_off"><span>운임규정조회</span></a>-->
+					</div>
+				</div>
+				<div class="tw1000 k1_mt5">
+
+					<div id="grid03BoxDiv" style="width:100%; margin-top:5px;">
+						<table id="grid03">
+						</table>
+						<div id="grid03PageNum" class="k1_page_num">
+						</div>
+					</div>
+
+
+<!-- 				<table class="k1_vof_board"> -->
+<!-- 						<caption>탑승객별 판매요금 조회결과</caption> -->
+<!-- 						<colgroup> -->
+<!-- 							<col style="" /> -->
+<!-- 							<col style="" /> -->
+<!-- 							<col style="" /> -->
+<!-- 							<col style="" /> -->
+<!-- 							<col style="" /> -->
+<!-- 							<col style="" /> -->
+<!-- 							<col style="" /> -->
+<!-- 							<col style="" /> -->
+<!-- 							<col style="" /> -->
+<!-- 							<col style="" /> -->
+<!-- 							<col style="" /> -->
+<!-- 							<col style="" /> -->
+<!-- 							<col style="" /> -->
+<!-- 							<col style="" /> -->
+<!-- 							<col style="" /> -->
+<!-- 						</colgroup> -->
+<!-- 						<thead> -->
+<!-- 							<tr> -->
+<!-- 								<th scope="col"><a href="">No</a></th> -->
+<!-- 								<th scope="col">영문명</th> -->
+<!-- 								<th scope="col">NET</th> -->
+<!-- 								<th scope="col">히든NET</th> -->
+<!-- 								<th scope="col">유류할증료</th> -->
+<!-- 								<th scope="col">TAX</th> -->
+<!-- 								<th colspan="2">할인금액</th> -->
+<!-- 								<th scope="col">판매컴(선컴)</th> -->
+<!-- 								<th scope="col">판매컴(후컴)</th> -->
+<!-- 								<th scope="col">UP판매금액</th> -->
+<!-- 								<th scope="col">(실)판매금액</th> -->
+<!-- 								<th scope="col">취급수수료</th> -->
+<!-- 								<th scope="col">운임조건</th> -->
+<!-- 								<th scope="col" class="last">증빙 ®</th> -->
+<!-- 							</tr> -->
+<!-- 						</thead> -->
+<!-- 						<tbody> -->
+<!-- 							<tr> -->
+<!-- 								<td>1</td> -->
+<!-- 								<td>SEO/HYUNJIN</td> -->
+<!-- 								<td class="tar">10,000,000</td> -->
+<!-- 								<td class="tar">10,000,000</td> -->
+<!-- 								<td class="tar">10,000,000</td> -->
+<!-- 								<td class="tar">10,000,000</td> -->
+<!-- 								<td class="tar">100,000</td> -->
+<!-- 								<td class="tar">100,000</td> -->
+<!-- 								<td class="tar">10,000,000</td> -->
+<!-- 								<td class="tar">10,000,000</td> -->
+<!-- 								<td class="tar">10,000,000</td> -->
+<!-- 								<td class="tar">10,000,000</td> -->
+<!-- 								<td class="tar">10,000,000</td> -->
+<!-- 								<td>학생</td> -->
+<!-- 								<td class="last">등록 (0/1)</td> -->
+<!-- 							 </tr> -->
+<!-- 							 <tr> -->
+<!-- 								<td>2</td> -->
+<!-- 								<td></td> -->
+<!-- 								<td class="tar">10,000,000</td> -->
+<!-- 								<td class="tar">10,000,000</td> -->
+<!-- 								<td class="tar">10,000,000</td> -->
+<!-- 								<td class="tar">10,000,000</td> -->
+<!-- 								<td class="tar">100,000</td> -->
+<!-- 								<td class="tar">100,000</td> -->
+<!-- 								<td class="tar">10,000,000</td> -->
+<!-- 								<td class="tar">10,000,000</td> -->
+<!-- 								<td class="tar">10,000,000</td> -->
+<!-- 								<td class="tar">10,000,000</td> -->
+<!-- 								<td class="tar">10,000,000</td> -->
+<!-- 								<td>장애인</td> -->
+<!-- 								<td class="last">등록 (0/0)</td> -->
+<!-- 							 </tr> -->
+<!-- 						</tbody> -->
+<!-- 					</table> -->
+				</div>
+
+				<h2 class="k1_mt15">PNR보기</h2>
+				<textarea class="k1_textarea k1_mt8" style="width:99%; height:95px;"></textarea>
+			<!-- //detail4 -->
+			</div>
+			
+			<div id="popuptab_1" class="detail4 k1_mt5" style="display:none;">입금/환불</div>
+			<div id="popuptab_2" class="detail4 k1_mt5" style="display:none;">판매/발권정보</div>
+			<div id="popuptab_3" class="detail4 k1_mt5" style="display:none;">마일리지</div>
+			<div id="popuptab_4" class="detail4 k1_mt5" style="display:none;">기내식</div>
+			<div id="popuptab_5" class="detail4 k1_mt5" style="display:none;">사전좌석</div>
+			<div id="popuptab_6" class="detail4 k1_mt5" style="display:none;">이력조회</div>			
+		</div>
+		<!-- //contents -->
+	</div>
+	<!-- //k1_pop_container -->
+</div>
+
+	<div id="common_layer" style="display:none"><img src="/vof/imgs/progressbar/busy.gif" height="100%" width="100%"/><br/>조회 중입니다.<br/>잠시만 기다리세요</div>
+</body>
+</html>

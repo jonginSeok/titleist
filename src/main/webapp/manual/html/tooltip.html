@@ -1,0 +1,415 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>주간최저가조회</title>
+<link rel="stylesheet" type="text/css" href="/air/css/airA.css" />
+
+<!-- <link rel="Stylesheet" type="text/css" href="/air/css/style.css" /> -->
+<!-- <link rel="Stylesheet" type="text/css" href="/air/wfw/css/jquery-bubble-popup-v3.css" /> -->
+
+<script type="text/javascript" src="/air/wfw/js/plugin/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="/air/wfw/js/plugin/XSLTransform.js"></script>
+<script type="text/javascript" src="/air/wfw/js/lib/jquery.com.toxslt.js"></script>
+<!-- <script type="text/javascript" src="/air/wfw/js/plugin/jquery-bubble-popup-v3.min.js"></script> -->
+<script type="text/javascript" src="/air/wfw/js/lib/jquery.com.js"></script>
+<!-- <script type="text/javascript" src="/air/wfw/js/lib/jquery.com.tooltip.js"></script> -->
+
+<script type="text/javascript">
+var $k1 = jQuery.noConflict();
+
+var fromDate;	//출국일
+var toDate;		//귀국일
+
+$k1(document).ready(function() {
+	var xml = '../xml/AIRINTTRP010010001.xml';
+	var xsl = '../xsl/AIRINTTRP010010001.xsl';
+	//var param = { section: 'somevalue', qsVariableName : 'true', comp : 'kb' };
+	//$k1("#div_wrap").toxslt(xml, xsl, param, gfnInit);
+	gfnInit();
+	
+	// 새로운 툴팁.. 샘플...
+	$k1('.pt4').tooltip( $k1('#tooltip') );
+});
+
+//onload event
+function gfnInit() {
+	fromDate = "2012-12-24";
+	toDate = "2013-01-04";
+	//출국, 귀국일 재 정의
+	if($k1.trim(fromDate)!=""){
+		fromDate = fromDate.substring(5, 7)+fromDate.substring(8, 10);	
+	}
+	if($k1.trim(toDate)!=""){
+		toDate = toDate.substring(5, 7)+toDate.substring(8, 10);	
+	}
+	//귀국일 날짜 추출
+	var to = $k1("thead>tr>th.k1_bold").text();
+	to = to.replace(/[^0-9]/g, '');
+	var toArr = [];
+	for(var i=0; i<to.length; i++){
+		toArr.push(to.substring(i, i+4));
+		i+=3;
+	}
+	//출국일 날짜 추출
+	var from = $k1("tbody>tr>th.first").text();
+	from = from.replace(/[^0-9]/g, '');
+	var fromArr = [];
+	for(var i=0; i<from.length; i++){
+		fromArr.push(from.substring(i, i+4));
+		i+=3;
+	}
+	//귀국일 열 class 변경 
+	if($k1.trim(toDate)!=""){
+		for(var i=0; i<toArr.length; i++){
+			if(toDate==toArr[i]){
+				//귀국일 배경 색 변경
+				if(($k1("thead>tr>th.k1_bold").length-1)==i){
+					$k1("thead>tr>th.k1_bold:eq("+i+")").removeClass().addClass("last k1_bold bg_on");
+				}else{
+					$k1("thead>tr>th.k1_bold:eq("+i+")").removeClass().addClass("k1_bold bg_on");
+				}
+				//귀국일 열 배경 색 변경
+				$k1("tbody>tr").each(function(index){
+					$k1("tbody>tr:eq("+index+")>td.last.tar:eq("+i+")").removeClass().addClass("last tar bg_on");
+					if(($k1("thead>tr>th.k1_bold").length-1)==i){
+						$k1("tbody>tr:eq("+index+")>td.last.tar:eq("+i+")").next().removeClass().addClass("last tar bg_on");	
+					}else{
+						$k1("tbody>tr:eq("+index+")>td.last.tar:eq("+i+")").next().removeClass().addClass("tar bg_on");
+					}
+				});
+			}
+		}
+	}
+	
+	//출국일 행 class 변경 
+	if($k1.trim(fromDate)!=""){
+		for(var i=0; i<fromArr.length; i++){
+			if(fromDate==fromArr[i]){
+				//출국일 배경 색 변경
+				$k1("tbody>tr:eq("+i+")>th.first").removeClass().addClass("bg_on first k1_bold");
+				//출국일 열 배경 색 변경
+				$k1("tbody>tr:eq("+i+")>td").each(function(index){
+					$k1("tbody>tr:eq("+i+")>td.last.tar").removeClass().addClass("last tar bg_on");
+					$k1("tbody>tr:eq("+i+")>td.tar").not(".last").removeClass().addClass("tar bg_on");
+				});
+			}
+		}
+	}
+	
+	//색상 변경 (선택 날짜)
+	if($k1.trim(toDate)!="" && $k1.trim(fromDate)!=""){
+		for(var i=0; i<toArr.length; i++){	//귀국
+			if(toDate==toArr[i]){
+				for(var j=0; j<fromArr.length; j++){	//출국
+					if(fromDate==fromArr[j]){
+						//금액 색상 변경
+						$k1("tbody>tr:eq("+j+")>td.last.tar:eq("+i+")").next().css("color", "red");
+					}
+				}
+			}
+		}
+	}
+	//색상 변경 (최저가)
+	var price = new Array();
+	/*$k1("tbody>tr").each(function(i){
+		price[i] = new Array();
+		$k1("tbody>tr:eq("+i+")>td.last.tar").next().each(function(j){
+			price[i][j] = $k1(this).text().replace(/,/gi,'');
+		});
+	});*/
+	//배열에 전체 금액을 담는다 
+	$k1("tbody>tr>td.last.tar").next().each(function(index){
+		price[index] = $k1(this).text().replace(/,/gi,'');
+	});
+	//낮은 금액으로 정렬한다.
+	price.sort(function(a, b){
+		return a-b;
+	});
+	//낮은 금액과 같은 금액의 색상을 변경한다.
+	$k1("tbody>tr>td.last.tar").next().each(function(index){
+		if($k1(this).text().replace(/,/gi,'')==price[0]){
+			$k1(this).css("color", "red");
+			$k1("#lowest").text($k1(this).text());
+		}
+	});
+	//gtnSetComma(price[0]);
+		
+	//이벤트 정의	
+	gfnButtonEvent();
+}
+/*숫자에 콤마찍기
+function gtnSetComma(n){
+	var reg = /(^[+-]?\d+)(\d{3})/;
+	n += '';
+	while(reg.test(n))
+		n = n.replace(reg, '$1' + ',' + '$2');
+	return n;
+}*/
+//이벤트 정의
+function gfnButtonEvent(){
+	$k1("#btn_close").css('cursor', 'pointer');
+	//닫기 버튼 실행시 
+	$k1("#btn_close").click(function() {
+		$k1.popup.close();
+	});
+	$k1("tbody>tr>td.last.tar").next().click(function(){
+		alert($k1(this).text());	
+	});
+	
+	//검색버튼 클릭
+	$k1("#btn_search").click(function(){
+		alert("검색");
+	});
+}
+</script>
+</head>
+
+<body>
+<!-- 테두리를 포함한 가로사이즈 k1_pop_wrap="455px" / k1_btrip_wrap width="432px"  -->
+<div id="k1_pop_wrap">
+	<div class="popup">
+		<div class="header"><h1 class="tit">주간 최저가 조회</h1><img src="/air/imgs/airA/btn/btn_p_close.gif" alt="닫기" class="close" id="btn_close"/></div>
+		<div class="contents">		
+		<!-- 컨텐츠 -->
+			<div id="k1_week_lowp_wrap">				
+				<!-- 주간최저가조회 -->	
+				<div class="k1_search_box k1_mt5">
+					<span class="select_1">
+						<select name="" class="k1_select_border">
+						<option value="">좌석 OK</option>
+						<option value=""></option>
+						</select>
+					</span>
+					<span class="select_2">
+						<select name="" class="k1_select_border">
+						<option value="">직항+경유</option>
+						<option value=""></option>
+						</select>
+					</span>
+					<span class="select_3">
+						<select name="" class="k1_select_border">
+						<option value="">전체 항공사</option>
+						<option value=""></option>
+						</select>
+					</span>
+					<span class="select_4">
+						<select name="" class="k1_select_border">
+						<option value="">일반 성인 요금</option>
+						<option value=""></option>
+						</select>
+					</span>
+					<span class="k1_btn6"><a id='tooltipTrigger' href="#"><span id="btn_search">검색</span></a></span>
+				</div>
+				<div class="k1_city_name_select k1_mt10">				
+					<table class="k1_board_city" summary="주간 최저가 조회">	
+						<colgroup>
+							<col width="88" />
+							<col width="*" />
+							<col width="48" />
+							<col width="*" />
+							<col width="48" />
+							<col width="*" />
+							<col width="48" />
+							<col width="*" />
+							<col width="48" />
+							<col width="*" />
+							<col width="48" />
+							<col width="*" />
+							<col width="48" />
+							<col width="*" />
+							<col width="48" />
+						</colgroup>
+						<thead>
+						  <tr>
+							<th class="k1_tit2 h38 bg_dia"><p class="tar">귀국</p><p class="tal">출국</p></th>
+							<th colspan="2" class="k1_bold">01/01 (화)</th>
+							<th colspan="2" class="k1_bold">01/02 (수)</th>
+							<th colspan="2" class="k1_bold">01/03 (목)</th>
+							<th colspan="2" class="k1_bold">01/04 (금)</th>
+							<th colspan="2" class="k1_bold">01/05 (토)</th>
+							<th colspan="2" class="k1_bold">01/06 (일)</th>
+							<th colspan="2" class="last k1_bold">01/07 (월)</th>
+						  </tr>
+						 </thead>
+						 <tbody>
+						  <tr>
+							<th class="bg_gray first k1_bold">12/20 (목)</th>
+							<td class="last tar"><img id="img_a" src="/air/wfw/imgs/airline_KE.png" alt="대한항공" title="대한항공" class="pt4" id="demo-tip-twitter" /></td>
+							<td class="tar">1,400,000</td>
+							<td class="last tar"><img src="/air/wfw/imgs/airline_KE.png" alt="대한항공" class="pt4"/></td>
+							<td class="tar">1,500,000</td>
+							<td class="last tar"><img src="/air/wfw/imgs/airline_KE.png" alt="대한항공" class="pt4"/></td>
+							<td class="tar">1,300,000</td>
+							<td class="last tar"><img src="/air/wfw/imgs/airline_KE.png" alt="대한항공" class="pt4"/></td>
+							<td class="tar">1,200,000</td>
+							<td class="last tar"><img src="/air/wfw/imgs/airline_KE.png" alt="대한항공" class="pt4"/></td>
+							<td class="tar">1,100,000</td>
+							<td class="last tar"><img src="/air/wfw/imgs/airline_KE.png" alt="대한항공" class="pt4"/></td>
+							<td class="tar">1,500,000</td>
+							<td class="last tar"><img src="/air/wfw/imgs/airline_KE.png" alt="대한항공" class="pt4"/></td>
+							<td class="tar last">1,500,000</td>
+						  </tr>	
+						  <!-- 
+						  <tr>
+							<th class="bg_gray first k1_bold ">12/21 (금)</th>
+							<td class="last tar"><img src="/air/wfw/imgs/airline_KE.png" alt="대한항공" class="pt4"/></td>
+							<td class="tar">1,100,000</td>
+							<td class="last tar"><img src="/air/wfw/imgs/airline_KE.png" alt="대한항공" class="pt4"/></td>
+							<td class="tar">1,500,000</td>
+							<td class="last tar"><img src="/air/wfw/imgs/airline_KE.png" alt="대한항공" class="pt4"/></td>
+							<td class="tar">1,500,000</td>
+							<td class="last tar"><img src="/air/wfw/imgs/airline_KE.png" alt="대한항공" class="pt4"/></td>
+							<td class="tar">1,500,000</td>
+							<td class="last tar"><img src="/air/wfw/imgs/airline_KE.png" alt="대한항공" class="pt4"/></td>
+							<td class="tar">1,500,000</td>
+							<td class="last tar"><img src="/air/wfw/imgs/airline_KE.png" alt="대한항공" class="pt4"/></td>
+							<td class="tar">1,500,000</td>
+							<td class="last tar"><img src="/air/wfw/imgs/airline_KE.png" alt="대한항공" class="pt4"/></td>
+							<td class="tar last">1,500,000</td>
+						  </tr>	
+						  <tr>
+							<th class="bg_gray first k1_bold ">12/22 (토)</th>
+							<td class="last tar"><img src="/air/wfw/imgs/airline_KE.png" alt="대한항공" class="pt4"/></td>
+							<td class="tar">1,500,000</td>
+							<td class="last tar"><img src="/air/wfw/imgs/airline_KE.png" alt="대한항공" class="pt4"/></td>
+							<td class="tar">1,500,000</td>
+							<td class="last tar"><img src="/air/wfw/imgs/airline_KE.png" alt="대한항공" class="pt4"/></td>
+							<td class="tar">1,500,000</td>
+							<td class="last tar"><img src="/air/wfw/imgs/airline_KE.png" alt="대한항공" class="pt4"/></td>
+							<td class="tar">1,500,000</td>
+							<td class="last tar"><img src="/air/wfw/imgs/airline_KE.png" alt="대한항공" class="pt4"/></td>
+							<td class="tar">1,500,000</td>
+							<td class="last tar"><img src="/air/wfw/imgs/airline_KE.png" alt="대한항공" class="pt4"/></td>
+							<td class="tar">1,500,000</td>
+							<td class="last tar"><img src="/air/wfw/imgs/airline_KE.png" alt="대한항공" class="pt4"/></td>
+							<td class="tar last">1,500,000</td>
+						  </tr>	
+						  <tr>
+							<th class="first k1_bold ">12/23 (일)</th>
+							<td class="last tar"><img src="/air/wfw/imgs/airline_KE.png" alt="대한항공" class="pt4"/></td>
+							<td class="tar">1,500,000</td>
+							<td class="last tar"><img src="/air/wfw/imgs/airline_KE.png" alt="대한항공" class="pt4"/></td>
+							<td class="tar">1,500,000</td>
+							<td class="last tar"><img src="/air/wfw/imgs/airline_KE.png" alt="대한항공" class="pt4"/></td>
+							<td class="tar">1,500,000</td>
+							<td class="last tar"><img src="/air/wfw/imgs/airline_KE.png" alt="대한항공" class="pt4"/></td>
+							<td class="tar">1,500,000</td>
+							<td class="last tar"><img src="/air/wfw/imgs/airline_KE.png" alt="대한항공" class="pt4"/></td>
+							<td class="tar">1,500,000</td>
+							<td class="last tar"><img src="/air/wfw/imgs/airline_KE.png" alt="대한항공" class="pt4"/></td>
+							<td class="tar">1,500,000</td>
+							<td class="last tar"><img src="/air/wfw/imgs/airline_KE.png" alt="대한항공" class="pt4"/></td>
+							<td class="tar last">1,500,000</td>
+						  </tr>	
+						  <tr>
+							<th class="bg_gray first k1_bold ">12/24 (월)</th>
+							<td class="last tar"><img src="/air/wfw/imgs/airline_KE.png" alt="대한항공" class="pt4"/></td>
+							<td class="tar">1,500,000</td>
+							<td class="last tar"><img src="/air/wfw/imgs/airline_KE.png" alt="대한항공" class="pt4"/></td>
+							<td class="tar">1,500,000</td>
+							<td class="last tar"><img src="/air/wfw/imgs/airline_KE.png" alt="대한항공" class="pt4"/></td>
+							<td class="tar">1,500,000</td>
+							<td class="last tar"><img src="/air/wfw/imgs/airline_KE.png" alt="대한항공" class="pt4"/></td>
+							<td class="tar">1,500,000</td>
+							<td class="last tar"><img src="/air/wfw/imgs/airline_KE.png" alt="대한항공" class="pt4"/></td>
+							<td class="tar">1,500,000</td>
+							<td class="last tar"><img src="/air/wfw/imgs/airline_KE.png" alt="대한항공" class="pt4"/></td>
+							<td class="tar">1,500,000</td>
+							<td class="last tar"><img src="/air/wfw/imgs/airline_KE.png" alt="대한항공" class="pt4"/></td>
+							<td class="tar last">1,500,000</td>
+						  </tr>
+						  <tr>
+							<th class="bg_gray first k1_bold ">12/25 (화)</th>
+							<td class="last tar"><img src="/air/wfw/imgs/airline_KE.png" alt="대한항공" class="pt4"/></td>
+							<td class="tar">1,500,000</td>
+							<td class="last tar"><img src="/air/wfw/imgs/airline_KE.png" alt="대한항공" class="pt4"/></td>
+							<td class="tar">1,500,000</td>
+							<td class="last tar"><img src="/air/wfw/imgs/airline_KE.png" alt="대한항공" class="pt4"/></td>
+							<td class="tar">1,500,000</td>
+							<td class="last tar"><img src="/air/wfw/imgs/airline_KE.png" alt="대한항공" class="pt4"/></td>
+							<td class="tar">1,500,000</td>
+							<td class="last tar"><img src="/air/wfw/imgs/airline_KE.png" alt="대한항공" class="pt4"/></td>
+							<td class="tar">1,500,000</td>
+							<td class="last tar"><img src="/air/wfw/imgs/airline_KE.png" alt="대한항공" class="pt4"/></td>
+							<td class="tar">1,500,000</td>
+							<td class="last tar"><img src="/air/wfw/imgs/airline_KE.png" alt="대한항공" class="pt4"/></td>
+							<td class="tar last">1,500,000</td>
+						  </tr>	
+						  <tr>
+							<th class="bg_gray first k1_bold ">12/26 (수)</th>
+							<td class="last tar"><img src="/air/wfw/imgs/airline_KE.png" alt="대한항공" class="pt4"/></td>
+							<td class="tar">1,500,000</td>
+							<td class="last tar"><img src="/air/wfw/imgs/airline_KE.png" alt="대한항공" class="pt4"/></td>
+							<td class="tar">1,500,000</td>
+							<td class="last tar"><img src="/air/wfw/imgs/airline_KE.png" alt="대한항공" class="pt4"/></td>
+							<td class="tar">1,500,000</td>
+							<td class="last tar"><img src="/air/wfw/imgs/airline_KE.png" alt="대한항공" class="pt4"/></td>
+							<td class="tar">1,500,000</td>
+							<td class="last tar"><img src="/air/wfw/imgs/airline_KE.png" alt="대한항공" class="pt4"/></td>
+							<td class="tar">1,500,000</td>
+							<td class="last tar"><img src="/air/wfw/imgs/airline_KE.png" alt="대한항공" class="pt4"/></td>
+							<td class="tar">1,500,000</td>
+							<td class="last tar"><img src="/air/wfw/imgs/airline_KE.png" alt="대한항공" class="pt4"/></td>
+							<td class="tar last">1,500,000</td>
+						  </tr>	
+						  <tr>
+							<th class="bg_gray first k1_bold ">12/27 (목)</th>
+							<td class="last tar"><img src="/air/wfw/imgs/airline_KE.png" alt="대한항공" class="pt4"/></td>
+							<td class="tar">1,500,000</td>
+							<td class="last tar"><img src="/air/wfw/imgs/airline_KE.png" alt="대한항공" class="pt4"/></td>
+							<td class="tar">1,500,000</td>
+							<td class="last tar"><img src="/air/wfw/imgs/airline_KE.png" alt="대한항공" class="pt4"/></td>
+							<td class="tar">1,500,000</td>
+							<td class="last tar"><img src="/air/wfw/imgs/airline_KE.png" alt="대한항공" class="pt4"/></td>
+							<td class="tar">1,500,000</td>
+							<td class="last tar"><img src="/air/wfw/imgs/airline_KE.png" alt="대한항공" class="pt4"/></td>
+							<td class="tar">1,500,000</td>
+							<td class="last tar"><img src="/air/wfw/imgs/airline_KE.png" alt="대한항공" class="pt4"/></td>
+							<td class="tar">1,500,000</td>
+							<td class="last tar"><img src="/air/wfw/imgs/airline_KE.png" alt="대한항공" class="pt4"/></td>
+							<td class="tar last">1,500,000</td>
+						  </tr>	
+						   -->
+						</tbody>
+					</table>
+				</div>
+				<div class="k1_txt_detail k1_mt10">
+					<span class="k1_tit2 txt_box"><img src="/air/imgs/common/bul_6px_dot.gif" alt="참고" class="close"/> 여행 날짜를 조정하실 수 있습니까?</span>
+					<span class="wbox txt_box k1_bold">날짜를 변경할 경우 가능한 최저 항공권 요금은 <span class="k1_bold k1_red" id="lowest">15,000,000원</span> 입니다.</span>					
+				</div>
+				<!-- 주간최저가조회 -->
+			</div>
+		<!-- 컨텐츠 -->
+		</div>	
+	</div>	
+</div>
+
+<div id="tooltip" class="k1_boxtype2" style="width:102px;display:none;">
+	<div class="k1_btype2_head">
+		<span class="box_tl"></span>
+		<span class="box_tc"></span>
+		<span class="box_tr"></span>
+	</div>
+	<div class="k1_btype2_body">
+		<span class="box_bodyl"></span>
+		<span class="box_bodyr"></span>
+		<div class="box_body">
+			<p class="tit">MU 1234</p>
+			<p>구간 : ICN-PEK</p>
+			<p>부킹킬래스 : Q</p>
+			<p>출발 : 15:50</p>
+			<p>도착 : 14:20</p>
+			<p>예약가능 : 9석</p>
+		</div>
+	</div>
+	<div class="k1_btype2_foot">
+		<span class="box_footl"></span>
+		<span class="box_footc"></span>
+		<span class="box_footr"></span>
+		<span class="box_foot_point"></span>
+	</div>
+</div>
+
+</body>
+</html>

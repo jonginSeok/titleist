@@ -22,13 +22,12 @@
 <html lang="ko">
 <head>
 <meta http-equiv="Content-Language" content="ko">
-<link href="<c:url value='/'/>css/common.css" rel="stylesheet" type="text/css">
-
-<title><tiles:insertAttribute name="title" /></title>
+<link rel="shortcut icon" href="//localhost/favicon.ico" />
+<link type="text/css" rel="stylesheet" href="<c:url value='/'/>css/egovframework/common.css" />
 <script type="text/javascript">
-	var CONTEXT_PATH = "${CONTEXT_PATH}";
-	var RESOURCES_PATH = "${RESOURCES_PATH}";
-	console.log('main:tiles-layout.jsp');
+console.log('main:tiles-layout.jsp');
+var CONTEXT_PATH = "${CONTEXT_PATH}";
+var RESOURCES_PATH = "${RESOURCES_PATH}";
 </script>
 </head>
 <body>

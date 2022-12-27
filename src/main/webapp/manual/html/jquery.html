@@ -1,0 +1,40 @@
+<html>     
+	<head>         
+		<meta charset="utf-8">
+		<title>제이 쿼리</title>      
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js">
+		</script>         
+		<script type="text/javascript">             
+			$('#navigation li').live('click', function() {     
+				$('#navigation li').removeClass('active');                 
+				$(this).addClass('active');             
+			});
+		</script>         
+		<style type="text/css">             
+		#navigation li {                 
+		list-style:none;                 
+		float:left;                 
+		padding:5px;             
+		}             
+		#navigation {                 
+		cursor:pointer;             
+		}             
+		#navigation .active {                 
+		background-color:red;                 
+		color:white;             
+		}         
+		</style>     
+	</head>     
+	<body>       
+	<div id="navigation" >
+		<ul>       
+			<li class="active"><label>HTML</label></li>             
+			<li><label>CSS</label></li>             
+			<li><label>javascript</label></li>             
+			<li><label>jQuery</label></li>             
+			<li><label>PHP</label></li>             
+			<li><label>mysql</label></li>     
+		</ul>   
+	</div> 
+	</body> 
+</html> 

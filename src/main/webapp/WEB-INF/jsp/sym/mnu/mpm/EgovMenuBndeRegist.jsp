@@ -25,7 +25,7 @@
 <head>
 
 <meta http-equiv="Content-Language" content="ko" >
-<link href="<c:url value='/'/>css/common.css" rel="stylesheet" type="text/css" >
+<link href="<c:url value='/'/>css/egovframework/common.css" rel="stylesheet" type="text/css" >
 
 <title>메뉴일괄등록</title>
 <style type="text/css">

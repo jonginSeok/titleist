@@ -16,7 +16,7 @@
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<link href="<c:url value='/'/>css/common.css" rel="stylesheet" type="text/css">
+<link href="<c:url value='/'/>css/egovframework/common.css" rel="stylesheet" type="text/css">
 <title>사용자 목록</title>
 <style type="text/css">
 .table_border{

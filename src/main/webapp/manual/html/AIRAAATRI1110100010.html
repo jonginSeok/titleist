@@ -1,0 +1,211 @@
+<!-- 테두리를 포함한 가로사이즈 k1_pop_wrap="462px" / k1_city_wrap width="440px"  -->
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>출장예약시스템 로그인</title>
+<script type="text/javascript" src="/js/plugin/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="/js/plugin/XSLTransform.js"></script>
+<script type="text/javascript" src="/js/plugin/jquery-ui-1.8.24.custom.js"></script>
+<script type="text/javascript" src="/js/plugin/jquery.validate.js"></script>
+<script type="text/javascript" src="/js/plugin/jquery.simplemodal.js"></script>
+
+<script type="text/javascript" src="/js/lib/jquery.com.toxslt.js"></script>
+<script type="text/javascript" src="/js/lib/jquery.com.datepicker.js"></script>
+<script type="text/javascript" src="/js/lib/jquery.com.form.js"></script>
+<script type="text/javascript" src="/js/lib/jquery.com.util.js"></script>
+<script type="text/javascript" src="/js/lib/jquery.com.js"></script>
+</head>
+<script type="text/javascript">
+	var $k1 = jQuery.noConflict();
+	$k1(document).ready(function(){
+		gfnButtonEvent();
+	});
+	/*
+	 * 폼 submit 할 때 함수.
+	 */
+	function form_sumbit(f) {
+		//f.action = '/air/btms/AIR/AAA/AIRAAALGN0100000010.k1';
+		//f.submit();
+		
+		alert($k1("#form_sumbit").serialize());
+		alert('submit...');
+		//$.ajax 을 이용하여 저장.
+		$k1("#form_sumbit").forms('ajaxsubmit', '/air/btms/AIR/AAA/AIRAAATRI111010001002.k1xml', null, callbackByProfileModify);
+
+		/* 	var url = '/air/btms/AIR/AAA/AIRAAATRI111010001002.k1';
+		 var param = {"":""};
+		 $k1.selectajax(url, 'POST', fnXslFare, 'text', param); */
+	}
+
+	//button event 생성
+	function gfnButtonEvent() {
+		//출장자 정보 수정
+		$k1("#btn_prpfileByModify").click(function() {
+			var options = getValidationOption();
+
+			$k1("#form_sumbit").forms('validation', form_sumbit, options);
+			//$k1("#form_sumbit").forms('validCheck', form_sumbit, options);
+			//$k1("#form_sumbit").submit();
+		});
+		// 항공사 회원 정보추가
+		$k1("#btn_addMemberA").click(function() {
+			//$k1("#trRow").grid('addRow');
+			addRowA();
+		});
+		// 호텔 회원 정보추가
+		$k1("#btn_addMemberH").click(function() {
+			//$k1("#trRow").grid('addRow');
+			addRowH();
+		});
+		// 렌터카 회원 정보추가
+		$k1("#btn_addMemberC").click(function() {
+			//$k1("#trRow").grid('addRow');
+			addRowC();
+		});
+		function addRowA() {
+			var rows = $k1("#userTableA tr");
+			var index = rows.length-2;
+			var data = "<tr id='trRowA"+index+"''>" 
+			+ "<input type='hidden' name='mbrFlag' value='A' />"
+			+ "<td><input type='text' name='mbrApplyCd'/></td>"
+			+ "<td><input type='text' name='mbrNo'/></td>"
+			+ "<td><input type='text' name='cardEndDate'/>"
+			+ "</td><td><a href='javascript:deleteRowA(" + index + ")'>삭제</a></td>" + "</tr>";
+			$k1("#userTableA").append(data);
+		}
+		
+		function addRowH() {
+			var rows = $k1("#userTableH tr");
+			var index = rows.length-2;
+			var data = "<tr id='trRowH"+index+"''>" 
+			+ "<input type='hidden' name='mbrFlag' value='H' />"
+			+ "<td><input type='text' name='mbrApplyCd' /></td>"
+			+ "<td><input type='text' name='mbrNo' /></td>"
+			+ "<td><input type='text' name='cardEndDate' />"
+			+ "</td><td><a href='javascript:deleteRowH(" + index + ")'>삭제</a></td>" + "</tr>";
+			$k1("#userTableH").append(data);
+		}
+		
+		function addRowC() {
+			var rows = $k1("#userTableC tr");
+			var index = rows.length-2;
+			var data = "<tr id='trRowC"+index+"''>" 
+			+ "<input type='hidden' name='mbrFlag' value='C' />"
+			+ "<td><input type='text' name='mbrApplyCd' /></td>"
+			+ "<td><input type='text' name='mbrNo' /></td>"
+			+ "<td><input type='text' name='cardEndDate' />"
+			+ "</td><td><a href='javascript:deleteRowC(" + index + ")'>삭제</a></td>" + "</tr>";
+			$k1("#userTableC").append(data);
+		}
+
+	
+
+		
+
+	
+	}
+		function deleteRowA(index) {
+			var row = $k1("#trRowA" + index);
+			row.fadeOut("slow", function() {
+				row.remove();
+			});
+		}
+		function deleteRowH(index) {
+			var row = $k1("#trRowH" + index);
+			row.fadeOut("slow", function() {
+				row.remove();
+			});
+		}
+		function deleteRowC(index) {
+			var row = $k1("#trRowC" + index);
+			row.fadeOut("slow", function() {
+				row.remove();
+			});
+		}
+		
+		/*
+		 * 폼 Validation 체크 함수 호출.
+		 */
+		function getValidationOption() {
+			/*
+			 * 폼 체크를 위한 옵션 정의
+			 */
+			var checkItems = null;
+			var validateRules = null;
+			var msgItems = null;
+
+			checkItems = [ "mbrApplyCd", "mbrNo", "cardEndDate" ];
+			validateRules = [ {required : true}, {required : true}, {required : true} ];
+			msgItems = [ {required : "항공사를 입력해 주세요."}, {required : "회원번호를 입력해 주세요."}, {required : "만료일을 입력해 주세요."} ];
+
+			return new Array(checkItems, validateRules, msgItems);
+		}
+		
+</script>
+<body>
+	<form id='form_sumbit' name="form_sumbit" action=''>
+		<input type='hidden' name='profileNo' value='${rs.rsService.processRS1.tpAirTp100.profileNo}'>
+
+		<table border='1' id="userTableA">
+
+			<tr>
+				<td colspan='3' align='right'><input type='button' id='btn_addMemberA' value="추가"></td>
+			</tr>
+			<tr>
+				<td>항공사</td>
+				<td>회원번호</td>
+				<td>만료일</td>
+			</tr>
+			<tr id='trRowaA0'>
+
+				<td><input type='text' name='mbrApplyCd' id='mbrApplyCd' /><input type='hidden' name='mbrFlag' value='A' /></td>
+				<td><input type='text' name='mbrNo' id='mbrNo' /></td>
+				<td><input type='text' name='cardEndDate' id='cardEndDate' /></td>
+				<td><a href="javascript:deleteRowA('0')">삭제</a></td>
+			</tr>
+		</table>
+		<table border='1' id="userTableH">
+
+			<tr>
+				<td colspan='3' align='right'><input type='button' id='btn_addMemberH' value="추가"></td>
+			</tr>
+			<tr>
+				<td>호텔체인</td>
+				<td>멥버쉽번호</td>
+				<td>만료일</td>
+			</tr>
+			<tr id='trRowH0'>
+
+				<td><input type='text' name='mbrApplyCd' /><input type='hidden' name='mbrFlag' value='H' /></td>
+				<td><input type='text' name='mbrNo' /></td>
+				<td><input type='text' name='cardEndDate' /></td>
+				<td><a href="javascript:deleteRowH('0')">삭제</a></td>
+			</tr>
+		</table>
+		<table border='1' id="userTableC">
+
+			<tr>
+				<td colspan='3' align='right'><input type='button' id='btn_addMemberC' value="추가"></td>
+			</tr>
+			<tr>
+				<td>렌터카 체인</td>
+				<td>멥버쉽번호</td>
+				<td>만료일</td>
+			</tr>
+			<tr id='trRowC0'>
+
+				<td><input type='text' name='mbrApplyCd' /><input type='hidden' name='mbrFlag' value='C' /></td>
+				<td><input type='text' name='mbrNo' /></td>
+				<td><input type='text' name='cardEndDate' /></td>
+				<td><a href="javascript:deleteRowC('0')">삭제</a></td>
+			</tr>
+		</table>
+		<table>
+			<tr>
+				<td colspan='6' align='center'><input type='button' id='btn_prpfileByModify' value="출장자 정보 수정"></td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

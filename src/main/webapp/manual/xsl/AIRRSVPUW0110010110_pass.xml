@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<data>
+<page>1</page>			<!-- 현재 페이지 -->
+<total></total>		<!-- 총 페이지수 -->
+<records>4</records>	<!-- 전체 row 수 -->
+		
+<list>
+	<no>1</no>
+	<nameKn>이이이</nameKn>
+	<nameEn>LEEEE</nameEn>
+	<section>1</section>
+	<birthDate>55-01-01</birthDate>
+	<passportNum>123456789</passportNum>
+	<passportExp>12-11-09</passportExp>
+	<visaKind>3</visaKind>
+	<visaExp>16-11-09</visaExp>
+	<visaState>미국</visaState>
+	<sojurn>뉴욕</sojurn>
+	<note></note>
+</list>
+<list>
+	<no>2</no>
+	<nameKn>이이이</nameKn>
+	<nameEn>LEEEE</nameEn>
+	<section>2</section>
+	<birthDate>55-01-01</birthDate>
+	<passportNum>123456789</passportNum>
+	<passportExp>12-11-09</passportExp>
+	<visaKind>4</visaKind>
+	<visaExp>16-11-09</visaExp>
+	<visaState>미국</visaState>
+	<sojurn>뉴욕</sojurn>
+	<note></note>
+</list>
+</data>

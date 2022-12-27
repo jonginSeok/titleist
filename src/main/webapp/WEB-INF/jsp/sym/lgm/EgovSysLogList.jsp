@@ -28,9 +28,9 @@
 <html lang="ko">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link href="<c:url value='/css/egovframework/com/cmm/com.css' />" rel="stylesheet" type="text/css">
-<link href="<c:url value='/css/egovframework/com/cmm/button.css' />" rel="stylesheet" type="text/css">
-<script type="text/javascript" src="<c:url value='/js/egovframework/com/sym/cal/EgovCalPopup.js'/>" ></script>
+<link href="<c:url value='/css/egovframework/com.css' />" rel="stylesheet" type="text/css">
+<link href="<c:url value='/css/egovframework/button.css' />" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="<c:url value='/js/egovframework/EgovCalPopup.js'/>" ></script>
 <script type="text/javascript">
 
 	function fn_egov_select_sysLog(pageNo){

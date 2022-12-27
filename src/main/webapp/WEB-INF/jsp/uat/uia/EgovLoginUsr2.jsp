@@ -23,8 +23,8 @@
 <head>
 <meta http-equiv="Content-Language" content="ko" >
 <title>로그인</title>
-<link href="<c:url value='/'/>css/common.css" rel="stylesheet" type="text/css" >
-<link href="<c:url value='/'/>css/login.css" rel="stylesheet"
+<link href="<c:url value='/'/>css/egovframework/common.css" rel="stylesheet" type="text/css" >
+<link href="<c:url value='/'/>css/egovframework/login.css" rel="stylesheet"
 	type="text/css">
 <script type="text/javascript">
 console.log("EgovLoginUsr.jsp");

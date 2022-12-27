@@ -1,0 +1,79 @@
+@charset "utf-8";
+/* ------------------------------------------------------------------------------------
+ie7 전용 Style Sheet (for version 4 browsers)
+
+version: 0.1
+author: 박수연
+email: suudjin@nate.com
+설명: ie7 전용핵
+
+/************************************************************************************************************
+ common 핵
+************************************************************************************************************/
+#k1_skipnavigation a:active, #k1_skipnavigation a:focus{zoom:1;}
+.k1_input_hidden{filter:alpha(opacity=0);}
+.k1_file_input{*display:inline; zoom:1;}
+.k1_input_hidden{*font-size:1.2em !important;}
+.k1_bigbtn{*font-size:10px !important;}
+.k1_blind tr, 
+tr.k1_blind{*display:none;}
+.k1_dpib{*display:inline; zoom:1}
+
+/************************************************************************************************************
+ 공통버튼관련 핵
+************************************************************************************************************/
+.k1_detail, 
+.k1_detail2, 
+.k1_detail3, 
+.k1_details, 
+.k1_detail_info_s, 
+.k1_btn_cal, 
+.k1_btn_cal_b, 
+.k1_btn_cal_s, 
+.k1_btn_q, 
+.k1_rules, 
+.k1_btn_file, 
+.k1_btn_docu, 
+.k1_btn_docu2, 
+.k1_btn_p_close1, 
+.k1_btn_close1, 
+.k1_btn_p_close2, 
+.k1_htlpop_close2, 
+.k1_dfile,
+.k1_btn_refresh,
+.k1_btn_more{zoom:1; *display:inline;}
+
+/************************************************************************************************************
+ air관련 핵
+************************************************************************************************************/
+.k1_airplane_wrap .cont ul{*display:inline; zoom:1}
+.k1_airplane_wrap .cont ol{*display:inline; zoom:1}
+.k1_airplane_wrap .cont span.no{*display:inline; zoom:1}
+.k1_t5_src{*overflow-x:auto;}
+/************************************************************************************************************
+ btms관련 핵
+************************************************************************************************************/
+.k1_intable .k1_btn_area_l{*width:200px; *text-align:left;}
+.k1_btn_calender, .k1_btn_search{zoom:1; *display:inline;}
+.k1_btn_dbtxt,
+.k1_btn_dbtxt02,
+.k1_btn_dbtxt03{zoom:1; *display:inline;}
+.k1_htl_ordershort ul li p{*display:inline; zoom:1;}
+.k1_htl_ordershort ul li .k1_btn_area{*width:370px;}
+.k1_gride_y,
+.k1_gride_y2{*overflow-x:auto;}
+
+/************************************************************************************************************
+ htl관련 핵
+************************************************************************************************************/
+.k1_btn{zoom:1; *display:inline;}
+.k1_htlsbtn_05{zoom:1; *display:inline;}
+.k1_htl_gradebox{*position:static;}
+.k1_htl_grade_l dd{*position:static;}
+.k1_htl_grade_l dd em{*position:static;}
+.k1_htl_comment{*position:static;}
+.k1_htl_comment .k1_htlsbtn_05{*position:static;}
+.k1_htl_commentbox dd{*position:static; *width:120px;}
+.k1_htl_commentbox dd em{*position:static;}
+.k1_htl_layer_box{*position:static;}
+.k1_htlpop_close2{zoom:1; *display:inline; *position:static;}

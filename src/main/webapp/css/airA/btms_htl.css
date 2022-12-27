@@ -1,0 +1,16 @@
+@charset "utf-8";
+/************************************************************************************************************ 
+Basic Style Sheet (for version 4 browsers)	
+	version: 0.1
+	author: 박수연 과장
+	email: suudjin@nate.com
+	설명: 호텔 커스터마이징(BTMS)
+	
+-css수정시-
+************************************************************************************************************/
+
+/*:DATE :2013.01.21
+:author:*/
+/************************************************************************************************************/
+.k1_htl_tip span{display:inline-table; width:560px; color:#777; font-size:11px;}
+h3.k1_htl_tit{height:15px !important; padding:5px 0 5px 15px !important; margin:0 !important; color:#4b4b4b !important;}

@@ -17,7 +17,7 @@
 <head>
 <meta http-equiv="Content-Language" content="ko" >
 <title>표준프레임워크 경량환경 내부업무템플릿</title>
-<link href="css/common.css" rel="stylesheet" type="text/css" >
+<link href="css/egovframework/common.css" rel="stylesheet" type="text/css" >
 </head>
 <body>
 <noscript>자바스크립트를 지원하지 않는 브라우저에서는 일부 기능을 사용하실 수 없습니다.</noscript>	

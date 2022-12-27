@@ -18,7 +18,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ page import="egovframework.com.cmm.LoginVO"%>
 <title>로그인정책 목록조회</title>
-<script type="text/javaScript" language="javascript" defer="defer">
+<script type="text/javaScript" defer="defer">
 <!--
 function fncCheckAll() {
     var checkField = document.listForm.delYn;
@@ -215,7 +215,7 @@ function press() {
                 <div id="page_info"><div id="page_info_align"></div></div>
                 <!-- table add start -->
                 <div class="default_tablestyle">
-                    <table summary="로그인정책에 대한 목록을 제공한다." cellpadding="0" cellspacing="0">
+                    <table summary="로그인정책에 대한 목록을 제공한다."><!--  cellpadding="0" cellspacing="0" -->
                     <caption>로그인정책 관리</caption>
                     <colgroup>
                     <col width="20%" >

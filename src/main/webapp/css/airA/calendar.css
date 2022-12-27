@@ -1,0 +1,106 @@
+@charset "utf-8"; 
+
+/* ------------------------------------------------------------------------------------
+Basic Style Sheet (for version 4 browsers)
+
+version: 0.1
+author: 서현진
+email: hjseo@toursoft.co.kr
+설명: 공통
+
+-css수정시-
+--------------------------------------------------------------------------------------- */
+
+/*:DATE :2013.01.29
+:author:*/
+
+/*------------------------------------------------------------------------------------- */
+
+ 
+/* =calendar
+--------------------------------------------------------------------------------------- */
+#k1_calendar_group {position:relative; margin:0 auto; background:#fff; overflow:hidden;}
+#k1_calendar_group .date {position:relative; height:19px; margin:5px 0 10px 0; text-align:center; line-height:19px;}
+#k1_calendar_group .date input {vertical-align:middle;}
+#k1_calendar_group .date label {margin:0 6px 0 3px; color:#4c4c4c; vertical-align:middle;}
+#k1_calendar_group .date .k1_btn6 {vertical-align:top;}
+#k1_calendar_group .date span.date_departure {margin-right:16px;}
+#k1_calendar_group .date span.date_return {margin-right:1px;}
+
+#k1_calendar_group .calendar_box {display:block; width:646px; margin:0 auto; background:#fff;}
+#k1_calendar_group .calendar_box02 {display:block; width:430px; margin:0 auto; background:#fff;}
+#k1_calendar_group .calendar_wrap {display:inline-block; float:left; width:212px; margin-right:5px;}
+#k1_calendar_group .calendar_wrap .cal_date {position:relative; display:block; height:23px; border:1px solid #3166ac; background:#3775c7;}
+#k1_calendar_group .calendar_wrap .cal_date span.k1_tit5 {display:block; padding:2px 0; text-align:center}
+#k1_calendar_group .calendar_wrap .cal_date span.k1_tit4 {display:block; padding:5px 0; text-align:center}
+#k1_calendar_group .calendar_wrap table {border-left:1px solid #d0d0d0; border-bottom:1px solid #d0d0d0; border-collapse: collapse;}
+#k1_calendar_group .calendar_wrap td {border-top:1px solid #eee; border-right:1px solid #eee; background:#fff; text-align:center;}
+#k1_calendar_group .calendar_wrap .table_th {width:100%; height:20px; border:1px solid #d4d4d4;}
+#k1_calendar_group .calendar_wrap .table_th th {border-bottom:none; background:#e3e3e3; height:18px;}
+#k1_calendar_group .calendar_wrap .table_th th.sun {color:#e92100;}
+#k1_calendar_group .calendar_wrap .table_th th.sat {color:#235ba5;}
+#k1_calendar_group .calendar_wrap .table_calendar {width:100%;}
+#k1_calendar_group .calendar_wrap .table_calendar tr {height:30px; background:#d0d0d0;}
+#k1_calendar_group .calendar_wrap .table_calendar td.last {border-right:1px solid #d0d0d0;}
+#k1_calendar_group .calendar_wrap .table_calendar td a.undate {color:#cfcfcf;}
+#k1_calendar_group .calendar_wrap .table_calendar td a.sun {color:#e92100;}
+#k1_calendar_group .calendar_wrap .table_calendar td a.sat {color:#235ba5;}
+#k1_calendar_group .calendar_wrap .table_calendar td a.selected {text-decoration:underline;}
+
+#k1_calendar_group .cal_btn .cal_prev {position:absolute; left:0; top:50%; width:20px; height:22px; margin:-10px 0 0; background:url(/air/wfw/imgs/airA/btn/btn_cal_arrow_prev.gif) no-repeat; cursor:pointer; overflow:hidden; font-size:0;}
+#k1_calendar_group .cal_btn .cal_next {position:absolute;right:0; top:50%; width:20px; height:22px; margin:-10px 0 0; background:url(/air/wfw/imgs/airA/btn/btn_cal_arrow_next.gif) no-repeat; cursor:pointer; overflow:hidden; font-size:0;}
+
+#k1_calendar_group .date .cal_btn .cal_prevs {position:absolute; left:0; top:50%; margin:-10px 0 0; width:10px; height:11px; background:url(/air/wfw/imgs/airA/btn/btn_cal_sarrow_prev.gif) 0 5px no-repeat;cursor:pointer; overflow:hidden; font-size:0;}
+#k1_calendar_group .date .cal_btn .cal_nexts {position:absolute; right:0; top:50%; width:10px; height:11px; margin:-10px 0 0; background:url(/air/wfw/imgs/airA/btn/btn_cal_sarrow_next.gif) 0 5px no-repeat;cursor:pointer; overflow:hidden; font-size:0;}
+
+.k1_cal2_prevs {position:absolute; left:0; top:50%; width:6px; height:9px; margin:-10px 10px; background:url(/air/wfw/imgs/airA/btn/btn_cal2_sarrow_prev.gif) 0 5px no-repeat;cursor:pointer; overflow:hidden;}
+.k1_cal2_nexts {position:absolute; right:0; top:50%; width:6px; height:9px; margin:-10px 10px; background:url(/air/wfw/imgs/airA/btn/btn_cal2_sarrow_next.gif) 0 5px no-repeat;cursor:pointer; overflow:hidden;}
+
+
+/************************************************************************************************************
+ b2c,b2b 캘린더
+************************************************************************************************************/
+.k1_calendar_wrap {}
+.k1_calendar_wrap .cal_date {height:28px; border:1px solid #3165ac; background:#3775c7; text-align:center; line-height:28px;}
+.k1_calendar_wrap .cal_date .date {color:#fff; font-size:14px; font-weight:bold;}
+.k1_calendar_wrap .cal_date .arrow {color:#fff; font-size:12px; font-weight:bold;}
+.k1_board_cal {width:100%; border:1px solid #d4d4d4; border-collapse: collapse;}
+.k1_board_cal tr {height:30px; background:#d0d0d0;}
+.k1_board_cal th {height:20px; border:1px solid #d4d4d4; border-top-color:#9d9d9d; background:#e3e3e3; height:18px;}
+.k1_board_cal td {border-bottom:1px solid #d4d4d4; border-right:1px solid #d4d4d4; padding:10px 5px; background:#fff;}
+.k1_board_cal .sun {color:#e92100;}
+.k1_board_cal .sat {color:#235ba5;}
+.k1_board_cal .last {border-right:1px solid #d0d0d0;}
+.k1_board_cal .active {background:#ebf6ff;}
+.k1_board_cal .active .txt .active2,
+.k1_board_cal .active .txt .active2 a {color:#235ba5;}
+.k1_board_cal .info {position:relative; height:73px;}
+.k1_board_cal .info .date {display:inline-block; width:100%;}
+.k1_board_cal .info .date .day {float:left; font-weight:bold;}
+.k1_board_cal .info .date .more {float:right;}
+.k1_board_cal .info .date .more a {color:#5e5e5e; font-size:11px;}
+
+.k1_board_cal .info .txt {position:absolute; bottom:0; text-align:right; font-size:11px;}
+.k1_board_cal .info .txt p {width:100%;}
+.k1_board_cal .info .txt a {position:relative; display:inline-block; height:12px; color:#5e5e5e; text-decoration:underline;}
+.k1_board_cal .info .txt .seat {width:50%; text-align:left;}
+.k1_board_cal .info .txt .price {width:50%; text-align:right;}
+
+.k1_calendar_wrap2 .cal_date {height:23px; border:1px solid #3165ac; background:#3775c7; text-align:center; line-height:23px;}
+.k1_calendar_wrap2 .cal_date .date {color:#fff; font-size:13px; font-weight:bold;}
+.k1_calendar_wrap2 .cal_date .arrow {color:#fff; font-size:11px; font-weight:bold;}
+.k1_board_cal2 {width:100%; border:1px solid #d4d4d4; border-collapse:collapse; text-align:left !important;}
+.k1_board_cal2 th {height:18px; background:#e3e3e3; border-right:0 !important; color:#5e5e5e; font-size:11px; line-height:12px;}
+.k1_board_cal2 td {text-align:left !important; height:44px; border-bottom:1px solid #d4d4d4; border-right:1px solid #d4d4d4; background:#fff; font-size:12px;}
+.k1_board_cal2 .sun {color:#e92100;}
+.k1_board_cal2 .sat {color:#235ba5;}
+.k1_board_cal2 .h18 {height:18px !important;}
+.k1_board_cal2 .last {border-right:1px solid #d0d0d0;}
+.k1_board_cal2 .active,
+ .k1_board_cal2 .active date{background:#ddff9b; font-weight:bold;}
+.k1_board_cal2 .info {position:relative; height:44px;}
+.k1_board_cal2 .info .date {position:absolute; left:4px; top:4px;}
+.k1_board_cal2 .info .txt {position:absolute; bottom:5px; width:100%; text-align:center;}
+
+/* --//calendar-- */
+

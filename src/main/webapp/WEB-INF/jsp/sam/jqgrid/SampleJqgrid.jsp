@@ -8,7 +8,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Insert title here</title>
-<link href="<c:url value='/'/>css/common.css" rel="stylesheet" type="text/css" >
+<link href="<c:url value='/'/>css/egovframework/common.css" rel="stylesheet" type="text/css" >
 <link href="<c:url value='/'/>css/jqueryui/1.11.4/themes/redmond/jquery-ui.min.css" rel="stylesheet" type="text/css" >
 <link href="<c:url value='/'/>css/jqgrid/4.15.5/ui.jqgrid.min.css" rel="stylesheet" type="text/css" >
 <script type="text/javascript" src="<c:url value="/js/jquery/1.12.4/jquery.min.js"/>"></script>

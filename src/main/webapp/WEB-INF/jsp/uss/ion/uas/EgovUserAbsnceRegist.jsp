@@ -25,10 +25,10 @@
 <head>
 
 <meta http-equiv="Content-Language" content="ko" >
-<link href="<c:url value='/'/>css/common.css" rel="stylesheet" type="text/css" >
+<link href="<c:url value='/'/>css/egovframework/common.css" rel="stylesheet" type="text/css" >
 
 <title>사용자부재 등록</title>
-<script type="text/javascript" src="<c:url value='/js/EgovMultiFile.js'/>"></script>
+<script type="text/javascript" src="<c:url value='/js/egovframework/EgovMultiFile.js'/>"></script>
 <script type="text/javascript" src="<c:url value="/validator.do"/>"></script>
 <validator:javascript formName="userAbsnce" staticJavascript="false" xhtml="true" cdata="false"/>
 <script type="text/javaScript" language="javascript">

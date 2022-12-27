@@ -21,7 +21,7 @@
 <head>
 <meta http-equiv="Content-Language" content="ko" >
 <title>게시판 사용정보 조회</title>
-<link href="<c:url value='/'/>css/common.css" rel="stylesheet" type="text/css" >
+<link href="<c:url value='/'/>css/egovframework/common.css" rel="stylesheet" type="text/css" >
 
 <script type="text/javascript">
     function press(event) {

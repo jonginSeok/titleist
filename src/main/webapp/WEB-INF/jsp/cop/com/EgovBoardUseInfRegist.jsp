@@ -22,9 +22,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Language" content="ko" >
-<link href="<c:url value='/'/>css/common.css" rel="stylesheet" type="text/css" >
+<link href="<c:url value='/'/>css/egovframework/common.css" rel="stylesheet" type="text/css" >
 <title>게시판 사용등록</title>
-<script type="text/javascript" src="<c:url value='/js/showModalDialog.js'/>" ></script>
+<script type="text/javascript" src="<c:url value='/js/egovframework/showModalDialog.js'/>" ></script>
 <script type="text/javascript" src="<c:url value="/validator.do"/>"></script>
 <validator:javascript formName="boardUseInf" staticJavascript="true" xhtml="true" cdata="false"/>
 <script type="text/javascript">

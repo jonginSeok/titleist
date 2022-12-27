@@ -12,9 +12,7 @@
     since    : 2009.02.01
 --%>
 <%@ page import="org.springframework.security.core.context.SecurityContextHolder" %>
-
 <%@ page import="org.springframework.security.core.Authentication" %>
-
 <%@ page import="org.springframework.security.web.access.AccessDeniedHandlerImpl" %> 
 
 <%@ page isErrorPage="true"%>
@@ -65,7 +63,7 @@ function fncGoAfterErrorPage(){
     <td align="center" valign="top"><br />
     <br />
     <br />
-    <table width="600" border="0" cellpadding="0" cellspacing="0" background="er_images/blue_bg.jpg">
+    <table width="600" border="0" cellpadding="0" cellspacing="0" background="<c:url value='/images/egovframework/com/cmm/blue_bg.jpg' />">
       <tr>
         <td align="center"><table width="100%" border="0" cellspacing="9" cellpadding="0">
           <tr>

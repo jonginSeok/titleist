@@ -1,0 +1,119 @@
+@charset "utf-8"; 
+
+/* ------------------------------------------------------------------------------------
+Basic Style Sheet (for version 4 browsers)
+
+version: 0.1
+author: 서현진
+email: hjseo@toursoft.co.kr
+설명: 공통
+
+-css수정시-
+--------------------------------------------------------------------------------------- */
+
+/*:DATE :2013.04.02
+:author:*/
+
+/*------------------------------------------------------------------------------------- */
+
+ 
+/* =popup
+--------------------------------------------------------------------------------------- */
+#k1_pop_wrap .popup {position:relative; border:2px solid #3775c7;}/*btms, htl사용*/
+#k1_pop_wrap .popup .header {height:19px; margin:0 auto; padding:9px 10px 10px 36px; background:url(/air/imgs/airA/popup/bul_popup.gif) 10px 10px no-repeat #3775c7; color:#fff;}/*btms, htl사용*/
+#k1_pop_wrap .popup .header h1.tit {display:inline-block; float:left; width:100%; font-weight:bold; font-size:16px;}/*btms, htl사용*/
+#k1_pop_wrap .popup .close {position:absolute; right:12px; top:12px; width:13px; height:13px; background:url(/air/wfw/imgs/airA/btn/btn_p_close.gif) no-repeat; font-size:0;}/*btms, htl사용*/
+#k1_pop_wrap .popup .contents {padding:10px;}/*btms, htl사용*/
+.k1_popup_btn {text-align:center;}/*btms, htl사용*/
+
+/* k1_date_wrap */
+#k1_date_wrap {width:700px;}
+/* k1_date_wrap_1 */
+#k1_date_wrap_1 {width:212px;}
+/* k1_city_wrap */
+#k1_city_wrap {width:440px;}
+/* k1_btrip_wrap */
+#k1_btrip_wrap {width:565px;}
+/* k1_flight_wrap */
+#k1_flight_wrap {width:432px;}
+/* k1_price_wrap */
+#k1_price_wrap {width:580px;}
+/* k1_price_b2b_wrap */
+#k1_price_b2b_wrap {width:720px;}
+/* k1_week_lowp_wrap */
+#k1_week_lowp_wrap {width:710px;}
+/* k1_price_rules */
+#k1_price_rules {width:563px;}
+/* k1_tchange_wrap */
+#k1_tchange_wrap {width:727px;}
+/* k1_nrequest_wrap */
+#k1_nrequest_wrap {width:431px;}
+/* k1_proof_wrap */
+#k1_proof_wrap {width:751px;}
+/* k1_recent_wrap */
+#k1_recent_wrap {width:560px;}
+/* k1_fnum_wrap */
+#k1_fnum_wrap {width:611px;}
+/* k1_schange_wrap */
+#k1_schange_wrap {width:607px;}
+/* k1_smeals_wrap */
+#k1_smeals_wrap {width:607px;}
+/* k1_cspell_wrap */
+#k1_cspell_wrap {width:625px;}
+/* k1_pcancell_wrap */
+#k1_pcancell_wrap {width:576px;}
+/* k1_canceled_wrap */
+#k1_canceled_wrap {width:352px;}
+/* k1_rdetails_wrap */
+#k1_rdetails_wrap {width:698px;}
+/* k1_tinfo_wrap */
+#k1_tinfo_wrap {width:698px;}
+/* k1_refund_cancell_wrap */
+#k1_refund_cancell_wrap {width:698px;}
+/* k1_request_wrap */
+#k1_request_wrap {width:431px;}
+/* k1_property_wrap */
+#k1_property_wrap {width:431px;}
+/* k1_partial_refundt_wrap */
+#k1_partial_refundt_wrap {width:240px;}
+/* k1_login_type2 */
+#k1_login_type2 {width:431px;}
+/* k1_booked_wrap */
+#k1_booked_wrap {width:500px;}
+/* k1_bprint_wrap */
+#k1_bprint_wrap {width:710px;}
+/* k1_pmail_wrap */
+#k1_pmail_wrap {width:431px;}
+/* k1_psms_wrap */
+#k1_psms_wrap {width:332px;}
+/* k1_eticket_wrap */
+#k1_eticket_wrap {width:616px;}
+/* k1_refund_wrap */
+#k1_refund_wrap {width:229px;}
+
+/* city_search - htl 사용
+.k1_cityn_search {display:inline-block; width:100%; background:#f4f5f5; text-align:center; line-height:50px;}
+.k1_cityn_search label {vertical-align:middle; padding-top:3px; color:#235ba5; font-weight:bold;}
+.k1_cityn_search input.k1_input_text {margin:1px 0 0 4px; vertical-align:middle;}
+.k1_cityn_search .k1_btn6 {vertical-align:middle;}
+.k1_cityn_search .k1_btn6 span {vertical-align:top;}
+.k1_city_name .k1_board_city {border-top:none;}
+.k1_city_name .k1_board_city th {border-bottom:none;}
+.k1_city_name div.tit {padding-right:17px; border-top: 2px solid #3775C7; border-bottom: 1px solid #C9C9C9; background:#f5f5f5;}
+.k1_city_name div.box {overflow-x: hidden; overflow-y: scroll; height:86px; border-bottom: 1px solid #C9C9C9;} */
+
+/* k1_detail_pop */
+.k1_detail_pop {position:relative; overflow:hidden; padding:10px; border:2px solid #3775c7; background:#fff;}
+.k1_detail_pop .cont_wrap { background:#ecf6ff; padding:10px; margin-top:15px;}
+.k1_detail_pop dl dt {float:left;}
+.k1_detail_pop dl dd {display: table;}
+
+/* k1_message_box */
+.k1_message_box {overflow:hidden; padding:10px; line-height:17px;}
+.k1_message_box .box1 {padding:10px; background:#ecf6ff;}
+.k1_message_box .box2 {padding:10px; background:#f5f5f5;}
+.k1_message_box dl dt {float:left;}
+.k1_message_box dl dd {display: table;}
+.k1_trhp tr:hover {background:#ecf6ff;}
+
+/* --//popup-- */

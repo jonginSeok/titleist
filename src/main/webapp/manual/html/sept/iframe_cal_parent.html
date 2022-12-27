@@ -1,0 +1,242 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>AirTest</title>
+<!-- 	<link rel="stylesheet" type="text/css" href="/air/wfw/css/jquery-ui-1.8.24.custom.css" /> -->
+<link rel="stylesheet" type="text/css" href="/air/css/airA.css" />
+
+<script type="text/javascript" src="/air/wfw/js/plugin/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="/air/wfw/js/plugin/XSLTransform.js"></script>
+<script type="text/javascript" src="/air/wfw/js/plugin/jquery-ui-1.8.24.custom.js"></script>
+<script type="text/javascript" src="/air/wfw/js/plugin/jquery.simplemodal.js"></script>
+<script type="text/javascript" src="/air/wfw/js/plugin/jquery.validate.js"></script>
+<script type="text/javascript" src="/air/wfw/js/plugin/jquery.cookie.js"></script>
+<script type="text/javascript" src="/air/wfw/js/plugin/jquery.columnmanager.min.js"></script>
+<script type="text/javascript" src="/air/wfw/js/lib/jquery.com.toxslt.js"></script>
+<script type="text/javascript" src="/air/wfw/js/lib/jquery.com.datepicker.js"></script>
+<script type="text/javascript" src="/air/wfw/js/lib/jquery.com.toxslt.js"></script>
+<script type="text/javascript" src="/air/wfw/js/lib/jquery.com.util.js"></script>
+<script type="text/javascript" src="/air/wfw/js/lib/jquery.com.table.js"></script>
+<script type="text/javascript" src="/air/wfw/js/lib/jquery.com.form.js"></script>
+<script type="text/javascript" src="/air/wfw/js/lib/jquery.com.js"></script>
+<script type="text/javascript" src="/air/wfw/js/common.js"></script>
+<script type="text/javascript">
+	var $k1 = jQuery.noConflict();
+	$k1.ajaxSettings.traditional = true; // jQuery(Ajax)로 배열 post 를 위한 설정
+	var gJsPath = "/air/js";
+</script>
+</head>
+
+<body>
+	<div id="ki_wrap">
+		<!-- header -->
+		<div id="k1_header">
+			<script type="text/javascript">
+				function fn_popup_filelog_viewer() {
+					window.open("<c:url value='/logviewer/logViewer.jsp'/>", "LogViewer", "width=975, height=650, scrollbars=y");
+				}
+				$k1(document).ready(function() {
+					$k1('#ifrSegSelect').load(function() {
+						var option = {
+							nummons : 3,
+							mindate : +0,
+							iframeId : 'ifrSegSelect',				//
+							imgPopFrom : 'aaaa',				//필수-시작 일자 선택번튼
+							imgPopTo : 'bbbb',					//필수-종료 일자 선택 버튼
+							txtPopFrom : 'txt_depDt',				//필수-시작일자
+							txtPopTo : 'txt_arrDt',					//필수-종료일자
+							divMask	: 'div_mask',					//필수-마스크 레이어
+							reWriteDiv : 'layerTmp',				//필수-달력 출력 부분
+						};
+						$k1.iframeCalendarDual('dal', '', option);
+					});
+
+				});
+			</script>
+			<h1>
+				<img src="../../../imgs/airA/common/header_img.jpg" alt="header_img" />
+			</h1>
+		</div>
+
+		<div id="k1_container">
+			<!-- left menu -->
+			<div id="k1_aside">
+
+				<h2>
+					<img src="../../../imgs/airA/leftmenu/leftmenu_tit.gif" alt="항공권">
+				</h2>
+				<ul class="left_menu">
+					<li><a class="active" href="#">해외할인항공</a></li>
+					<li><a href="#">도시별 특가요금</a></li>
+					<li><a href="#">항공사별 특가요금</a></li>
+					<li><a href="#">항공권 공동구매</a></li>
+					<li><a href="#">항공권 예약요청</a></li>
+					<li><a href="#">스케줄 조회</a></li>
+					<li class="border_last"><a href="#">출도착 조회</a></li>
+				</ul>
+			</div>
+
+			<!-- content -->
+			<div id="k1_content">
+				<div id="hiddenDt" style="display: none;">
+					<input type="text" id="startDt"> <input type="text" id="endDt">
+				</div>
+				<!-- 여정선택 -->
+				<div id="customMod" style="display: block; width: 100%; height: 300px; z-index: 10;">
+					<iframe id="ifrSegSelect" name="ifrSegSelect" src="iframe_cal_child.html" style="width: 100%; height: 900px;"></iframe><!--  scrolling='no' frameborder='0' -->
+				</div>
+				<span id="layerTmp"></span>
+				<!-- 국제선 최저가 -->
+				<div class="air_lowprice" style="z-index: 1;">
+					<h3>
+						<img src="../../../imgs/airA/main/tit_air_01.gif" alt="국제선 최저가">
+					</h3>
+					<div class="air_lowprice_tab">
+						<ul class="" style="display: block;">
+							<li><h4 class="active">
+									<a href="#">아시아</a>
+								</h4></li>
+							<li><h4>
+									<a href="#">일본</a>
+								</h4></li>
+							<li><h4>
+									<a href="#">중국</a>
+								</h4></li>
+							<li><h4>
+									<a href="#">유럽</a>
+								</h4></li>
+							<li><h4>
+									<a href="#">미주</a>
+								</h4></li>
+							<li><h4>
+									<a href="#">남태평양</a>
+								</h4></li>
+							<li><h4>
+									<a href="#">중남미</a>
+								</h4></li>
+							<li><h4>
+									<a href="#">아프리카</a>
+								</h4></li>
+							<li><h4>
+									<a href="#">중동</a>
+								</h4></li>
+						</ul>
+					</div>
+					<div class="" style="z-index: 1; display: bolck;">
+						<table class="air_lowprice_list" style="z-index: 0;">
+							<caption>국제선 최저가</caption>
+							<colgroup>
+								<col style="width:;" />
+								<col style="width:;" />
+								<col style="width:;" />
+								<col style="width:;" />
+								<col style="width: 80px;" />
+								<col style="width: 80px;" />
+								<col style="width:;" />
+							</colgroup>
+							<thead>
+								<tr>
+									<th scope="col">아시아</th>
+									<th scope="col">항공사</th>
+									<th scope="col">항공료</th>
+									<th scope="col">출발기간</th>
+									<th scope="col">왕복/편도</th>
+									<th scope="col">유효기간</th>
+									<th scope="col">상세보기</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td class="city">홍콩</td>
+									<td><img src="../../../../wfw/imgs/logo/air/small/airline_KE.png" alt="대한항공" /> 대한항공</td>
+									<td class="air_price"><img src="../../../imgs/airA/icon/ico_new.gif" alt="new" /> 1,099,000원</td>
+									<td>09/01 ~ 09/27</td>
+									<td>왕복</td>
+									<td>15 일</td>
+									<td><a href="#" class="k1_btn2"><span>상세보기</span></a></td>
+								</tr>
+								<tr>
+									<td class="city">방콕</td>
+									<td><img src="../../../../wfw/imgs/logo/air/small/airline_KE.png" alt="대한항공" /> 대한항공</td>
+									<td class="air_price">1,099,000원</td>
+									<td>09/01 ~ 09/27</td>
+									<td>왕복</td>
+									<td>15 일</td>
+									<td><a href="#" class="k1_btn2"><span>상세보기</span></a></td>
+								</tr>
+								<tr>
+									<td class="city">싱가폴</td>
+									<td><img src="../../../../wfw/imgs/logo/air/small/airline_KE.png" alt="대한항공" /> 대한항공</td>
+									<td class="air_price"><img src="../../../imgs/airA/icon/ico_hot.gif" alt="hot" /> 1,099,000원</td>
+									<td>09/01 ~ 09/27</td>
+									<td>왕복</td>
+									<td>15 일</td>
+									<td><a href="#" class="k1_btn2"><span>상세보기</span></a></td>
+								</tr>
+								<tr>
+									<td class="city">타이페이</td>
+									<td><img src="../../../../wfw/imgs/logo/air/small/airline_KE.png" alt="대한항공" /> 대한항공</td>
+									<td class="air_price">1,099,000원</td>
+									<td>09/01 ~ 09/27</td>
+									<td>왕복</td>
+									<td>15 일</td>
+									<td><a href="#" class="k1_btn2"><span>상세보기</span></a></td>
+								</tr>
+								<tr class="line_first">
+									<td class="city">쿠알라룸푸르</td>
+									<td><img src="../../../../wfw/imgs/logo/air/small/airline_KE.png" alt="대한항공" /> 대한항공</td>
+									<td class="air_price">1,099,000원</td>
+									<td>09/01 ~ 09/27</td>
+									<td>왕복</td>
+									<td>15 일</td>
+									<td><a href="#" class="k1_btn2"><span>상세보기</span></a></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<!-- //국제선 최저가-->
+				<!-- //여정선택 -->
+				<!-- 할인항공 -->
+			</div>
+		</div>
+	</div>
+
+	<div class="k1_cb"></div>
+	<div id="k1_footer">
+		<div class="f_cont">footer</div>
+	</div>
+	<!-- 선택한 항공편 레이어팝업 -->
+	<div class="k1_air_reservation_2" style="display: none;">
+		<div class="all">
+			<div class="left_wrap"></div>
+			<div class="cont_wrap">
+				<div class="header">
+					<h1 class="k1_tit_dot2 k1_cpoint">선택한 항공편</h1>
+					<a class="close k1_bold" id="btn_reservation_2_close">닫기</a>
+				</div>
+				<div class="cont k1_mt10" id="selected_schedule">
+					<div>
+						<ul>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+						</ul>
+					</div>
+					<a class="btn_resevation" title="예약하기"></a>
+				</div>
+				<div class="box">
+					<div class="box_cont">
+						<span class="k1_t14 k1_bold">총 요금 </span>:<span class="k1_cpoint k1_t14 k1_bold">0원</span><a class="k1_btn2 k1_ml20"><span>요금규정 보기 ▶</span></a><a
+							class="k1_btn2 k1_ml5"><span>상세보기 ▶</span></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- //선택한 항공편 레이어팝업 -->
+	<div></div>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+
+<link rel="stylesheet" type="text/css" href="/air/wfw/css/jquery.jqplot.min.css" />
+<!--[if lt IE 9]><script language="javascript" type="text/javascript" src="/air/wfw/js/plugin/excanvas.js"></script><![endif]-->
+<script type="text/javascript" src="/air/wfw/js/plugin/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="/air/wfw/js/lib/jquery.com.util.js"></script>
+<script type="text/javascript" src="/air/wfw/js/lib/jquery.com.form.js"></script>
+    
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#combo").object('loaddata', 'DataXML/combo_btms.xml', '', {code:'code', name:'name', initVal:['M3']});	
+	
+	$("#radio").object('loaddata', 'DataXML/combo_btms.xml', '', {code:'code', name:'name', initVal:['M3']});
+	
+	$("#checkbox").object('loaddata', 'DataXML/combo_btms.xml', '', {code:'code', name:'name', initVal:['M3', 'M1']});
+});
+</script>
+</head>
+<body>
+<!-- Example scripts go here -->
+    <select id="combo"></select>
+    <br/>
+    <input id="radio" type="radio" name="radio">
+    <br/>
+    <input id="checkbox" type="checkbox" name="checkbox">
+<!-- End example scripts -->
+</body>
+</html>

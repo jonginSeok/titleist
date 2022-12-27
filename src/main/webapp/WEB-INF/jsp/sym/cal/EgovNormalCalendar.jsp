@@ -22,8 +22,8 @@
 <title>일반달력</title>
 <meta http-equiv="content-language" content="ko">
 <base target="_self">
-<link type="text/css" rel="stylesheet" href="<c:url value="/css/cal.css"/>" >
-<link href="<c:url value='/'/>css/common.css" rel="stylesheet" type="text/css" >
+<link type="text/css" rel="stylesheet" href="<c:url value="/css/egovframework/cal.css"/>" >
+<link href="<c:url value='/'/>css/egovframework/common.css" rel="stylesheet" type="text/css" >
 <script type="text/javaScript" language="javascript">
 <!--
 

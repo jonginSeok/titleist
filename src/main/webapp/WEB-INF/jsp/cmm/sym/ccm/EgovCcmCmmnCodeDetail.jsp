@@ -22,13 +22,13 @@
 <head>
 
 <meta http-equiv="Content-Language" content="ko" >
-<link href="<c:url value='/'/>css/common.css" rel="stylesheet" type="text/css" >
+<link href="<c:url value='/'/>css/egovframework/common.css" rel="stylesheet" type="text/css" >
 
 <title>공통코드 상세조회</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta http-equiv="content-language" content="ko">
-<link type="text/css" rel="stylesheet" href="/css/com.css">
-<link href="<c:url value='/css/button.css' />" rel="stylesheet" type="text/css">
+<link type="text/css" rel="stylesheet" href="/css/egovframework/com.css">
+<link href="<c:url value='/css/egovframework/button.css' />" rel="stylesheet" type="text/css">
 <script type="text/javaScript" language="javascript">
 <!--
 /* ********************************************************

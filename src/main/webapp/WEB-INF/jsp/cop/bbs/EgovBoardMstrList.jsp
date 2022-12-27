@@ -17,7 +17,7 @@
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<script type="text/javascript" src="<c:url value='/js/EgovBBSMng.js' />"></script>
+<script type="text/javascript" src="<c:url value='/js/egovframework/EgovBBSMng.js' />"></script>
 <script type="text/javascript">
     function press(event) {
         if (event.keyCode==13) {
@@ -149,8 +149,7 @@ A:hover {
 	</div>
 	<!-- table add start -->
 	<div class="default_tablestyle">
-		<table summary="번호,게시판명,게시판유형,게시판속성,생성일,사용여부  목록입니다" cellpadding="0"
-			cellspacing="0">
+		<table summary="번호,게시판명,게시판유형,게시판속성,생성일,사용여부  목록입니다"><!--  cellpadding="0" cellspacing="0" -->
 			<caption>사용자목록관리</caption>
 			<colgroup>
 				<col width="10%">

@@ -1,0 +1,149 @@
+@charset "utf-8"; 
+
+/* ------------------------------------------------------------------------------------
+Basic Style Sheet (for version 4 browsers)
+
+version: 0.1
+author: 서현진
+email: hjseo@toursoft.co.kr
+설명: 공통 
+
+-css수정시-
+--------------------------------------------------------------------------------------- */
+
+/*
+DATE :2013.10.01
+설명:css-validator 오류수정
+*/
+
+/*------------------------------------------------------------------------------------- */
+
+
+/* =typo
+--------------------------------------------------------------------------------------- */
+.k1_bold {font-weight:bold !important;}/*호텔사용*/
+a.k1_hbold:hover{font-weight:bold;}
+.k1_tpoint {color:#393939 !important;}
+.k1_tpoint2 {color:#999 !important;}
+.k1_tpoint3 {color:#777 !important;}
+.k1_tpoint4 {color:#4b4b4b !important;}
+.k1_tpoint5 {color:#8a8a8a !important;}
+.k1_tpoint6 {color:#4a4a4a !important;}
+.k1_cpoint {color:#235ba5 !important;}/*호텔사용*/
+.k1_cpoint_over:hover {color:#235ba5 !important; text-decoration:underline;}
+.k1_cpoint2 {color:#2360ca !important;}
+.k1_cpoint2_over:hover {color:#2360ca !important; text-decoration:underline;}
+.k1_cpoint3 {color:#e92100 !important;}/*호텔사용*/
+.k1_cpoint4 {color:#25608a !important;}
+.k1_cpoint5 {color:#527315;}
+.k1_cpoint6 {color:#1b57a4;}
+.k1_pricep {color:#3775c7;}
+.k1_pricep2 {color:#3775c7;}
+.k1_pricep2:hover {text-decoration:underline;}
+.k1_basec {color:#5e5e5e !important;}/*호텔사용*/
+
+.k1_t11 {font-size:11px;}/*호텔사용*/
+.k1_t12 {font-size:12px !important;}/*호텔사용*/
+.k1_t14 {font-size:14px !important;}/*호텔사용*/
+.k1_t16 {font-size:16px !important;}/*호텔사용*/
+.k1_t18 {font-size:18px;}/*호텔사용*/
+.k1_t22 {font-size:22px !important;}/*호텔사용*/
+
+.k1_tit2 {color:#235ba5; font-weight:bold; font-size:12px;}
+.k1_tit3 {color:#235ba5; font-weight:bold; font-size:14px;}
+.k1_tit4 {color:#fff; font-weight:bold; font-size:12px;}
+.k1_tit5 {color:#fff; font-weight:bold; font-size:14px;}
+
+.k1_tit_dot {padding-left:13px; background:url(/imgs/airA/txt/bul_tit.gif) 0 3px no-repeat; color:#393939; font-weight:bold; font-size:12px;}
+.k1_tit_dot1 {padding-left:13px; background:url(/imgs/airA/txt/bul_tit.gif) 0 2px no-repeat; color:#235ba5; font-weight:bold; font-size:12px; line-height:12px;}
+.k1_tit_dot_1 {padding-left:13px; background:url(/imgs/airA/txt/bul_tit.gif) 0 3px no-repeat; color:#393939; font-weight:bold; font-size:14px;}
+.k1_tit_dot2 {padding-left:13px; padding-top:1px; background:url(/imgs/airA/txt/bul_tit.gif) 0 4px no-repeat; font-weight:bold; font-size:14px; line-height:14px; }/*호텔사용*/
+.k1_tit_dot3 {padding-left:10px; background:url(/imgs/airA/txt/bul_6px_dot.gif) 0 2px no-repeat;}/*호텔사용*/
+.k1_tit_dot4 {padding-left:10px; background:url(/imgs/airA/txt/bul_6px_dot2.gif) 0 3px no-repeat;}/*호텔사용*/
+.k1_tit_dot4_1 {color:#235ba5; background:url(/imgs/airA/txt/bul_6px_dot2.gif) 0 3px no-repeat; font-weight:bold; padding-left:10px;}/*호텔사용*/
+.k1_tit_dot5 {padding-left:10px; background:url(/imgs/airA/txt/bul_6px_dot3.gif) 0 3px no-repeat;}
+.k1_tit_dot6 {padding-left:10px; background:url(/imgs/airA/txt/bul_6px_dot2.gif) 0 3px no-repeat; color:#235ba5;}/*호텔사용*/
+.k1_tit_dot7 {padding-left:10px; background:url(/imgs/airA/txt/bul_6px_dot4.gif) 0 4px no-repeat;}
+
+.k1_arrow_dot {padding-left:10px; background:url(/imgs/airA/txt/bul_arrow.gif) 0 2px no-repeat; color:#235ba5;}
+.k1_arrow_dot1 {padding-left:10px; background:url(/imgs/airA/txt/bul_arrow.gif) 0 2px no-repeat; font-weight:bold;}
+.k1_arrow_dot1_1 {padding-left:10px; background:url(/imgs/airA/txt/bul_arrow.gif) 0 2px no-repeat;}
+.k1_arrow_dot2 {padding-left:7px; background:url(/imgs/airA/txt/bul_arrow2.gif) 0 2px no-repeat; line-height:1.2em;  vertical-align:middle;}/*호텔사용*/
+.k1_arrow_dot2_1 {padding-left:7px; background:url(/imgs/airA/txt/bul_arrow2.gif) 0 2px no-repeat;}
+.k1_arrow_dot3 {padding-left:10px; background:url(/imgs/airA/txt/bul_arrow3.gif) 0 2px no-repeat;}/*2013-10-01 수정:btms기준*/
+.k1_arrow_dot4 {padding-left:20px; background:url(/imgs/airA/txt/bul_arrow4.gif) 0 1px no-repeat; vertical-align:middle;}
+.k1_arrow_dot5 {padding-left:10px; background:url(/imgs/airA/txt/bul_arrow5.gif) no-repeat 0 4px; vertical-align:middle; font-weight:bold;}
+
+.k1_h3_tit {padding-left:13px; background:url(/imgs/airA/txt/bul_h3_b2b_tit.gif) 0 2px no-repeat; color:#393939; font-weight:bold; font-size:14px; line-height:13px;}
+
+.k1_txt_dot {padding-left:7px; background:url(/imgs/airA/txt/bul_2px_dot.gif) 0 5px no-repeat;}
+.k1_txt_dot2 {padding-left:7px; background:url(/imgs/airA/txt/bul_1px.gif) 0 6px no-repeat;}/*호텔사용*/
+.k1_txt_dot3 {padding-left:9px; background:url(/imgs/airA/txt/bul_3px.gif) 0 6px no-repeat;}
+
+.k1_bul_3px_dot {padding-left:7px; background:url(/imgs/airA/txt/dot_3px.gif) 0 5px no-repeat;}
+/*.k1_bul_3px_dot2 {padding-left:7px; background:url(../../imgs/airA/common/dot2_3px.gif) 0 5px no-repeat;}*/
+
+
+.k1_txt_tit01 {display:inline-block; width:93px; height:14px; padding:4px 0 2px; background:url(/imgs/airA/txt/txt_tit01.png) no-repeat; color:#fff; line-height:1.2em; text-align:center; vertical-align:middle;}
+.k1_txt_tit02 {display:inline-block; width:31px; height:16px; background:url(/imgs/airA/txt/txt_tit02.gif) no-repeat; color:#fff; line-height:19px; text-align:center;}
+.k1_txt_tit03 {display:inline-block; width:31px; height:17px; background:url(/imgs/airA/txt/txt_tit03.gif) no-repeat; color:#fff; line-height:17px; text-align:center;}
+
+.k1_txt_no01 {display:inline-block; width:24px; height:20px; background:url(/imgs/airA/txt/txt_no01.gif) no-repeat; color:#fff; font-weight:bold; line-height:20px; text-align:center;}
+
+.k1_txt_state01s {display:inline-block; width:27px; height:13px; background:url(/imgs/airA/txt/txt_ok.gif) no-repeat; color:#fff; font-size:0; vertical-align:middle;}
+.k1_txt_state02s {display:inline-block; width:27px; height:13px; background:url(/imgs/airA/txt/txt_wait.gif) no-repeat; color:#fff; font-size:0; vertical-align:middle;}
+
+.k1_bul_note {padding-left:15px; background:url(/imgs/airA/txt/bul_note.gif) 0 2px no-repeat;}
+.k1_bul_note2 {padding-left:15px; background:url(/imgs/airA/txt/bul_note.gif) 0 1px no-repeat;}/*호텔추가*/
+.k1_bul_plus {padding-left:13px; background:url(/imgs/airA/txt/bul_plus.gif) 0 3px no-repeat;}
+
+.k1_num {display:inline-block; width:13px; height:13px; background:url(/imgs/airA/txt/txt_num.gif) no-repeat; color:#fff; line-height:13px; text-align:center; vertical-align:middle;}/*호텔사용*/
+.k1_num2 {display:inline-block; width:13px; height:13px; background:url(/imgs/airA/txt/txt_num2.gif) no-repeat; color:#fff; line-height:13px; text-align:center; vertical-align:middle;}
+
+.k1_map_dot1 {display:inline-block; padding-left:10px; background: url(/imgs/airA/txt/bul_map_dot.gif) 0 50% no-repeat;}
+.k1_map_dot2 {display:inline-block; padding-bottom:10px; background: url(/imgs/airA/txt/bul_map_dot.gif) 50% 22px no-repeat;}
+.k1_map_dot3 {display:inline-block; padding-right:10px; background: url(/imgs/airA/txt/bul_map_dot.gif) right 50% no-repeat;}
+
+.k1_dot_3px {padding-left:10px; background:url(/imgs/airA/txt/dot_3px.gif) 0 6px no-repeat;}
+.k1_dot_3px_2 {padding-left:10px; background:url(/imgs/airA/txt/dot_3px_2.gif) 0 6px no-repeat;}
+.k1_dot_3px_3 {padding-left:10px; background:url(/imgs/airA/txt/bul_3px_fff.gif) 0 6px no-repeat;}
+
+.k1_dot_arrow1 {padding-left:15px; background: url(/imgs/airA/txt/dot_arrow1.gif) 0 1px no-repeat;}
+.k1_dot_arrow2 {padding-left:15px; background: url(/imgs/airA/txt/dot_arrow2.gif) 0 0 no-repeat;}
+
+/************************************************************************************************************************************************
+ 아이콘 관련 txt
+************************************************************************************************************************************************/
+.k1_ico_answer {display:inline-block; padding-left:15px; background:url(/imgs/airA/txt/ico_answer.gif) no-repeat; line-height:11px;}
+.k1_ico_flag {display:inline-block; height:16px; padding-left:20px; background:url(/imgs/airA/txt/ico_flag.gif) no-repeat; line-height:16px;}
+.k1_ico_ex {padding-left:15px; background:url(/imgs/airA/txt/ico_ex.gif) 0 1px no-repeat;}
+.k1_ico_ex_1 {padding-left:15px; background:url(/imgs/airA/txt/ico_ex.gif) no-repeat;}
+.k1_ico_ex_2 {display:inline-block; padding-left:5px; width:11px; height:13px; background:url(/imgs/airA/txt/ico_ex.gif) 0 2px no-repeat;}
+.k1_ico_won {padding-left:16px; background:url(/imgs/airA/txt/ico_won.gif) 0 1px no-repeat;}
+.k1_txt_state01 {display:inline-block; width:38px; height:13px; background:url(/imgs/airA/txt/ico_state01.gif) no-repeat; color:#fff; font-size:0; vertical-align:middle;}
+.k1_txt_state02 {display:inline-block; width:38px; height:13px; background:url(/imgs/airA/txt/ico_state02.gif) no-repeat; color:#fff; font-size:0; vertical-align:middle;}
+.k1_ico_trequired {display:inline-block; width:6px; height:6px; margin-left:5px; background:url(/imgs/airA/txt/bul_6px_dot3.gif) no-repeat 0 0; vertical-align:middle; font-size:0; line-height:1.2em;}
+.k1_ico_1day {display:inline-block; width:15px; height:16px; background:url(/imgs/airA/icon/ico_1day.gif) no-repeat; vertical-align:middle;}/*호텔공통*/
+
+/************************************************************************************************************************************************
+ 이미지라인
+************************************************************************************************************************************************/
+.k1_dot_line {width:100%; height:2px; background:url(/imgs/airA/txt/dot_line.gif) repeat-x;}/*호텔사용*/
+.k1_dot_line2 {height:2px; margin:10px; background:url(/imgs/airA/txt/dot_line2.gif) repeat-x;}
+.k1_dot_line2_1 {height:2px; margin:10px 0; background:url(/imgs/airA/txt/dot_line2.gif) repeat-x;}
+.k1_dot_line3 {width:100%; height:2px; margin:5px 0; background:url(/imgs/airA/txt/dot_line3.gif) repeat-x;}
+.k1_dot_line4 {width:100%; height:2px; margin:10px 0; background:url(/imgs/airA/txt/dot_line4.gif) repeat-x;}
+.k1_dot_line4_1 {width:100%; height:2px; margin:20px 0; background:url(/imgs/airA/txt/dot_line4.gif) repeat-x;}/* 20130506 추가*/
+.k1_dot_line5 {width:100%; height:5px; margin:5px 0; background:url(/imgs/airA/txt/dot_line5.gif) repeat-x;}
+
+/************************************************************************************************************************************************
+ HTL 사용
+************************************************************************************************************************************************/
+.k1_hpoint01{color:#777;}
+.k1_tit_dot2_1 {padding-left:13px; background:url(/imgs/airA/txt/bul_tit.gif) 0 2px no-repeat; font-weight:bold; font-size:12px; line-height:14px;}
+.k1_tit_hdot1{padding-left:7px; background:url(/imgs/airA/txt/bul_2px_dot.gif) no-repeat 0 7px; color:#235ba5; font-weight:bold;}
+
+/************************************************************************************************************************************************
+ 추가
+************************************************************************************************************************************************/
+.k1_dot_list1 {padding-left:10px; background:url(/imgs/airA/txt/dot_list1.gif) 0 3px no-repeat;}/*호텔사용*/

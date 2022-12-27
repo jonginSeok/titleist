@@ -1,0 +1,67 @@
+@charset "utf-8";
+
+/************************************************************************************************************ 
+Basic Style Sheet (for version 4 browsers)	
+version: 0.1
+author: 박수연 과장
+email: suudjin@nate.com
+설명: 공통 icon style
+	
+-css수정시-
+************************************************************************************************************/
+
+/*:DATE :2013.01.21
+:author:*/
+/************************************************************************************************************/
+
+/************************************************************************************************************
+ 별점
+************************************************************************************************************/
+.k1_star,
+.k1_star span{display:inline-block; height:12px; background:url(/air/wfw/imgs/airA/icon/ico_star.gif) no-repeat;}
+.k1_star{width:78px; padding-right:5px; margin-top:-5px; background-position:0 -13px; vertical-align:middle;}
+.k1_star span{overflow:hidden; background-position:0 0; vertical-align:top; text-align:left; font-size:0;}
+
+.k1_star02,
+.k1_star02 span{display:inline-block; height:10px; background:url(/air/wfw/imgs/airA/icon/ico_star.gif) no-repeat;}
+.k1_star02{width:63px; padding-right:5px; margin-top:-5px; background-position:0 -38px; vertical-align:middle;}
+.k1_star02 span{overflow:hidden; background-position:0 -27px; vertical-align:top; text-align:left; font-size:0;}
+
+.k1_star03{display:inline-block; height:11px; width:58px; margin-top:-3px; background:url(/air/wfw/imgs/airA/icon/ico_star.gif) no-repeat 0 -49px; vertical-align:middle; font-size:0;}
+
+/************************************************************************************************************
+ 텍스트아이콘
+************************************************************************************************************/
+.k1_htl_icotxt01{display:inline-block; width:35px; height:15px; margin-left:2px; background:url(/air/wfw/imgs/airA/icon/htl_iconset.gif) no-repeat 0 -48px; font-size:0; vertical-align:middle;}
+.k1_htl_icotxt02{display:inline-block; width:24px; height:15px; margin-left:2px; background:url(/air/wfw/imgs/airA/icon/htl_iconset.gif) no-repeat -36px -48px; font-size:0; vertical-align:middle;}
+.k1_htl_icotxt03{display:inline-block; width:24px; height:15px; margin-left:2px; background:url(/air/wfw/imgs/airA/icon/htl_iconset.gif) no-repeat -61px -48px; font-size:0; vertical-align:middle;}
+.k1_htl_icotxt04{display:inline-block; width:24px; height:15px; background:url(/air/wfw/imgs/airA/icon/htl_iconset.gif) no-repeat -86px -48px; font-size:0; vertical-align:middle;}
+.k1_htl_icotxt05{display:inline-block; width:24px; height:15px; background:url(/air/wfw/imgs/airA/icon/htl_iconset.gif) no-repeat -111px -48px; font-size:0; vertical-align:middle;}
+.k1_htl_icotxt06{display:inline-block; width:19px; height:13px; background:url(/air/wfw/imgs/airA/icon/htl_iconset.gif) no-repeat -186px -48px; font-size:0; vertical-align:middle;}
+.k1_htl_icotxt07{display:inline-block; width:24px; height:15px; background:url(/air/wfw/imgs/airA/icon/htl_iconset.gif) no-repeat -136px -48px; font-size:0; vertical-align:middle;}
+.k1_htl_icotxt08{display:inline-block; width:24px; height:15px; background:url(/air/wfw/imgs/airA/icon/htl_iconset.gif) no-repeat -161px -48px; font-size:0; vertical-align:middle;}
+
+.k1_htl_txtico_01{display:inline-block; height:15px; padding-right:2px; background:url(/air/wfw/imgs/airA/icon/htl_ico_bgset.gif) no-repeat right 0; font-size:11px; color:#fff; text-align:center; line-height:11px;}
+.k1_htl_txtico_01 span{display:inline-block; width:auto !important; height:11px !important; padding:2px 1px 2px 3px; background:url(/air/wfw/imgs/airA/icon/htl_ico_bgset.gif) no-repeat left 0 !important; font-size:11px !important;}
+.k1_htl_txtico_02{display:inline-block; height:15px; padding-right:1px; background:url(/air/wfw/imgs/airA/icon/htl_ico_bgset.gif) no-repeat right 0; font-size:11px; color:#fff; text-align:center; line-height:12px;}
+.k1_htl_txtico_02 span{display:inline-block; padding:2px 0 2px 1px; background:url(/air/wfw/imgs/airA/icon/htl_ico_bgset.gif) no-repeat left 0;}
+
+.k1_htl_price{padding-left:20px; background:url(/air/wfw/imgs/airA/icon/ico_won.gif) no-repeat 4px 0; color:#235ba5; font-weight:bold; line-height:14px; vertical-align:middle;}
+
+
+/************************************************************************************************************
+ 부대시설아이콘
+************************************************************************************************************/
+.k1_htl_ico span{display:inline-block; *display:inline; zoom:1; width:15px; height:16px; margin-right:-1px; background:url(/air/wfw/imgs/airA/icon/htl_iconset.gif) no-repeat; font-size:0; vertical-align:middle;}
+.k1_htl_ico span.ico01{background-position:0 -13px;}
+.k1_htl_ico span.ico02{background-position:-18px -13px;}
+.k1_htl_ico span.ico03{background-position:-36px -13px;}
+.k1_htl_ico span.ico04{background-position:-53px -13px;}
+.k1_htl_ico span.ico05{background-position:-71px -13px;}
+.k1_htl_ico span.ico06{background-position:-89px -13px;}
+.k1_htl_ico span.ico01_off{background-position:0 -30px;}
+.k1_htl_ico span.ico02_off{background-position:-18px -30px;}
+.k1_htl_ico span.ico03_off{background-position:-36px -30px;}
+.k1_htl_ico span.ico04_off{background-position:-53px -30px;}
+.k1_htl_ico span.ico05_off{background-position:-71px -30px;}
+.k1_htl_ico span.ico06_off{background-position:-89px -30px;}

@@ -22,7 +22,7 @@
 <c:if test="${anonymous == 'true'}">
 	<c:set var="prefix" value="/anonymous" />
 </c:if>
-<script type="text/javascript" src="<c:url value='/js/EgovBBSMng.js' />"></script>
+<script type="text/javascript" src="<c:url value='/js/egovframework/EgovBBSMng.js' />"></script>
 <c:choose>
 	<c:when test="${preview == 'true'}">
 		<script type="text/javascript">
@@ -146,7 +146,7 @@ caption {
 	</div>
 	<!-- table add start -->
 	<div class="default_tablestyle">
-		<table summary="번호, 제목, 게시시작일, 게시종료일, 작성자, 작성일, 조회수   입니다" cellpadding="0" cellspacing="0">
+		<table summary="번호, 제목, 게시시작일, 게시종료일, 작성자, 작성일, 조회수   입니다"><!--  cellpadding="0" cellspacing="0" -->
 			<caption>게시물 목록</caption>
 			<colgroup>
 				<col width="10%">

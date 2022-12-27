@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko">
+<head>
+<title>jqDnR :: Minimalistic Drag'n'Resize for jQuery</title>
+
+<style type="text/css">
+.jqHandle {
+	background: #ffffff;
+	height: 15px;
+}
+
+.jqDrag {
+	width: 100%;
+	cursor: move;
+}
+
+.jqResize {
+	width: 15px;
+	height: 15px;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	cursor: se-resize;
+}
+
+.jqDnR {
+	z-index: 3;
+	position: absolute;
+	width: 180px;
+	font-size: 0.77em;
+	color: #618d5e;
+	margin: 5px 10px 10px 10px;
+	padding: 1px;
+	background-color: #b5b5b5;
+	width: 128px;
+	height: 73px;
+}
+</style>
+
+<!-- <script type="text/javascript" src="http://dev.iceburg.net/jquery/inc/jquery.js"></script> -->
+<!-- <script type="text/javascript" src="/js/jquery.js"></script> -->
+<!-- <script type="text/javascript" src="/js/jquery-1.7.2.min.js"></script> -->
+<!-- <script type="text/javascript" src="/js/jqDnR.js"></script> -->
+<script type="text/javascript" src="/js/plugin/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="/js/plugin/jquery.jqDnR.js"></script>
+</head>
+<body>
+	<div class="box">
+
+		<script type="text/javascript">
+			$().ready(function() {
+				$('#ex1').jqResize('.jqResize');
+			});
+		</script>
+		<script type="text/javascript">
+			$().ready(function() {
+				$('#floor1').jqDrag('.jqDrag').jqResize('.jqResize');
+				$('#table1').jqDrag('.jqDrag').jqResize('.jqResize');
+				$('#table2').jqDrag('.jqDrag').jqResize('.jqResize');
+				$('#table3').jqDrag('.jqDrag').jqResize('.jqResize');
+			});
+		</script>
+
+		<div id="floor1" class="jqDnR"
+			style="left: 20px; top: 20px; width: 128px; height: 34px; resizeMinWidth: 128px; resizeMaxWidth: 256px; resizeXGrid: 8px; resizeYGrid: 8px; resizeMinHeight: 72px; resizeMaxHeight: 144px; pickBorderColor: #0000ff; nodrag: true; noresize: true;">
+			<div class="jqHandle jqDrag"
+				style="width: 100%; height: 100%; text-align: center;">1층</div>
+			<div class="jqResize"></div>
+		</div>
+
+		<div id="table1" class="jqDnR"
+			style="left: 220px; top: 20px; width: 128px; height: 74px; resizeMinWidth: 128px; resizeMaxWidth: 256px; resizeXGrid: 8px; resizeYGrid: 8px; resizeMinHeight: 72px; resizeMaxHeight: 144px; pickBorderColor: #0000ff;">
+			<div class="jqHandle jqDrag"
+				style="width: 100%; height: 100%; text-align: center;">테이블1</div>
+			<div class="jqResize"></div>
+		</div>
+
+		<div id="table2" class="jqDnR"
+			style="left: 362px; top: 20px; width: 128px; height: 74px; resizeMinWidth: 128px; resizeMaxWidth: 256px; resizeXGrid: 8px; resizeYGrid: 8px; resizeMinHeight: 72px; resizeMaxHeight: 144px; pickBorderColor: #0000ff;">
+			<div class="jqHandle jqDrag"
+				style="width: 100%; height: 100%; text-align: center;">테이블2</div>
+			<div class="jqResize"></div>
+		</div>
+
+		<div id="table3" class="jqDnR"
+			style="left: 504px; top: 20px; width: 128px; height: 74px; resizeMinWidth: 128px; resizeMaxWidth: 256px; resizeXGrid: 8px; resizeYGrid: 8px; resizeMinHeight: 72px; resizeMaxHeight: 144px; pickBorderColor: #0000ff;">
+			<div class="jqHandle jqDrag"
+				style="width: 100%; height: 100%; text-align: center;">테이블3</div>
+			<div class="jqResize"></div>
+		</div>
+
+
+
+
+	</div>
+
+</body>
+</html>

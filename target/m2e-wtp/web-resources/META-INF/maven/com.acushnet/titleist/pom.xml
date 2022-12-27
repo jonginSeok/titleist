@@ -23,6 +23,7 @@
 		<egovframework.rte.version>3.10.0</egovframework.rte.version>
 		<org.apache.tiles-version>3.0.3</org.apache.tiles-version>
 		<slf4j-version>1.6.0</slf4j-version>
+		<jackson.version>2.14.1</jackson.version><!-- 2.11.3 -->
 	</properties>
 
 	<repositories>
@@ -264,6 +265,12 @@
 			<artifactId>tiles-extras</artifactId>
 			<version>${org.apache.tiles-version}</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.25</version>
+		</dependency>
 		
 		<dependency>
 		   <groupId>org.slf4j</groupId>
@@ -271,6 +278,21 @@
 		   <version>${slf4j-version}</version>
 		</dependency>
 		
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-core</artifactId>
+		    <version>${jackson.version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		    <version>${jackson.version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-annotations</artifactId>
+		    <version>${jackson.version}</version>
+		</dependency>
 
 	</dependencies>
 

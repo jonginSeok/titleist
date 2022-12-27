@@ -1,0 +1,42 @@
+<html>     
+	<head>         
+		<meta charset="utf-8">
+		<title>웹 프레임워크</title>  
+		<script type="text/javascript" src="/vof/wfw/js/plugin/jquery-1.7.2.min.js"></script>
+		<script type="text/javascript" src="/vof/wfw/js/lib/jquery.com.uitab.js"></script>
+		<script type="text/javascript" src="/vof/wfw/js/lib/jquery.com.util.js"></script>
+		<script type="text/javascript">  
+		var $k1 = jQuery.noConflict();
+		$k1(document).ready(function() {
+
+			$k1('#navigation').uitab({selected: 0}, 'N');
+		});
+		</script>         
+		<style type="text/css">             
+		#navigation li {                 
+		list-style:none;                 
+		float:left;                 
+		padding:5px;             
+		}             
+		#navigation {                 
+		cursor:pointer;             
+		}             
+		#navigation .active {                 
+		background-color:red;                 
+		color:white;             
+		}         
+		</style>     
+	</head>     
+	<body>         
+	<div id="navigation" >
+		<ul>       
+			<li class="active"><label>HTML</label></li>             
+			<li><label>CSS</label></li>             
+			<li><label>javascript</label></li>             
+			<li><label>jQuery</label></li>             
+			<li><label>PHP</label></li>             
+			<li><label>mysql</label></li>     
+		</ul>   
+	</div> 
+	</body> 
+</html> 

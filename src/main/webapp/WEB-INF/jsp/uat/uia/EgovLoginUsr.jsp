@@ -18,7 +18,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<link href="<c:url value='/'/>css/login.css" rel="stylesheet" type="text/css">
+<link href="<c:url value='/'/>css/egovframework/login.css" rel="stylesheet" type="text/css">
 <script type="text/javascript">
 console.log("EgovLoginUsr.jsp");
 <!--
