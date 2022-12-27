@@ -11,224 +11,212 @@
  Copyright 2007 Inicis, Co. All rights reserved.
 ------------------------------------------------------------------------------->
 
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <title>INIpay</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
-<script language=javascript src="http://plugin.inicis.com/pay40.js">
-</script>
+<script language=javascript src="http://plugin.inicis.com/pay40.js"></script>
 
 <script language=javascript>
-
-var openwin;
-
-</script>	
+	var openwin;
+</script>
 
 <style type="text/css">
-	BODY{font-size:9pt; line-height:160%}
-	TD{font-size:9pt; line-height:160%}
-	A {color:blue;line-height:160%; background-color:#E0EFFE}
-	INPUT{font-size:9pt;}
-	SELECT{font-size:9pt;}
-	.emp{background-color:#FDEAFE;}
+BODY {
+	font-size: 9pt;
+	line-height: 160%
+}
+
+TD {
+	font-size: 9pt;
+	line-height: 160%
+}
+
+A {
+	color: blue;
+	line-height: 160%;
+	background-color: #E0EFFE
+}
+
+INPUT {
+	font-size: 9pt;
+}
+
+SELECT {
+	font-size: 9pt;
+}
+
+.emp {
+	background-color: #FDEAFE;
+}
 </style>
 </head>
 
 <body>
+<center>
+	<!-- pay()가 "true"를 반환하면 post된다 -->
+	<form name="ini" method=post action=INIvbank.jsp>
 
-<!-- pay()가 "true"를 반환하면 post된다 -->
-<form name="ini" method=post action=INIvbank.jsp>
+		<table border=0 width=500>
+			<tr>
+				<td>
+					<hr noshade size=1> <b>INIpay 가상계좌 등록 샘플</b>
+					<hr noshade size=1>
+				</td>
+			</tr>
 
-<table border=0 width=500>
-	<tr>
-	<td>
-	<hr noshade size=1>
-	<b>INIpay 가상계좌 등록 샘플</b>
-	<hr noshade size=1>
-	</td>
-	</tr>
-	
-</table>
-<br>
+		</table>
+		<br>
 
-<table border=0 width=500>
-<tr>
-<td align=center>
-<table width=300 cellspacing=0 cellpadding=0 border=0 bgcolor=#6699CC>
-<tr>
-<td>
-<table width=100% cellspacing=1 cellpadding=2 border=0>
-<tr bgcolor=#BBCCDD height=25>
-<td align=center>
-정보를 기입하신 후 등록버튼을 눌러주십시오
-</td>
-</tr>
-<tr bgcolor=#FFFFFF>
-<td valign=top>
-<table width=100% cellspacing=0 cellpadding=2 border=0>
-<tr>
-<td align=center>
-<br>
-<table>
-	<tr>
-	<td>상점ID : </td>
-	<td>
-	<input type=editbox name=mid size=20 maxlength=10 value="INIpayTest">
-	</td>
-	</tr>	    
+		<table border=0 width=500>
+			<tr>
+				<td align=center>
+					<table width=300 cellspacing=0 cellpadding=0 border=0
+						bgcolor=#6699CC>
+						<tr>
+							<td>
+								<table width=100% cellspacing=1 cellpadding=2 border=0>
+									<tr bgcolor=#BBCCDD height=25>
+										<td align=center>정보를 기입하신 후 등록버튼을 눌러주십시오</td>
+									</tr>
+									<tr bgcolor=#FFFFFF>
+										<td valign=top>
+											<table width=100% cellspacing=0 cellpadding=2 border=0>
+												<tr>
+													<td align=center><br>
+														<table>
+															<tr>
+																<td>상점ID :</td>
+																<td><input type=editbox name=mid size=20 maxlength=10 value="INIpayTest"></td>
+															</tr>
 
-	<tr>
-	<td>상품명 : </td>
-	<td><input type=text name=goodname size=20 value="배구공"></td>
-	</tr>
-	
-	<tr> 
-	<td>가격 : </td>
-	<td><input type=text name=price size=20 value="1000"></td>
-	</tr>
-	
-	<tr>
-	<td>성명 : </td> 
-	<td><input type=text name=buyername size=20 value="정등록"></td>
-	</tr>
-	
-	<tr>
-	<td>전자우편 : </td>
-	<td>
-	<input type=text name=buyeremail size=20 value="inicis_test@inicis.com">
-	</td>
-	</tr>
-	
-	<tr>
-	<td>이동전화 : </td>
-	<td>
-	<input type=text name=buyertel size=20 value="011-123-1234">
-	</td>
-	</tr>
+															<tr>
+																<td>상품명 :</td>
+																<td><input type=text name=goodname size=20 value="배구공"></td>
+															</tr>
 
-	<tr>
-	<td>주민등록번호 : </td>
-	<td>
-	<input type=text size=6 name=perno1 maxlength="6"> - <input type=password size=7 name=perno2 maxlength="7"> (뒤7자리)
-	</td>
-	</tr>
-	
-    <tr>
-	<td>입금은행코드 : </td>
-	<td>
-		<select name="vcdbank">
-			<option value="03">기업은행
-			<option value="04">국민은행
-			<option value="05" selected>외환은행
-			<option value="20">우리은행
-			<option value="23">제일은행
-			<option value="81">하나은행
-			<option value="88">신한은행
-            <!-- 부족한 은행은 추가하세요 -->
-		</select>
-	</td>
-	</tr>
-    	
-	<tr>
-	<td>입금예정일 : </td>
-	<td>
-	<input type=text name=dtinput size=8 value="20070501"> "yyyyMMdd" 형식
-	</td>
-	</tr>
+															<tr>
+																<td>가격 :</td>
+																<td><input type=text name=price size=20 value="1000"></td>
+															</tr>
 
-    <tr>
-	<td>입금예정시간 : </td>
-	<td>
-	<input type=text name=tminput size=4 value="0900"> "HHmm" 형식
-	</td>
-	</tr>
+															<tr>
+																<td>성명 :</td>
+																<td><input type=text name=buyername size=20 value="정등록"></td>
+															</tr>
 
-    <tr>
-	<td>입금자이름 : </td>
-	<td>
-	<input type=text name=nminput size=10 value="홍길동"> 
-	</td>
-	</tr>
-    
-    <tr>
-	<td>입금계좌번호 : </td>
-	<td>
-	<input type=text name=vacct size=20 value="1440400207651"> 
-	</td>
-	</tr>
+															<tr>
+																<td>전자우편 :</td>
+																<td><input type=text name=buyeremail size=20 value="inicis_test@inicis.com"></td>
+															</tr>
 
-	<tr>
-	<td colspan=2 align=center>
-	<br>
-	<input type="submit" value=" 등 록 " >
-	<br><br>
-	</td>
-	</tr>
-</table>
-</td>
-</tr>
-</table>
-</td>
-</tr>
-</table>
-</td>
-</tr>
-</table>
-</td>
-</tr>
-</table>
-<br>
+															<tr>
+																<td>이동전화 :</td>
+																<td><input type=text name=buyertel size=20 value="011-123-1234"></td>
+															</tr>
 
-<table border=0 width=500>
-	<tr>
-	<td><hr noshade size=1></td>
-	</tr>
-	
-	<tr>
-	<td align=right>Copyright Inicis, Co.<br>www.inicis.com</td>
-	</tr>
-</table>
+															<tr>
+																<td>주민등록번호 :</td>
+																<td><input type=text size=6 name=perno1 maxlength="6"> - <input type=password size=7 name=perno2 maxlength="7"> (뒤7자리)</td>
+															</tr>
 
+															<tr>
+																<td>입금은행코드 :</td>
+																<td><select name="vcdbank">
+																		<option value="03">기업은행
+																		<option value="04">국민은행
+																		<option value="05" selected>외환은행
+																		<option value="20">우리은행
+																		<option value="23">제일은행
+																		<option value="81">하나은행
+																		<option value="88">신한은행
+																			<!-- 부족한 은행은 추가하세요 -->
+																</select></td>
+															</tr>
 
-<!-- 
-상점아이디.
-테스트를 마친 후, 발급받은 아이디로 바꾸어 주십시오.
--->
-<!--input type=hidden name=mid value=INIpayTest-->
+															<tr>
+																<td>입금예정일 :</td>
+																<td><input type=text name=dtinput size=8 value="20070501"> "yyyyMMdd" 형식</td>
+															</tr>
 
+															<tr>
+																<td>입금예정시간 :</td>
+																<td><input type=text name=tminput size=4 value="0900"> "HHmm" 형식</td>
+															</tr>
 
-<!--
-화폐단위
-WON 또는 CENT
-주의 : 미화승인은 별도 계약이 필요합니다.
--->
-<input type=hidden name=currency value="WON">
+															<tr>
+																<td>입금자이름 :</td>
+																<td><input type=text name=nminput size=10 value="홍길동"></td>
+															</tr>
 
+															<tr>
+																<td>입금계좌번호 :</td>
+																<td><input type=text name=vacct size=20 value="1440400207651"></td>
+															</tr>
 
-<!--
-무이자 할부
-무이자로 할부를 제공 : "1"
-무이자할부는 별도 계약이 필요합니다. 먼저 계약관계를 확인하십시오.
--->
-<input type=hidden name=quotainterest value="0">
+															<tr>
+																<td colspan=2 align=center><br> <input type="submit" value=" 등 록 "> <br><br></td>
+															</tr>
+														</table></td>
+												</tr>
+											</table>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+		<br>
 
+		<table border=0 width=500>
+			<tr>
+				<td><hr noshade size=1></td>
+			</tr>
 
-<!--
-본인인증 여부
-시행함 : "00"
-시행안함 : "11"
-* 계약관계를 확인하여 주십시오.
--->
-<input type=hidden name=authentification value="00">
+			<tr>
+				<td align=right>Copyright Inicis, Co.<br>www.inicis.com</td>
+			</tr>
+		</table>
 
+		<!-- 
+		상점아이디.
+		테스트를 마친 후, 발급받은 아이디로 바꾸어 주십시오.
+		-->
+		<!--input type=hidden name=mid value=INIpayTest-->
 
-<!-- 삭제/수정 불가 -->
-<input type=hidden name=clickcontrol value="">
-<input type=hidden name=paymethod value="VBank">
+		<!--
+		화폐단위
+		WON 또는 CENT
+		주의 : 미화승인은 별도 계약이 필요합니다.
+		-->
+		<input type=hidden name=currency value="WON">
 
-</form>
-</center></body>
+		<!--
+		무이자 할부
+		무이자로 할부를 제공 : "1"
+		무이자할부는 별도 계약이 필요합니다. 먼저 계약관계를 확인하십시오.
+		-->
+		<input type=hidden name=quotainterest value="0">
+
+		<!--
+		본인인증 여부
+		시행함 : "00"
+		시행안함 : "11"
+		* 계약관계를 확인하여 주십시오.
+		-->
+		<input type=hidden name=authentification value="00">
+
+		<!-- 삭제/수정 불가 -->
+		<input type=hidden name=clickcontrol value=""> 
+		<input type=hidden name=paymethod value="VBank">
+
+	</form>
+	</center>
+</body>
 </html>
 

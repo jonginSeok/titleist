@@ -2,31 +2,25 @@ package egovframework.let.sym.log.clg.web;
 
 import java.util.HashMap;
 
-import egovframework.let.sym.log.clg.service.EgovLoginLogService;
-import egovframework.let.sym.log.clg.service.LoginLog;
-
-import egovframework.rte.fdl.property.EgovPropertyService;
-import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
-import org.apache.log4j.spi.LoggerFactory;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import egovframework.let.sym.log.clg.service.EgovLoginLogService;
+import egovframework.let.sym.log.clg.service.LoginLog;
+import egovframework.rte.fdl.property.EgovPropertyService;
+import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
 /**
  * 접속로그정보를 관리하기 위한 컨트롤러 클래스
@@ -73,6 +67,7 @@ public class EgovLoginLogController {
 			HttpServletRequest request, HttpServletResponse response, 
 			ModelMap model) throws Exception {
 
+		@SuppressWarnings("unused")
 		ObjectMapper objectMapper = new ObjectMapper();
 
 		log.debug("# paramMap:" + paramMap.toString());

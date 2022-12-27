@@ -1,24 +1,73 @@
-<html>    
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
 <head>
 <title>INIpay50 현금영수증 발행 데모</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel="stylesheet" href="css/group.css" type="text/css">
 <style>
-body, tr, td {font-size:10pt; font-family:굴림,verdana; color:#433F37; line-height:19px;}
-table, img {border:none}
+body, tr, td {
+	font-size: 10pt;
+	font-family: 굴림, verdana;
+	color: #433F37;
+	line-height: 19px;
+}
 
-/* Padding ******/ 
-.pl_01 {padding:1 10 0 10; line-height:19px;}
-.pl_03 {font-size:20pt; font-family:굴림,verdana; color:#FFFFFF; line-height:29px;}
+table, img {
+	border: none
+}
 
-/* Link ******/ 
-.a:link  {font-size:9pt; color:#333333; text-decoration:none}
-.a:visited { font-size:9pt; color:#333333; text-decoration:none}
-.a:hover  {font-size:9pt; color:#0174CD; text-decoration:underline}
+/* Padding ******/
+.pl_01 {
+	padding: 1 10 0 10;
+	line-height: 19px;
+}
 
-.txt_03a:link  {font-size: 8pt;line-height:18px;color:#333333; text-decoration:none}
-.txt_03a:visited {font-size: 8pt;line-height:18px;color:#333333; text-decoration:none}
-.txt_03a:hover  {font-size: 8pt;line-height:18px;color:#EC5900; text-decoration:underline}
+.pl_03 {
+	font-size: 20pt;
+	font-family: 굴림, verdana;
+	color: #FFFFFF;
+	line-height: 29px;
+}
+
+/* Link ******/
+.a:link {
+	font-size: 9pt;
+	color: #333333;
+	text-decoration: none
+}
+
+.a:visited {
+	font-size: 9pt;
+	color: #333333;
+	text-decoration: none
+}
+
+.a:hover {
+	font-size: 9pt;
+	color: #0174CD;
+	text-decoration: underline
+}
+
+.txt_03a:link {
+	font-size: 8pt;
+	line-height: 18px;
+	color: #333333;
+	text-decoration: none
+}
+
+.txt_03a:visited {
+	font-size: 8pt;
+	line-height: 18px;
+	color: #333333;
+	text-decoration: none
+}
+
+.txt_03a:hover {
+	font-size: 8pt;
+	line-height: 18px;
+	color: #EC5900;
+	text-decoration: underline
+}
 </style>
 
 <script language="javascript">
@@ -302,7 +351,7 @@ function focus_control()
 		openwin.focus();
 }
 
-</script>	
+</script>
 
 <script language="JavaScript" type="text/JavaScript">
 <!--
@@ -327,191 +376,252 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
  onload="javascript:enable_click()" onFocus="javascript:focus_control()" 이 부분은 수정없이 그대로 사용.
  아래의 form TAG내용도 수정없이 그대로 사용.
 ------------------------------------------------------------------------------------------------------->
+<body bgcolor="#FFFFFF" text="#242424" leftmargin=0 topmargin=15
+	marginwidth=0 marginheight=0 bottommargin=0 rightmargin=0
+	onload="javascript:enable_click()" onFocus="javascript:focus_control()">
 
-<body bgcolor="#FFFFFF" text="#242424" leftmargin=0 topmargin=15 marginwidth=0 marginheight=0 bottommargin=0 rightmargin=0 onload="javascript:enable_click()" onFocus="javascript:focus_control()"><center>
-<form name=ini method=post action="INIreceipt.jsp" onSubmit="return pay(this)"> 
-<table width="632" border="0" cellspacing="0" cellpadding="0">
-  <tr> 
-    <td height="85" background="/inipay/wfw/imgs/inipay5/cash_top.gif" style="padding:0 0 0 64">
-      <table width="100%" border="0" cellspacing="0" cellpadding="0">
-        <tr> 
-          <td width="3%" valign="top"><img src="/inipay/wfw/imgs/inipay5/title_01.gif" width="8" height="27" vspace="5"></td>
-          <td width="97%" height="40" class="pl_03"><font color="#FFFFFF"><b>현금영수증 발행요청</b></font></td>
-        </tr>
-      </table></td>
-  </tr>
-  <tr> 
-    <td align="center" bgcolor="6095BC"><table width="620" border="0" cellspacing="0" cellpadding="0">
-        <tr>
-          <td bgcolor="#FFFFFF" style="padding:8 0 0 56"> 
-            <table width="530" border="0" cellspacing="0" cellpadding="0">
-              <tr>
-                <td>현금영수증 발행요청 샘플입니다.</td>
-              </tr>
-            </table>
-            <br>
-            <table width="510" border="0" cellspacing="0" cellpadding="0">
-              <tr> 
-                <td width="7"><img src="/inipay/wfw/imgs/inipay5/life.gif" width="7" height="30"></td>
-                <td background="/inipay/wfw/imgs/inipay5/center.gif"><img src="/inipay/wfw/imgs/inipay5/icon03.gif" width="12" height="10"> 
-                  <b>정보를 기입하신 후 발행버튼을 눌러주십시오.</b></td>
-                <td width="8"><img src="/inipay/wfw/imgs/inipay5/right.gif" width="8" height="30"></td>
-              </tr>
-            </table>
-            <br>
-            <table width="510" border="0" cellspacing="0" cellpadding="0">
-              <tr> 
-                <td width="510" colspan="2"  style="padding:0 0 0 23">
-                  <table width="470" border="0" cellspacing="0" cellpadding="0">
-                    <tr> 
-                      <td height="1" colspan="3" align="center"  background="/inipay/wfw/imgs/inipay5/line.gif"></td>
-                    </tr> 
-                    <tr> 
-                      <td width="18" align="center"><img src="/inipay/wfw/imgs/inipay5/icon02.gif" width="7" height="7"></td>
-                      <td width="177" height="26">상 품 명</td>
-                      <td width="280"><input type=text name=goodname size=20 value="축구공"></td>
-                    </tr>
-                    <tr> 
-                      <td height="1" colspan="3" align="center"  background="/inipay/wfw/imgs/inipay5/line.gif"></td>
-                    </tr>
-                    <tr> 
-                      <td width="18" align="center"><img src="/inipay/wfw/imgs/inipay5/icon02.gif" width="7" height="7"></td>
-                      <td width="177" height="26">결 제 금 액</td>
-                      <td width="280"><input type=text name=cr_price size=10 value="5000">&nbsp;&nbsp;
-                      <font color=red><b>5000</b>원 이상만 가능합니다</font>
-                      <br><font color=red>(현금결제 총금액:공급가+부가세+봉사료)</font></td>
-                    </tr>
-                    <tr> 
-                      <td height="1" colspan="3" align="center"  background="/inipay/wfw/imgs/inipay5/line.gif"></td>
-                    </tr>
-                    <tr> 
-                      <td width="18" align="center"><img src="/inipay/wfw/imgs/inipay5/icon02.gif" width="7" height="7"></td>
-                      <td width="177" height="26">공 급 가 액</td>
-                      <td width="280"><input type=text name=sup_price size=10 value="4000"></td>
-                    </tr>
-                    <tr> 
-                      <td height="1" colspan="3" align="center"  background="/inipay/wfw/imgs/inipay5/line.gif"></td>
-                    </tr>
-                    <tr> 
-                      <td width="18" align="center"><img src="/inipay/wfw/imgs/inipay5/icon02.gif" width="7" height="7"></td>
-                      <td width="177" height="26">부 가 세</td>
-                      <td width="280"><input type=text name=tax size=10 value="900"></td>
-                    </tr>
-                    <tr> 
-                      <td height="1" colspan="3" align="center"  background="/inipay/wfw/imgs/inipay5/line.gif"></td>
-                    </tr>
-                    <tr> 
-                      <td width="18" align="center"><img src="/inipay/wfw/imgs/inipay5/icon02.gif" width="7" height="7"></td>
-                      <td width="177" height="26">봉 사 료</td>
-                      <td width="280"><input type=text name=srvc_price size=10 value="100"></td>
-                    </tr>                    
-                    <tr> 
-                      <td height="1" colspan="3" align="center"  background="/inipay/wfw/imgs/inipay5/line.gif"></td>
-                    </tr>
-                    <tr> 
-                      <td width="18" align="center"><img src="/inipay/wfw/imgs/inipay5/icon02.gif" width="7" height="7"></td>
-                      <td width="109" height="25">구 매 자 명</td>
-                      <td width="343"><input type=text name=buyername size=20 value="홍길동"></td>
-                    </tr>
-                    <tr> 
-                      <td height="1" colspan="3" align="center"  background="/inipay/wfw/imgs/inipay5/line.gif"></td>
-                    </tr>
-                    <tr> 
-                      <td width="18" align="center"><img src="/inipay/wfw/imgs/inipay5/icon02.gif" width="7" height="7"></td>
-                      <td width="109" height="25">전 자 우 편</td>
-                      <td width="343"><input type=text name=buyeremail size=20 value="test@test.com"></td>
-                    </tr>
-                    <tr> 
-                      <td height="1" colspan="3" align="center"  background="/inipay/wfw/imgs/inipay5/line.gif"></td>
-                    </tr>
-                    <tr> 
-                      <td width="18" align="center"><img src="/inipay/wfw/imgs/inipay5/icon02.gif" width="7" height="7"></td>
-                      <td width="109" height="25">이 동 전 화</td>
-                      <td width="343"><input type=text name=buyertel size=20 value="011-123-1234"></td>
-                    </tr>
-                    <tr> 
-                      <td height="1" colspan="3" align="center"  background="/inipay/wfw/imgs/inipay5/line.gif"></td>
-                    </tr>
-                    <tr>
-                      <td width="18" align="center"><img src="/inipay/wfw/imgs/inipay5/icon02.gif" width="7" height="7"></td>
-                      <td colspan=2>
-                    	 <table width=100% cellspacing=0 cellpadding=0 border=0>
-                    	   <tr>
-                    	     <td>
-                    	     	<!--input type=checkbox name=check value="1" onClick="javascript:showhide('1');"-->현금영수증 발행용도를 선택하세요
-                    	     </td>
-                    	   </tr>
-                    	   <tr>
-                    	     <td align=center><!--SPAN id=block1 style="DISPLAY:none; xCURSOR:hand"-->
-                    	     	<table>
-                    	     	 <tr>
-                    	     	  <td>
-                    		     <input type=radio name=choose value=0 Onclick= "javascript:RCP1()">소득공제용&nbsp;&nbsp;&nbsp;&nbsp;
-				                     <input type=radio name=choose value=1 Onclick= "javascript:RCP2()">지출증빙용
-                    		  </td>
-                    		 </tr>
-                    		</table>
-                    	       </SPAN>
-                    	     </td>
-                    	   </tr>
-                    	 </table>
-                      </td>
-                    </tr>
-                    <tr> 
-                      <td height="1" colspan="3" align="center"  background="/inipay/wfw/imgs/inipay5/line.gif"></td>
-                    </tr>     
-                    <tr> 
-                      <td width="18" align="center"><img src="/inipay/wfw/imgs/inipay5/icon02.gif" width="7" height="7"></td>
-                      <td width="109" height="25">주민등록 또는<br> 휴대폰 번호<br>(사업자등록번호)</td>
-                      <td width="343"><input type=text name=reg_num size=13 maxlength=13 value="0111231234">&nbsp;&nbsp;&nbsp;<font color=red>"-"를 뺀 숫자만 입력하세요</font></td>
-                    </tr>
-                    <tr> 
-                      <td height="1" colspan="3" align="center"  background="/inipay/wfw/imgs/inipay5/line.gif"></td>
-                    </tr>
-                    <tr valign="bottom"> 
-                      <td height="40" colspan="3" align="center"><input type=image src="/inipay/wfw/imgs/inipay5/button_08.gif" width="63" height="25"></td>
-                    </tr>
-                    <tr valign="bottom">
-                      <td height="45" colspan="3">전자우편과 이동전화번호를 입력받는 것은 고객님의 결제성공 내역을 E-MAIL 또는 SMS 로
-                   알려드리기 위함이오니 반드시 기입하시기 바랍니다.</td>
-                   
-                    </tr>
-                    <tr valign="bottom">
-                      <td height="45" colspan="3"><b>●소득 공제용 - 주민등록 번호와 휴대폰 번호로 발급 가능</b><BR>
-                   <b>●지출 증빙용 - 주민등록 번호, 휴대폰 번호, 사업자 번호로 발급 가능</b></td>
-                   
-                    </tr>
-                  </table></td>
-              </tr>
-            </table> 
-            <br>
-          </td>
-        </tr>
-      </table></td>
-  </tr>
-  <tr> 
-    <td><img src="/inipay/wfw/imgs/inipay5/bottom01.gif" width="632" height="13"></td>
-  </tr>
-</table>
-</center>
+	<form name=ini method=post action="INIreceipt.jsp"
+		onSubmit="return pay(this)">
+		<center>
+			<table width="632" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td height="85" background="/inipay/wfw/imgs/inipay5/cash_top.gif"
+						style="padding: 0 0 0 64">
+						<table width="100%" border="0" cellspacing="0" cellpadding="0">
+							<tr>
+								<td width="3%" valign="top"><img
+									src="/inipay/wfw/imgs/inipay5/title_01.gif" width="8"
+									height="27" vspace="5"></td>
+								<td width="97%" height="40" class="pl_03"><font
+									color="#FFFFFF"><b>현금영수증 발행요청</b></font></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td align="center" bgcolor="6095BC"><table width="620"
+							border="0" cellspacing="0" cellpadding="0">
+							<tr>
+								<td bgcolor="#FFFFFF" style="padding: 8 0 0 56">
+									<table width="530" border="0" cellspacing="0" cellpadding="0">
+										<tr>
+											<td>현금영수증 발행요청 샘플입니다.</td>
+										</tr>
+									</table> <br>
+									<table width="510" border="0" cellspacing="0" cellpadding="0">
+										<tr>
+											<td width="7"><img
+												src="/inipay/wfw/imgs/inipay5/life.gif" width="7"
+												height="30"></td>
+											<td background="/inipay/wfw/imgs/inipay5/center.gif"><img
+												src="/inipay/wfw/imgs/inipay5/icon03.gif" width="12"
+												height="10"> <b>정보를 기입하신 후 발행버튼을 눌러주십시오.</b></td>
+											<td width="8"><img
+												src="/inipay/wfw/imgs/inipay5/right.gif" width="8"
+												height="30"></td>
+										</tr>
+									</table> <br>
+									<table width="510" border="0" cellspacing="0" cellpadding="0">
+										<tr>
+											<td width="510" colspan="2" style="padding: 0 0 0 23">
+												<table width="470" border="0" cellspacing="0"
+													cellpadding="0">
+													<tr>
+														<td height="1" colspan="3" align="center"
+															background="/inipay/wfw/imgs/inipay5/line.gif"></td>
+													</tr>
+													<tr>
+														<td width="18" align="center"><img
+															src="/inipay/wfw/imgs/inipay5/icon02.gif" width="7"
+															height="7"></td>
+														<td width="177" height="26">상 품 명</td>
+														<td width="280"><input type=text name=goodname
+															size=20 value="축구공"></td>
+													</tr>
+													<tr>
+														<td height="1" colspan="3" align="center"
+															background="/inipay/wfw/imgs/inipay5/line.gif"></td>
+													</tr>
+													<tr>
+														<td width="18" align="center"><img
+															src="/inipay/wfw/imgs/inipay5/icon02.gif" width="7"
+															height="7"></td>
+														<td width="177" height="26">결 제 금 액</td>
+														<td width="280"><input type=text name=cr_price
+															size=10 value="5000">&nbsp;&nbsp; <font color=red><b>5000</b>원
+																이상만 가능합니다</font> <br>
+														<font color=red>(현금결제 총금액:공급가+부가세+봉사료)</font></td>
+													</tr>
+													<tr>
+														<td height="1" colspan="3" align="center"
+															background="/inipay/wfw/imgs/inipay5/line.gif"></td>
+													</tr>
+													<tr>
+														<td width="18" align="center"><img
+															src="/inipay/wfw/imgs/inipay5/icon02.gif" width="7"
+															height="7"></td>
+														<td width="177" height="26">공 급 가 액</td>
+														<td width="280"><input type=text name=sup_price
+															size=10 value="4000"></td>
+													</tr>
+													<tr>
+														<td height="1" colspan="3" align="center"
+															background="/inipay/wfw/imgs/inipay5/line.gif"></td>
+													</tr>
+													<tr>
+														<td width="18" align="center"><img
+															src="/inipay/wfw/imgs/inipay5/icon02.gif" width="7"
+															height="7"></td>
+														<td width="177" height="26">부 가 세</td>
+														<td width="280"><input type=text name=tax size=10
+															value="900"></td>
+													</tr>
+													<tr>
+														<td height="1" colspan="3" align="center"
+															background="/inipay/wfw/imgs/inipay5/line.gif"></td>
+													</tr>
+													<tr>
+														<td width="18" align="center"><img
+															src="/inipay/wfw/imgs/inipay5/icon02.gif" width="7"
+															height="7"></td>
+														<td width="177" height="26">봉 사 료</td>
+														<td width="280"><input type=text name=srvc_price
+															size=10 value="100"></td>
+													</tr>
+													<tr>
+														<td height="1" colspan="3" align="center"
+															background="/inipay/wfw/imgs/inipay5/line.gif"></td>
+													</tr>
+													<tr>
+														<td width="18" align="center"><img
+															src="/inipay/wfw/imgs/inipay5/icon02.gif" width="7"
+															height="7"></td>
+														<td width="109" height="25">구 매 자 명</td>
+														<td width="343"><input type=text name=buyername
+															size=20 value="홍길동"></td>
+													</tr>
+													<tr>
+														<td height="1" colspan="3" align="center"
+															background="/inipay/wfw/imgs/inipay5/line.gif"></td>
+													</tr>
+													<tr>
+														<td width="18" align="center"><img
+															src="/inipay/wfw/imgs/inipay5/icon02.gif" width="7"
+															height="7"></td>
+														<td width="109" height="25">전 자 우 편</td>
+														<td width="343"><input type=text name=buyeremail
+															size=20 value="test@test.com"></td>
+													</tr>
+													<tr>
+														<td height="1" colspan="3" align="center"
+															background="/inipay/wfw/imgs/inipay5/line.gif"></td>
+													</tr>
+													<tr>
+														<td width="18" align="center"><img
+															src="/inipay/wfw/imgs/inipay5/icon02.gif" width="7"
+															height="7"></td>
+														<td width="109" height="25">이 동 전 화</td>
+														<td width="343"><input type=text name=buyertel
+															size=20 value="011-123-1234"></td>
+													</tr>
+													<tr>
+														<td height="1" colspan="3" align="center"
+															background="/inipay/wfw/imgs/inipay5/line.gif"></td>
+													</tr>
+													<tr>
+														<td width="18" align="center"><img
+															src="/inipay/wfw/imgs/inipay5/icon02.gif" width="7"
+															height="7"></td>
+														<td colspan=2>
+															<table width=100% cellspacing=0 cellpadding=0 border=0>
+																<tr>
+																	<td>
+																		<!--input type=checkbox name=check value="1" onClick="javascript:showhide('1');"-->현금영수증
+																		발행용도를 선택하세요
+																	</td>
+																</tr>
+																<tr>
+																	<td align=center>
+																		<!--SPAN id=block1 style="DISPLAY:none; xCURSOR:hand"-->
+																		<table>
+																			<tr>
+																				<td><input type=radio name=choose value=0
+																					Onclick="javascript:RCP1()">소득공제용&nbsp;&nbsp;&nbsp;&nbsp;
+																					<input type=radio name=choose value=1
+																					Onclick="javascript:RCP2()">지출증빙용</td>
+																			</tr>
+																		</table><!--  </SPAN> -->
+																	</td>
+																</tr>
+															</table>
+														</td>
+													</tr>
+													<tr>
+														<td height="1" colspan="3" align="center"
+															background="/inipay/wfw/imgs/inipay5/line.gif"></td>
+													</tr>
+													<tr>
+														<td width="18" align="center"><img
+															src="/inipay/wfw/imgs/inipay5/icon02.gif" width="7"
+															height="7"></td>
+														<td width="109" height="25">주민등록 또는<br> 휴대폰 번호<br>(사업자등록번호)
+														</td>
+														<td width="343"><input type=text name=reg_num size=13
+															maxlength=13 value="0111231234">&nbsp;&nbsp;&nbsp;<font
+															color=red>"-"를 뺀 숫자만 입력하세요</font></td>
+													</tr>
+													<tr>
+														<td height="1" colspan="3" align="center"
+															background="/inipay/wfw/imgs/inipay5/line.gif"></td>
+													</tr>
+													<tr valign="bottom">
+														<td height="40" colspan="3" align="center"><input
+															type=image src="/inipay/wfw/imgs/inipay5/button_08.gif"
+															width="63" height="25"></td>
+													</tr>
+													<tr valign="bottom">
+														<td height="45" colspan="3">전자우편과 이동전화번호를 입력받는 것은
+															고객님의 결제성공 내역을 E-MAIL 또는 SMS 로 알려드리기 위함이오니 반드시 기입하시기 바랍니다.</td>
 
-<!-- 
+													</tr>
+													<tr valign="bottom">
+														<td height="45" colspan="3"><b>●소득 공제용 - 주민등록 번호와
+																휴대폰 번호로 발급 가능</b><BR> <b>●지출 증빙용 - 주민등록 번호, 휴대폰 번호,
+																사업자 번호로 발급 가능</b></td>
+
+													</tr>
+												</table>
+											</td>
+										</tr>
+									</table> <br>
+								</td>
+							</tr>
+						</table></td>
+				</tr>
+				<tr>
+					<td><img src="/inipay/wfw/imgs/inipay5/bottom01.gif"
+						width="632" height="13"></td>
+				</tr>
+			</table>
+		</center>
+
+		<!-- 
 상점아이디.
 테스트를 마친 후, 발급받은 아이디로 바꾸어 주십시오.
 -->
-<input type=hidden name=mid value=INIpayTest>
+		<input type=hidden name=mid value=INIpayTest>
 
-<!--
+		<!--
 화폐단위
 WON 또는 USD
 주의 : 미화승인은 별도 계약이 필요합니다.
 -->
-<input type=hidden name=currency value="WON">
+		<input type=hidden name=currency value="WON">
 
-<!-- [필수 필드]삭제/수정 불가 -->
-<input type=hidden name=clickcontrol value="">
-<input type=hidden name=useopt value="">
+		<!-- [필수 필드]삭제/수정 불가 -->
+		<input type=hidden name=clickcontrol value=""> <input
+			type=hidden name=useopt value="">
 
-</form>
+	</form>
 </body>
 </html>
