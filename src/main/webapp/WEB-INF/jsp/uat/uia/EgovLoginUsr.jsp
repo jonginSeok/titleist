@@ -20,7 +20,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <link href="<c:url value='/'/>css/egovframework/login.css" rel="stylesheet" type="text/css">
 <script type="text/javascript">
-console.log("EgovLoginUsr.jsp");
 <!--
 	window.onload = function(e) {
 		fnInit();

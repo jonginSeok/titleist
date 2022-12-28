@@ -28,9 +28,6 @@
 <link type="text/css" rel="stylesheet" href="<c:url value='/'/>css/egovframework/common.css" />
 
 <script type="text/javascript" src="<c:url value='/'/>js/plugin/jquery-1.7.2.js"></script>
-
-<!-- <script type="text/javascript" src="/js/plugin/jquery.jqGrid.src.js"></script> -->
-
 <script type="text/javascript" src="/js/plugin/jquery-ui-1.8.24.custom.js"></script>
 <script type="text/javascript" src="/js/plugin/jquery.simplemodal.js"></script>
 <script type="text/javascript" src="/js/plugin/jquery.validate.js"></script>

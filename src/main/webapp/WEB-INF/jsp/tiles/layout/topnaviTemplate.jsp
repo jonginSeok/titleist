@@ -12,10 +12,9 @@
 --%><%@
 	page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%><%@
 	taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%><%@
-	taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<!-- top menu start -->
+	taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"
+%><!-- top menu start -->
 <script type="text/javascript">
-console.log('topnaviTemplate.jsp');
 <!--
     function getLastLink(baseMenuNo){
     	var tNode = new Array;

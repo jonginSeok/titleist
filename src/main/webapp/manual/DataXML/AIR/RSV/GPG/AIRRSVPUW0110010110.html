@@ -1,0 +1,1360 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>판매형태</title>
+<link rel="stylesheet" type="text/css" href="/css/style.css" />
+<link rel="stylesheet" type="text/css" href="/css/ui.jqgrid.css" />
+<script type="text/javascript" src="/js/plugin/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="/js/plugin/XSLTransform.js"></script>
+<script type="text/javascript" src="/js/plugin/jquery.jqGrid.min.js"></script>
+<script type="text/javascript" src="/js/lib/jquery.com.grid.js"></script>
+<script type="text/javascript" src="/js/lib/jquery.com.form.js"></script>
+<script type="text/javascript" src="/js/lib/jquery.com.util.js"></script>
+<script type="text/javascript" src="/js/lib/jquery.com.uitab.js"></script>
+<script type="text/javascript" src="/js/lib/jquery.com.js"></script>
+
+<script type="text/javascript">
+
+var $k1 = jQuery.noConflict();
+var saveData = [];
+$k1(document).ready(function() {
+	
+	/** 여정 정보 Grid 정의 Start	*/
+	var gno = 0, cno=0;
+	//Grid title 
+	var gTitle = ['NO', '항공편','출발', '도착', '좌', '석', '출발지','도착지','비행정보', '비고' ];
+	//Grid Model 
+	var gModel = [
+					{name:'no',index:'no', width:24, align:"center", 
+						cellattr: function(rowId, val, rawObject, cm, rdata) {
+							//필드의 값을 비교해서 rowspna 할때. 
+							var colspan_cnt = Number($k1.jgrid.getXmlData( rawObject, "count"));
+							if(gno != val) {
+								gno = val;
+                                return ' rowspan=' + '"' + colspan_cnt + '"';
+							}
+							else{
+								cno++;
+								if(cno == (colspan_cnt-1)){ 	gno =0;  cno=0; }
+								return ' style="display:none;"';
+							}
+					    }},
+			   		{name:'flight',index:'flight', width:70, align:"center"},
+			   		{name:'start',index:'start', width:134, align:"center"},
+			   		{name:'end',index:'end', width:134, align:"center", sortable:false},
+			   		{name:'seat1',index:'seat1', width:30, align:"center"},
+			   		{name:'seat2',index:'seat2', width:30, align:"center"},
+			   		{name:'startCity',index:'startCity', width:60, align:"center"},		
+			   		{name:'endCity',index:'endCity', width:60, align:"center"},		
+			   		{name:'flightInfo',index:'flightInfo', width:55, align:"center", 
+						cellattr: function(rowId, val, rawObject, cm, rdata) {
+					   		//처음만 값이 있고 그다음은 데이타가 없을 경우 rowspan 할때. 
+							var colspan_cnt = Number($k1.jgrid.getXmlData( rawObject, "count"));
+					        if(val != '') {
+					        	gfInfo = val;
+					        	return ' rowspan=' + '"' + colspan_cnt + '"';
+					        }
+					        else{
+					        	return ' style="display:none;"';
+					        }
+					    } 
+			   		}, 		
+			   		{name:'bigo',index:'bigo', width:250, align:"left", classes:"last tal k1_blue", 
+						cellattr: function(rowId, val, rawObject, cm, rdata) {
+							var colspan_cnt = Number($k1.jgrid.getXmlData( rawObject, "count"));
+					        if(val != '') {
+					        	gbigo = val;
+					        	return ' rowspan=' + '"' + colspan_cnt + '"';
+					        }
+					        else{
+					        	return ' style="display:none;"';
+					        }
+					    }
+			   		}  		
+			   	];
+	
+	var options = 	{
+		multiselect:false,	//옶션에 multiselect:true 부분을 추가하면 그리드 목록 전체선택/전체 해제가 가능하다. 
+		height : 'auto', 
+		width : '100%',		//895 
+		autowidth : true, 
+		rowNum:100,
+	   	rowList:[],
+	   	xmlReader: {
+			root : "data",
+			row: "list", 
+			page: "data>page", 			//
+		    total: "data>total", 		//
+		    records : "data>records", 	//
+			repeatitems: false,
+			id: "id"
+		}
+	};
+	
+	var events = {
+		loadComplete : gfnTripLoadComplete,
+		loadError : function(xhr, status, error) {
+			alert(error);
+		}
+	};
+
+	//1. 기본적인 Grid을 만든다. : 화면 로딩시 바로 데이타 조회   
+	$k1("#tbl_trip").grid('/manual/DataXML/AIRRSVPUW0110010110_trip.xml', gTitle, gModel, options, events);
+	
+	/** 여정 정보 Grid 정의 End	*/
+	
+	/** 탑승객별 판매요금  Grid 정의 Start	*/
+	//Grid title 
+	gTitle = ['NO', '영문명','NET', '히든NET', '유류할증료', 'TAX', '할인','금액','판매컴(선컴)', '판매컴(후컴)', 'UP판매금액', '(실)판매금액', '취급수수료', '운임조건', '증빙'];
+	//Grid Model 
+	gModel = [
+					{name:'no',index:'no', width:20, align:"center"},
+			   		{name:'nameEn',index:'nameEn', width:90, align:"center"},
+			   		{name:'net',index:'net', width:70, align:"center"},
+			   		{name:'hideNet',index:'hideNet', width:70, align:"center", sortable:false},
+			   		{name:'oilAmount',index:'oilAmount', width:70, align:"center"},
+			   		{name:'tax',index:'tax', width:70, align:"center"},
+			   		{name:'discount1',index:'discount1', width:60, align:"center"},		
+			   		{name:'discount2',index:'discount2', width:60, align:"center"},		
+			   		{name:'saleBefore',index:'saleBefore', width:70, align:"center"},
+			   		{name:'saleAfter',index:'saleAfter', width:70, align:"center"},
+			   		{name:'saleUp',index:'saleUp', width:70, align:"center"},
+			   		{name:'saleAmount',index:'saleAmount', width:70, align:"center"},
+			   		{name:'useAmount',index:'useAmount', width:70, align:"center"},
+			   		{name:'fare',index:'fare', width:80, align:"center"},
+			   		{name:'file',index:'file', width:80, align:"center"}
+			   		];
+	
+	options = 	{
+		multiselect:false,	//옶션에 multiselect:true 부분을 추가하면 그리드 목록 전체선택/전체 해제가 가능하다. 
+		height : 'auto', 
+		width : '100%',		//895 /1000
+		autowidth : true, 
+		rowNum:100,
+	   	rowList:[],
+	   	cmTemplate: {sortable: false},
+	   	xmlReader: {
+			root : "data",
+			row: "list", 
+			page: "data>page", 			//
+		    total: "data>total", 		//
+		    records : "data>records", 	//
+			repeatitems: false,
+			id: "no"
+			}
+	};
+	
+	events = {loadComplete:gfnSaleLoadComplete, loadError:function(xhr,status,error){alert(error);}};
+
+	//1. 기본적인 Grid을 만든다. : 화면 로딩시 바로 데이타 조회   
+	$k1("#tbl_sal_amount").grid('/manual/DataXML/AIRRSVPUW0110010110_sale.xml', gTitle, gModel, options, events);
+	
+	/** 탑승객별 판매요금  Grid 정의 End	*/
+
+	/** 결제요청정보 (카드) Grid 정의 Start	*/
+	//Grid title 
+	gTitle = ['NO', '소유구분','소유자명', '카드종류', '카드번호', '유효기간', '입금예정일','항공권금액','TASF금액', '비밀번호', '수정', '수정모드'];
+	//Grid Model 
+	gModel = [
+				{name:'no',index:'no', width:20, align:"center"},
+		   		{name:'ownerType',index:'ownerType', width:60, align:"center", editable: true,edittype:'select',editoptions:{value:"0:개인;1:법인;2:가족"} 
+									},
+		   		{name:'ownerName',index:'ownerName', width:80, align:"center", editable: true },
+		   		{name:'cardKind',index:'cardKind', width:90, align:"center", sortable:false, editable: true,edittype:"select",editoptions:{value:"BC:BC카드;KB:국민카드;SH:신한카드"}},
+		   		{name:'cardNumber',index:'cardNumber', width:235, align:"center", editable: true},
+		   		{name:'cardTerm',index:'cardTerm', width:60, align:"center"},
+		   		{name:'paymentDate',index:'paymentDate', width:80, align:"center"},		
+		   		{name:'airAmount',index:'airAmount', width:80, align:"center"},		
+		   		{name:'tasfAmount',index:'tasfAmount', width:80, align:"center"},
+		   		{name:'password',index:'password', width:60, align:"center"},
+		   		{name:'isUpdate',index:'isUpdate', width:60, align:"center", hidden:true}, 
+		   		{name:'editMode',index:'editMode', width:60, align:"center", hidden:true}
+		   	];
+	
+	options = 	{
+		multiselect:false,	//옶션에 multiselect:true 부분을 추가하면 그리드 목록 전체선택/전체 해제가 가능하다. 
+		height : 'auto', 
+		width : '100%',		//895 
+		autowidth : true, 
+		rowNum:100,
+	   	rowList:[],
+	   	//cellEdit: true,
+	   	//forceFit : true,
+	   	cmTemplate: {sortable: false}, 
+	   	editurl : 'http://'+location.host+'/vof/test.jsp?param1=val1234', 
+	   	xmlReader: {
+			root : "data",
+			row: "list", 
+			page: "data>page", 			//
+		    total: "data>total", 		//
+		    records : "data>records", 	//
+			repeatitems: false,
+			id: "no"
+		}
+	};
+	
+	events = {loadComplete:gfnCardLoadComplete, loadError:function(xhr,status,error){alert(error);}, 
+			onSelectRow:gfnCardSelectRow, 
+			ondblClickRow : gfnCardDblClickRow, 
+			afterInsertRow : function (rowid, rowdata, rowelem) {
+				if($k1.util.isNull(rowdata.ownerName)) {
+					$k1("#tbl_card").grid('setGridStyle', 'vof_list');
+					gfnCardSelectRow (rowid);
+				}
+			}, 
+			afterSaveCell : function(rowid,name,val,iRow,iCol) {
+				alert(iRow+':'+iCol);
+			}};	//
+
+	//1. 기본적인 Grid을 만든다. : 화면 로딩시 바로 데이타 조회   
+	$k1("#tbl_card").grid('/manual/DataXML/AIRRSVPUW0110010110_card.xml', gTitle, gModel, options, events);
+	
+	/** 결제요청정보 (카드) Grid 정의 End	*/
+
+	/** 결제요청정보 (현금/기타입금) Grid 정의 Start	*/
+	//Grid title 
+	gTitle = ['NO', '입금구분','입금자명', '은행명', '계좌번호', '입금예정일', '항공권금액','입금여부', '작업'];
+	//Grid Model 
+	gModel = [
+				{name:'no',index:'no', width:20, align:"center"},
+		   		{name:'depositType',index:'depositType', width:60, align:"center"},
+		   		{name:'depositName',index:'depositName', width:80, align:"center"},
+		   		{name:'bankName',index:'bankName', width:90, align:"center"},
+		   		{name:'bankNumber',index:'bankNumber', width:235, align:"center"},
+		   		{name:'depositDate',index:'depositDate', width:80, align:"center"},		
+		   		{name:'airAmount',index:'airAmount', width:80, align:"center"},		
+		   		{name:'depositYN',index:'depositYN', width:80, align:"center"},		
+		   		{name:'depositAction',index:'depositAction', width:80, align:"center"}
+		   	];
+	
+	options = 	{
+		multiselect:false,	//옶션에 multiselect:true 부분을 추가하면 그리드 목록 전체선택/전체 해제가 가능하다. 
+		height : 'auto', 
+		width : '100%',		//895 
+		autowidth : true, 
+		rowNum:100,
+	   	rowList:[],
+	   	xmlReader: {
+			root : "data",
+			row: "list", 
+			page: "data>page", 			//
+		    total: "data>total", 		//
+		    records : "data>records", 	//
+			repeatitems: false,
+			id: "no"
+		}
+	};
+	
+	events = {loadComplete:gfnCashLoadComplete, loadError:function(xhr,status,error){alert(error);} };	//
+
+	//1. 기본적인 Grid을 만든다. : 화면 로딩시 바로 데이타 조회   
+	$k1("#tbl_cash").grid('/manual/DataXML/AIRRSVPUW0110010110_cash.xml', gTitle, gModel, options, events);
+	
+	/** 결제요청정보 (현금/기타입금) Grid 정의 End	*/
+	
+	//Tab 기능 정의 ..
+	$k1('#k1_tabs_navi').uitab({selected: 0});
+
+	$k1('#btn_card_save').bind('click', function() {
+		
+		//변경 버튼 클릭시 현재 선택된 Row가 변경이 되었으면  변경된 데이타를 구한다. 
+		uptData = $k1('#tbl_card').grid('dataToString', lastsel2, true); 
+		
+		isSame = (orgData == uptData)? true:false;
+	
+		if(!isSame) {
+			updateData = $k1('#tbl_card').grid('editDataRow', lastsel2);  
+		}
+		$k1('#tbl_card').restoreRow(lastsel2, {"afterrestorefunc" : 
+			function( response ) {
+				if(!isSame) {
+					$k1("#tbl_card").jqGrid('setRowData', lastsel2, updateData);
+					//makeJSON();
+					updateData = [], isSame=true;
+					$k1('#tbl_card').grid('setCombo', lastsel2); 
+				}
+			}}
+		); 
+	    
+		//변경된 Row 들의 데이타를 JSON 데이타로 만든다. 
+		jsonObj = $k1('#tbl_card').grid('jsonToString', 'cards');
+    	var obj = $k1.parseJSON(jsonObj);
+    	
+    	//alert(obj.TeamList);
+    	$k1.each(obj.cards, function(i,card){
+    		
+    		//수정 모드 세팅...
+    		card.editMode = (card.editMode=='N')? 'U':card.editMode;
+    		alert(card.no +' : '+card.ownerType+' : '+card.ownerName+' : '+card.editMode);
+   	    });
+
+    	//저장하는 로직 테스트 필요. 
+    	//$k1(".sale_form").object('ajaxsubmit', 'test.html', 'POST', function(data){alert(data);}, 'json');
+    	
+    	//변수 초기화.
+    	lastsel2 = '';
+    	orgData = '', uptData= '', isSame=true;
+    	updateData = [];
+	    return false;
+			 
+	});
+	
+	//결제정보추가 버튼 클릭시 이벤트.
+	$k1('#btn_card_add').bind('click', function() {
+		//row data를 모두 가지고 와서 
+		//마지막 row 데이타의 no 값을 구한다. 
+		var rows = $k1('#tbl_card').jqGrid('getDataIDs');
+		var lastNo = 0;
+		
+		$k1.each(rows, function(index, id) {
+			var row = $k1('#tbl_card').grid('getRowData', id);
+			lastNo = row.no;
+		});
+		
+		//마지막 no 값에 +1한다 -> 나중에 key값 세팅.
+		var nextKey = Number(lastNo) + 1;
+		
+		//insert하는 Row의 데이타.
+		var data = {'no':nextKey, 'editMode':'I'};
+		$k1('#tbl_card').grid('addRowData', nextKey, data);
+		
+		return false;
+	});
+	
+	//결제정보삭제 버튼 클릭시 
+	//결제정보를 바로 DB에서 삭제한다. 
+	$k1('#btn_card_delete').bind('click', function() {
+		var row_id = $k1("#tbl_card").grid('getGridParam', 'selrow');
+		
+		if($k1.util.isNull(row_id)) {
+			alert('삭제할 Row를 선택하세요. ');
+			return false;
+		}
+
+		//삭제하고자 하는 row의 값을 구하고 editMode='D' 로 세팅한다.
+		var delRowData = $k1('#tbl_card').grid('editDataRow', row_id);  
+		delRowData['editMode'] = 'D';
+		$k1("#tbl_card").jqGrid('setRowData',row_id, delRowData);
+		
+		//삭제된 데이타를 json 형태로 가져 와서 
+		//해당 로우를 삭제한다. 
+		jsonObj = $k1('#tbl_card').grid('jsonToString', 'cards'); 	
+    	var obj = $k1.parseJSON(jsonObj);
+    	
+    	//alert(obj.TeamList);
+    	//실제 삭제 Row를 Grid에서 삭제한다. 
+		$k1('#tbl_card').grid('delRowData', row_id);
+		gfnCardSelectRow (row_id);
+
+		//삭제할 데이타를 DB에서 삭제하는 로직 구현.
+    	$k1.each(obj.cards, function(i,card){
+    		
+    		//수정 모드 세팅...
+    		card.editMode = (card.editMode=='N')? 'U':card.editMode;
+    		alert(card.no +' : '+card.ownerType+' : '+card.ownerName+' : '+card.editMode);
+   	    });
+		
+		return false;
+	});	
+	
+	//탑승객 그리드 생성
+	gfnPassenger();
+});
+
+
+
+
+
+
+
+var lastsel2;
+var orgData = '', uptData= '', isSame=true;
+var updateData = [];
+
+
+
+
+// row을 선택시에 edit한 상태로 변경한다. 
+function gfnCardSelectRow (id) {
+	if(id && id !== lastsel2){
+		if(!$k1.util.isNull(lastsel2)) {
+			uptData = $k1('#tbl_card').grid('dataToString', lastsel2, true);
+			
+			isSame = (orgData == uptData)? true:false;
+		}
+		//데이터가 변경되었을 경우에만 업데이트한 데이타를 구한다. 
+		if(!isSame) {
+			updateData = $k1('#tbl_card').grid('editDataRow', lastsel2);  
+		}
+		//위에서 구한 업데이트한 데이타를  restoreRow 한 후에 setData한다. 
+		$k1('#tbl_card').restoreRow(lastsel2, {"afterrestorefunc" : function( response ) {
+				if(!isSame) {
+					$k1("#tbl_card").jqGrid('setRowData',lastsel2, updateData);
+					//makeJSON();
+					updateData = [], isSame=true;
+					$k1('#tbl_card').grid('setCombo', lastsel2); 
+				}
+			}}
+		); 
+		
+		lastsel2=id; 
+	}
+
+	//orginal data 얻기
+	orgData = $k1('#tbl_card').grid('dataToString', id, false);
+	$k1('#tbl_card').editRow(id,true);
+
+}
+
+function gfnCardDblClickRow(id) {
+	
+}
+
+function gfnTripLoadComplete () {
+
+	$k1("#tbl_trip").setGridWidth(895,true);
+	
+	//그리드 스타일 지정
+	$k1("#tbl_trip").grid('setGridStyle', 'vof_list');
+
+	//Header Colspan 설정
+	$k1('#tbl_trip').grid('headColspan', ['seat1', 'seat2'], {1:'right', 2:'left'});
+
+	//Data Rowspan 지정시 브라우저에 따라서 scroll 없앤다. 
+	if ($k1.browser.msie) {
+		$k1('#tbl_trip').css('overflow-y', 'hidden');
+	}
+}
+
+function gfnSaleLoadComplete () {
+	
+	$k1("#tbl_sal_amount").setGridWidth(895,false); 
+	
+	//그리드 스타일 지정
+	$k1("#tbl_sal_amount").grid('setGridStyle', 'vof_list');
+	
+	//Header Colspan 설정
+	$k1('#tbl_sal_amount').grid('headColspan', ['discount1', 'discount2'], {1:'right', 2:'left'});
+	
+}
+
+function gfnCardLoadComplete () {
+	$k1("#tbl_card").setGridWidth(895,true);
+	
+	//그리드 스타일 지정
+	$k1("#tbl_card").grid('setGridStyle', 'vof_list');
+
+	// edit type = select 일경우 데이타가 코드인 경우 text로 데이타를 보여 주기 위해서 호출한다. 
+	$k1('#tbl_card').grid('setCombo');
+	
+}
+
+function gfnCashLoadComplete () {
+	$k1("#tbl_cash").setGridWidth(895,true);
+	
+	//그리드 스타일 지정
+	$k1("#tbl_cash").grid('setGridStyle', 'vof_list');
+
+}
+
+//탑승객 그리드 생성
+function gfnPassenger() {
+	//apis/ebs변경버튼 클릭
+	$k1('#spn_ebsChange').click(function(){
+		//var ret = $k1("#tbl_passenger").getChangedCells('all');
+		//var ret2 = $k1("#tbl_passenger").getChangedCells('dirty');
+		//var ret2 = $k1("#tbl_passenger").jqGrid('getChangedCells', 'dirty');
+		//alert(ret.COLMUMN);
+		//alert(ret2);
+		//alert(JSON.stringify(ret));
+		//alert(JSON.stringify(ret2.COLMUMN));
+		//for(var i=0; i<saveData.length; i++){
+			//alert(saveData[i].key+":::"+saveData[i].nameKn+":::"+saveData[i].nameEn+":::"+saveData[i].section);
+		//}
+	});
+	
+	//구분 select box 
+	var section = {0:"성인", 1:"소아", 2:"유아"};
+	//비자종류
+	var visaKind = {0:"L1", 1:"L2", 2:"L3", 3:"L4", 4:"M1"};
+	
+	//Grid title 
+	var gTitle = ['No', '한글명','영문명', '구분', '생년월일', '여권번호', '여권만료일', '비자종류','비자만료일','비자국가', '체류지', '비고' ];
+	//Grid Model 
+	var gModel = [
+					{name:'no',index:'no', width:35, align:"center", key:true},
+			   		{name:'nameKn',index:'nameKn', width:68, align:"center", editable:true},
+			   		{name:'nameEn',index:'nameEn', width:68, align:"center", editable:true},
+			   		{name:'section',index:'section', width:50, align:"center", editable:true, formatter:'select', editoptions:{value:section}, edittype:"select"},
+			   		{name:'birthDate',index:'birthDate', width:86, align:"center"},
+			   		{name:'passportNum',index:'passportNum', width:86, align:"center"},
+			   		{name:'passportExp',index:'passportExp', width:104, align:"center"},		
+			   		{name:'visaKind',index:'visaKind', width:86, align:"center", editable:true, formatter:'select', editoptions:{value:visaKind}, edittype:"select"},
+			   		{name:'visaExp',index:'visaExp', width:105, align:"center"},
+			   		{name:'visaState',index:'visaState', width:87, align:"center"},
+			   		{name:'sojurn',index:'sojurn', width:69, align:"center"},
+			   		{name:'note',index:'note', width:51, align:"center"}
+			   	];
+	
+	options = 	{
+			height : 'auto', 
+			width : '895',
+			rowNum:100,
+		   	rowList:[],
+		   	xmlReader: {
+				root : "data",
+				row: "list",
+				page: "data>page", 			
+			    total: "data>total", 		
+			    records : "data>records", 	
+				repeatitems: false,
+				id: "no"
+				},
+			cellEdit: true,	//cell edit 여부
+			cellsubmit : "clientArray",	//remote : 실시간 등록, clientArray : 사용자 지정등록
+			afterSaveCell: function(rowid, name, val, iRow, iCol) {		//cell의 데이터 변경 후	(rowid=key, name=컬럼명, val=컬럼데이터, iRow=로우순번, iCol=로우열)
+				//var sDate = {"key":"", "nameKn":"", "nameEn":"", "section":""};
+				if(saveData.length > 0){
+					for(var i=0; i<saveData.length; i++){
+						if(saveData[i].key==rowid){
+							//saveData[i].name = val;
+							//alert(saveData[i].nameKn);
+							//sDate["key"] = rowid;
+							//sDate[name] = val;
+							//saveData[i] = sDate;
+							//alert(saveData[i].nameKn);
+							//saveData[i].append({"nameKn":val});
+							alert(saveData[i].nameKn);
+						}else{
+							//saveData.push(sDate);
+							//saveData[saveData.length-1].key = rowid;
+							//saveData[saveData.length-1].name = val;
+							//saveData.push({"key":rowid, name:val});
+						}
+					}
+				}else{
+					//sDate["key"] = rowid;
+					//sDate[name] = val;
+					//saveData.push(sDate);
+					//saveData[0].key = rowid;
+					//saveData[0].name = val;
+					//saveData.push({"key":rowid, name:val});
+				}
+		    }
+		};
+	events = {loadComplete:gfnPasLoadComplete, loadError:function(xhr,status,error){alert(error);}};
+
+	//1. 기본적인 Grid을 만든다. : 화면 로딩시 바로 데이타 조회   
+	$k1("#tbl_passenger").grid('/manual/DataXML/AIRRSVPUW0110010110_pass.xml', gTitle, gModel, options, events);
+}
+
+function gfnPasLoadComplete () {
+	//그리드 스타일 지정
+	$k1("#tbl_passenger").grid('setGridStyle', 'vof_list');
+}
+</script>
+</head>
+
+<body>
+<!-- 테두리를 포함한 가로사이즈 k1_pop_wrap="965px" / k1_btrip_wrap width="935px"  -->
+	<div id="k1_pop_wrap">
+		<div class="header">
+			<h1 class="tit">판매 형태</h1>
+			<img src="/imgs/btn/btn_p_close.gif" alt="닫기" class="close" />
+		</div>
+		<div class="popup">
+			<div class="contents">
+				<!-- 컨텐츠 -->
+				<div id="k1_sale_wrap">
+					<!-- 판매형태 -->
+					<div class="sale_form">
+						<div class="spot1">
+							<ul>
+								<li class="k1_mr10 k1_arrow_dot2">판매형태<select name=""
+									class="k1_select_border" style="width: 60px;"><option
+											value="">B2B2C</option></select></li>
+								<li class="k1_mr5 k1_arrow_dot2">예약번호<input
+									class="k1_input_text" type="text" value="" style="width: 58px;" /></li>
+								<li><div class="k1_btn01">
+										<a href="#"><span>PNR UPDATE</span></a>
+									</div></li>
+							</ul>
+						</div>
+						<div class="spot2">
+							<ul>
+								<li class="k1_mr10 k1_arrow_dot2">판매자<select name=""
+									class="k1_select_border" style="width: 60px;"><option
+											value="">전 체</option></select></li>
+								<li class="k1_mr10 k1_arrow_dot2">담당자<select name=""
+									class="k1_select_border" style="width: 60px;"><option
+											value="">전 체</option></select></li>
+								<li class="k1_mr5 k1_arrow_dot2">발권자<select name=""
+									class="k1_select_border" style="width: 60px;"><option
+											value="">전 체</option></select></li>
+								<li><div class="k1_btn01">
+										<a href="#"><span>변경</span></a>
+									</div></li>
+							</ul>
+						</div>
+					</div>
+					<div id="k1_tabs_navi" class="k1_mt10">
+						<ul>
+							<li><a href="#tab_div_1" class="active"><span
+									class="iconpr"><span class="ico ico1"></span><label>기본정보</label></span></a></li>
+							<li><a href="#tab_div_2"><span class="iconpr"><span
+										class="ico ico2"></span><label>PNR보기</label></span></a></li>
+							<li><a href="#tab_div_3"><span class="iconpr"><span
+										class="ico ico2"></span><label>입금/환불</label></span></a></li>
+							<li><a href="#tab_div_4"><span class="iconpr"><span
+										class="ico ico2"></span><label>발권정보</label></span></a></li>
+							<li><a href="#tab_div_5"><span class="iconpr"><span
+										class="ico ico2"></span><label>마일리지</label></span></a></li>
+							<li><a href="#tab_div_6"><span class="iconpr"><span
+										class="ico ico2"></span><label>기내식</label></span></a></li>
+							<li><a href="#tab_div_7"><span class="iconpr"><span
+										class="ico ico2"></span><label>사전좌석</label></span></a></li>
+							<li><a href="#tab_div_8"><span class="iconpr"><span
+										class="ico ico2"></span><label>증빙관리</label></span></a></li>
+							<li><a href="#tab_div_9"><span class="iconpr"><span
+										class="ico ico2"></span><label>증빙관리</label></span></a></li>
+						</ul>
+					</div>
+					<div class="detail1 k1_mt5">
+						<div class="spot1">
+							<ul>
+								<li class="cel1 k1_arrow_dot2">ON/OFF</li>
+								<li class="cel2"><select name="" class="k1_select_border"
+									style="width: 110px;"><option value="">전
+											체</option></select></li>
+								<li class="cel3"><div class="k1_btn02">
+										<a href="#"><span>변경</span></a>
+									</div></li>
+							</ul>
+							<ul class="k1_mt5">
+								<li class="cel1 k1_arrow_dot2">GDS</li>
+								<li class="cel2"><select name="" class="k1_select_border"
+									style="width: 110px;"><option value="">WORLDSPAN</option></select></li>
+								<li class="cel3"><div class="k1_btn02">
+										<a href="#"><span>변경</span></a>
+									</div></li>
+							</ul>
+							<ul class="k1_mt5">
+								<li class="cel1 k1_arrow_dot2">예약일시</li>
+								<li class="cel2"><input class="k1_input_text" type="text"
+									value="" style="width: 68px;" /><input class="k1_input_text"
+									type="text" value="" style="width: 35px; margin-left: 3px;" /></li>
+								<li class="cel3"></li>
+							</ul>
+							<ul class="k1_mt5">
+								<li class="cel1 k1_arrow_dot2">결제시한</li>
+								<li class="cel2"><input class="k1_input_text" type="text"
+									value="" style="width: 68px;" /><input class="k1_input_text"
+									type="text" value="" style="width: 35px; margin-left: 3px;" /></li>
+								<li class="cel3"><div class="k1_btn02">
+										<a href="#"><span>변경</span></a>
+									</div></li>
+							</ul>
+							<ul class="k1_mt5">
+								<li class="cel1 k1_arrow_dot2">항공사TL</li>
+								<li class="cel2"><input class="k1_input_text" type="text"
+									value="" style="width: 68px;" /><input class="k1_input_text"
+									type="text" value="" style="width: 35px; margin-left: 3px;" /></li>
+								<li class="cel3"><div class="k1_btn02">
+										<a href="#"><span>변경</span></a>
+									</div></li>
+							</ul>
+							<ul class="k1_mt5">
+								<li class="cel1 k1_arrow_dot2">개인/단체</li>
+								<li class="cel2"><select name="" class="k1_select_border"
+									style="width: 110px;"><option value="">개
+											인</option></select></li>
+								<li class="cel3"><div class="k1_btn02">
+										<a href="#"><span>변경</span></a>
+									</div></li>
+							</ul>
+						</div>
+						<div class="spot2 k1_ml5">
+							<ul>
+								<li class="cel1 k1_arrow_dot2">지역</li>
+								<li class="cel2"><select name="" class="k1_select_border"
+									style="width: 100px;"><option value="">전
+											체</option></select></li>
+								<li class="cel3"><div class="k1_btn02">
+										<a href="#"><span>변경</span></a>
+									</div></li>
+							</ul>
+							<ul class="k1_mt5">
+								<li class="cel1 k1_arrow_dot2">여정형태</li>
+								<li class="cel2"><select name="" class="k1_select_border"
+									style="width: 100px;"><option value="">다구간</option></select></li>
+								<li class="cel3"><div class="k1_btn02">
+										<a href="#"><span>변경</span></a>
+									</div></li>
+							</ul>
+							<ul class="k1_mt5">
+								<li class="cel1 k1_arrow_dot2">탑승객수</li>
+								<li class="cel2"><input class="k1_input_text" type="text"
+									value="" style="width: 87px;" /></li>
+								<li class="cel3"></li>
+							</ul>
+							<ul class="k1_mt5">
+								<li class="cel1 k1_arrow_dot2">총 운임</li>
+								<li class="cel4"><input class="k1_input_text" type="text"
+									value="" style="width: 87px;" /> TAX포함</li>
+							</ul>
+							<ul class="k1_mt5">
+								<li class="cel1 k1_arrow_dot2">유효기간</li>
+								<li class="cel2"><input class="k1_input_text" type="text"
+									value="" style="width: 98px;" /></li>
+								<li class="cel3"><div class="k1_btn02">
+										<a href="#"><span>변경</span></a>
+									</div></li>
+							</ul>
+							<ul class="k1_mt5">
+								<li class="cel1 k1_arrow_dot2">증빙여부</li>
+								<li class="cel2"><select name="" class="k1_select_border"
+									style="width: 100px;"><option value="">불필요</option></select></li>
+								<li class="cel3"><div class="k1_btn02">
+										<a href="#"><span>변경</span></a>
+									</div></li>
+							</ul>
+							<ul class="k1_mt5">
+								<li class="cel1 k1_arrow_dot2">자동발권</li>
+								<li class="cel2"><select name="" class="k1_select_border"
+									style="width: 100px;"><option value="">Y/N</option></select></li>
+								<li class="cel3"><div class="k1_btn02">
+										<a href="#"><span>변경</span></a>
+									</div></li>
+							</ul>
+						</div>
+						<div class="spot3 k1_ml5">
+							<ul>
+								<li class="cel1 k1_arrow_dot2">예약상태</li>
+								<li class="cel4"><select name="" class="k1_select_border"
+									style="width: 64px;"><option value="">대기마감</option></select></li>
+								<li class="cel5"><div class="k1_btn02">
+										<a href="#"><span>변경</span></a>
+									</div></li>
+								<li class="cel3"><div class="k1_btn02">
+										<a href="#"><span>고정</span></a>
+									</div></li>
+							</ul>
+							<ul class="k1_mt5">
+								<li class="cel1 k1_arrow_dot2">운임상태</li>
+								<li class="cel2"><select name="" class="k1_select_border"
+									style="width: 100px;"><option value="">WORLDSPAN</option></select></li>
+								<li class="cel3"><div class="k1_btn02">
+										<a href="#"><span>변경</span></a>
+									</div></li>
+							</ul>
+							<ul class="k1_mt5">
+								<li class="cel1 k1_arrow_dot2">결제상태</li>
+								<li class="cel2"><select name="" class="k1_select_border"
+									style="width: 100px;"><option value="">발권의뢰(요청)</option></select></li>
+								<li class="cel3"><div class="k1_btn02">
+										<a href="#"><span>변경</span></a>
+									</div></li>
+							</ul>
+							<ul class="k1_mt5">
+								<li class="cel1 k1_arrow_dot2">발권상태</li>
+								<li class="cel2"><select name="" class="k1_select_border"
+									style="width: 100px;"><option value="">결제요청전</option></select></li>
+								<li class="cel3"><div class="k1_btn02">
+										<a href="#"><span>변경</span></a>
+									</div></li>
+							</ul>
+							<ul class="k1_mt5">
+								<li class="cel1 k1_arrow_dot2">예약내역게시</li>
+								<li class="cel2"><select name="" class="k1_select_border"
+									style="width: 100px;"><option value="">보이기</option></select></li>
+								<li class="cel3"><div class="k1_btn02">
+										<a href="#"><span>변경</span></a>
+									</div></li>
+							</ul>
+							<ul class="k1_mt5">
+								<li class="cel1 k1_arrow_dot2">Tax업데이트</li>
+								<li class="cel2"><select name="" class="k1_select_border"
+									style="width: 100px;"><option value="">사
+											용</option></select></li>
+								<li class="cel3"><div class="k1_btn02">
+										<a href="#"><span>변경</span></a>
+									</div></li>
+							</ul>
+							<ul class="k1_mt5">
+								<li class="cel1 k1_arrow_dot2">취소사유</li>
+								<li class="cel2"><select name="" class="k1_select_border"
+									style="width: 100px;"><option value="">전
+											체</option></select></li>
+								<li class="cel3"><div class="k1_btn02">
+										<a href="#"><span>변경</span></a>
+									</div></li>
+							</ul>
+						</div>
+						<div class="spot4 k1_ml5">
+							<ul>
+								<li class="cel1 k1_arrow_dot2">지점구분</li>
+								<li class="cel2"><select name="" class="k1_select_border"
+									style="width: 110px;"><option value="">전
+											체</option></select></li>
+								<li class="cel3"><div class="k1_btn02">
+										<a href="#"><span>변경</span></a>
+									</div></li>
+							</ul>
+							<ul class="k1_mt5">
+								<li class="cel1 k1_arrow_dot2">거래처</li>
+								<li class="cel2"><select name="" class="k1_select_border"
+									style="width: 110px;"><option value="">전
+											체</option></select></li>
+								<li class="cel3"><div class="k1_btn02">
+										<a href="#"><span>변경</span></a>
+									</div></li>
+							</ul>
+							<ul class="k1_mt5">
+								<li class="cel1 k1_arrow_dot2">담당자</li>
+								<li class="cel2"><select name="" class="k1_select_border"
+									style="width: 110px;"><option value="">전
+											체</option></select></li>
+								<li class="cel3"></li>
+							</ul>
+							<ul class="k1_mt5">
+								<li class="cel1 k1_arrow_dot2">이메일</li>
+								<li class="cel2"><input class="k1_input_text" type="text"
+									value="" style="width: 108px;" /></li>
+								<li class="cel3"><div class="k1_btn02">
+										<a href="#"><span>변경</span></a>
+									</div></li>
+							</ul>
+							<ul class="k1_mt5">
+								<li class="cel1 k1_arrow_dot2">휴대폰</li>
+								<li class="cel2"><input class="k1_input_text" type="text"
+									value="" style="width: 32px;" /><input class="k1_input_text"
+									type="text" value="" style="width: 33px; margin-left: 3px;" /><input
+									class="k1_input_text" type="text" value=""
+									style="width: 33px; margin-left: 3px;" /></li>
+								<li class="cel3"><div class="k1_btn02">
+										<a href="#"><span>변경</span></a>
+									</div></li>
+							</ul>
+							<ul class="k1_mt5">
+								<li class="cel4 k1_arrow_dot2">세금계산서</li>
+								<li class="cel5"><select name="" class="k1_select_border"
+									style="width: 100px;"><option value="">전
+											체</option></select></li>
+								<li class="cel3"><div class="k1_btn02">
+										<a href="#"><span>변경</span></a>
+									</div></li>
+							</ul>
+						</div>
+						<div class="k1_cb"></div>
+					</div>
+					<!-- //detail1 -->
+					<!-- detail2 -->
+					<div class="detail2 k1_mt5">
+						<div class="spot1">
+							<ul>
+								<li class="k1_mr10 k1_arrow_dot2">예약자명
+									<select name="" class="k1_select_border" style="width: 60px; margin-left: 4px;">
+										<option value="">B2B2C</option>
+									</select></li>
+								<li class="k1_mr10 k1_arrow_dot2">예약자ID
+									<input class="k1_input_text" type="text" value="" style="width: 58px; margin-left: 4px;" /></li>
+								<li class="k1_mr10 k1_arrow_dot2">이메일
+									<input class="k1_input_text" type="text" value="" style="width: 118px; margin-left: 4px;" /></li>
+								<li class="k1_mr5 k1_arrow_dot2">휴대폰
+									<input class="k1_input_text" type="text" value="" style="width: 32px; margin-left: 4px;" />
+									<input class="k1_input_text" type="text" value="" style="width: 33px; margin-left: 3px;" />
+									<input class="k1_input_text" type="text" value="" style="width: 33px; margin-left: 3px;" /></li>
+							</ul>
+						</div>
+						<div class="spot2">
+							<div class="k1_btn01 k1_mr10">
+								<a href="#"><span>예약자정보 변경</span></a><a href="#" style="margin-left: 5px;"><!-- <span>마이페이지 보기</span> --></a>
+							</div>
+						</div>
+						<div class="cb"></div>
+					</div>
+					<!-- //detail2 -->
+					<div class="detail3 k1_mt5">
+						<div class="k1_btn1">
+							<a href="#"><span>결제정보변경</span></a> <a href="#"><span>관리자자동발권</span></a>
+							<!-- <a href="#"><span>예약취소</span></a> <a href="#"><span>이메일/SMS</span></a> -->
+							<!-- <a href="#"><span>사전좌석지정</span></a> -->
+						</div>
+					</div>
+					<div id="tab_div_1" class="sale_form2 k1_mt5">
+						<!-- detail1 -->
+
+						<div class="detail4">
+							<div class="tit_set">
+								<h2 class="k1_tit_dot1">여정 정보</h2>
+								<div class="k1_btn01">
+									<a href="#"><span>운임/규정변경</span></a><a href="#" style="margin-left: 5px;"><!-- <span>여정변경</span> --></a>
+								</div>
+							</div>
+							<div class="k1_mt5">
+								<table id="tbl_trip"></table>
+
+								<!-- 
+								<table id="tbl_trip" class="k1_vof_board">
+									<colgroup>
+										<col style="">
+										<col style="">
+										<col style="">
+										<col style="">
+										<col style="">
+										<col style="">
+										<col style="">
+										<col style="">
+										<col style="">
+										<col style="">        
+									</colgroup>  
+									<thead>
+										<tr>
+											<th><a href="">NO</a></th>
+											<th>항공편</th>
+											<th>출발</th>
+											<th>도착</th>
+											<th colspan="2">좌석</th>
+											<th>출발지</th>
+											<th>도착지</th>
+											<th>비행정보</th>
+											<th class="last">비고</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td rowspan="2">1</td>
+											<td>KE 234</td>
+											<td>202-11-08 (목) 19:30</td>
+											<td>202-11-08 (목) 19:30</td>
+											<td>S</td>
+											<td>00석</td>
+											<td>뉴욕</td>
+											<td>뉴욕</td>
+											<td rowspan="2"><div class="k1_btn01"><a href="#"><span>보기</span></a></div></td>
+											<td rowspan="2" class="last tal k1_blue">대한항공 0000편은 에어프랑스 0000편<br>
+											으로 공동운항 됩니다.</td>
+										</tr>
+										<tr>
+											<td>KE 234</td>
+											<td>202-11-08 (목) 19:30</td>
+											<td>202-11-08 (목) 19:30</td>
+											<td>S</td>
+											<td>00석</td>
+											<td>뉴욕</td>
+											<td>뉴욕</td>
+										  </tr>
+										<tr>
+											<td rowspan="2">2</td>
+											<td>KE 234</td>
+											<td>202-11-08 (목) 19:30</td>
+											<td>202-11-08 (목) 19:30</td>
+											<td>S</td>
+											<td>00석</td>
+											<td>뉴욕</td>
+											<td>뉴욕</td>
+											<td rowspan="2"><div class="k1_btn01"><a href="#"><span>보기</span></a></div></td>
+											<td rowspan="2" class="last tal k1_blue">&nbsp;</td>
+										</tr>
+										<tr>
+											<td>KE 234</td>
+											<td>202-11-08 (목) 19:30</td>
+											<td>202-11-08 (목) 19:30</td>
+											<td>S</td>
+											<td>00석</td>
+											<td>뉴욕</td>
+											<td>뉴욕</td>
+										  </tr>
+									</tbody>
+								</table>
+							  -->
+							</div>
+							<div class="tit_set k1_mt15">
+								<h2 class="k1_tit_dot1">탑승객별 판매요금 (운임번호: DL113$46-BSC-151)</h2>
+								<div class="k1_btn01">
+									<a href="#"><span>판매요금변경</span></a><a href="#" style="margin-left: 5px;"><!-- <span>증빙등록</span> --></a>
+								</div>
+							</div>
+							<div class=" k1_mt5">
+								<table id="tbl_sal_amount"></table>
+							</div>
+							<!-- 
+	                        <div class="tw1000 k1_mt5">
+							<table class="k1_vof_board">
+								<colgroup>
+									<col style="">
+									<col style="">
+									<col style="">
+									<col style="">
+									<col style="">
+									<col style="">
+									<col style="">
+									<col style="">
+									<col style="">
+									<col style="">
+                                    <col style="">
+									<col style="">
+									<col style="">
+									<col style="">
+									<col style="">
+								</colgroup>  
+								<thead>
+									<tr>
+										<th><a href="">No</a></th>
+										<th>영문명</th>
+										<th>NET</th>
+										<th>히든NET</th>
+										<th>유류할증료</th>
+                                        <th>TAX</th>
+										<th colspan="2">할인금액</th>
+										<th>판매컴(선컴)</th>
+                                        <th>판매컴(후컴)</th>
+                                        <th>UP판매금액</th>
+                                        <th>(실)판매금액</th>
+                                        <th>취급수수료</th>
+                                        <th>운임조건</th>
+										<th class="last">증빙</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>1</td>
+										<td>SEO/HYUNJIN</td>
+										<td class="tar">10,000,000</td>
+										<td class="tar">10,000,000</td>
+										<td class="tar">10,000,000</td>
+										<td class="tar">10,000,000</td>
+										<td class="tar">100,000</td>
+                                        <td class="tar">100,000</td>
+                                        <td class="tar">10,000,000</td>
+                                        <td class="tar">10,000,000</td>
+                                        <td class="tar">10,000,000</td>
+                                        <td class="tar">10,000,000</td>
+                                        <td class="tar">10,000,000</td>
+                                        <td>학생</td>
+                                        <td>등록 (0/1)</td>
+									 </tr>
+                                     <tr>
+										<td>2</td>
+										<td>&nbsp;</td>
+										<td class="tar">10,000,000</td>
+										<td class="tar">10,000,000</td>
+										<td class="tar">10,000,000</td>
+										<td class="tar">10,000,000</td>
+										<td class="tar">100,000</td>
+                                        <td class="tar">100,000</td>
+                                        <td class="tar">10,000,000</td>
+                                        <td class="tar">10,000,000</td>
+                                        <td class="tar">10,000,000</td>
+                                        <td class="tar">10,000,000</td>
+                                        <td class="tar">10,000,000</td>
+                                        <td>장애인</td>
+                                        <td>등록 (0/0)</td>
+									 </tr>
+								</tbody>
+							</table>
+							</div>
+							  -->
+							<div class="tit_set k1_mt15">
+								<h2 class="k1_tit_dot1">결제요청정보 (카드증빙 : 2건)</h2>
+								<div class="k1_btn01">
+									<a href="#"><span id="btn_card_save">결제정보변경</span></a>
+									<!-- <a href="#"><span id="btn_card_add">결제정보추가</span></a> -->
+									<!-- <a href="#"><span id="btn_card_delete">결제정보삭제</span></a> -->
+								</div>
+							</div>
+							<div class=" k1_mt5">
+								<table id="tbl_card"></table>
+								<!-- 
+							<table class="k1_vof_board">
+								<colgroup>
+									<col style="">
+									<col style="">
+									<col style="">
+									<col style="">
+									<col style="">
+									<col style="">
+									<col style="">
+									<col style="">
+									<col style="">
+									<col style="">        
+								</colgroup>  
+								<thead>
+									<tr>
+										<th><a href="">N</a>o</th>
+										<th>소유구분</th>
+										<th>소유자명</th>
+										<th>카드종류</th>
+										<th>카드번호</th>
+										<th>유효기간</th>
+										<th>입금예정일</th>
+										<th>항공권금액</th>
+                                        <th>TASF금액</th>
+										<th class="last">비밀번호</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>1</td>
+										<td>개인</td>
+										<td>홍길동</td>
+                                        <td>BC카드</td>
+										<td>1234-1234-123111 <img src="/imgs/icon/ico_black.gif" alt="black_user"></td>
+										<td>10 / 14</td>
+										<td>12-11-09</td>
+                                        <td class="tar">10,000,000</td>
+										<td class="tar">10,000,000</td>
+										<td class="last">12**</td>
+									</tr>
+									<tr>
+										<td>2</td>
+									  <td>법인</td>
+										<td>홍길동</td>
+                                        <td>국민은행</td>
+										<td>1234-1234-123111</td>
+										<td>10 / 14</td>
+										<td>12-11-09</td>
+                                        <td class="tar">10,000,000</td>
+										<td class="tar">10,000,000</td>
+										<td class="last">12**</td>
+									</tr>
+                                    <tr>
+										<td>3</td>
+									  <td>가족</td>
+										<td>홍길동</td>
+                                        <td>&nbsp;</td>
+										<td>1234-1234-123111</td>
+										<td>10 / 14</td>
+										<td>12-11-09</td>
+                                        <td class="tar">10,000,000</td>
+										<td class="tar">10,000,000</td>
+										<td class="last">12**</td>
+									</tr>
+								</tbody>
+							</table>
+							 -->
+							</div>
+							<div class="tit_set">
+								<h2 class="k1_tit_dot1 k1_mt15">결제요청정보 (현금/기타입금)</h2>
+								<div class="k1_btn01">
+									<a href="#"><span>가상계좌발급</span></a>
+								</div>
+							</div>
+							<div class="k1_mt5">
+								<table id="tbl_cash"></table>
+								<!-- 
+							<table class="k1_vof_board">
+								<colgroup>
+									<col style="">
+									<col style="">
+									<col style="">
+									<col style="">
+									<col style="">
+									<col style="">
+									<col style="">
+									<col style="">
+									<col style="">        
+								</colgroup>  
+								<thead>
+									<tr>
+										<th><a href="">No</a></th>
+										<th>입금구분</th>
+										<th>입금자명</th>
+										<th>은행명</th>
+										<th>계좌번호</th>
+										<th>입금예정일</th>
+										<th>항공권금액</th>
+										<th>입금여부</th>
+										<th class="last">작업</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>1</td>
+										<td>가상계좌</td>
+										<td>&nbsp;</td>
+                                        <td>국민은행</td>
+										<td>1234-1234-123111</td>
+										<td>&nbsp;</td>
+										<td class="tar">500,000</td>
+										<td>y</td>
+										<td class="last"> 계좌삭제</td>
+									</tr>
+									<tr>
+										<td>2</td>
+									  <td>보통예금</td>
+										<td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+										<td>&nbsp;</td>
+										<td>&nbsp;</td>
+										<td class="tar"></td>
+										<td>&nbsp;</td>
+										<td class="last">&nbsp;</td>
+									</tr>
+                                    <tr>
+										<td>3</td>
+									  <td>마일리지</td>
+										<td>&nbsp;</td>
+                                        <td>삼성카드</td>
+										<td>1234-1234-123111</td>
+										<td>&nbsp;</td>
+										<td class="tar">5,000</td>
+										<td>&nbsp;</td>
+										<td class="last k1_blue">입금전송</td>
+									</tr>
+								</tbody>
+							</table>
+							 -->
+							</div>
+							<div class="tit_set k1_mt15">
+								<h2 class="k1_tit_dot1">탑승객</h2>
+								<div class="k1_btn01">
+									<a href="#"><span id='spn_ebsChange'>APIS/EBS변경</span></a>
+								</div>
+							</div>
+							<div class="k1_mt5">
+								<table id="tbl_passenger"></table>
+								<!-- 
+							<table class="k1_vof_board">
+								<colgroup>
+									<col style="">
+									<col style="">
+									<col style="">
+									<col style="">
+									<col style="">
+									<col style="">
+									<col style="">
+									<col style="">
+									<col style="">
+									<col style=""> 
+									<col style="">
+									<col style=""> 
+								</colgroup>  
+								<thead>
+									<tr>
+										<th><a href="">No</a></th>
+										<th>한글명</th>
+										<th>영문명</th>
+										<th>구분</th>
+										<th>생년월일</th>
+										<th>여권번호</th>
+                                        <th>여권만료일</th>
+										<th>비자종류</th>
+										<th>비자만료일</th>
+										<th>비자국가</th>
+                                        <th>체류지</th>
+										<th class="last">취소</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>1</td>
+										<td>&nbsp;</td>
+										<td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+										<td>&nbsp;</td>
+										<td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+										<td>&nbsp;</td>
+										<td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+										<td>&nbsp;</td>
+										<td class="last">&nbsp;</td>
+									</tr>
+									<tr>
+										<td>2</td>
+										<td>&nbsp;</td>
+										<td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+										<td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+										<td>&nbsp;</td>
+										<td>&nbsp;</td>
+										<td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+										<td>&nbsp;</td>
+										<td class="last">&nbsp;</td>
+									</tr>
+                                    <tr>
+										<td>3</td>
+									  <td>&nbsp;</td>
+										<td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+										<td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+										<td>&nbsp;</td>
+										<td>&nbsp;</td>
+										<td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+										<td>&nbsp;</td>
+										<td class="last">&nbsp;</td>
+									</tr>
+								</tbody> 
+							</table>
+							 -->
+							</div>
+							<div class="tit_set k1_mt15">
+								<h2 class="k1_tit_dot1">수수료</h2>
+							</div>
+							<div class="k1_mt5">
+								<table class="k1_vof_board" style="border: 1px; background-color:inherit;">
+									<colgroup>
+										<col style="">
+										<col style="">
+										<col style="">
+										<col style="">
+										<col style="">
+										<col style="">
+									</colgroup>
+									<thead>
+										<tr>
+											<th><a href="">탑승객명</a></th>
+											<th>티켓번호</th>
+											<th>수수료구분</th>
+											<th>수숫료</th>
+											<th>등록일</th>
+											<th>등록자</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>&nbsp;</td>
+											<td>&nbsp;</td>
+											<td>재발행</td>
+											<td class="tar">&nbsp;</td>
+											<td>&nbsp;</td>
+											<td>&nbsp;</td>
+										</tr>
+										<tr>
+											<td>&nbsp;</td>
+											<td>&nbsp;</td>
+											<td>환불수수료</td>
+											<td class="tar">&nbsp;</td>
+											<td>&nbsp;</td>
+											<td>&nbsp;</td>
+										</tr>
+										<tr>
+											<td>&nbsp;</td>
+											<td>&nbsp;</td>
+											<td>&nbsp;</td>
+											<td class="tar">&nbsp;</td>
+											<td>&nbsp;</td>
+											<td>&nbsp;</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<!-- 판매형태 -->
+					<div id="tab_div_2" class="sale_form2 k1_mt5">Tab #2 의 내용</div>
+					<div id="tab_div_3" class="sale_form2 k1_mt5">Tab #3 의 내용</div>
+
+				</div>
+				<!-- 컨텐츠 -->
+			</div>
+		</div>
+	</div>
+</body>
+</html>

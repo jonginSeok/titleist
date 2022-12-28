@@ -12,10 +12,9 @@
 --%><%@
 	page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%><%@
 	page import="egovframework.com.cmm.LoginVO"%><%@
-	taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<script type="text/javascript" src="<c:url value="/js/egovframework/EgovMainMenu.js"/>"></script>
+	taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"
+%><script type="text/javascript" src="<c:url value="/js/egovframework/EgovMainMenu.js"/>"></script>
 <script type="text/javascript">
-	console.log('sidebarTemplate.jsp');
 	<!--
 	/* ********************************************************
 	 * 상세내역조회 함수
@@ -58,15 +57,11 @@
 		<script type="text/javascript" defer="defer">
 		<!--
 			var Tree = new Array;
-			console.log("#sidebarTemplate.jsp tmp_menuNm :" + document.menuListForm.tmp_menuNm);
-			console.log("#sidebarTemplate.jsp baseMenuNo :" + document.getElementById("baseMenuNo").value);
-			
 			if (document.menuListForm.tmp_menuNm != null) {
 				for (var j = 0; j < document.menuListForm.tmp_menuNm.length; j++) {
 					Tree[j] = document.menuListForm.tmp_menuNm[j].value;
 				}
 			}
-			console.log('sidebarTemplate.jsp createTree call.');
 			createTree(Tree, true, document.getElementById("baseMenuNo").value);
 		//-->
 		</script>

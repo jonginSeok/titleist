@@ -30,15 +30,12 @@ function preloadIcons() {
 * 트리생성함수
 */
 function createTree(arrName, vYeobu, checkValue) {
-	console.log('createTree Start. arrName:'+arrName+' vYeobu:'+vYeobu+' checkValue:'+checkValue);
 	
 	var startNode, openNode;
 	treeNodes = arrName;
 	treeYeobu = vYeobu;
 	chkValue = checkValue;//"2000000"
 	startNode = chkValue;
-	
-	console.log('createTree treeNodes.length:'+treeNodes.length);
 	
 	if (treeNodes.length > 0) {
 		preloadIcons();
@@ -49,9 +46,7 @@ function createTree(arrName, vYeobu, checkValue) {
 		if (startNode == null) startNode = 0;
 		
 		if (openNode != 0 || openNode != null) setOpenTreeNodes(openNode);
-		
-		console.log('createTree startNode:'+startNode);
-		
+				
 		if (startNode !=0) {
 			var _getTreeArrayId = getTreeArrayId(startNode)
 			var nodeValues = treeNodes[getTreeArrayId(startNode)].split("|");
@@ -63,16 +58,11 @@ function createTree(arrName, vYeobu, checkValue) {
 		}
 		var recursedNodes = new Array();
 		
-		console.log('createTree addTreeNode startNode:'+startNode+' recursedNodes:'+recursedNodes);
-		
 		addTreeNode(startNode, recursedNodes);
 		//vHtmlCode +="<tr><td height='30' valign='bottom' background='/images/egovframework/com/left_menu_btm.gif' style='background-repeat:no-repeat'>&nbsp;</td></tr></table>";
 		
-		console.log('createTree vHtmlCode:'+vHtmlCode);
-		
 		document.write("<ul>"+vHtmlCode+"</ul>");
 	}
-	console.log('createTree End.');
 }
 /*
 * 노드위치 확인

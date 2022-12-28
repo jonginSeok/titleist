@@ -16,8 +16,6 @@
 	taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%><%@
 	taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%><%@
 	taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<script type="text/javascript">console.log('EgovMainView.jsp');</script>
-</head>
 <!-- title 시작 -->
 <div id="mainview_title_img">
 	<img src="<c:url value='/'/>images/index/img_maintitle.jpg"

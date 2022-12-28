@@ -17,9 +17,14 @@
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<script type="text/javascript" src="<c:url value='/js/egovframework/EgovCalPopup.js'/>"></script>
-<script type="text/javascript" src="<c:url value='/js/plugin/jquery.jqGrid.min.js'/>"></script>
 
+<!-- jqgrid -->
+<link type="text/css" rel="stylesheet" href="<c:url value='/css/jquery-ui-themes-1.13.2/themes/base/jquery-ui.min.css' />">
+<link type="text/css" rel="stylesheet" href="<c:url value='/css/jquery-ui-themes-1.13.2/themes/base/theme.css' />">
+<link type="text/css" rel="stylesheet" href="<c:url value='/css/ui.jqgrid.css' />">
+<script type="text/javascript" src="<c:url value='/js/plugin/jquery.jqGrid.min.js'/>"></script>
+<script type="text/javascript" src="<c:url value='/js/plugin/grid.locale-kr.js'/>"></script>
+<script type="text/javascript" src="<c:url value='/js/egovframework/EgovCalPopup.js'/>"></script>
 <script type="text/javascript">
 
 
@@ -57,76 +62,46 @@
 	function fn_init_grid(){
 		
 		//Grid title 
-		var title = ['번호', '로그ID', '발생일자', '로그유형', '상세보기'];
-		//Grid Model 
+		var title = ['번호', '로그ID', '발생일자', '로그유형', '상세보기1', '상세보기2', '상세보기3'];
+		
+		//Grid Model
 		var model = [
-			{name:'no',index:'no', width:60, sorttype:'int',summaryType:'count', summaryTpl : '({0}) total'},
-			{name:'logId',index:'logId', width:90, sorttype:"date"},
-			{name:'creatDt',index:'creatDt', width:100},
-			{name:'loginMthd',index:'loginMthd', width:80, align:'right',sorttype:"float",formatter:"number", summaryType:"sum"},
-			{name:'dtlView',index:'tax', width:80, align:'right',sorttype:'number',formatter:'number',summaryType:'sum'}
+			{name:'no'		 ,index:'no'       , align:'center', width:15},
+			{name:'logId'	 ,index:'logId'    , align:'center', width:15} ,
+			{name:'creatDt'	 ,index:'creatDt'  , align:'center', width:15},
+			{name:'loginMthd',index:'loginMthd', align:'center', width:15},
+			{name:'loginIp'	 ,index:'loginIp'  , align:'center', width:15 , hidden:false},
+			{name:'loginId'	 ,index:'loginId'  , align:'center', width:15 , hidden:true},
+			{name:'loginNm'	 ,index:'loginNm'  , align:'center', width:15 , hidden:true}
 		];
 
 		var options = 	{
 			//옵션에 multiselect:true 부분을 추가하면 그리드 목록 전체선택/전체 해제가 가능하다. 
 			multiselect:true,	
-			pager: '#pager1', 	
-			rowNum:3,
-		   	rowList:[3,6,9,12,15],
-		   	
-		   	/* 
-		   	xmlReader: {
-		   		root : "data",
-				row: "list", 
-				page: "data>page", 			//
-			    total: "data>total", 		//
-			    records : "data>records", 	//
-				repeatitems: false,
-				id: "logId"
-			},
-			 */
-			
-			jsonReader : {
-				root : "data",
+			pager: '#pager', 	
+			rowNum:10,
+		   	rowList:[10,20,30,40,50],
+	        jsonReader : {
+				root : "resultList",
+				page : "paginationInfo>currentPageNo", //현재 페이지
+				total : "paginationInfo>recordCountPerPage", //
+				records : "paginationInfo>totalRecordCount", //총 row 수
 				id : "logId",
 				repeatitems : false,
-				total : "data>total", //
-				records : "data>records", //
-				row : "list",
-				page : "data>page", //
-				//userdata : "userdata", //
-			},
-
-			//옵션에 groupFlag: true 부분을 추가하면 소계/합계를 보여줄수 있다. 
-			groupFlag : true,
-			groupView : {
-				//소계와 관련된 옵션
-				groupField : [ 'name' ],
-				groupColumnShow : [ true ],
-				groupText : [ 'b>{0}' ],
-				groupCollapse : false,
-				groupOrder : [ 'asc' ],
-				groupSummary : [ true ],
-				showSummaryOnHide : true,
-				groupDataSorted : true
 			},
 			//합계로우 보여주기
-			footerrow : true,
-			userDataOnFooter : true
+			//footerrow : true
 		};
-
+		
 		var events = {
 			loadComplete : fn_loadComplete,
 			ondblClickRow : fn_ondblClickRow,
 			onRightClickRow : fn_onRightClickRow
 		};
-
-		var uurl = "/sym/log/clg/SelectLoginLogList.do";
+		
+		var uurl = "/sym/log/clg/SelectLoginLogListAjax.do";
 		//1. 기본적인 Grid을 만든다. : 화면 로딩시 바로 데이타 조회
 		$("#jqgrid").grid('init', uurl, title, model, options, events);
-
-		/* var url = "/sym/log/clg/SelectLoginLogList.do";
-		$("#jqgrid").grid('selectData', url, 'frm'); */
 	}
 
 	function fn_loadComplete() {
@@ -155,10 +130,16 @@
 			alert("종료일자는 시작일자보다  이후날짜로 선택하세요.");
 			//return false;
 		} else {
-			document.frm.pageIndex.value = pageNo;
-			document.frm.action = "<c:url value='/sym/log/clg/SelectLoginLogList.do'/>";
-			document.frm.submit();
-		}
+			/* submit 방식*/
+			//document.frm.pageIndex.value = pageNo;
+			//document.frm.action = "<c:url value='/sym/log/clg/SelectLoginLogList.do'/>";
+			//document.frm.submit();
+			
+			/* jqgrid 조회 */
+			var url = "/sym/log/clg/SelectLoginLogListAjax.do";
+			$("#jqgrid").grid('selectData', url, 'frm');
+			
+		}		
 	}
 
 	function fn_egov_inqire_loginLog(logId) {
@@ -204,7 +185,8 @@
 						<li>발생일자 <!-- input name="searchBgnDe" type="hidden"  value="<c:out value='${searchVO.searchBgnDe}'/>" -->
 							<input name="searchBgnDe" type="text" size="10" value="${searchVO.searchBgnDe}" readonly="readonly" onclick="javascript:fn_egov_NormalCalendar(document.frm, document.frm.searchBgnDe);" title="시작일자입력">
 							<a href="javascript:fn_egov_NormalCalendar(document.frm, document.frm.searchBgnDe);" style="selector-dummy: expression(this.hideFocus = false);">
-								<img src="<c:url value='/images/egovframework/com/cmm/icon/bu_icon_carlendar.gif' />" alt="달력창팝업버튼이미지" width="15" height="15"></a> ~ <!-- input name="searchEndDe" type="hidden"  value="<c:out value='${searchVO.searchEndDe}'/>"-->
+								<img src="<c:url value='/images/egovframework/com/cmm/icon/bu_icon_carlendar.gif' />" alt="달력창팝업버튼이미지" width="15" height="15"></a> ~ 
+								<!-- input name="searchEndDe" type="hidden"  value="<c:out value='${searchVO.searchEndDe}'/>"-->
 							<input name="searchEndDe" type="text" size="10" value="${searchVO.searchEndDe}" readonly="readonly" onclick="javascript:fn_egov_NormalCalendar(document.frm, document.frm.searchEndDe);" title="종료일자입력">
 							<a href="javascript:fn_egov_NormalCalendar(document.frm, document.frm.searchEndDe);" style="selector-dummy: expression(this.hideFocus = false);">
 								<img src="<c:url value='/images/egovframework/com/cmm/icon/bu_icon_carlendar.gif' />" alt="달력창팝업버튼이미지" width="15" height="15"></a>
@@ -261,15 +243,15 @@
 					</c:forEach>
 				</tbody> --%>
 			</table>
+			<div id="pager"></div>
 		</div>
 
 		<!-- 페이지 네비게이션 시작 -->
-		<div id="paging_div">
+		<%-- <div id="paging_div">
 			<ul class="paging_align">
-				<ui:pagination paginationInfo="${paginationInfo}" type="image"
-					jsFunction="fn_egov_select_loginLog" />
+				<ui:pagination paginationInfo="${paginationInfo}" type="image" jsFunction="fn_egov_select_loginLog" />
 			</ul>
-		</div>
+		</div> --%>
 		<!-- //페이지 네비게이션 끝 -->
 		
 		<input name="pageIndex" type="hidden" value="<c:out value='${searchVO.pageIndex}'/>" />

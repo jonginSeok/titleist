@@ -3,19 +3,14 @@ package egovframework.let.sym.log.clg.web;
 import java.util.HashMap;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import egovframework.let.sym.log.clg.service.EgovLoginLogService;
 import egovframework.let.sym.log.clg.service.LoginLog;
@@ -53,25 +48,16 @@ public class EgovLoginLogController {
 	protected EgovPropertyService propertyService;
 
 	/**
-	 * 로그인 로그 목록 조회
+	 * 로그인 로그 목록 조회 (화면로드)
 	 *
 	 * @param loginLog
 	 * @return sym/log/clg/EgovLoginLogList
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/sym/log/clg/SelectLoginLogList.do", method = { RequestMethod.POST, RequestMethod.GET })
-	// public String selectLoginLogInf(@ModelAttribute("searchVO") LoginLog loginLog, ModelMap model) throws Exception {
-	
-	public ModelAndView selectLoginLogInf(@ModelAttribute("searchVO") LoginLog loginLog,
-			@RequestParam(value = "param", required = false) HashMap<String, Object> paramMap, 
-			HttpServletRequest request, HttpServletResponse response, 
-			ModelMap model) throws Exception {
+	@RequestMapping(value = "/sym/log/clg/SelectLoginLogList.do")
+	public String selectLoginLogInf(@ModelAttribute("searchVO") LoginLog loginLog, ModelMap model) throws Exception {
 
-		@SuppressWarnings("unused")
-		ObjectMapper objectMapper = new ObjectMapper();
-
-		log.debug("# paramMap:" + paramMap.toString());
-		System.out.println("eeee:::" + loginLog);
+		log.debug("### selectLoginLogInf loginLog:::" + loginLog);
 
 		loginLog.setPageUnit(propertyService.getInt("pageUnit"));
 		loginLog.setPageSize(propertyService.getInt("pageSize"));
@@ -96,15 +82,56 @@ public class EgovLoginLogController {
 		paginationInfo.setTotalRecordCount(totCnt);
 		model.addAttribute("paginationInfo", paginationInfo);
 
+		return "sym/log/clg/EgovLoginLogList";
+	}
+
+	/**
+	 * jqgrid 데이터 조회 (Ajax)
+	 * 
+	 * @param loginLog
+	 * @param paramMap
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/sym/log/clg/SelectLoginLogListAjax.do")
+	public ModelAndView SelectLoginLogList(@ModelAttribute("searchVO") LoginLog loginLog,
+			@RequestParam(value = "param", required = false) HashMap<String, Object> paramMap, ModelMap model) {
+
+		log.debug("### SelectLoginLogListAjax loginLog:::" + loginLog);
+
+		loginLog.setPageUnit(propertyService.getInt("pageUnit"));
+		loginLog.setPageSize(propertyService.getInt("pageSize"));
+
+		PaginationInfo paginationInfo = new PaginationInfo();
+		paginationInfo.setCurrentPageNo(loginLog.getPageIndex());
+		paginationInfo.setRecordCountPerPage(loginLog.getPageUnit());
+		paginationInfo.setPageSize(loginLog.getPageSize());
+
+		loginLog.setFirstIndex(paginationInfo.getFirstRecordIndex());
+		loginLog.setLastIndex(paginationInfo.getLastRecordIndex());
+		loginLog.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
+
+		loginLog.setSearchBgnDe(loginLog.getSearchBgnDe().replaceAll("-", ""));
+		loginLog.setSearchEndDe(loginLog.getSearchEndDe().replaceAll("-", ""));
+
+		HashMap<?, ?> _map = null;
+
+		try {
+			_map = (HashMap<?, ?>) loginLogService.selectLoginLogInf(loginLog);
+			int totCnt = Integer.parseInt((String) _map.get("resultCnt"));
+
+			model.addAttribute("resultList", _map.get("resultList"));
+			model.addAttribute("resultCnt", _map.get("resultCnt"));
+			paginationInfo.setTotalRecordCount(totCnt);
+			model.addAttribute("paginationInfo", paginationInfo);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 		ModelAndView mav = new ModelAndView("jsonView");
 		mav.addAllObjects(model);
-//		mav.setViewName("jsonView");
-
-//		return "sym/log/clg/EgovLoginLogList";
-//		return "jsonTemplate";
-
 		return mav;
-
 	}
 
 	/**

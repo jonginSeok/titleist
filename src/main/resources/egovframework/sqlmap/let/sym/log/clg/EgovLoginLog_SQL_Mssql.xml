@@ -11,6 +11,7 @@
 
 	<!-- 로그인로그 맵 -->
 	<resultMap id="LoginLogVO" class="egovframework.let.sym.log.clg.service.LoginLog">
+		<result property="no" column="NO" />
 		<result property="logId" column="LOG_ID" />
 		<result property="creatDt" column="CREAT_DT" />
 		<result property="loginMthd" column="CONECT_MTHD" />
@@ -65,6 +66,7 @@
 			SELECT 
 				  a.LOG_ID
 				, FORMAT(CAST(a.CREAT_DT AS DATE), 'yyyy-MM-dd') CREAT_DT
+				, ROW_NUMBER() OVER(ORDER BY (SELECT 1)) AS NO
 				, a.CONECT_MTHD
 				, a.CONECT_IP
 				, a.CONECT_ID
