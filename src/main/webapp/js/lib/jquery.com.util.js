@@ -1483,6 +1483,21 @@
 			}
 
 			return ret;
+		},
+		/*----------------------------------------------------------------------------------*
+		 * Function : $.date.diffDate(sDate, diff);
+		 * Desc : yyyyMMdd 형태의 String을 Date 객체로 변환하는 함수
+		 * Parameter : sDate - 숫자형태의 날짜 String
+		 * 			   diff - sDate 와의 차이
+		 * Return : Date
+		 * ----------------------------------------------------------------------------------*/
+		diffDate : function (sDate, diff) {
+			if (sDate == null || sDate == undefined){ sDate = new Date(); }
+			if (diff == null || diff == undefined){ diff = 0; }
+			
+			var dt = new Date(sDate);
+			dt.setDate(dt.getDate() + (diff));
+			return dt;
 		}
 
 	};

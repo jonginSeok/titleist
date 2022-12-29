@@ -82,7 +82,8 @@
 				<![CDATA[	a.CONECT_MTHD LIKE CONCAT ('%', #searchWrd#,'%') ORDER BY a.LOG_ID ]]>
 		</isNotEmpty>
 		<isNotEmpty prepend="AND" property="searchBgnDe">
-				<![CDATA[	DATE_FORMAT(a.CREAT_DT, '%Y%m%d') BETWEEN #searchBgnDe# AND #searchEndDe# ORDER BY a.LOG_ID]]>
+				<!-- <![CDATA[	DATE_FORMAT(a.CREAT_DT, '%Y%m%d') BETWEEN #searchBgnDe# AND #searchEndDe# ORDER BY a.LOG_ID ]]> -->
+				<![CDATA[	convert(varchar, a.CREAT_DT, 112) BETWEEN FORMAT(CAST(#searchBgnDe# AS DATE), 'yyyyMMdd') AND FORMAT(CAST(#searchEndDe# AS DATE), 'yyyyMMdd') ]]>
 		</isNotEmpty>		
 				<![CDATA[ ORDER BY a.CREAT_DT DESC ]]>
 		OFFSET #firstIndex# ROWS
@@ -104,7 +105,8 @@
 				<![CDATA[	a.CONECT_MTHD LIKE CONCAT ('%', #searchWrd#,'%') ]]>
 		</isNotEmpty>
 		<isNotEmpty prepend="AND" property="searchBgnDe">
-				<![CDATA[	DATE_FORMAT(a.CREAT_DT, '%Y%m%d') BETWEEN #searchBgnDe# AND #searchEndDe# ]]>
+				<!-- <![CDATA[	DATE_FORMAT(a.CREAT_DT, '%Y%m%d') BETWEEN #searchBgnDe# AND #searchEndDe# ]]> -->
+				<![CDATA[	convert(varchar, a.CREAT_DT, 112) BETWEEN FORMAT(CAST(#searchBgnDe# AS DATE), 'yyyyMMdd') AND FORMAT(CAST(#searchEndDe# AS DATE), 'yyyyMMdd') ]]>
 		</isNotEmpty>
 	</select>
 

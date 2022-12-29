@@ -163,13 +163,14 @@
 
 				var formName1st = '';
 				if (!$.util.isNull(option) && !$.util.isNull(option.formName1st)) {
-					formName1st = option.formName1st;
-					// var param = $("#" + formName1st).serialize();
-
-					// var getParamsArr = param.split('&');
-					// for ( var i = 0; i < getParamsArr.length; i++) {
-					// postDataArr[getParamsArr[i].split("=")[0]] = getParamsArr[i].split("=")[1];
-					// }
+					//2022.12.29 //ngins7512
+					//formName1st = option.formName1st;
+					
+					var param = $("#" + formName1st).serialize();
+					var getParamsArr = param.split('&');
+					for ( var i = 0; i < getParamsArr.length; i++) {
+						postDataArr[getParamsArr[i].split("=")[0]] = getParamsArr[i].split("=")[1];
+					}
 				}
 
 				var rownumbers = false;
@@ -275,7 +276,8 @@
 
 			$(this).jqGrid({
 				url : uurl,
-				datatype : 'xml',
+				//datatype : "xml",
+				datatype : "json",
 				mtype : 'GET',
 				colNames : title,
 				colModel : model,
@@ -579,8 +581,8 @@
 				// url = uurl.indexOf('?') > 0 ? uurl.substring(0,
 				// uurl.indexOf('?')) : uurl;
 
-				// console.log("url : " + url);
-				// console.log(postDataArr);
+				console.log("url : " + url);
+				console.log("postData :" + postDataArr);
 
 				// 2013-06-13 URL 복사관련 추가 시작
 				var gridCRUDUrl = $(this).grid('getGridParam', 'gridCRUDUrl');
@@ -597,7 +599,8 @@
 					url : url,
 					postData : postDataArr,
 					mtype : 'POST',
-					datatype : "xml",
+					//datatype : "xml",
+					datatype : "json",
 					lastSelRow : 'none',
 					originalData : null,
 					updateData : null

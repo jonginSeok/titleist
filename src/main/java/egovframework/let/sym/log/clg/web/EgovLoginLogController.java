@@ -94,8 +94,7 @@ public class EgovLoginLogController {
 	 * @return
 	 */
 	@RequestMapping(value = "/sym/log/clg/SelectLoginLogListAjax.do")
-	public ModelAndView SelectLoginLogList(@ModelAttribute("searchVO") LoginLog loginLog,
-			@RequestParam(value = "param", required = false) HashMap<String, Object> paramMap, ModelMap model) {
+	public ModelAndView SelectLoginLogList(@ModelAttribute("searchVO") LoginLog loginLog, ModelMap model) {
 
 		log.debug("### SelectLoginLogListAjax loginLog:::" + loginLog);
 

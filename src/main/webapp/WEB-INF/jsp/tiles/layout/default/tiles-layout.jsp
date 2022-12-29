@@ -9,7 +9,8 @@
  
   author   : 다임정보 개발팀  석종인
   since    : 2022.12.16
---%><%@
+--%>
+<%@
 	page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%><%@
 	taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%><%@
 	taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%><%@
@@ -18,6 +19,15 @@
 	taglib prefix="form" uri="http://www.springframework.org/tags/form"%><!-- 공통변수 처리 -->
 <c:set var="CONTEXT_PATH" value="${pageContext.request.contextPath}" scope="application" />
 <c:set var="RESOURCES_PATH" value="${CONTEXT_PATH}/resources" scope="application" />
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
+
+<%
+SimpleDateFormat dtFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+// String 타입을 Date 타입으로 변환
+Date date =  new Date();
+String version = dtFormat.format(date);
+%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -25,24 +35,25 @@
 <meta http-equiv="Content-Language" content="ko">
 <link rel="shortcut icon" href="//localhost/favicon.ico" />
 
-<link type="text/css" rel="stylesheet" href="<c:url value='/'/>css/egovframework/common.css" />
+<link type="text/css" rel="stylesheet" href="/css/egovframework/common.css?version<%=version%>" />
 
-<script type="text/javascript" src="<c:url value='/'/>js/plugin/jquery-1.7.2.js"></script>
-<script type="text/javascript" src="/js/plugin/jquery-ui-1.8.24.custom.js"></script>
-<script type="text/javascript" src="/js/plugin/jquery.simplemodal.js"></script>
-<script type="text/javascript" src="/js/plugin/jquery.validate.js"></script>
-<script type="text/javascript" src="/js/plugin/jquery.blockUI.js"></script>
-<script type="text/javascript" src="/js/plugin/XSLTransform.js"></script>
-<script type="text/javascript" src="/js/lib/jquery.com.toxslt.js"></script>
-<script type="text/javascript" src="/js/lib/jquery.com.datepicker.js"></script>
-<script type="text/javascript" src="/js/lib/jquery.com.form.js"></script>
-<script type="text/javascript" src="/js/lib/jquery.com.grid.js"></script>
-<script type="text/javascript" src="/js/lib/jquery.com.util.js"></script>
-<script type="text/javascript" src="/js/lib/jquery.com.uitab.js"></script>
-<script type="text/javascript" src="/js/lib/jquery.com.pager.js"></script>
-<script type="text/javascript" src="/js/common.js"></script>
-<script type="text/javascript" src="/js/local_js.js"></script>
-<script type="text/javascript" src="/js/lib/jquery.com.js"></script>
+
+<script type="text/javascript" src="<c:url value='/'/>js/plugin/jquery-1.7.2.js?version<%=version%>"></script>
+<script type="text/javascript" src="/js/plugin/jquery-ui-1.8.24.custom.js?version<%=version%>"></script>
+<script type="text/javascript" src="/js/plugin/jquery.simplemodal.js?version<%=version%>"></script>
+<script type="text/javascript" src="/js/plugin/jquery.validate.js?version<%=version%>"></script>
+<script type="text/javascript" src="/js/plugin/jquery.blockUI.js?version<%=version%>"></script>
+<script type="text/javascript" src="/js/plugin/XSLTransform.js?version<%=version%>"></script>
+<script type="text/javascript" src="/js/lib/jquery.com.toxslt.js?version<%=version%>"></script>
+<script type="text/javascript" src="/js/lib/jquery.com.datepicker.js?version<%=version%>"></script>
+<script type="text/javascript" src="/js/lib/jquery.com.form.js?version<%=version%>"></script>
+<script type="text/javascript" src="/js/lib/jquery.com.grid.js?version<%=version%>"></script>
+<script type="text/javascript" src="/js/lib/jquery.com.util.js?version<%=version%>"></script>
+<script type="text/javascript" src="/js/lib/jquery.com.uitab.js?version<%=version%>"></script>
+<script type="text/javascript" src="/js/lib/jquery.com.pager.js?version<%=version%>"></script>
+<script type="text/javascript" src="/js/common.js?version<%=version%>"></script>
+<script type="text/javascript" src="/js/local_js.js?version<%=version%>"></script>
+<script type="text/javascript" src="/js/lib/jquery.com.js?version<%=version%>"></script>
 
 <script type="text/javascript">
 	console.log('default:tiles-layout.jsp');
