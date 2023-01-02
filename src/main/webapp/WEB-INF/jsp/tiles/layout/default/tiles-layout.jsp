@@ -31,29 +31,32 @@ String version = dtFormat.format(date);
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv="Content-Language" content="ko">
+
 <link rel="shortcut icon" href="//localhost/favicon.ico" />
+<link type="text/css" rel="stylesheet" href="/css/egovframework/common.css?version=<%=version%>" />
+<%-- <link type="text/css" rel="stylesheet" href="/css/style.css?version=<%=version%>" /> --%>
 
-<link type="text/css" rel="stylesheet" href="/css/egovframework/common.css?version<%=version%>" />
-
-
-<script type="text/javascript" src="<c:url value='/'/>js/plugin/jquery-1.7.2.js?version<%=version%>"></script>
-<script type="text/javascript" src="/js/plugin/jquery-ui-1.8.24.custom.js?version<%=version%>"></script>
-<script type="text/javascript" src="/js/plugin/jquery.simplemodal.js?version<%=version%>"></script>
-<script type="text/javascript" src="/js/plugin/jquery.validate.js?version<%=version%>"></script>
-<script type="text/javascript" src="/js/plugin/jquery.blockUI.js?version<%=version%>"></script>
-<script type="text/javascript" src="/js/plugin/XSLTransform.js?version<%=version%>"></script>
-<script type="text/javascript" src="/js/lib/jquery.com.toxslt.js?version<%=version%>"></script>
-<script type="text/javascript" src="/js/lib/jquery.com.datepicker.js?version<%=version%>"></script>
-<script type="text/javascript" src="/js/lib/jquery.com.form.js?version<%=version%>"></script>
-<script type="text/javascript" src="/js/lib/jquery.com.grid.js?version<%=version%>"></script>
-<script type="text/javascript" src="/js/lib/jquery.com.util.js?version<%=version%>"></script>
-<script type="text/javascript" src="/js/lib/jquery.com.uitab.js?version<%=version%>"></script>
-<script type="text/javascript" src="/js/lib/jquery.com.pager.js?version<%=version%>"></script>
-<script type="text/javascript" src="/js/common.js?version<%=version%>"></script>
-<script type="text/javascript" src="/js/local_js.js?version<%=version%>"></script>
-<script type="text/javascript" src="/js/lib/jquery.com.js?version<%=version%>"></script>
+<!-- The actual JQuery code -->
+<script type="text/javascript" src="<c:url value='/'/>js/plugin/jquery-1.7.2.js?version=<%=version%>"></script>
+<script type="text/javascript" src="/js/plugin/jquery-ui-1.8.24.custom.js?version<=%=version%>"></script>
+<script type="text/javascript" src="/js/plugin/jquery.simplemodal.js?version=<%=version%>"></script>
+<script type="text/javascript" src="/js/plugin/jquery.validate.js?version=<%=version%>"></script>
+<script type="text/javascript" src="/js/plugin/jquery.blockUI.js?version=<%=version%>"></script>
+<script type="text/javascript" src="/js/plugin/XSLTransform.js?version=<%=version%>"></script>
+<script type="text/javascript" src="/js/lib/jquery.com.toxslt.js?version=<%=version%>"></script>
+<script type="text/javascript" src="/js/lib/jquery.com.datepicker.js?version=<%=version%>"></script>
+<script type="text/javascript" src="/js/lib/jquery.com.form.js?version=<%=version%>"></script>
+<script type="text/javascript" src="/js/lib/jquery.com.grid.js?version=<%=version%>"></script>
+<script type="text/javascript" src="/js/lib/jquery.com.util.js?version=<%=version%>"></script>
+<script type="text/javascript" src="/js/lib/jquery.com.uitab.js?version=<%=version%>"></script>
+<script type="text/javascript" src="/js/lib/jquery.com.pager.js?version=<%=version%>"></script>
+<script type="text/javascript" src="/js/common.js?version=<%=version%>"></script>
+<script type="text/javascript" src="/js/local_js.js?version=<%=version%>"></script>
+<script type="text/javascript" src="/js/lib/jquery.com.js?version=<%=version%>"></script>
 
 <script type="text/javascript">
 	console.log('default:tiles-layout.jsp');

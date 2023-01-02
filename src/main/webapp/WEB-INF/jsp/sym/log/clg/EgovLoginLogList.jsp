@@ -17,13 +17,17 @@
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-
-<!-- jqGrid -->
-<link type="text/css" rel="stylesheet" href="/css/jquery-ui-themes-1.13.2/themes/base/jquery-ui.min.css">
-<link type="text/css" rel="stylesheet" href="/css/jquery-ui-themes-1.13.2/themes/base/theme.css">
+ 
+<!-- <link type="text/css" rel="stylesheet" href="/css/jquery-ui-themes-1.13.2/themes/base/theme.css"> -->
+<!-- <link type="text/css" rel="stylesheet" href="/css/jquery-ui-1.8.24.custom.css"> -->
+<!-- jqGrid CSS -->
 <link type="text/css" rel="stylesheet" href="/css/ui.jqgrid.css" />
-<script type="text/javascript" src="<c:url value='/js/plugin/jquery.jqGrid.min.js'/>"></script>
+<!-- The JQuery UI code -->
+<link type="text/css" rel="stylesheet" href="/css/jquery-ui-themes-1.13.2/themes/base/jquery-ui.min.css">
+<!-- The jqGrid language file code-->
 <script type="text/javascript" src="<c:url value='/js/plugin/grid.locale-kr.js'/>"></script>
+<!-- The atual jqGrid code -->
+<script type="text/javascript" src="<c:url value='/js/plugin/jquery.jqGrid.min.js'/>"></script>
 <script type="text/javascript" src="<c:url value='/js/egovframework/EgovCalPopup.js'/>"></script>
 <script type="text/javascript">
 
@@ -43,6 +47,120 @@
 	     return str;
 	}
 	
+	//Grid title 
+	var title = ['번호', '로그ID', '발생일자', '로그유형', '상세보기1', '상세보기2', '상세보기3'];
+	
+	//Grid Model
+	var model = [
+		{name:'no',label:"번호1",index:'no',align:'center',width:15},/*번호*/
+		{name:'logId',label:"로그인 ID",index:'logId',align:'center',width:15,key:true} , /*로그ID*/
+		{
+			name:'creatDt',
+			label: "생성일자",
+			index:'creatDt',
+			align:'center',
+			width:15,datefmt: 'mm/dd/Y HH:MM', 
+			editable: true, 
+			edittype: "text", 
+			editoptions: { dataInit: function(el) { $(el).datetimepicker({
+			    controlType: 'select',
+			    dateFormat: "m/d/yy",
+			    timeFormat: "HH:mm"
+			  } ) }}
+		},/*발생일자*/
+		{name:'loginMthd',label:"로그인 메소드",index:'loginMthd',align:'center',width:15,formatter:"select",formatoptions:{value:"I:입력;U:수정;D:삭제",defaultValue : "I"}},/*로그유형*/
+		{name:'loginIp',label:"로그인 IP",index:'loginIp',align:'center',width:15,hidden:false},/*상세보기1*/
+		{name:'loginId',label:"로그인ID",index:'loginId',align:'center',width:15,hidden:true},/*상세보기2*/
+		{name:'loginNm',label:"로그인 명",index:'loginNm',align:'center',width:15,hidden:true}/*상세보기3*/
+	];
+
+	var options = 	{
+		//옵션에 multiselect:true 부분을 추가하면 그리드 목록 전체선택/전체 해제가 가능하다. 
+		multiselect : true,
+		pager : '#jqGridPager', 	
+		rowNum : 10,
+	   	rowList : [10,20,30,40,50],
+        jsonReader : {
+			root : "resultList",
+			page : "paginationInfo>currentPageNo", //현재 페이지
+			total : "paginationInfo>recordCountPerPage", //
+			records : "paginationInfo>totalRecordCount", //총 row 수
+			id : "logId",
+			repeatitems : false,
+		},
+		//합계로우 보여주기
+		//footerrow : true
+	};
+	
+	var events = {
+		loadComplete : fn_loadComplete,
+		onSelectRow : fn_onSelectRow,
+		ondblClickRow : fn_ondblClickRow,
+		onRightClickRow : fn_onRightClickRow,
+		paging : fn_paging,
+		
+	};
+	
+	function fn_loadComplete() {
+		console.log("-fn_loadComplete s");
+		var ids = $("#jqGrid").jqGrid('getDataIDs');
+	    
+		// button 예제
+		for(var i=0;i < ids.length;i++){
+	        var cl = ids[i];
+	        console.log("# cl:" + cl);
+	        chgPw = "<input style='height:22px;width:50px;' type='button' value='RESET' onclick=\"fn_rowBtnClick\"  />"; 
+	        $("#jqGrid").jqGrid('setRowData',ids[i],{loginIp:chgPw});
+	    } 
+		
+		//Paging 
+		var currentPage = $('#jqGrid').grid('getGridParam', 'page');		//현재 페이지
+		var pageSize = $('#jqGrid').grid('getGridParam', 'rowNum');		//한 페이지당 보여 주는 row수
+		var pageTotal = $('#jqGrid').grid('getGridParam', 'records');		//총 row 수
+		var pageBlock = 10;													//block으로 보여 주는 page 수
+		var url = $('#jqGrid').grid('getGridParam', 'url');				//페이지 이동시 url
+		var formid = '';													//페이지 이동시 param으로 넘겨야 하는 form id
+		
+		console.log("-fn_loadComplete currentPage:"+currentPage +" pageSize:"+pageSize +" pageTotal:"+pageTotal +" pageBlock:"+pageBlock +" url:"+url );
+		
+		/* $("#jqGridPager").pager({pageSize: pageSize, pageBlock: pageBlock, currentPage: currentPage, pageTotal: pageTotal, url:url, formid:formid},
+								{type:'grid', id:'jqGrid', style:'vof_list'}); */
+		
+	    console.log("-fn_loadComplete e");
+	}
+	
+	function fn_rowBtnClick () {
+		alert('버튼 클릭');
+		return false;
+	}
+	
+	
+	
+	function fn_onSelectRow(rowId, iRow, iCol){
+		console.log("-fn_onSelectRow rowId:"+rowId+" iRow:"+iRow+" iCol:"+ iCol );
+		
+		if (rowId){
+			var row = $("#jqGrid").jqGrid('getRowData',rowId);
+			console.log("-fn_onSelectRow row:"+row +" row.no:"+row.no +" row.logId:"+row.logId +" row.creatDt:"+row.creatDt +" row.loginMthd:"+row.loginMthd );
+			
+		}
+	}
+
+	function fn_ondblClickRow() {
+		console.log("-fn_ondblClickRow");
+
+	}
+
+	function fn_onRightClickRow() {
+		console.log("-fn_onRightClickRow");
+
+	}
+	
+	function fn_paging(){
+		console.log("-fn_paging");
+		
+	}
+
 	/*
 	 * 화면로드 이벤트. 지역함수는 fn_ , 전역(grobal, 공통)함수는 gfn_ 으로 작성
 	 */
@@ -67,104 +185,23 @@
         }).datepicker( "setDate" , $.date.diffDate($("#searchEndDe").val(), -4) );
 		
 		
-		
-		var uurl = "/sym/log/clg/SelectLoginLogListAjax.do";
 		//1. 기본적인 Grid을 만든다. : 화면 로딩시 바로 데이타 조회
+		var uurl = "/sym/log/clg/SelectLoginLogListAjax.do";
 		$("#jqGrid").grid('init', uurl, title, model, options, events);
 		
 		// call the sortable method
-		jQuery("#jqGrid").jqGrid('gridResize',{minWidth:350,maxWidth:850,minHeight:80, maxHeight:350});
+		//$("#jqGrid").jqGrid('gridResize',{minWidth:350,maxWidth:850,minHeight:80, maxHeight:350});
 		
 		// Click on the Tabs below the see the relevant code for the example:
-		$('#jqGrid').navGrid("#jqGridPager", {edit: false, add: false, del: false, refresh: false, view: false});
+		//$('#jqGrid').navGrid("#jqGridPager", {edit: false, add: false, del: false, refresh: false, view: false});
 		
+		// 조회클릭
 		$('#search').bind('click', function() {
 			var url = '/sym/log/clg/SelectLoginLogListAjax.do';
 			$("#jqGrid").grid('selectData', url, 'frm');
 		});
 	});
 	
-	//Grid title 
-	var title = ['번호', '로그ID', '발생일자', '로그유형', '상세보기1', '상세보기2', '상세보기3'];
-	
-	//Grid Model
-	var model = [
-		/*번호*/		{name:'no'		 ,index:'no'       , align:'center', width:15},
-		/*로그ID*/	{name:'logId'	 ,index:'logId'    , align:'center', width:15 , key:true} ,
-		/*발생일자*/	{
-					 name:'creatDt',
-					 index:'creatDt',
-					 align:'center',
-					 width:15,
-					 editable :true,
-					 edittype:'text',
-					 editoptions:{
-						 // dataInit is the client-side event that fires upon initializing the toolbar search field for a column
-                         // use it to place a third party control to customize the toolbar
-                         dataInit: function (element) {
-                                $(element).datepicker({
-                                    id: 'creatDt_datePicker',
-                                    dateFormat: 'M/d/yy',
-                                    minDate: new Date(1910, 0, 1),
-                                    maxDate: new Date(2025, 0, 1),
-                                    showOn: 'focus'
-                                });
-                            }
-						 
-					 }
-					 
-					},
-		/*로그유형*/	{name:'loginMthd',index:'loginMthd', align:'center', width:15 , editable :true },
-		/*상세보기1*/{name:'loginIp'	 ,index:'loginIp'  , align:'center', width:15 , hidden:false,formatter: "actions",
-            formatoptions: {
-                keys: true,
-                editOptions: {},
-                addOptions: {},
-                delOptions: {}
-            }       },
-		/*상세보기2*/{name:'loginId'	 ,index:'loginId'  , align:'center', width:15 , hidden:true},
-		/*상세보기3*/{name:'loginNm'	 ,index:'loginNm'  , align:'center', width:15 , hidden:true}
-	];
-
-	var options = 	{
-		//옵션에 multiselect:true 부분을 추가하면 그리드 목록 전체선택/전체 해제가 가능하다. 
-		multiselect:true,	
-		pager: '#jqGridPager', 	
-		rowNum:10,
-	   	rowList:[10,20,30,40,50],
-        jsonReader : {
-			root : "resultList",
-			page : "paginationInfo>currentPageNo", //현재 페이지
-			total : "paginationInfo>recordCountPerPage", //
-			records : "paginationInfo>totalRecordCount", //총 row 수
-			id : "logId",
-			repeatitems : false,
-		},
-		//합계로우 보여주기
-		//footerrow : true
-	};
-	
-	var events = {
-		loadComplete : fn_loadComplete,
-		ondblClickRow : fn_ondblClickRow,
-		onRightClickRow : fn_onRightClickRow
-	};
-	
-	function fn_loadComplete() {
-		console.log("-fn_loadComplete");
-
-	}
-
-	function fn_ondblClickRow() {
-		console.log("-fn_ondblClickRow");
-
-	}
-
-	function fn_onRightClickRow() {
-		console.log("-fn_onRightClickRow");
-
-	}
-
 	function fn_egov_select_loginLog(pageNo) {
 		var fromDate = document.frm.searchBgnDe.value;
 		var toDate = document.frm.searchEndDe.value;

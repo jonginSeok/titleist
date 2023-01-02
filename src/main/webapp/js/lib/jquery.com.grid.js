@@ -17,48 +17,54 @@
 				if (!$.util.isNull(event) && !$.util.isNull(event.loadComplete)) {
 					complete_func = event.loadComplete;
 				}
+				
 				var paging_func = null;
 				if (!$.util.isNull(event) && !$.util.isNull(event.paging)) {
 					paging_func = event.paging;
 				}
-				// local에서 실행 할수 있도록 수정 2013-08-20
+				
 				var beforesend_func = null;
+				// local에서 실행 할수 있도록 수정
 				// if (!$.util.isNull(event) && !$.util.isNull(event.loadBeforeSend)) {
 				// beforesend_func = event.loadBeforeSend;
 				// }
+				
 				// multiselect 옵션은 처음 그리드 생성시에 넣어 줘야 한다.
 				var multiselectOpt = false;
 				if (!$.util.isNull(option) && !$.util.isNull(option.multiselect)) {
 					multiselectOpt = option.multiselect;
 				}
+				
 				var pageOpt = null;
 				if (!$.util.isNull(option) && !$.util.isNull(option.pager)) {
 					pageOpt = option.pager;
 				}
+				
 				var rowListOpt = new Array();
 				if (!$.util.isNull(option) && !$.util.isNull(option.rowList)) {
 					rowListOpt = option.rowList;
 				}
+				
 				var groupFlag = false;
 				if (!$.util.isNull(option) && !$.util.isNull(option.grouping)) {
 					groupFlag = option.grouping;
 				}
-
+				
 				var groupView = null;
 				if (!$.util.isNull(option) && !$.util.isNull(option.groupingView)) {
 					groupView = option.groupingView;
 				}
-
+				
 				var userDataFlag = false;
 				if (!$.util.isNull(option) && !$.util.isNull(option.userDataOnFooter)) {
 					userDataFlag = option.userDataOnFooter;
 				}
-
+				
 				var footerrowFlag = false;
 				if (!$.util.isNull(option) && !$.util.isNull(option.footerrow)) {
 					footerrowFlag = option.footerrow;
 				}
-
+				
 				/* added scroll */
 				var scrollFlag = 0;
 				if (!$.util.isNull(option) && !$.util.isNull(option.scroll)) {
@@ -163,8 +169,8 @@
 
 				var formName1st = '';
 				if (!$.util.isNull(option) && !$.util.isNull(option.formName1st)) {
-					//2022.12.29 //ngins7512
-					//formName1st = option.formName1st;
+					
+					//formName1st = option.formName1st; //2022.12.29 //ngins7512
 					
 					var param = $("#" + formName1st).serialize();
 					var getParamsArr = param.split('&');
@@ -235,6 +241,7 @@
 					prmNames : customPrmNames,
 					rownumbers : rownumbers,
 					rownumWidth : rownumWidth,
+					
 					// == custom option start
 					rowEditable : rowEditable,
 					lastSelRow : 'none',
@@ -246,7 +253,8 @@
 					gridCRUDUrl : gridCRUDUrl,
 					formName1st : formName1st,
 					pageEnable : true
-				// == custom option end
+					// == custom option end
+					
 				});
 
 				if (!$.util.isNull(option)) {
@@ -412,16 +420,18 @@
 				func(index, iCol, sortorder, url);
 			}
 
-			// alert('index=' + index + ' iCol=' + iCol + ' sortorder=' +
-			// sortorder);
+			// alert('index=' + index + ' iCol=' + iCol + ' sortorder=' + sortorder);
 
 			// sort 하기 전에 다시 서버에서 데이타를 sort하는 필드로
 			// 조회해서 보여 준다.
 			// sort와 paging에 필요한 파라미터를 넘겨서 다시 재조회한다.
+			
 			/*
 			 * grid_data2.jsp?sIdx=invdata&order=asc&page=1
 			 */
+			
 			// alert(url);
+			
 			// $(this).grid('selectData', url);
 		},
 		/*----------------------------------------------------------------------------------*
@@ -432,7 +442,6 @@
 		 * ----------------------------------------------------------------------------------*/
 		// Grid의 속성 값을 얻는 함수.
 		getGridParam : function(pName) {
-
 			return $(this).jqGrid('getGridParam', pName);
 		}, // end getGridParam
 		/*----------------------------------------------------------------------------------*
@@ -443,7 +452,6 @@
 		 * ----------------------------------------------------------------------------------*/
 		// Grid의 데이타 값을 얻는 함수.
 		getRowData : function(index) {
-
 			return $(this).jqGrid('getRowData', index);
 		}, // end getRowData
 		/*----------------------------------------------------------------------------------*
@@ -518,7 +526,6 @@
 				// form값 세팅을 위해서 ..; 초기 한번 호출 되기 때문에 . 처음에는 2번 실행 됨;
 				var gridEvents = $(this).grid('getGridParam');
 				if ((gridEvents.loadBeforeSend != null)) {
-					// console.log(gridEvents.loadBeforeSend);
 					gridEvents.loadBeforeSend.apply(this, arguments);
 				}
 
@@ -578,6 +585,7 @@
 				// }
 				// }
 				// }
+				
 				// url = uurl.indexOf('?') > 0 ? uurl.substring(0,
 				// uurl.indexOf('?')) : uurl;
 
@@ -589,7 +597,6 @@
 
 				gridCRUDUrl.lastSelectedUrl = url;
 				gridCRUDUrl.lastSelectedPostDataArr = postDataArr;
-				// console.log(postDataArr);
 				gridCRUDUrl.lastSelectedTargetPage = $(this).grid('getGridParam', 'page'); // 추가되는 부분
 				gridCRUDUrl.lastSelectedSortOrder = $(this).grid('getGridParam', 'sord'); // 추가되는 부분
 				gridCRUDUrl.lastSelectedSortIndex = $(this).grid('getGridParam', 'sidx'); // 추가되는 부분
@@ -934,8 +941,7 @@
 					var row = $target.grid('getRowData', rowid);
 					var value = row[col.name];
 					if (editYN) {
-						value = (col.edittype == 'select') ? $('#' + $(row[col.name]).attr('id')).find('option:selected').text() : $(
-								'#' + $(row[col.name]).attr('id')).val();
+						value = (col.edittype == 'select') ? $('#' + $(row[col.name]).attr('id')).find('option:selected').text() : $('#' + $(row[col.name]).attr('id')).val();
 					}
 					retVal += value + '/';
 				}
@@ -960,7 +966,6 @@
 				var row = null;
 				if (col.editable) {
 					row = $target.grid('getRowData', rowid);
-					// alert()
 					var value = $('#' + $(row[col.name]).attr('id')).val();
 					uptData[col.name] = value;
 				}
@@ -1014,8 +1019,6 @@
 			var text = editoptions.substring(startText, endText);
 			row[col.name] = text;
 			$target.jqGrid('setRowData', rowid, row);
-			// alert(text+" : "+value);
-
 		},
 		/*----------------------------------------------------------------------------------*
 		 * Function : $(selector).grid('jsonToString', data);
@@ -1086,8 +1089,7 @@
 				if ($.trim(sel_ids)) {
 					for ( var i = 0; i < sel_ids.length; i++) {
 						rowdata = $(this).getRowData(sel_ids[i]);
-						// array 데이터 추가 ======== mapping data 삭제 여부 - 추후 결정
-						// =========
+						// array 데이터 추가 ======== mapping data 삭제 여부 - 추후 결정 =========
 						// json_data2.push(rowdata);
 
 						// 복사 데이터 tr id값 만들기
@@ -1102,8 +1104,7 @@
 			} else { // 단건 복사
 				if ($.trim(sel_row)) {
 					rowdata = $(this).getRowData(sel_row);
-					// array 데이터 추가 ======== mapping data 삭제 여부 - 추후 결정
-					// =========
+					// array 데이터 추가 ======== mapping data 삭제 여부 - 추후 결정 =========
 					// json_data2.push(rowdata);
 
 					// 복사 데이터 tr id값 만들기
@@ -1138,7 +1139,7 @@
 				if (col.editable && col.name != 'cb') {
 					value = $('#' + rowid + '_' + col.name).val();
 
-					// // // 진규
+					// 진규
 					// if (typeof colModel[index].formatoptions != 'undefined') {
 					// if (typeof colModel[index].formatoptions.dateformat != 'undefined') {
 					// if (!$.util.isNull(value) && !$.date.isDate(value)) {
@@ -1204,8 +1205,7 @@
 					udata[key] = uptData[key];
 				}
 			}
-			// console.log('---------udata--------- ');
-			// console.log(udata);
+			
 			if (udata != null) {
 				if (updateData == null) {
 					updateData = {};
@@ -1223,15 +1223,8 @@
 							updateData : updateData
 						});
 					}
-					// console.log('---------updateData--------- ');
-					// console.log(updateData);
-					// console.log(updateData);
 				}
 			}
-
-			// console.log('---------final--------- ');
-			// console.log($target.grid('getGridParam', 'updateData'));
-			// console.log('<<<<<<<<<<<<<<<<>>>>>>>>>>>>');
 			return flag;
 		},
 		/*----------------------------------------------------------------------------------*
@@ -1350,7 +1343,6 @@
 					lastSelRow : option.rowid
 				});
 				// } else if (rowEditMode == 'I') {
-
 				// }
 			}
 		},
@@ -1435,6 +1427,7 @@
 							} else {
 								jsonStr += '        ';
 							}
+							
 							// jsonStr += '"' + pkey[i] + '" : "' +
 							// tmpData[pkey[i]] + '"\n';
 
@@ -1542,8 +1535,8 @@
 			var params = $("#" + formId).serialize();
 			var getParamsArr = params.split('&');
 			for ( var i = 0; i < getParamsArr.length; i++) {
-				// postDataArr[getParamsArr[i].split("=")[0]] =
-				// decodeURIComponent(getParamsArr[i].split("=")[1]);
+				
+				// postDataArr[getParamsArr[i].split("=")[0]] = decodeURIComponent(getParamsArr[i].split("=")[1]);
 				postDataArr[getParamsArr[i].split("=")[0]] = getParamsArr[i].split("=")[1];
 			}
 			$(this).jqGrid('setGridParam', {
