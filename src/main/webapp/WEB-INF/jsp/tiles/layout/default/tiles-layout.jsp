@@ -10,24 +10,17 @@
   author   : 다임정보 개발팀  석종인
   since    : 2022.12.16
 --%>
-<%@
-	page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%><%@
-	taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%><%@
-	taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%><%@
-	taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%><%@
-	taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%><%@
-	taglib prefix="form" uri="http://www.springframework.org/tags/form"%><!-- 공통변수 처리 -->
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.text.SimpleDateFormat,java.util.Date"%>
+<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%><!-- 공통변수 처리 -->
+<% String version = "?version=" + new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()); %>
+
 <c:set var="CONTEXT_PATH" value="${pageContext.request.contextPath}" scope="application" />
 <c:set var="RESOURCES_PATH" value="${CONTEXT_PATH}/resources" scope="application" />
-<%@page import="java.text.SimpleDateFormat"%>
-<%@page import="java.util.Date"%>
-
-<%
-SimpleDateFormat dtFormat = new SimpleDateFormat("yyyyMMddHHmmss");
-// String 타입을 Date 타입으로 변환
-Date date =  new Date();
-String version = dtFormat.format(date);
-%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -38,25 +31,10 @@ String version = dtFormat.format(date);
 
 <link rel="shortcut icon" href="//localhost/favicon.ico" />
 <link type="text/css" rel="stylesheet" href="/css/egovframework/common.css?version=<%=version%>" />
-<%-- <link type="text/css" rel="stylesheet" href="/css/style.css?version=<%=version%>" /> --%>
 
-<!-- The actual JQuery code -->
-<script type="text/javascript" src="<c:url value='/'/>js/plugin/jquery-1.7.2.js?version=<%=version%>"></script>
-<script type="text/javascript" src="/js/plugin/jquery-ui-1.8.24.custom.js?version<=%=version%>"></script>
-<script type="text/javascript" src="/js/plugin/jquery.simplemodal.js?version=<%=version%>"></script>
-<script type="text/javascript" src="/js/plugin/jquery.validate.js?version=<%=version%>"></script>
-<script type="text/javascript" src="/js/plugin/jquery.blockUI.js?version=<%=version%>"></script>
-<script type="text/javascript" src="/js/plugin/XSLTransform.js?version=<%=version%>"></script>
-<script type="text/javascript" src="/js/lib/jquery.com.toxslt.js?version=<%=version%>"></script>
-<script type="text/javascript" src="/js/lib/jquery.com.datepicker.js?version=<%=version%>"></script>
-<script type="text/javascript" src="/js/lib/jquery.com.form.js?version=<%=version%>"></script>
-<script type="text/javascript" src="/js/lib/jquery.com.grid.js?version=<%=version%>"></script>
-<script type="text/javascript" src="/js/lib/jquery.com.util.js?version=<%=version%>"></script>
-<script type="text/javascript" src="/js/lib/jquery.com.uitab.js?version=<%=version%>"></script>
-<script type="text/javascript" src="/js/lib/jquery.com.pager.js?version=<%=version%>"></script>
-<script type="text/javascript" src="/js/common.js?version=<%=version%>"></script>
-<script type="text/javascript" src="/js/local_js.js?version=<%=version%>"></script>
-<script type="text/javascript" src="/js/lib/jquery.com.js?version=<%=version%>"></script>
+<script type="text/javascript" src="/js/plugin/jquery-1.7.2.min.js<%=version%>"></script>
+<script type="text/javascript" src="/js/plugin/jquery-ui-1.7.3.custom.min.js<%=version%>"></script>
+
 
 <script type="text/javascript">
 	console.log('default:tiles-layout.jsp');
