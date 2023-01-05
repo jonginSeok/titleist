@@ -18,17 +18,14 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <% String version = "?version=" + new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()); %>
-
 <link type="text/css" rel="stylesheet" href="/css/jquery-ui-themes-1.13.2/themes/redmond/jquery-ui.min.css">
 <link type="text/css" rel="stylesheet" href="/css/jquery-ui-themes-1.13.2/themes/redmond/theme.css">
 <link type="text/css" rel="stylesheet" href="/css/ui.jqgrid.css" />
-
 <script type="text/javascript" src="/js/plugin/jquery.jqGrid.min.js<%=version%>"></script>
 <script type="text/javascript" src="/js/plugin/grid.locale-kr.js<%=version%>"></script>
-
+<script type="text/javascript" src="/js/lib/jquery.com.grid.js<%=version%>"></script>
 <script type="text/javascript" src="/js/lib/jquery.com.datepicker.js<%=version%>"></script>
 <script type="text/javascript" src="/js/lib/jquery.com.util.js<%=version%>"></script><!-- $.gridformatter.dateTimeFormat -->
-
 <script type="text/javascript" src="/js/egovframework/EgovCalPopup.js<%=version%>"></script>
 <script type="text/javascript">
 	/* ********************************************************
@@ -50,10 +47,10 @@
 	}
 
 	//Grid title
-	//var fv_g_title = [ '번호', '로그ID', '발생일자', '로그유형', '상세보기1', '상세보기2', '상세보기3' ]; // label
+	var fv_title = [ '번호', '로그ID', '발생일자', '로그유형', '상세보기1', '상세보기2', '상세보기3' ]; // label
 
 	//Grid Model
-	var fv_g_model = [ {
+	var fv_model = [ {
 		label : '번호',
 		name : 'no',
 		width : 15,
@@ -75,16 +72,24 @@
 		label : '발생일자',
 		name : 'creatDt',
 		width : 15,
-		editable : true,
+		editable : false,
+		//searchoptions: { sopt: ['eq', 'ne'], dataInit: function (elem) { $(elem).datepicker({ showButtonPanel: true }) } },
+		//editoptions: { dataInit: function(el) { $(el).datepicker({ showButtonPanel: true } ) } },
 		hidden : false,
 		align : 'center',
-		formatter : 'date', formatoptions: { srcformat : 'Y-m-d H:i:s', newformat :'ShortDate'}
+		//formatter : 'date', formatoptions: { srcformat : 'Y-m-d', newformat :'Y-m-d', userLocalTime : true},
+		//formatter : 'date', formatoptions: { srcformat : 'ISO8601Short', newformat : 'ISO8601Short', userLocalTime : true}, // 위와 같음
 	},/*발생일자*/
+	
+	//{ name: 'Start', index: 'Start', searchoptions: { sopt: ['eq', 'ne'], dataInit: function (elem) { $(elem).datepicker({ showButtonPanel: true }) } } },
+	
 	{
 		label : '로그유형',
 		name : 'loginMthd',
 		width : 15,
 		editable : true,
+		edittype : 'select',
+		editoptions:{value:"I:입력;U:수정;D:삭제;'':선택"}, // select box
 		hidden : false,
 		align : 'center',
 	},/*로그유형*/
@@ -92,9 +97,10 @@
 		label : '상세보기1',
 		name : 'loginIp',
 		width : 15,
-		editable : true,
+		editable : false,
 		hidden : false,
 		align : 'center',
+		formatter : fn_btnDetail,
 	},/*상세보기1*/
 	{
 		label : '상세보기2',
@@ -115,9 +121,8 @@
 	];
 	// sorttype is used only if the data is loaded locally or loadonce is set to true
 
-	var fv_g_options = {
-		//옵션에 multiselect:true 부분을 추가하면 그리드 목록 전체선택/전체 해제가 가능하다. 
-		multiselect : true,
+	var fv_option = {
+		multiselect : true,	 //옵션에 multiselect:true 부분을 추가하면 그리드 목록 전체선택/전체 해제가 가능하다.
 		pager : '#jqGridPager',
 		rowNum : 10,
 		rowList : [ 10, 20, 30, 40, 50 ],
@@ -133,16 +138,17 @@
 		//footerrow : true
 	};
 
-	var fv_g_events = {
+	var fv_event = {
 		loadComplete : fn_loadComplete,
-		onSelectRow : fn_onSelectRow,
+		onSelectRow : fn_editRow, //fn_onSelectRow,
 		ondblClickRow : fn_ondblClickRow,
 		onRightClickRow : fn_onRightClickRow,
 		paging : fn_paging,
 
 	};
-	
-	var fv_g_uurl = "/sym/log/clg/SelectLoginLogListAjax.do";
+
+	var fv_lastSelection;
+	var fv_uurl = "/sym/log/clg/SelectLoginLogListAjax.do";
 
 	/*
 	 * 화면로드 이벤트. 지역함수는 fn_ , 전역(grobal, 공통)함수는 gfn_ 으로 작성
@@ -165,104 +171,45 @@
 			minDate : new Date(1910, 0, 1),
 			maxDate : new Date(2025, 0, 1),
 			showOn : 'focus'
-		}).datepicker("setDate", $.date.diffDate($("#searchEndDe").val(), -4));
-		
-		
+		}).datepicker("setDate",
+				$.date.diffDate($("#searchEndDe").val(), -4));
+
+		$("#jqGrid").grid('init', fv_uurl, fv_title, fv_model,
+				fv_option, fv_event);
+		/*
 		// 기본 Grid
 		$("#jqGrid").jqGrid({
-			url : fv_g_uurl,	
-			colModel : fv_g_model,
+			url : fv_uurl,	
+			colModel : fv_model,
 			mtype: 'post',
 			datatype : 'json',
 			viewrecords: true, // show the current page, data rang and total records on the toolbar
 			onSelectRow: editRow, // the javascript function to call on row click. will ues to to put the row in edit mode
 			width : 780,
-			height : 230,
+			height : 291,
 			rowNum: 10,
-            pager: "#jqGridPager",
-            multiselect : true,
-            jsonReader : {
-    			root : "resultList",
-    			page : "paginationInfo>currentPageNo", //현재 페이지
-    			total : "paginationInfo>recordCountPerPage", //
-    			records : "paginationInfo>totalRecordCount", //총 row 수
-    			id : "logId",
-    			repeatitems : false,
-    		},
-    		//direction: "rtl", // instructs the grid to use RTL settings
-    		//footerrow: true,
-            //userDataOnFooter: true, // use the userData parameter of the JSON response to display data on footer
+		    pager: "#jqGridPager",
+		    multiselect : true,
+		    jsonReader : {
+				root : "resultList",
+				page : "paginationInfo>currentPageNo", //현재 페이지
+				total : "paginationInfo>recordCountPerPage", //
+				records : "paginationInfo>totalRecordCount", //총 row 수
+				id : "logId",
+				repeatitems : false,
+			},
+			//direction: "rtl", // instructs the grid to use RTL settings
+			//footerrow: true,
+		    //userDataOnFooter: true, // use the userData parameter of the JSON response to display data on footer
 			//scroll: 1, // set the scroll property to 1 to enable paging with scrollbar - virtual loading of records
 			//scrollPopUp:true,
 			//scrollLeftOffset: "83%",
 			//emptyrecords: 'Scroll to bottom to retrieve new page', // the message will be displayed at the bottom
 		});
-		
+		 */
+
 		//fetchGridData();
-		
-		var lastSelection;
 
-        function editRow(id) {
-        	console.log("#editRow("+id+") , lastSelection=" + lastSelection + " , (id !== lastSelection)?"+(id !== lastSelection));
-            if (id && id !== lastSelection) {
-                var grid = $("#jqGrid");
-                grid.jqGrid('restoreRow',lastSelection);
-                grid.jqGrid('editRow',id, {
-					keys: true,
-					onEnter : function(rowid, options, event) {
-						console.log("#onEnter("+rowid+","+options+","+event+")");
-						if (confirm("Save the row with ID: "+rowid) === true) {
-							$(this).jqGrid("saveRow", rowid, options );
-						}
-					}
-				});
-                lastSelection = id;
-                console.log("- fetchGridData lastSelection:"+lastSelection);
-            }
-        }
-
-    	function fetchGridData() {
-            console.log("- fetchGridData S");
-            var gridArrayData = [];
-    		// show loading message
-    		//$("#jqGrid")[0].grid.beginReq();
-            $.ajax({
-                url: fv_g_uurl,
-                dataType : 'json',
-                success: function (result) {
-                    
-                	console.log("#결과#" + result);
-                	//console.log("#결과JSON.stringify#" + JSON.stringify(result));
-                	
-                	
-                	var resultList = result.resultList;
-                	//console.log("#resultList#" + resultList.length);
-                	
-                	for (var i = 0; i < resultList.length; i++) {
-                        var item = resultList[i];
-                        gridArrayData.push({
-                        	no			: item.no,
-                        	logId		: item.logId,
-                        	creatDt		: item.creatDt,
-                        	loginMthd	: item.loginMthd,
-                        	loginIp		: item.loginIp,
-                        	loginId		: item.loginId,
-                        	loginNm		: item.loginNm,
-                        });
-                        //console.log("#gridArrayData#" + JSON.stringify(gridArrayData));
-                    }
-    				// set the new data
-    				$("#jqGrid").jqGrid('setGridParam', { data: gridArrayData});
-    				
-    				// hide the show message
-    				//$("#jqGrid")[0].grid.endReq(); // blockUI
-    				
-    				// refresh the grid
-    				//$("#jqGrid").trigger('reloadGrid');
-                }
-            });
-            console.log("- fetchGridData E");
-        }
 
 		// 조회클릭
 		$('#search').bind('click', function() {
@@ -270,22 +217,47 @@
 			$("#jqGrid").grid('selectData', url, 'frm');
 		});
 	});
-	
 
+	function fn_editRow(id) {
+		console.log("#editRow(" + id + ") , fv_lastSelection="
+				+ fv_lastSelection + " , (id !== fv_lastSelection)?"
+				+ (id !== fv_lastSelection));
+		
+		if (id && id !== fv_lastSelection) {
+			var grid = $("#jqGrid");
+			grid.jqGrid('restoreRow', fv_lastSelection);
+			grid.jqGrid('editRow', id, {
+				keys : true,
+				onEnter : function(rowid, options, event) {
+					console.log("#onEnter(" + rowid + "," + options + ","
+							+ event + ")");
+					if (confirm("Save the row with ID: " + rowid) === true) {
+						$(this).jqGrid("saveRow", rowid, options);
+					}
+				}
+			});
+			fv_lastSelection = id;
+			console.log("- fetchGridData fv_lastSelection:" + fv_lastSelection);
+		}
+	}
+
+	// button 예제
+	function fn_btnDetail (cellvalue, options, rowObject) {
+		
+		var str = "";
+		var row_id = options.rowId;
+		var idx = Number(rowObject.no -1);
+		
+		str += "<div class=\"\">"; // buttons
+		str += "<button type='button' class='' title='상세' style='cursor: pointer; background-repeat: no-repeat; overflow: hidden; margin-left: 8px; width: 70px; height: 20px; background-image: url(\'/images/img_search.gif\');' onclick=\"javascript:fn_rowBtnClick('" + row_id + "','" + idx + "' )\">상세</button>";
+		str += "</div>";
+		return str;	
+	}
+	
 	function fn_loadComplete() {
 		console.log("-fn_loadComplete s");
 		var ids = $("#jqGrid").jqGrid('getDataIDs');
-
-		// button 예제
-		for (var i = 0; i < ids.length; i++) {
-			var cl = ids[i];
-			console.log("# cl:" + cl);
-			chgPw = "<input style='height:22px;width:50px;' type='button' value='RESET' onclick=\"fn_rowBtnClick\"  />";
-			$("#jqGrid").jqGrid('setRowData', ids[i], {
-				loginIp : chgPw
-			});
-		}
-
+		
 		//Paging 
 		var currentPage = $('#jqGrid').grid('getGridParam', 'page'); //현재 페이지
 		var pageSize = $('#jqGrid').grid('getGridParam', 'rowNum'); //한 페이지당 보여 주는 row수
@@ -301,9 +273,9 @@
 		console.log("-fn_loadComplete e");
 	}
 
-	function fn_rowBtnClick() {
-		alert('버튼 클릭');
-		return false;
+	function fn_rowBtnClick(rowid, idx) {
+		var str = "rowid 는 "+rowid+" / idx 는 "+idx+" 입니다.";
+		alert(str);
 	}
 
 	function fn_onSelectRow(rowId, iRow, iCol) {
@@ -332,6 +304,51 @@
 	function fn_paging() {
 		console.log("-fn_paging");
 
+	}
+	
+
+	function fetchGridData() {
+		console.log("- fetchGridData S");
+		var gridArrayData = [];
+		// show loading message
+		//$("#jqGrid")[0].grid.beginReq();
+		$.ajax({
+			url : fv_uurl,
+			dataType : 'json',
+			success : function(result) {
+
+				console.log("#결과#" + result);
+				//console.log("#결과JSON.stringify#" + JSON.stringify(result));
+
+				var resultList = result.resultList;
+				//console.log("#resultList#" + resultList.length);
+
+				for (var i = 0; i < resultList.length; i++) {
+					var item = resultList[i];
+					gridArrayData.push({
+						no : item.no,
+						logId : item.logId,
+						creatDt : item.creatDt,
+						loginMthd : item.loginMthd,
+						loginIp : item.loginIp,
+						loginId : item.loginId,
+						loginNm : item.loginNm,
+					});
+					//console.log("#gridArrayData#" + JSON.stringify(gridArrayData));
+				}
+				// set the new data
+				$("#jqGrid").jqGrid('setGridParam', {
+					data : gridArrayData
+				});
+
+				// hide the show message
+				//$("#jqGrid")[0].grid.endReq(); // blockUI
+
+				// refresh the grid
+				//$("#jqGrid").trigger('reloadGrid');
+			}
+		});
+		console.log("- fetchGridData E");
 	}
 
 	function fn_egov_select_loginLog(pageNo) {
@@ -421,7 +438,7 @@
 									<img src="<c:url value='/images/img_search.gif' />" alt="search">조회</a> --%>
 
 								<button type="button" id="search" title="조회"
-									style="background-repeat: no-repeat; overflow: hidden; margin-left: 8px; width: 70px; background-image: url('/images/img_search.gif');">조회</button>
+									style="background-repeat: no-repeat; overflow: hidden; margin-left: 8px; width: 70px; background-image: url('/images/img_search.gif'); cursor: pointer;">조회</button>
 
 								<a href="#LINK"
 									onclick="document.frm.searchBgnDe.value=''; document.frm.searchEndDe.value=''; return false;">초기화</a>
