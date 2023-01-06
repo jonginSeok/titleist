@@ -52,6 +52,7 @@ select {
 #LoginStatus ul li{padding-bottom:5px;}
 .t2_leftdiv{float:left;}
 .t2_rightdiv{float:right;padding-right:25px;}
+
 /* Main wrap */
 #mainview_title_img{padding-top:10px;padding-left:10px;}
 #main_container{clear:both;width: 996px; height: 535px;}

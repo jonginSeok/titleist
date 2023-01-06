@@ -18,15 +18,25 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <% String version = "?version=" + new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()); %>
-<link type="text/css" rel="stylesheet" href="/css/jquery-ui-themes-1.13.2/themes/redmond/jquery-ui.min.css">
+
 <link type="text/css" rel="stylesheet" href="/css/jquery-ui-themes-1.13.2/themes/redmond/theme.css">
+
+<!-- // 달력이 안나온다.
+<link type="text/css" rel="stylesheet" href="/css/jquery-ui-themes-1.13.2/themes/redmond/jquery-ui.min.css">
+<link type="text/css" rel="stylesheet" href="/css/jquery-ui-1.8.24.custom.css" /> 
+ -->
 <link type="text/css" rel="stylesheet" href="/css/ui.jqgrid.css" />
+
 <script type="text/javascript" src="/js/plugin/jquery.jqGrid.min.js<%=version%>"></script>
 <script type="text/javascript" src="/js/plugin/grid.locale-kr.js<%=version%>"></script>
+
+<script type="text/javascript" src="/js/lib/jquery.com.form.js<%=version%>"></script>
 <script type="text/javascript" src="/js/lib/jquery.com.grid.js<%=version%>"></script>
+<script type="text/javascript" src="/js/lib/jquery.com.util.js<%=version%>"></script>
 <script type="text/javascript" src="/js/lib/jquery.com.datepicker.js<%=version%>"></script>
-<script type="text/javascript" src="/js/lib/jquery.com.util.js<%=version%>"></script><!-- $.gridformatter.dateTimeFormat -->
+ 
 <script type="text/javascript" src="/js/egovframework/EgovCalPopup.js<%=version%>"></script>
+
 <script type="text/javascript">
 	/* ********************************************************
 	 * PROTOTYPE JS FUNCTION
@@ -47,95 +57,91 @@
 	}
 
 	//Grid title
-	var fv_title = [ '번호', '로그ID', '발생일자', '로그유형', '상세보기1', '상세보기2', '상세보기3' ]; // label
+	var colNames = [ '번호', '로그ID', '발생일자', '로그유형', '상세보기1', '상세보기2', '상세보기3' ];
 
 	//Grid Model
-	var fv_model = [ {
-		label : '번호',
-		name : 'no',
-		width : 15,
-		editable : false,
-		hidden : false,
+	var colModel = [ {
+		name : 'no',/*번호*/
+		width : 10,
 		align : 'center',
-		sorttype: 'integer',
-	},/*번호*/
-	{
-		label : '로그ID',
-		name : 'logId',
-		width : 15,
+		editable : false,
+		sorttype : 'integer',
+	}, {
+		name : 'logId',/*로그ID*/
+		width : 150,
 		editable : false, // must set editable to true if you want to make the field editable
-		hidden : false,
 		key : true,
 		align : 'center',
-	}, /*로그ID*/
-	{
-		label : '발생일자',
-		name : 'creatDt',
-		width : 15,
-		editable : false,
-		//searchoptions: { sopt: ['eq', 'ne'], dataInit: function (elem) { $(elem).datepicker({ showButtonPanel: true }) } },
-		//editoptions: { dataInit: function(el) { $(el).datepicker({ showButtonPanel: true } ) } },
-		hidden : false,
+	}, {
+		name : 'creatDt',/*발생일자*/
+		width : 150,
 		align : 'center',
-		//formatter : 'date', formatoptions: { srcformat : 'Y-m-d', newformat :'Y-m-d', userLocalTime : true},
-		//formatter : 'date', formatoptions: { srcformat : 'ISO8601Short', newformat : 'ISO8601Short', userLocalTime : true}, // 위와 같음
-	},/*발생일자*/
-	
-	//{ name: 'Start', index: 'Start', searchoptions: { sopt: ['eq', 'ne'], dataInit: function (elem) { $(elem).datepicker({ showButtonPanel: true }) } } },
-	
-	{
-		label : '로그유형',
-		name : 'loginMthd',
-		width : 15,
+		editable : false,
+	}, {
+		name : 'loginMthd',/*로그유형*/
+		width : 90,
+		align : 'center',
 		editable : true,
 		edittype : 'select',
-		editoptions:{value:"I:입력;U:수정;D:삭제;'':선택"}, // select box
-		hidden : false,
-		align : 'center',
-	},/*로그유형*/
-	{
-		label : '상세보기1',
-		name : 'loginIp',
-		width : 15,
+		editoptions : {
+			value : "I:입력;U:수정;D:삭제;'':선택"
+		}, // select box
+	}, {
+		name : 'loginIp',/*상세보기1*/
+		width : 120,
+		align : 'left',
 		editable : false,
-		hidden : false,
-		align : 'center',
 		formatter : fn_btnDetail,
-	},/*상세보기1*/
-	{
-		label : '상세보기2',
-		name : 'loginId',
+	}, {
+		name : 'loginId',/*상세보기2*/
 		width : 15,
+		align : 'center',
 		editable : false,
 		hidden : true,
-		align : 'center',
-	},/*상세보기2*/
-	{
-		label : '상세보기3',
-		name : 'loginNm',
+	}, {
+		name : 'loginNm',/*상세보기3*/
 		width : 15,
+		align : 'center',
 		editable : false,
 		hidden : true,
-		align : 'center',
-	} /*상세보기3*/
-	];
+	} ];
+	
 	// sorttype is used only if the data is loaded locally or loadonce is set to true
+	//searchoptions: { sopt: ['eq', 'ne'], dataInit: function (elem) { $(elem).datepicker({ showButtonPanel: true }) } },
+	//editoptions: { dataInit: function(el) { $(el).datepicker({ showButtonPanel: true } ) } },
+	//formatter : 'date', formatoptions: { srcformat : 'Y-m-d', newformat :'Y-m-d', userLocalTime : true},
+	//formatter : 'date', formatoptions: { srcformat : 'ISO8601Short', newformat : 'ISO8601Short', userLocalTime : true}, // 위와 같음
 
 	var fv_option = {
-		multiselect : true,	 //옵션에 multiselect:true 부분을 추가하면 그리드 목록 전체선택/전체 해제가 가능하다.
-		pager : '#jqGridPager',
+		multiselect : true, //옵션에 multiselect:true 부분을 추가하면 그리드 목록 전체선택/전체 해제가 가능하다.
+		viewrecords : true,
+
 		rowNum : 10,
 		rowList : [ 10, 20, 30, 40, 50 ],
+		pager : '#jqGridPager',
+		pgbuttons : true,
+		pginput : true,
+
+		shrinkToFit : true,
+		sortable : true,
+		sortname : 'no', // 그리드 헤더에 표시가 나타난다.
+		sortorder : 'desc', // 그리드 헤더에 표시가 나타난다. asc : ㅁ
+
+		onPaging : function(pgButton) {
+			var gridPage = $("jqgrid").getGridParam("page");
+			var totalPage = $("jqgrid").getGridParam("total");
+
+		},
 		jsonReader : {
 			root : "resultList",
-			page : "paginationInfo>currentPageNo", //현재 페이지
-			total : "paginationInfo>totalRecordCount", //
-			records : "paginationInfo>recordCountPerPage", //총 row 수
 			id : "logId",
+			page : "paginationInfo>currentPageNo", // 현재 페이지
+			total : "paginationInfo>recordCountPerPage", // 페이지당 데이터 row 수
+			records : "resultCnt", // 총 데이터 row 수
 			repeatitems : false,
 		},
-		//합계로우 보여주기
-		//footerrow : true
+	//합계로우 보여주기
+	//footerrow : true
 	};
 
 	var fv_event = {
@@ -148,7 +154,7 @@
 	};
 
 	var fv_lastSelection;
-	var fv_uurl = "/sym/log/clg/SelectLoginLogListAjax.do";
+	var fv_uurl = "/sym/log/clg/SelectLoginLogList.ao";
 
 	/*
 	 * 화면로드 이벤트. 지역함수는 fn_ , 전역(grobal, 공통)함수는 gfn_ 으로 작성
@@ -156,14 +162,22 @@
 	$(document).ready(function(event) {
 
 		// 조회조건 발생일자
-		$("#searchEndDe").datepicker({
-			id : 'searchEndDe_datePicker',
+		
+		$("#searchBgnDe").datepicker();
+		
+		$("#searchEndDe").datepicker();
+		
+		/*
+		defaultDate: '01/01/01',
+		dateFormat : 'yy-mm-dd',
+			
+		$("#searchBgnDe").datepicker({
+			id : 'searchBgnDe_datePicker',
 			dateFormat : 'yy-mm-dd',
 			minDate : new Date(1910, 0, 1),
 			maxDate : new Date(2025, 0, 1),
 			showOn : 'focus'
-		}).datepicker("setDate", new Date());
-		//.datepicker({ defaultDate: '01/01/01' });
+		}).datepicker("setDate", $.date.diffDate($("#searchEndDe").val(), -4));
 
 		$("#searchBgnDe").datepicker({
 			id : 'searchBgnDe_datePicker',
@@ -171,16 +185,16 @@
 			minDate : new Date(1910, 0, 1),
 			maxDate : new Date(2025, 0, 1),
 			showOn : 'focus'
-		}).datepicker("setDate",
-				$.date.diffDate($("#searchEndDe").val(), -4));
-
-		$("#jqGrid").grid('init', fv_uurl, fv_title, fv_model,
-				fv_option, fv_event);
+		}).datepicker("setDate", $.date.diffDate($("#searchEndDe").val(), -4));
+		*/
+		
+		$("#jqGrid").grid('init', fv_uurl, colNames, colModel, fv_option, fv_event);
+		
 		/*
 		// 기본 Grid
 		$("#jqGrid").jqGrid({
 			url : fv_uurl,	
-			colModel : fv_model,
+			colModel : colModel,
 			mtype: 'post',
 			datatype : 'json',
 			viewrecords: true, // show the current page, data rang and total records on the toolbar
@@ -209,12 +223,11 @@
 		 */
 
 		//fetchGridData();
-
-
+		 
 		// 조회클릭
 		$('#search').bind('click', function() {
-			var url = '/sym/log/clg/SelectLoginLogListAjax.do';
-			$("#jqGrid").grid('selectData', url, 'frm');
+			// $([name='pageIndex']).val(); // pageIndex set
+			$("#jqGrid").grid('selectData', fv_uurl, 'frm');
 		});
 	});
 
@@ -222,7 +235,7 @@
 		console.log("#editRow(" + id + ") , fv_lastSelection="
 				+ fv_lastSelection + " , (id !== fv_lastSelection)?"
 				+ (id !== fv_lastSelection));
-		
+
 		if (id && id !== fv_lastSelection) {
 			var grid = $("#jqGrid");
 			grid.jqGrid('restoreRow', fv_lastSelection);
@@ -242,22 +255,23 @@
 	}
 
 	// button 예제
-	function fn_btnDetail (cellvalue, options, rowObject) {
-		
+	function fn_btnDetail(cellvalue, options, rowObject) {
+
 		var str = "";
 		var row_id = options.rowId;
-		var idx = Number(rowObject.no -1);
-		
+		var idx = Number(rowObject.no - 1);
+
 		str += "<div class=\"\">"; // buttons
-		str += "<button type='button' class='' title='상세' style='cursor: pointer; background-repeat: no-repeat; overflow: hidden; margin-left: 8px; width: 70px; height: 20px; background-image: url(\'/images/img_search.gif\');' onclick=\"javascript:fn_rowBtnClick('" + row_id + "','" + idx + "' )\">상세</button>";
+		str += "<button type='button' class='' title='상세' style='cursor: pointer; background-repeat: no-repeat; overflow: hidden; margin-left: 8px; width: 70px; height: 20px; background-image: url(\'/images/img_search.gif\');' onclick=\"javascript:fn_rowBtnClick('"
+				+ row_id + "','" + idx + "' )\">상세</button>";
 		str += "</div>";
-		return str;	
+		return str;
 	}
-	
+
 	function fn_loadComplete() {
 		console.log("-fn_loadComplete s");
 		var ids = $("#jqGrid").jqGrid('getDataIDs');
-		
+
 		//Paging 
 		var currentPage = $('#jqGrid').grid('getGridParam', 'page'); //현재 페이지
 		var pageSize = $('#jqGrid').grid('getGridParam', 'rowNum'); //한 페이지당 보여 주는 row수
@@ -274,7 +288,7 @@
 	}
 
 	function fn_rowBtnClick(rowid, idx) {
-		var str = "rowid 는 "+rowid+" / idx 는 "+idx+" 입니다.";
+		var str = "rowid 는 " + rowid + " / idx 는 " + idx + " 입니다.";
 		alert(str);
 	}
 
@@ -305,7 +319,6 @@
 		console.log("-fn_paging");
 
 	}
-	
 
 	function fetchGridData() {
 		console.log("- fetchGridData S");
@@ -367,8 +380,7 @@
 			//document.frm.action = "<c:url value='/sym/log/clg/SelectLoginLogList.do'/>";
 			//document.frm.submit();
 			/* jqGrid 조회 */
-			var url = "/sym/log/clg/SelectLoginLogListAjax.do";
-			$("#jqGrid").grid('selectData', url, 'frm');
+			$("#jqGrid").grid('selectData', fv_uurl, 'frm');
 
 		}
 	}
@@ -382,11 +394,12 @@
 	}
 </script>
 <title>로그인 로그 목록</title>
-<!-- 현재위치 네비게이션 시작 -->
+
+<!-- //content 시작 -->
 <div id="content">
-	<form name="frm" id="frm"
-		action="<c:url value='/sym/log/SelectLoginLogList.do'/>" method="post">
+	<form name="frm" id="frm" action="<c:url value='/sym/log/SelectLoginLogList.do'/>" method="post">
 		<input type="submit" id="invisible" class="invisible">
+		<!-- 현재위치 네비게이션 시작 -->
 		<div id="cur_loc">
 			<div id="cur_loc_align">
 				<ul>
@@ -409,39 +422,22 @@
 				</h2>
 			</div>
 
-			<input type="hidden" name="cal_url"
-				value="<c:url value='/sym/cmm/EgovNormalCalPopup.do'/>" />
+			<input type="hidden" name="cal_url" value="<c:url value='/sym/cmm/EgovNormalCalPopup.do'/>" />
 			<fieldset>
 				<legend>조건정보 영역</legend>
 				<div class="sf_start">
-					<ul id="search_first_ul">
-						<li>발생일자 <!-- input name="searchBgnDe" type="hidden"  value="<c:out value='${searchVO.searchBgnDe}'/>" -->
-
-							<%-- <input name="searchBgnDe" type="text" size="10" value="${searchVO.searchBgnDe}" readonly="readonly" onclick="javascript:fn_egov_NormalCalendar(document.frm, document.frm.searchBgnDe);" title="시작일자입력">
-							<a href="javascript:fn_egov_NormalCalendar(document.frm, document.frm.searchBgnDe);" style="selector-dummy: expression(this.hideFocus = false);">
-								<img src="<c:url value='/images/egovframework/com/cmm/icon/bu_icon_carlendar.gif' />" alt="달력창팝업버튼이미지" width="15" height="15"></a> ~ 
-							<input name="searchEndDe" type="text" size="10" value="${searchVO.searchEndDe}" readonly="readonly" onclick="javascript:fn_egov_NormalCalendar(document.frm, document.frm.searchEndDe);" title="종료일자입력">
-							<a href="javascript:fn_egov_NormalCalendar(document.frm, document.frm.searchEndDe);" style="selector-dummy: expression(this.hideFocus = false);">
-								<img src="<c:url value='/images/egovframework/com/cmm/icon/bu_icon_carlendar.gif' />" alt="달력창팝업버튼이미지" width="15" height="15"></a> --%>
-
-							<input type="text" name="searchBgnDe" id="searchBgnDe" size="10"
-							value="${searchVO.searchBgnDe}" readonly="readonly"
-							title="시작일자입력"> ~ <input type="text" name="searchEndDe"
-							id="searchEndDe" size="10" value="${searchVO.searchEndDe}"
-							readonly="readonly" title="종료일자입력">
+					<ul id="">
+						<li>발생일자
+							<input type="text" name="searchBgnDe" id="searchBgnDe" size="10" maxlength="10" readonly="readonly" title="시작일자입력" value="${searchVO.searchBgnDe}"> ~ 
+							<input type="text" name="searchEndDe" id="searchEndDe" size="10" maxlength="10" readonly="readonly" title="종료일자입력" value="${searchVO.searchEndDe}">
 						</li>
 					</ul>
 					<ul id="search_second_ul">
 						<li>
 							<div class="buttons" style="float: right;">
-								<%-- <a href="<c:url value='/sym/log/SelectLoginLogList.do'/>" onclick="javascript:fn_egov_select_loginLog('1'); return false;">
-									<img src="<c:url value='/images/img_search.gif' />" alt="search">조회</a> --%>
-
-								<button type="button" id="search" title="조회"
-									style="background-repeat: no-repeat; overflow: hidden; margin-left: 8px; width: 70px; background-image: url('/images/img_search.gif'); cursor: pointer;">조회</button>
-
-								<a href="#LINK"
-									onclick="document.frm.searchBgnDe.value=''; document.frm.searchEndDe.value=''; return false;">초기화</a>
+								<%-- <a href="<c:url value='/sym/log/SelectLoginLogList.do'/>" onclick="javascript:fn_egov_select_loginLog('1'); return false;"><img src="<c:url value='/images/img_search.gif' />" alt="search">조회</a> --%>
+								<button type="button" id="search" title="조회" style="background-repeat: no-repeat; overflow: hidden; margin-left: 8px; width: 70px; background-image: url('/images/img_search.gif'); cursor: pointer;">조회</button>
+								<a href="#LINK" onclick="document.frm.searchBgnDe.value=''; document.frm.searchEndDe.value=''; return false;">초기화</a>
 							</div>
 						</li>
 					</ul>
@@ -499,8 +495,7 @@
 		</div> --%>
 		<!-- //페이지 네비게이션 끝 -->
 
-		<input name="pageIndex" type="hidden"
-			value="<c:out value='${searchVO.pageIndex}'/>" />
+		<input name="pageIndex" type="hidden" value="<c:out value='${searchVO.pageIndex}'/>" />
 	</form>
 </div>
 <!-- //content 끝 -->

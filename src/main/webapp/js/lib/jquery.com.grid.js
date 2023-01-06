@@ -422,8 +422,7 @@
 
 			// alert('index=' + index + ' iCol=' + iCol + ' sortorder=' + sortorder);
 
-			// sort 하기 전에 다시 서버에서 데이타를 sort하는 필드로
-			// 조회해서 보여 준다.
+			// sort 하기 전에 다시 서버에서 데이타를 sort하는 필드로 조회해서 보여 준다.
 			// sort와 paging에 필요한 파라미터를 넘겨서 다시 재조회한다.
 			
 			/*

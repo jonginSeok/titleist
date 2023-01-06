@@ -30,13 +30,20 @@
 <meta http-equiv="Content-Language" content="ko">
 
 <link rel="shortcut icon" href="//localhost/favicon.ico" />
-<link type="text/css" rel="stylesheet" href="/css/egovframework/common.css?version=<%=version%>" />
+<link type="text/css" rel="stylesheet" href="/css/egovframework/common.css" />
 
 <script type="text/javascript" src="/js/plugin/jquery-1.7.2.min.js<%=version%>"></script>
 <script type="text/javascript" src="/js/plugin/jquery-ui-1.7.3.custom.min.js<%=version%>"></script>
-
-
 <script type="text/javascript">
+jQuery.browser = {};
+(function () {
+    jQuery.browser.msie = false;
+    jQuery.browser.version = 0;
+    if (navigator.userAgent.match(/MSIE ([0-9]+)\./)) {
+        jQuery.browser.msie = true;
+        jQuery.browser.version = RegExp.$1;
+    }
+})();
 	console.log('default:tiles-layout.jsp');
 	var CONTEXT_PATH = "${CONTEXT_PATH}";
 	var RESOURCES_PATH = "${RESOURCES_PATH}";
@@ -44,6 +51,7 @@
 </head>
 <body>
 	<noscript>자바스크립트를 지원하지 않는 브라우저에서는 일부 기능을 사용하실 수 없습니다.</noscript>
+	
 	<!-- 전체 레이어 시작 -->
 	<div id='wrap'>
 		<!-- header 시작 -->
@@ -70,6 +78,7 @@
 		</div>
 		<!-- //footer 끝 -->
 	</div>
+	<!-- 전체 레이어 끝 -->
 </body>
-<!-- //전체 레이어 끝 -->
+
 </html>
