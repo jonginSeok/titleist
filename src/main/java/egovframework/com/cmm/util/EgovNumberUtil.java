@@ -14,7 +14,7 @@
  *
  */
 
-package egovframework.let.utl.fcc.service;
+package egovframework.com.cmm.util;
 
 import java.security.SecureRandom;
 import java.text.ParseException;
@@ -24,14 +24,16 @@ import java.util.Locale;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 /**
  * 숫자 데이터 처리 관련 유틸리티
+ * 
  * @author 공통서비스개발팀 이삼섭
  * @since 2009.02.13
  * @version 1.0
  * @see
  *
- * <pre>
+ *      <pre>
  * << 개정이력(Modification Information) >>
  *
  *   수정일      수정자           수정내용
@@ -39,21 +41,21 @@ import org.slf4j.LoggerFactory;
  *   2009.02.13  이삼섭          최초 생성
  *   2011.08.31  JJY            경량환경 템플릿 커스터마이징버전 생성
  *
- * </pre>
+ *      </pre>
  */
 
 public class EgovNumberUtil {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(EgovNumberUtil.class);
 
-    /**
-     * 특정숫자 집합에서 랜덤 숫자를 구하는 기능 시작숫자와 종료숫자 사이에서 구한 랜덤 숫자를 반환한다
-     *
-     * @param startNum - 시작숫자
-     * @param endNum - 종료숫자
-     * @return 랜덤숫자
-     * @see
-     */
+	/**
+	 * 특정숫자 집합에서 랜덤 숫자를 구하는 기능 시작숫자와 종료숫자 사이에서 구한 랜덤 숫자를 반환한다
+	 *
+	 * @param startNum - 시작숫자
+	 * @param endNum   - 종료숫자
+	 * @return 랜덤숫자
+	 * @see
+	 */
 	public static int getRandomNum(int startNum, int endNum) {
 		int randomNum = 0;
 
@@ -66,16 +68,16 @@ public class EgovNumberUtil {
 		} while (randomNum < startNum); // 랜덤 숫자가 시작숫자보다 작을경우 다시 랜덤숫자를 발생시킨다.
 
 		return randomNum;
-    }
+	}
 
-    /**
-     * 특정 숫자 집합에서 특정 숫자가 있는지 체크하는 기능 12345678에서 7이 있는지 없는지 체크하는 기능을 제공함
-     *
-     * @param sourceInt - 특정숫자집합
-     * @param searchInt - 검색숫자
-     * @return 존재여부
-     * @see
-     */
+	/**
+	 * 특정 숫자 집합에서 특정 숫자가 있는지 체크하는 기능 12345678에서 7이 있는지 없는지 체크하는 기능을 제공함
+	 *
+	 * @param sourceInt - 특정숫자집합
+	 * @param searchInt - 검색숫자
+	 * @return 존재여부
+	 * @see
+	 */
 	public static Boolean getNumSearchCheck(int sourceInt, int searchInt) {
 		String sourceStr = String.valueOf(sourceInt);
 		String searchStr = String.valueOf(searchInt);
@@ -88,13 +90,13 @@ public class EgovNumberUtil {
 		}
 	}
 
-    /**
-     * 숫자타입을 문자열로 변환하는 기능 숫자 20081212를 문자열 '20081212'로 변환하는 기능
-     *
-     * @param srcNumber - 숫자
-     * @return 문자열
-     * @see
-     */
+	/**
+	 * 숫자타입을 문자열로 변환하는 기능 숫자 20081212를 문자열 '20081212'로 변환하는 기능
+	 *
+	 * @param srcNumber - 숫자
+	 * @return 문자열
+	 * @see
+	 */
 	public static String getNumToStrCnvr(int srcNumber) {
 		String rtnStr = null;
 
@@ -103,14 +105,14 @@ public class EgovNumberUtil {
 		return rtnStr;
 	}
 
-    /**
-     * 숫자타입을 데이트 타입으로 변환하는 기능
-     * 숫자 20081212를 데이트타입  '2008-12-12'로 변환하는 기능
-     * @param srcNumber - 숫자
-     * @return String
-     * @see
-     */
-    public static String getNumToDateCnvr(int srcNumber) {
+	/**
+	 * 숫자타입을 데이트 타입으로 변환하는 기능 숫자 20081212를 데이트타입 '2008-12-12'로 변환하는 기능
+	 * 
+	 * @param srcNumber - 숫자
+	 * @return String
+	 * @see
+	 */
+	public static String getNumToDateCnvr(int srcNumber) {
 
 		String pattern = null;
 		String cnvrStr = null;
@@ -142,15 +144,15 @@ public class EgovNumberUtil {
 
 		return cnvrStr;
 
-    }
+	}
 
-    /**
-     * 체크할 숫자 중에서 숫자인지 아닌지 체크하는 기능
-     * 숫자이면 True, 아니면 False를 반환한다
-     * @param checkStr - 체크문자열
-     * @return 숫자여부
-     * @see
-     */
+	/**
+	 * 체크할 숫자 중에서 숫자인지 아닌지 체크하는 기능 숫자이면 True, 아니면 False를 반환한다
+	 * 
+	 * @param checkStr - 체크문자열
+	 * @return 숫자여부
+	 * @see
+	 */
 	public static Boolean getNumberValidCheck(String checkStr) {
 
 		int i;
@@ -170,15 +172,15 @@ public class EgovNumberUtil {
 		return true;
 	}
 
-    /**
-     * 특정숫자를 다른 숫자로 치환하는 기능 숫자 12345678에서 123를 999로 변환하는 기능을 제공(99945678)
-     *
-     * @param srcNumber - 숫자집합
-     * @param cnvrSrcNumber - 원래숫자
-     * @param cnvrTrgtNumber - 치환숫자
-     * @return 치환숫자
-     * @see
-     */
+	/**
+	 * 특정숫자를 다른 숫자로 치환하는 기능 숫자 12345678에서 123를 999로 변환하는 기능을 제공(99945678)
+	 *
+	 * @param srcNumber      - 숫자집합
+	 * @param cnvrSrcNumber  - 원래숫자
+	 * @param cnvrTrgtNumber - 치환숫자
+	 * @return 치환숫자
+	 * @see
+	 */
 
 	public static int getNumberCnvr(int srcNumber, int cnvrSrcNumber, int cnvrTrgtNumber) {
 
@@ -191,7 +193,7 @@ public class EgovNumberUtil {
 		String preStr = "";
 		String nextStr = source;
 
-		// 원본숫자에서 변환대상숫자의 위치를  찾는다.
+		// 원본숫자에서 변환대상숫자의 위치를 찾는다.
 		while (source.indexOf(subject) >= 0) {
 			preStr = source.substring(0, source.indexOf(subject)); // 변환대상숫자 위치까지 숫자를 잘라낸다
 			nextStr = source.substring(source.indexOf(subject) + subject.length(), source.length());
@@ -199,27 +201,27 @@ public class EgovNumberUtil {
 			rtnStr.append(preStr).append(object); // 변환대상위치 숫자에 변환할 숫자를 붙여준다.
 		}
 		rtnStr.append(nextStr); // 변환대상 숫자 이후 숫자를 붙여준다.
-		
+
 		return Integer.parseInt(rtnStr.toString());
 	}
 
-    /**
-     * 특정숫자가 실수인지, 정수인지, 음수인지 체크하는 기능 123이 실수인지, 정수인지, 음수인지 체크하는 기능을 제공함
-     *
-     * @param srcNumber - 숫자집합
-     * @return -1(음수), 0(정수), 1(실수)
-     * @see
-     */
-    public static int checkRlnoInteger(double srcNumber) {
+	/**
+	 * 특정숫자가 실수인지, 정수인지, 음수인지 체크하는 기능 123이 실수인지, 정수인지, 음수인지 체크하는 기능을 제공함
+	 *
+	 * @param srcNumber - 숫자집합
+	 * @return -1(음수), 0(정수), 1(실수)
+	 * @see
+	 */
+	public static int checkRlnoInteger(double srcNumber) {
 
-	// byte 1바이트 		▶소수점이 없는 숫자로, 범위 -2^7 ~ 2^7 -1
-	// short 2바이트		▶소수점이 없는 숫자로, 범위 -2^15 ~ 2^15 -1
-	// int 4바이트 		▶소수점이 없는 숫자로, 범위 -2^31 ~ 2^31 - 1
-	// long 8바이트 		▶소수점이 없는 숫자로, 범위 -2^63 ~ 2^63-1
+		// byte 1바이트 ▶소수점이 없는 숫자로, 범위 -2^7 ~ 2^7 -1
+		// short 2바이트 ▶소수점이 없는 숫자로, 범위 -2^15 ~ 2^15 -1
+		// int 4바이트 ▶소수점이 없는 숫자로, 범위 -2^31 ~ 2^31 - 1
+		// long 8바이트 ▶소수점이 없는 숫자로, 범위 -2^63 ~ 2^63-1
 
-	// float 4바이트		▶소수점이 있는 숫자로, 끝에 F 또는 f 가 붙는 숫자 (예:3.14f)
-	// double 8바이트	▶소수점이 있는 숫자로, 끝에 아무것도 붙지 않는 숫자 (예:3.14)
-	//							▶소수점이 있는 숫자로, 끝에 D 또는 d 가 붙는 숫자(예:3.14d)
+		// float 4바이트 ▶소수점이 있는 숫자로, 끝에 F 또는 f 가 붙는 숫자 (예:3.14f)
+		// double 8바이트 ▶소수점이 있는 숫자로, 끝에 아무것도 붙지 않는 숫자 (예:3.14)
+		// ▶소수점이 있는 숫자로, 끝에 D 또는 d 가 붙는 숫자(예:3.14d)
 
 		String cnvrString = null;
 

@@ -18,10 +18,10 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import egovframework.com.cmm.EgovMessageSource;
 import egovframework.com.cmm.LoginVO;
+import egovframework.com.cmm.util.service.EgovClntInfo;
 import egovframework.let.uat.uap.service.EgovLoginPolicyService;
 import egovframework.let.uat.uap.service.LoginPolicyVO;
 import egovframework.let.uat.uia.service.EgovLoginService;
-import egovframework.let.utl.sim.service.EgovClntInfo;
 import egovframework.rte.fdl.cmmn.trace.LeaveaTrace;
 import egovframework.rte.fdl.property.EgovPropertyService;
 import egovframework.rte.fdl.security.userdetails.util.EgovUserDetailsHelper;

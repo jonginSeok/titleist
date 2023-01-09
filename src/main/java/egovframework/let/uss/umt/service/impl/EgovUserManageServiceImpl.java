@@ -2,11 +2,10 @@ package egovframework.let.uss.umt.service.impl;
 
 import java.util.List;
 
+import egovframework.com.cmm.util.service.EgovFileScrty;
 import egovframework.let.uss.umt.service.EgovUserManageService;
 import egovframework.let.uss.umt.service.UserDefaultVO;
 import egovframework.let.uss.umt.service.UserManageVO;
-import egovframework.let.utl.sim.service.EgovFileScrty;
-
 import egovframework.rte.fdl.cmmn.EgovAbstractServiceImpl;
 import egovframework.rte.fdl.idgnr.EgovIdGnrService;
 

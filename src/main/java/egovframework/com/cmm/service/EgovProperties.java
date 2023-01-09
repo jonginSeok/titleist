@@ -52,10 +52,8 @@ public class EgovProperties{
     + System.getProperty("file.separator") + ".." + System.getProperty("file.separator")
     + ".." + System.getProperty("file.separator") + ".." + System.getProperty("file.separator");
 
-    public static final String GLOBALS_PROPERTIES_FILE
-    = RELATIVE_PATH_PREFIX + "egovProps" + System.getProperty("file.separator") + "globals.properties";
-
-
+    public static final String GLOBALS_PROPERTIES_FILE = RELATIVE_PATH_PREFIX + "properties" + System.getProperty("file.separator") + "globals.properties";
+    
 
     /**
 	 * 인자로 주어진 문자열을 Key값으로 하는 상대경로 프로퍼티 값을 절대경로로 반환한다(Globals.java 전용)
@@ -72,7 +70,7 @@ public class EgovProperties{
 			fis  = new FileInputStream(GLOBALS_PROPERTIES_FILE);
 			props.load(new java.io.BufferedInputStream(fis));
 			value = props.getProperty(keyName).trim();
-			value = RELATIVE_PATH_PREFIX + "egovProps" + System.getProperty("file.separator") + value;
+			value = RELATIVE_PATH_PREFIX + "properties" + System.getProperty("file.separator") + value;
 		}catch(FileNotFoundException fne){
 			debug(fne);
 		}catch(IOException ioe){
@@ -85,11 +83,10 @@ public class EgovProperties{
 			} catch (Exception ex) {
 				ex.printStackTrace();
 			}
-
 		}
 		return value;
 	}
-*/
+     */
 
 	/**
 	 * 인자로 주어진 문자열을 Key값으로 하는 프로퍼티 값을 반환한다(Globals.java 전용)

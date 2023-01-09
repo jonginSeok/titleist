@@ -3,9 +3,9 @@ package egovframework.let.uat.uap.filter;
 import java.io.IOException;
 
 import egovframework.com.cmm.EgovMessageSource;
+import egovframework.com.cmm.util.service.EgovClntInfo;
 import egovframework.let.uat.uap.service.EgovLoginPolicyService;
 import egovframework.let.uat.uap.service.LoginPolicyVO;
-import egovframework.let.utl.sim.service.EgovClntInfo;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;

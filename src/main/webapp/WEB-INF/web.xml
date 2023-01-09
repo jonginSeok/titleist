@@ -76,7 +76,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>action</servlet-name>
-        <url-pattern>*.ao</url-pattern>
+        <url-pattern>*.ax</url-pattern>
     </servlet-mapping>
 
     <welcome-file-list>

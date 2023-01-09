@@ -30,7 +30,7 @@ public class LoginLog implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	/** 로그ID */
+	/** 번호 */
 	private String no;
 
 	/** 로그ID */
@@ -101,6 +101,73 @@ public class LoginLog implements Serializable {
 
 	/** rowNo */
 	private int rowNo = 0;
+
+	private int rows = 0;
+	private int page = 1;
+	
+	/*
+	 default message [Failed to convert property value of type 'java.lang.String' to required type 'int' for property 'sidx'; 
+		nested exception is java.lang.NumberFormatException: For input string: ""]
+	 */
+	//private int sidx = 0; 
+	private String sidx = "";
+	private String sord = "desc";
+
+	/**
+	 * @return the rows
+	 */
+	public int getRows() {
+		return rows;
+	}
+
+	/**
+	 * @param rows the rows to set
+	 */
+	public void setRows(int rows) {
+		this.rows = rows;
+	}
+
+	/**
+	 * @return the page
+	 */
+	public int getPage() {
+		return page;
+	}
+
+	/**
+	 * @param page the page to set
+	 */
+	public void setPage(int page) {
+		this.page = page;
+	}
+
+//	/**
+//	 * @return the sidx
+//	 */
+//	public int getSidx() {
+//		return sidx;
+//	}
+//
+//	/**
+//	 * @param sidx the sidx to set
+//	 */
+//	public void setSidx(int sidx) {
+//		this.sidx = sidx;
+//	}
+
+	/**
+	 * @return the sord
+	 */
+	public String getSord() {
+		return sord;
+	}
+
+	/**
+	 * @param sord the sord to set
+	 */
+	public void setSord(String sord) {
+		this.sord = sord;
+	}
 
 	public String getNo() {
 		return no;
@@ -283,6 +350,14 @@ public class LoginLog implements Serializable {
 	 */
 	public String toString() {
 		return ToStringBuilder.reflectionToString(this);
+	}
+
+	public String getSidx() {
+		return sidx;
+	}
+
+	public void setSidx(String sidx) {
+		this.sidx = sidx;
 	}
 
 }

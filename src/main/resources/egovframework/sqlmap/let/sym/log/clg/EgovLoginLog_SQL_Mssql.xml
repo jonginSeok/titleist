@@ -3,11 +3,29 @@
 
 <sqlMap namespace="UserLog">
 
-	<typeAlias alias="egovMap"
-		type="egovframework.rte.psl.dataaccess.util.EgovMap" />
+	<typeAlias alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap" />
 	<!-- 로그인로그 VO -->
-	<typeAlias alias="loginLog"
-		type="egovframework.let.sym.log.clg.service.LoginLog" />
+	<typeAlias alias="loginLog" type="egovframework.let.sym.log.clg.service.LoginLog" />
+	
+	<sql id="paging_pre">
+	SELECT   *
+	FROM     (
+	</sql>
+	
+	<sql id="paging_sub">
+	OFFSET #firstIndex# ROWS
+	FETCH FIRST #recordCountPerPage# ROWS ONLY
+	)
+	PG
+	<isNotEmpty property="sidx">
+		<isEmpty property="sord">
+		ORDER BY $sidx$ ASC
+		</isEmpty>
+		<isNotEmpty property="sord">
+		ORDER BY $sidx$ $sord$
+		</isNotEmpty>
+	</isNotEmpty>
+	</sql>
 
 	<!-- 로그인로그 맵 -->
 	<resultMap id="LoginLogVO" class="egovframework.let.sym.log.clg.service.LoginLog">
@@ -62,6 +80,7 @@
 
 	<!-- 로그인 로그 목록  조회 -->
 	<select id="LoginLogDAO.selectLoginLogInf" parameterClass="loginLog" resultMap="LoginLogVO">
+		<include refid="paging_pre"/>
 		<![CDATA[	
 			SELECT 
 				  a.LOG_ID
@@ -79,15 +98,14 @@
 				1 = 1
 			]]>
 		<isNotEmpty prepend="AND" property="searchWrd">
-				<![CDATA[	a.CONECT_MTHD LIKE CONCAT ('%', #searchWrd#,'%') ORDER BY a.LOG_ID ]]>
+				<![CDATA[	a.CONECT_MTHD LIKE CONCAT ('%', #searchWrd#,'%') ]]>
 		</isNotEmpty>
 		<isNotEmpty prepend="AND" property="searchBgnDe">
 				<!-- <![CDATA[	DATE_FORMAT(a.CREAT_DT, '%Y%m%d') BETWEEN #searchBgnDe# AND #searchEndDe# ORDER BY a.LOG_ID ]]> -->
 				<![CDATA[	convert(varchar, a.CREAT_DT, 112) BETWEEN FORMAT(CAST(#searchBgnDe# AS DATE), 'yyyyMMdd') AND FORMAT(CAST(#searchEndDe# AS DATE), 'yyyyMMdd') ]]>
 		</isNotEmpty>		
-				<![CDATA[ ORDER BY a.CREAT_DT DESC ]]>
-		OFFSET #firstIndex# ROWS
-		FETCH FIRST #recordCountPerPage# ROWS ONLY
+		<![CDATA[ ORDER BY NO ]]>
+		<include refid="paging_sub"/>
 	</select>
 
 	<!-- 로그인 로그 총건수 -->
