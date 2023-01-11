@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<data>
+	<page>1</page>			<!-- 현재 페이지 -->
+	<total>4</total>		<!-- 총 페이지수 -->
+	<records>4</records>	<!-- 전체 row 수 -->
+
+	<list>
+		<id>a</id>
+		<invdate>2007-10-01</invdate>
+		<name>1</name>
+		<note>note</note>
+		<amount>200.00</amount>
+		<tax>10.00</tax>
+		<total>210.00</total>
+	</list>
+
+	<list>
+		<id>b</id>
+		<invdate>2007-10-02</invdate>
+		<name>2</name>
+		<note>note2</note>
+		<amount>300.00</amount>
+		<tax>20.00</tax>
+		<total>320.00</total>
+	</list>
+
+	<list>
+		<id>c</id>
+		<invdate>2007-09-01</invdate>
+		<name>3</name>
+		<note>note3</note>
+		<amount>400.00</amount>
+		<tax>30.00</tax>
+		<total>430.00</total>
+	</list>
+
+	<list>
+		<id>d</id>
+		<invdate>2007-09-01</invdate>
+		<name>2</name>
+		<note>note3</note>
+		<amount>400.00</amount>
+		<tax>30.00</tax>
+		<total>430.00</total>
+	</list>
+
+
+
+</data>

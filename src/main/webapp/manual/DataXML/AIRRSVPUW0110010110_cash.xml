@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<data>
+<page>1</page>			<!-- 현재 페이지 -->
+<total></total>		<!-- 총 페이지수 -->
+<records>4</records>	<!-- 전체 row 수 -->
+		
+<list>
+	<no>1</no>
+	<depositType>가상계좌</depositType>
+	<depositName></depositName>
+	<bankName>국민은행</bankName>
+	<bankNumber><![CDATA[1234-1234-123111]]></bankNumber>
+	<depositDate></depositDate>
+	<airAmount>500,000</airAmount>
+	<depositYN>Y</depositYN>
+	<depositAction>계좌삭제</depositAction>
+</list>
+<list>
+	<no>2</no>
+	<depositType>보통예금</depositType>
+	<depositName></depositName>
+	<bankName></bankName>
+	<bankNumber><![CDATA[]]></bankNumber>
+	<depositDate></depositDate>
+	<airAmount></airAmount>
+	<depositYN></depositYN>
+	<depositAction></depositAction>
+</list>
+<list>
+	<no>3</no>
+	<depositType>마일리지</depositType>
+	<depositName></depositName>
+	<bankName>삼성카드</bankName>
+	<bankNumber><![CDATA[1234-1234-123111]]></bankNumber>
+	<depositDate></depositDate>
+	<airAmount>5,000</airAmount>
+	<depositYN></depositYN>
+	<depositAction>입금전송</depositAction>
+</list>
+
+</data>

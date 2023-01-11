@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<data>
+<page>1</page>			<!-- 현재 페이지 -->
+<total></total>		<!-- 총 페이지수 -->
+<records>4</records>	<!-- 전체 row 수 -->
+		
+<list>
+	<no>1</no>
+	<nameEn>SEO/HYUNJIN</nameEn>
+	<net>10,000,000</net>
+	<hideNet>10,000,000</hideNet>
+	<oilAmount>10,000,000</oilAmount>
+	<tax>10,000,000</tax>
+	<discount1>100,000</discount1>
+	<discount2>100,000</discount2>
+	<saleBefore>10,000,000</saleBefore>
+	<saleAfter>10,000,000</saleAfter>
+	<saleUp>10,000,000</saleUp>
+	<saleAmount>10,000,000</saleAmount>
+	<useAmount>10,000,000</useAmount>
+	<fare>학생</fare>
+	<file>등록(0/1)</file>
+</list>
+<list>
+	<no>2</no>
+	<nameEn>SEO/HYUNJIN</nameEn>
+	<net>10,000,000</net>
+	<hideNet>10,000,000</hideNet>
+	<oilAmount>10,000,000</oilAmount>
+	<tax>10,000,000</tax>
+	<discount1>100,000</discount1>
+	<discount2>100,000</discount2>
+	<saleBefore>10,000,000</saleBefore>
+	<saleAfter>10,000,000</saleAfter>
+	<saleUp>10,000,000</saleUp>
+	<saleAmount>10,000,000</saleAmount>
+	<useAmount>10,000,000</useAmount>
+	<fare>장애인</fare>
+	<file>미등록(0/0)</file>
+</list>
+
+</data>

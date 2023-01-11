@@ -1,0 +1,61 @@
+<html>     
+	<head>   
+		<meta charset="utf-8">
+		<title>일반 자바스크립트</title>      
+		<script type="text/javascript">             
+		function addEvent(target, eventType,eventHandler, useCapture) {                 
+			if (target.addEventListener) { // W3C DOM                     
+				target.addEventListener(eventType,eventHandler,useCapture?useCapture:false);                 
+			} else if (target.attachEvent) {  // IE DOM                     
+				//var r = target.attachEvent("on"+eventType, eventHandler);                 
+			}             
+		}                     
+		
+		function clickHandler(event) {                 
+			var nav = document.getElementById('navigation');                 
+			for(var i = 0; i < nav.childNodes.length; i++) {                     
+				var child = nav.childNodes[i];                     
+				if(child.nodeType==3)                         
+					continue;                     
+				child.className = '';                 
+			}                 
+			event.target.className = 'active';             
+			
+		}                
+
+		addEvent(window, 'load', function(eventObj) {                 
+			var nav = document.getElementById('navigation');                 
+			for(var i = 0; i < nav.childNodes.length; i++) {                     
+				var child = nav.childNodes[i];                     
+				if(child.nodeType==3)                         
+					continue;                     
+				addEvent(child, 'click', clickHandler);                 
+			}             
+		});
+		</script>         
+		<style type="text/css">             
+		#navigation li {                 
+		list-style:none;                 
+		float:left;                 
+		padding:5px;             
+		}             
+		#navigation {                 
+		cursor:pointer;             
+		}             
+		#navigation .active {                 
+		background-color:red;                 
+		color:white;             
+		}         
+		</style>     
+	</head>     
+	<body>         
+		<ul id="navigation">             
+			<li class="active">HTML</li>             
+			<li><label>CSS</label></li>             
+			<li>javascript</li>             
+			<li>jQuery</li>             
+			<li>PHP</li>             
+			<li>mysql</li>         
+		</ul>     
+	</body> 
+</html>

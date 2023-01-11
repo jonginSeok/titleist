@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+
+<link rel="stylesheet" type="text/css" href="/css/jquery.jqplot.min.css" />
+<!--[if lt IE 9]><script language="javascript" type="text/javascript" src="/js/plugin/excanvas.js"></script><![endif]-->
+<script type="text/javascript" src="/js/plugin/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="/js/lib/jquery.com.util.js"></script>
+<script type="text/javascript" src="/js/lib/jquery.com.form.js"></script>
+    
+<script type="text/javascript">
+var $k1 = jQuery.noConflict();
+
+$k1(document).ready(function(){
+	$k1("#combo").object('loaddata', '../xsl/combo_btms.xml', '', {listNode : 'data > list', code:'code', name:'name'}, bindComboChangeEvent);	
+	
+	$k1("#radio").object('loaddata', '../xsl/combo_btms.xml', '', {listNode : 'data > list', code:'code', name:'name', initVal:['M3']}, bindRadioClickEvent);
+	
+	$k1("#checkbox").object('loaddata', '../xsl/combo_btms.xml', '', {listNode : 'data > list', code:'code', name:'name', initVal:['M3', 'M1']}, bindCheckClickEvent);
+});
+
+function bindComboChangeEvent(){
+	$k1('#combo').bind('change', function(){
+		alert('combo changed : ' + this.value);
+	});
+}
+
+function bindRadioClickEvent(){
+	$k1('input[name="radio"]').bind('click', function(){
+		alert('radio clicked : ' + this.value);
+	});
+}
+
+function bindCheckClickEvent(){	
+	$k1('input[name="checkbox"]').bind('click', function(){
+		if(this.checked){
+			alert('checkbox checked : ' + this.value);
+		}
+	});
+}
+</script>
+</head>
+<body>
+<!-- Example scripts go here -->
+    <select id="combo"></select>
+    <br/>
+    <input id="radio" type="radio" name="radio">
+    <br/>
+    <input id="checkbox" type="checkbox" name="checkbox">
+<!-- End example scripts -->
+</body>
+</html>

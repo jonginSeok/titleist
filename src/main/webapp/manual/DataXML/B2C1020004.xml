@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page>
+<div>
+<_showDate></_showDate>
+<table>
+	<id>tblLow</id>
+	<class>Table</class>
+	
+	<!-- 회사별 설정 -->
+	<owner>
+		<site>kb</site>
+		<title>city,air,amount,tax,fee,gubun,condition,isDirect,reserve</title>
+	</owner>
+	<owner>
+		<site>samsung</site>
+		<title>city,air,visit,gubun,roundTrip,amount,reserve</title>
+	</owner>
+	<thead>
+		<id></id>
+		<class>TableHeader</class>
+		<columns>
+			<column id="th_city" name="" class="">도시</column>
+			<column id="th_air" name="" class="">항공</column>
+			<column id="th_amount" name="" class="">요금(원)</column>
+			<column id="th_tax" name="" class="">예상TAX</column>
+			<column id="th_fee" name="" class="">취급수수료</column>
+			<column id="th_gubun" name="" class="">구분</column>
+			<column id="th_condition" name="" class="">요금조건</column>
+			<column id="th_isDirect" name="" class="">직항/경유</column>
+			<column id="th_reserve" name="" class="">좌석예약</column>
+			<column id="th_visit" name="" class="">최대체류기간</column>
+			<column id="th_roundTrip" name="" class="">왕복</column>
+		</columns>
+	</thead>
+	<tbody>
+		<!-- 테이블 데이타의 액션 정보, 정렬,  -->
+			<row id="row_" class="TableRow">
+				<col id="td_city" name="" class="" href="">row</col>
+				<col id="td_air" name="" class="" href="">row</col>
+				<col id="td_amount" name="" class="" href="">row</col>
+				<col id="td_tax" name="" class="" href="javascript:fnTax();">row</col>
+				<col id="td_fee" name="" class="" href="">row</col>
+				<col id="td_gubun" name="" class="" href="">row</col>
+				<col id="td_condition" name="" class="" href="">row</col>
+				<col id="td_isDirect" name="" class="" href="">row</col>
+				<col id="td_reserve" name="" class="" href="" data="button"></col>
+				<col id="td_visit" name="" class="" href="">row</col>
+				<col id="td_roundTrip" name="" class="" href="">row</col>
+			</row>
+			<row id="hid_" class="" style="display:none">
+				<col colspan="9" id="" name="" class="" href="">
+				</col>
+			</row>
+	</tbody>
+</table>
+<reserveButton>
+	<input>
+		<type>button</type>
+		<id>reserveButton</id>
+		<name>reserveButton</name>
+		<value>조회</value>
+		<class/>
+		<label/>
+		<readonly>true</readonly>
+	</input>					
+</reserveButton>
+<schButton>
+	<input>
+		<type>button</type>
+		<id>schButton</id>
+		<name>schButton</name>
+		<value>스케줄 조회</value>
+		<class/>
+		<label/>
+		<readonly>true</readonly>
+	</input>					
+</schButton>
+<resvDpdate1>
+	<input>
+		<type>text</type>
+		<id>resvDpdate1</id>
+		<name>resvDpdate</name>
+		<value/>
+		<class/>
+		<label/>
+		<readonly>false</readonly>
+	</input>
+</resvDpdate1>
+<resvRtdate1>
+	<input>
+		<type>text</type>
+		<id>resvRtdate1</id>
+		<name>resvRtdate</name>
+		<value/>
+		<class/>
+		<label/>
+		<readonly>false</readonly>
+	</input>
+</resvRtdate1>	
+</div>
+</page>

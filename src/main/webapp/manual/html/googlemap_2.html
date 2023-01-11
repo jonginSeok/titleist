@@ -1,0 +1,403 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<link rel="Stylesheet" type="text/css" href="/css/style.css" />
+<link rel="Stylesheet" type="text/css" href="/css/vof_contents.css" />
+<link rel="stylesheet" type="text/css" href="/css/ui.jqgrid.css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<!-- 
+<script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false"></script> -->
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
+<script type="text/javascript" src="/js/plugin/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="/js/plugin/XSLTransform.js"></script>
+<script type="text/javascript" src="/js/plugin/jquery.jqGrid.min.js"></script>
+<script type="text/javascript" src="/js/plugin/jquery.blockUI.js"></script>
+<script type="text/javascript" src="/js/lib/jquery.com.grid.js"></script>
+<script type="text/javascript" src="/js/lib/jquery.com.util.js"></script>
+<script type="text/javascript" src="/js/lib/jquery.com.uitab.js"></script>
+<script type="text/javascript" src="/js/lib/jquery.com.pager.js"></script>
+<script type="text/javascript" src="/js/lib/jquery.com.js"></script>
+<script type="text/javascript" src="/js/lib/jquery.com.map.js"></script>
+<script type="text/javascript">
+	var $k1 = jQuery.noConflict();
+
+	$k1(document).ready(function() {
+		//맵 센터 좌표 세팅
+		//지오코드 샘플
+		var mapOptions = {};
+		$k1.gmap.geocode('요코하마시', function(results, status) {
+			/* status
+			ERROR : There was a problem contacting the Google servers.
+			INVALID_REQUEST : This GeocoderRequest was invalid.
+			OK : The response contains a valid GeocoderResponse.
+			OVER_QUERY_LIMIT : The webpage has gone over the requests limit in too short a period of time.
+			REQUEST_DENIED : The webpage is not allowed to use the geocoder.
+			UNKNOWN_ERROR : A geocoding request could not be processed due to a server error. The request may succeed if you try again.
+			ZERO_RESULTS : No result was found for this GeocoderRequest.
+			 */
+			console.log(status);
+			console.log(results);
+
+			for (var i = 0; i < results.length; i++) {
+				console.log(results[i].geometry.location.lat());
+				console.log(results[i].geometry.location.lng());
+			}
+
+			mapOptions = {
+				location : results[0].geometry.location,
+				mapSize : 'normal'
+			};
+
+			//맵 로드
+			$k1.gmap.mapInit('googlemap', mapOptions);
+
+			init();
+		});
+	});
+
+	function init() {
+		//Grid title 
+		var gTitle = [ 'ID', '이름', '가격', '주소', '소개', '위도', '경도', '객실', '등급' ];
+		//Grid Model 
+		var gModel = [ {
+			name : 'id',
+			index : 'id',
+			width : 30,
+			align : "center"
+		}, {
+			name : 'name',
+			index : 'name',
+			width : 100,
+			align : "left"
+		}, {
+			name : 'amount',
+			index : 'amount',
+			width : 50,
+			align : "right"
+		}, {
+			name : 'addr',
+			index : 'addr',
+			width : 200,
+			align : "left"
+		}, {
+			name : 'intro',
+			index : 'intro',
+			width : 45,
+			align : "center",
+			hidden : true
+		}, {
+			name : 'lat',
+			index : 'lat',
+			width : 45,
+			align : "center",
+			hidden : true
+		}, {
+			name : 'lng',
+			index : 'lng',
+			width : 45,
+			align : "center",
+			hidden : true
+		}, {
+			name : 'room',
+			index : 'room',
+			width : 45,
+			align : "center",
+			hidden : true
+		}, {
+			name : 'grade',
+			index : 'grade',
+			width : 30,
+			align : "center"
+		}
+
+		];
+
+		var options = {
+			height : 'auto',
+			width : '100%',
+			autowidth : true,
+			rowNum : 12,
+			rowList : [],
+			xmlReader : {
+				root : "data",
+				row : "list",
+				page : "data>page", //
+				total : "data>total", //
+				records : "data>records", //
+				repeatitems : false,
+				id : "id"
+			}
+		};
+
+		var events = {
+			loadComplete : gfnLoadComplete,
+			loadBeforeSend : function() {
+				$k1("#tbl_grid").grid('setGridStyle', 'b2c_popup');
+
+				var searchWidth = $k1.util.intSize($k1('.k1_cont_wrap').css(
+						'width'), 'px');
+				$k1("#tbl_grid").setGridWidth(searchWidth, true);
+
+			},
+			gridComplete : gfnGridComplete
+		};
+
+		$k1("#tbl_grid").grid('/xsl/htlMapData.xml', gTitle, gModel, options,
+				events);
+
+		var closeHtml = $k1('.k1_btn_tselect').html();
+		var openHtml = $k1('.k1_hide').html();
+
+		//지도 열기 닫기
+		$k1.gmap.closeMap('.k1_btn_tselect', '.k1_search_box', 500, {
+			afterIn : function() {
+				$k1('.k1_btn_tselect').html(openHtml);
+			},
+			afterOut : function() {
+				$k1('.k1_btn_tselect').html(closeHtml);
+			}
+		});
+
+		//조회
+		$k1('#btn_list').bind('click', function() {
+			var css = {
+				border : 'none',
+				padding : '15px',
+				backgroundColor : '#fff',
+				'-webkit-border-radius' : '10px',
+				'-moz-border-radius' : '10px',
+				opacity : 1,
+				color : '#000',
+				'font-weight' : 'bold',
+				'font-size' : '14pt',
+				cursor : 'default'
+			};
+
+			var overlayCSS = {
+				backgroundColor : '#000',
+				opacity : 0,
+				cursor : 'default'
+			};
+
+			$k1.uiBlockByJq('msg', {
+				css : css,
+				overlayCSS : overlayCSS
+			});
+			//재조회시 지도위의 마커를 전부 지운다.
+			$k1.gmap.removeMarkers('googlemap', 'hotel');
+
+			var url = '/xsl/htlMapData.xml';
+			$k1("#tbl_grid").grid('selectData', url);
+		});
+
+		//지도 유형 선택
+		$k1('#btn_roadmap').bind('click', function() {
+			$k1.gmap.setMapType('googlemap', 'roadmap');
+		});
+
+		$k1('#btn_satellite').bind('click', function() {
+			$k1.gmap.setMapType('googlemap', 'satellite');
+		});
+
+		$k1('#btn_hybrid').bind('click', function() {
+			$k1.gmap.setMapType('googlemap', 'hybrid');
+		});
+
+		//화면에 보여줄 마커 유형 선택
+		$k1('#chk_traffic').bind('click', function() {
+			if ($k1(this).is(':checked'))
+				$k1.gmap.getPlaceLibrary('googlemap', 'traffic');
+			else
+				$k1.gmap.removeMarkers('googlemap', 'traffic');
+		});
+
+		$k1('#chk_place').bind('click', function() {
+			if ($k1(this).is(':checked'))
+				$k1.gmap.getPlaceLibrary('googlemap', 'sights');
+			else
+				$k1.gmap.removeMarkers('googlemap', 'sights');
+		});
+
+		$k1('#chk_food').bind('click', function() {
+			if ($k1(this).is(':checked'))
+				$k1.gmap.getPlaceLibrary('googlemap', 'food');
+			else
+				$k1.gmap.removeMarkers('googlemap', 'food');
+		});
+
+		$k1('#chk_shop').bind('click', function() {
+			if ($k1(this).is(':checked'))
+				$k1.gmap.getPlaceLibrary('googlemap', 'shop');
+			else
+				$k1.gmap.removeMarkers('googlemap', 'shop');
+		});
+
+		//인쇄
+		$k1('#btn_print').bind('click', function() {
+
+			var url = $k1.gmap.printMap('googlemap');
+			window.open('gmapprint.html?url=' + url);
+		});
+	}
+
+	function gfnGridComplete() {
+		//$k1.uiUnblockByJq();
+		var rowids = $k1("#tbl_grid").grid('getDataIds');
+
+		for (var i = 0; i < rowids.length; i++) {
+			var lat = $k1("#tbl_grid").grid('getCellData', rowids[i], 'lat');
+			var lng = $k1("#tbl_grid").grid('getCellData', rowids[i], 'lng');
+			var room = $k1("#tbl_grid").grid('getCellData', rowids[i], 'room');
+			var name = $k1("#tbl_grid").grid('getCellData', rowids[i], 'name');
+			var intro = $k1("#tbl_grid")
+					.grid('getCellData', rowids[i], 'intro');
+
+			var markerOption = {
+				markerType : "hotel",
+				id : rowids[i],
+				lat : lat,
+				lng : lng,
+				name : name,
+				intro : intro,
+				img : "/imgs/map/htl/hotel_" + rowids[i] + ".jpg",
+				status : room,
+				streetViewFunc : 'openStreetView',
+				target : 'googlemap',
+				type : 'H'
+			};
+
+			$k1.gmap.addMarker(markerOption);
+		}
+	}
+	/*
+	 //그리드에 데이터 로드가 끝나면 실행. 위의 'var events'에서 정의
+	 function gfnGridComplete(){	
+		 $k1.uiUnblockByJq();
+		 iterator = 0;
+		 //그리드 데이터가 로드 된 후 그리드 데이터로 지도위에 마커를 찍는다.
+		 var rowcount = $k1("#tbl_grid").grid('getGridParam', 'reccount');
+		 //var loc = $k1("#tbl_grid").grid('getColData', 'lat', true);
+		 for(var i = 0;i < rowcount/* loc.length /;i++){		
+			 setTimeout(function(){ addMaker(); }, i * 200);
+		 }	
+	 }
+
+	 //지도위에 마커 추가
+	 var iterator = 0;
+	 function addMaker(){	
+		 var lat = $k1("#tbl_grid").grid('getColData', 'lat', true);
+		 var lng = $k1("#tbl_grid").grid('getColData', 'lng', true);
+		 var room = $k1("#tbl_grid").grid('getColData', 'room', true);
+		 var name = $k1("#tbl_grid").grid('getColData', 'name', true);
+		 var intro = $k1("#tbl_grid").grid('getColData', 'intro', true);
+		 //console.log(room);
+		 var markerOption = {
+		 markerType : "hotel",
+		 id : lat[iterator].id, 
+		 lat : lat[iterator].value, 
+		 lng : lng[iterator].value, 
+		 name : name[iterator].value,
+		 intro : intro[iterator].value,
+		 infoImg : "/imgs/map/htl/hotel_" + lat[iterator].id + ".jpg",
+		 roomCount : room[iterator].value,
+		 streetViewFunc : 'openStreetView'
+	 };
+	
+	 $k1.gmap.addMarker(markerOption);	
+	 	iterator++;
+	 }
+	 */
+	//스트리트 뷰 보기
+	function openStreetView(lat, lng) {
+		var option = {
+			lat : lat,
+			lng : lng,
+			target : 'googlemap'
+		};
+		$k1.gmap.openStreetView(option);
+	}
+
+	function gfnLoadComplete() {
+		$k1("#tbl_grid").grid('setGridStyle', 'b2c_popup');
+
+		var currentPage = $k1('#tbl_grid').grid('getGridParam', 'page'); //현재 페이지
+		var pageSize = $k1('#tbl_grid').grid('getGridParam', 'rowNum'); //한 페이지당 보여 주는 row수
+		var pageTotal = $k1('#tbl_grid').grid('getGridParam', 'records'); //총 row 수
+		var pageBlock = 10; //block으로 보여 주는 page 수
+		var url = $k1('#tbl_grid').grid('getGridParam', 'url'); //페이지 이동시 url
+		var formid = ''; //페이지 이동시 param으로 넘겨야 하는 form id
+
+		$k1(".k1_page_num").pager({
+			pageSize : pageSize,
+			pageBlock : pageBlock,
+			currentPage : currentPage,
+			pageTotal : pageTotal,
+			url : url,
+			formid : formid
+		}, {
+			type : 'grid',
+			id : 'tbl_grid',
+			style : 'vof_list'
+		});
+
+	}
+</script>
+</head>
+<body>
+	<div id="k1_content_wrap">
+		<!-- //content -->
+		<div class="k1_cont_bg">
+			<div class="k1_cont_wrap">
+
+				<div class="k1_search_box">
+					<input id="btn_roadmap" type="button" value="일반지도" />
+					<input id="btn_satellite" type="button" value="위성지도" />
+					<input id="btn_hybrid" type="button" value="위성+일반" />
+					<input id="chk_traffic" type="checkbox" value="1" />교통 
+					<input id="chk_place" type="checkbox" />명소 
+					<input id="chk_food" type="checkbox" />맛집 
+					<input id="chk_shop" type="checkbox" />쇼핑
+					<div id="googlemap" class="map" style="width: 100%; height: 500px; margin-top: 10px;"></div>
+					<input id="btn_print" type="button" value="인쇄" />
+
+					<div class="k1_btn_tselect">
+						<a href=""><img src="/imgs/airA/btn/btn_sclose.gif" alt="close"></a>
+					</div>
+					<!-- open_btn -->
+					<div class="k1_btn_tselect k1_hide" style="display: none;">
+						<a href=""><img src="/imgs/airA/btn/btn_sopen.gif" alt="open"></a>
+					</div>
+					<!-- open_btn -->
+				</div>
+
+				<div class="k1_btn_area k1_txtbtn k1_mt5">
+					<div class="k1_btn_area_r">
+						<a href="javascript:;" id="btn_list" class="k1_btn2"><em class="ico1"></em><span>조회</span></a>
+					</div>
+				</div>
+
+				<!-- 그리드 테이블 시작 -->
+				<table id="tbl_grid" class="tbl_Grid"></table>
+				<!-- 그리드 테이블 종료 -->
+
+				<div class="k1_page_num"></div>
+			</div>
+		</div>
+		<!-- //content -->
+	</div>
+	<div id="msg" style="display: none;">
+		<img src="/imgs/progressbar/busy.gif" /><br />
+		조회 중입니다.<br />
+		잠시만 기다리세요 
+		<input type="text">
+		<input type="text">
+		<input type="text">
+	</div>
+	<div id="printDiv" style="display: none;">
+		<img src="">
+	</div>
+</body>
+</html>

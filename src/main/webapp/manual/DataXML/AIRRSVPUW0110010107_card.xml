@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<data>
+<page>1</page>			<!-- 현재 페이지 -->
+<total></total>		<!-- 총 페이지수 -->
+<records>4</records>	<!-- 전체 row 수 -->
+		
+<list>
+	<no></no>
+	<ownerType></ownerType>
+	<ownerName></ownerName>
+	<cardKind></cardKind>
+	<cardNumber></cardNumber>
+	<cardTerm></cardTerm>
+	<paymentDate></paymentDate>
+	<airAmount></airAmount>
+	<tasfAmount></tasfAmount>
+	<password></password>
+</list>
+
+</data>

@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<data>
+
+	<list>
+	<id>1000</id>
+	<menu>통합관리</menu>
+	<url>NULL</url>
+	<mgubun>대분류</mgubun>
+	<mPath>통합관리</mPath>
+	<programId>BACK1001</programId>
+	<programDesc>통합관리 페이지</programDesc>
+	<pageType>F</pageType>
+    <level>0</level>				<!-- level -->
+    <parent>NULL</parent>			<!-- parent -->
+    <isLeaf>false</isLeaf>			<!-- is leaf -->
+    <isExpanded>true</isExpanded>	<!-- should be expanded -->
+	</list>
+	
+	<list>
+	<id>1001</id>
+	<menu>항공예약관리</menu>
+	<url>NULL</url>
+	<mgubun>중분류</mgubun>
+	<mPath>통합관리>항공예약관리</mPath>
+	<programId>BACK1001-00</programId>
+	<programDesc>항공예약관리 페이지</programDesc>
+	<pageType>F</pageType>
+    <level>1</level>
+    <parent>1000</parent>
+    <isLeaf>false</isLeaf>
+    <isExpanded>true</isExpanded>
+	</list>
+	
+	<list>
+	<id>1002</id>
+	<menu>국제선전체예약</menu>
+	<url>page1002.jsp</url>
+	<mgubun>소분류</mgubun>
+	<mPath>통합관리>항공예약관리>국제선전체예약</mPath>
+	<programId>BACK1001-01</programId>
+	<programDesc>국제선 전체 예약 조회</programDesc>
+	<pageType>P</pageType>
+    <level>2</level>
+    <parent>1001</parent>
+    <isLeaf>true</isLeaf>
+    <isExpanded>false</isExpanded>
+	</list>
+	
+	<list>
+	<id>1003</id>
+	<menu>국내선전체예약</menu>
+	<url>page1003.jsp</url>
+	<mgubun>소분류</mgubun>
+	<mPath>통합관리>항공예약관리>국내선전체예약</mPath>
+	<programId>BACK1001-02</programId>
+	<programDesc>국내선 전체 예약 조회</programDesc>
+	<pageType>P</pageType>
+    <level>2</level>
+    <parent>1001</parent>
+    <isLeaf>true</isLeaf>
+    <isExpanded>false</isExpanded>
+	</list>
+	
+</data>

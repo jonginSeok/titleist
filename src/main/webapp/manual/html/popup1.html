@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>팝업1</title>
+<link rel="stylesheet" type="text/css" href="/air/css/btmsA.css" />
+<script type="text/javascript" src="/vof/wfw/js/plugin/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="/vof/wfw/js/plugin/jquery.simplemodal.js"></script>
+<script type="text/javascript" src="/vof/wfw/js/lib/jquery.com.js"></script>	
+<script type="text/javascript" src="/vof/wfw/js/lib/jquery.com.util.js"></script>
+<script type="text/javascript">
+var $k1 = jQuery.noConflict();
+function goPopup1() {
+	$k1.popup.winopen('/vof/wfw/html/popup2.html', {
+		reqfrom : "popup"
+	}, {
+		width : 680,
+		height : 320,
+		winName : 'popup2'
+	}, function(ret) {
+		console.log('return : ' + ret);
+
+		$k1('#txt_retval').val(ret.name2);
+	});
+
+}
+
+function goClose() {
+	var retval = {
+			'seqno' : "123456",
+			'name1' : "팝업1"
+		};
+		$k1.popup.winval(retval);
+		$k1.popup.winclose();
+	
+}
+</script>
+</head>
+
+<body>
+
+<br/><br/>
+<a href="javascript:goClose();" class="k1_btmsbtn01" id="btn_popup"><span>닫기</span></a>
+<br/><br/>
+팝업2 받은 값 : <input type="text" name="retval" id="txt_retval" value=""/> <a href="javascript:goPopup1();" class="k1_btmsbtn01" id="btn_popup"><span>팝업</span></a>
+</body>
+</html>
+ 

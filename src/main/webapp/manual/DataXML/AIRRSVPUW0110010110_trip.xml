@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<data>
+<page>1</page>			<!-- 현재 페이지 -->
+<total></total>		<!-- 총 페이지수 -->
+<records>4</records>	<!-- 전체 row 수 -->
+		
+<list>
+	<id>1</id>
+	<no>1</no>
+	<count>2</count>						<!-- Rowspan 속성을 가질  row 수  -->
+	<flight>KE 234</flight>
+	<start>202-11-08 (목) 19:30</start>
+	<end>202-11-08 (목) 19:30</end>
+	<seat1>S</seat1>
+	<seat2>00석</seat2>
+	<startCity>뉴욕</startCity>
+	<endCity>뉴욕</endCity>
+	<flightInfo><![CDATA[<div id="clickFlightInfo" class="k1_btn01"><a href="#"><span>보기</span></a></div>]]></flightInfo>
+	<bigo><![CDATA[대한항공 0000편은 에어프랑스 0000편<br/>으로 공동운항 됩니다.]]></bigo>
+</list>
+<list>
+	<id>2</id>
+	<no>1</no>
+	<count>2</count>
+	<flight>KE 234</flight>
+	<start>202-11-08 (목) 19:30</start>
+	<end>202-11-08 (목) 19:30</end>
+	<seat1>S</seat1>
+	<seat2>00석</seat2>
+	<startCity>뉴욕</startCity>
+	<endCity>뉴욕</endCity>
+	<flightInfo><![CDATA[]]></flightInfo>
+	<bigo><![CDATA[]]></bigo>
+</list>
+<list>
+	<id>3</id>
+	<no>2</no>
+	<count>3</count>
+	<flight>KE 234</flight>
+	<start>202-11-08 (목) 19:30</start>
+	<end>202-11-08 (목) 19:30</end>
+	<seat1>S</seat1>
+	<seat2>00석</seat2>
+	<startCity>뉴욕</startCity>
+	<endCity>뉴욕</endCity>
+	<flightInfo><![CDATA[<div id="clickFlightInfo" class="k1_btn01"><a href="#"><span>보기</span></a></div>]]></flightInfo>
+	<bigo><![CDATA[대한항공 0000편은 에어프랑스 0000편<br/>으로 공동운항 됩니다.]]></bigo>
+</list>
+<list>
+	<id>4</id>
+	<no>2</no>
+	<count>3</count>
+	<flight>KE 234</flight>
+	<start>202-11-08 (목) 19:30</start>
+	<end>202-11-08 (목) 19:30</end>
+	<seat1>S</seat1>
+	<seat2>00석</seat2>
+	<startCity>뉴욕</startCity>
+	<endCity>뉴욕</endCity>
+	<flightInfo><![CDATA[]]></flightInfo>
+	<bigo><![CDATA[]]></bigo>
+</list>
+<list>
+	<id>5</id>
+	<no>2</no>
+	<count>3</count>
+	<flight>KE 234</flight>
+	<start>202-11-08 (목) 19:30</start>
+	<end>202-11-08 (목) 19:30</end>
+	<seat1>S</seat1>
+	<seat2>00석</seat2>
+	<startCity>뉴욕</startCity>
+	<endCity>뉴욕</endCity>
+	<flightInfo><![CDATA[]]></flightInfo>
+	<bigo><![CDATA[]]></bigo>
+</list>
+</data>

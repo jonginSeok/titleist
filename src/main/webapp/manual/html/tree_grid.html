@@ -1,0 +1,173 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Menu</title>
+<style type="text/css" media="screen, projection">
+
+/* Not required for Tabs, just to make this demo look better..ㄸ */
+body, h1, h2 {
+	font-family: "Trebuchet MS", Trebuchet, Verdana, Helvetica, Arial,
+		sans-serif;
+}
+
+h1 {
+	margin: 1em 0 1.5em;
+	font-size: 18px;
+}
+
+h2 {
+	margin: 2em 0 1.5em;
+	font-size: 16px;
+}
+
+p {
+	margin: 0;
+}
+
+pre, pre+p, p+p {
+	margin: 1em 0 0;
+}
+
+code {
+	font-family: "Courier New", Courier, monospace;
+}
+
+textarea {
+	width: 700px;
+	height: 100px;
+}
+
+.ui-LeftPane {
+	width: 700px;
+	height: 100px;
+}
+
+.ui-layout-west .ui-jqgrid tr.jqgrow td {
+	border-bottom: 0px none;
+	border-right: 0px none;
+} /* 그리드 라인을 없앤다. */
+</style>
+<link rel="stylesheet" type="text/css" href="/css/style.css" />
+<link rel="stylesheet" type="text/css" href="/css/vof_contents.css" />
+<link rel="stylesheet" type="text/css" href="/css/ui.jqgrid.css" />
+
+<script src="/js/plugin/jquery-1.7.2.js" type="text/javascript"></script>
+<script src="/js/plugin/jquery.jqGrid.min.js" type="text/javascript"></script>
+<script src="/js/lib/jquery.com.grid.js" type="text/javascript"></script>
+<script src="/js/lib/jquery.com.form.js" type="text/javascript"></script>
+<script src="/js/lib/jquery.com.util.js" type="text/javascript"></script>
+
+<script type="text/javascript"> 
+
+var $k1 = jQuery.noConflict();
+var orgData = null;
+
+$k1(document).ready(function (){
+	
+	var gTitle = ["id","Items","url", "메뉴구분", "메뉴경로", "프로그램ID", "프로그램설명", "화면형태"];
+	//var gTitle = [];
+	var gModel = [
+	              {name: "id",width:1,hidden:true, key:true},
+	              {name: "menu", width:150, resizable: false, sortable:false},
+	              {name: "url",width:1,hidden:true}, 
+	              {name: "mgubun",width:1,hidden:true}, 
+	              {name: "mPath",width:1,hidden:true}, 
+	              {name: "programId",width:1,hidden:true}, 
+	              {name: "programDesc",width:1,hidden:true}, 
+	              {name: "pageType",width:1,hidden:true}
+	          ];
+	
+	var options = 	{
+			xmlReader: {
+	    		root : "data",
+	    		row: "list",
+	    		repeatitems: false,
+	    		id: "id"
+	    		}, 
+	    	width: '500',
+    	    height: '200', 	
+			ExpandColumn: 'menu', 
+			autowidth : true 
+			//treeIcons: {plus:'ui-icon-folder-collapsed',minus:'ui-icon-folder-open',leaf:'ui-icon-document'} 			
+		};	
+ 
+	var events = {loadComplete:gfnLoadComplete, onSelectRow:fn_rowClick};
+	
+	//TreeGrid를 만든다. 
+	$k1("#menuGrid").grid('makeTree', '/manual/xsl/tree_data.xml', gTitle, gModel, options, events);
+
+});
+
+function gfnLoadComplete() {
+	
+	$k1("#menuGrid").grid('setGridStyle', 'vof_list');
+
+	//Tree Menu의 경우 글자 vertical 정렬을 한다. 
+	$k1("#menuGrid" + " tr.jqgrow td").css('vertical-align', 'bottom');
+	
+	//ui.jqgrid.css-Tree Grid 부분의 아이콘 변경
+}
+
+//Grid Row Select 시 Grid data가 Form Binding 된다. 
+function fn_rowClick(rowid) {
+	//alert(rowid);
+	var menudata = $k1('#menuGrid').grid('getRowData', rowid);
+	//alert('menudata : '+menudata);
+	//if(menudata.isLeaf == 'false') return;
+ 
+	$k1("#menuGrid").grid('gridToForm', '#menu_form', rowid);
+	
+	orgData = $k1('#menu_form').serialize();
+	
+}
+
+function fn_save() {
+	var ischange = $k1("#menu_form").forms('ischange', orgData);
+	alert('변경 여부 : '+ischange);
+}
+</script>
+
+</head>
+<body>
+	<div id="LeftPane" class="ui-layout-west ui-widget ui-widget-content">
+		<table id="menuGrid">
+			<tr>
+				<td />
+			</tr>
+		</table>
+	</div>
+
+	<div>
+		<form id="menu_form" method="get" action="">
+			<fieldset>
+				<legend>화면관리 상세정보</legend>
+				<p>
+					<label for="mgubun">메뉴구분</label> <input id="mgubun" name="mgubun" />
+					<label for="level">메뉴 레벨</label> <input id="level" name="level" />
+				</p>
+
+				<p>
+					<label for="mPath">메뉴경로</label> <input id="mPath" name="mPath"
+						size="70" />
+				</p>
+				<p>
+					<label for="programId">프로그램ID</label> <input id="programId" name="programId" /> <label for="programDesc">프로그램설명</label> <input id="programDesc" name="programDesc" />
+				</p>
+				<p>
+					<label for="pageType">화면형태</label> <select id="pageType" name="pageType">
+						<option value="P">페이지</option>
+						<option value="F">폴더</option>
+					</select>
+
+				</p>
+
+				<input type="button" value="저장" onclick="fn_save();" />
+
+			</fieldset>
+		</form>
+	</div>
+
+</body>
+</html>
