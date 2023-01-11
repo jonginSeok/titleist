@@ -4,6 +4,7 @@
 
     <!-- lob Handler -->
     <bean id="lobHandler" class="org.springframework.jdbc.support.lob.DefaultLobHandler" lazy-init="true" />
+    <!-- lazy-init="true" : 스프링 컨테이너에서 bean을 불러오는 시점에 생성되는 것이 아니라 getBean()을 사용해서 호출하는 시점에 객체를 생서하도록 설정한다. 자주 빈번하게 사용되지 않는 bean을 경우에 적용한다. -->
 
     <!-- SqlMap setup for iBATIS Database Layer -->
     <bean id="sqlMapClient" class="egovframework.rte.psl.orm.ibatis.SqlMapClientFactoryBean">

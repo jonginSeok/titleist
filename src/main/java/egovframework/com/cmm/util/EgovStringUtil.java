@@ -37,7 +37,11 @@ import java.math.BigDecimal;
 import java.security.SecureRandom;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Enumeration;
 import java.util.Locale;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -922,6 +926,18 @@ public class EgovStringUtil {
 					.concat(date.substring(6, 8));
 		} else {
 			return "";
+		}
+	}
+	
+	/**
+	 * 
+	 * @param request
+	 */
+	public static void loggingRequest (HttpServletRequest request) {
+		Enumeration<String> paramNames = request.getParameterNames();
+		while (paramNames.hasMoreElements()) {
+			String name = paramNames.nextElement();
+			LOGGER.debug("### loggingRequest ("+name+") :" + Arrays.toString(request.getParameterValues(name)));
 		}
 	}
 }

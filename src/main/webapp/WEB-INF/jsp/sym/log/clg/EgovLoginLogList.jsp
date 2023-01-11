@@ -27,8 +27,8 @@
  -->
 <link type="text/css" rel="stylesheet" href="/css/ui.jqgrid.css" />
 
-
 <script type="text/javascript" src="/js/plugin/jquery.jqGrid.min.js<%=version%>"></script>
+<!-- jquery.jqgrid-4.15.5-pre.min.js -->
 <script type="text/javascript" src="/js/plugin/grid.locale-kr.js<%=version%>"></script>
 
 <script type="text/javascript" src="/js/lib/jquery.com.form.js<%=version%>"></script>
@@ -39,91 +39,34 @@
 <script type="text/javascript" src="/js/egovframework/EgovCalPopup.js<%=version%>"></script>
 
 <script type="text/javascript">
-	/* ********************************************************
-	 * PROTOTYPE JS FUNCTION
-	 ******************************************************** */
-	String.prototype.trim = function() {
-		return this.replace(/^\s+|\s+$/g, "");
-	}
-
-	String.prototype.replaceAll = function(src, repl) {
-		var str = this;
-		if (src == repl) {
-			return str;
-		}
-		while (str.indexOf(src) != -1) {
-			str = str.replace(src, repl);
-		}
-		return str;
-	}
-
+	
+	var fv_lastSelection;
+	var fv_uurl = "/sym/log/clg/SelectLoginLogList.ax";
+	
 	//Grid title
 	var fv_colNames = [ '번호', '로그ID', '발생일자', '로그유형', '상세보기1', '상세보기2', '상세보기3' ];
 
 	//Grid Model
-	var fv_colModel = [ {
-		name : 'no',/*번호*/
-		width : 10,
-		align : 'center',
-		editable : false,
-		sorttype : 'integer',
-	}, {
-		name : 'logId',/*로그ID*/
-		width : 150,
-		editable : false, // must set editable to true if you want to make the field editable
-		key : true,
-		align : 'center',
-	}, {
-		name : 'creatDt',/*발생일자*/
-		width : 150,
-		align : 'center',
-		editable : false,
-	}, {
-		name : 'loginMthd',/*로그유형*/
-		width : 90,
-		align : 'center',
-		editable : true,
-		edittype : 'select',
-		editoptions : {
-			value : "I:입력;U:수정;D:삭제;'':선택"
-		}, // select box
-	}, {
-		name : 'loginIp',/*상세보기1*/
-		width : 120,
-		align : 'left',
-		editable : false,
-		formatter : fn_btnDetail,
-	}, {
-		name : 'loginId',/*상세보기2*/
-		width : 15,
-		align : 'center',
-		editable : false,
-		hidden : true,
-	}, {
-		name : 'loginNm',/*상세보기3*/
-		width : 15,
-		align : 'center',
-		editable : false,
-		hidden : true,
-	} ];
+	var fv_colModel = [
+		{ name : 'no',/*번호*/ width : 10, align : 'center', editable : false, sorttype : 'integer', },
+		{ name : 'logId',/*로그ID*/ width : 150, editable : false, /* must set editable to true if you want to make the field editable */ key : true, align : 'center', }, 
+		{ name : 'creatDt',/*발생일자*/ width : 150, align : 'center', editable : false, }, 
+		{ name : 'loginMthd',/*로그유형*/ width : 90, align : 'center', editable : true, edittype : 'select', editoptions : { value : "I:입력;U:수정;D:삭제;'':선택" }, /* select box */ }, 
+		{ name : 'loginIp',/*상세보기1*/ width : 120, align : 'left', editable : false, formatter : fn_btnDetail, }, 
+		{ name : 'loginId',/*상세보기2*/ width : 15, align : 'center', editable : false, hidden : true, }, 
+		{ name : 'loginNm',/*상세보기3*/ width : 15, align : 'center', editable : false, hidden : true, }
+	];
 	
 	var fv_option = {
 		multiselect : true, //옵션에 multiselect:true 부분을 추가하면 그리드 목록 전체선택/전체 해제가 가능하다.
 		viewrecords : true,
-
 		rowNum : 10,
 		rowList : [ 10, 20, 30, 40, 50 ],
 		pager : '#jqGridPager',
-		
 		sortable : true,
 		//sortname : 'no', // 그리드 헤더에 표시가 나타난다.
 		sortorder : 'desc', // 그리드 헤더에 표시가 나타난다.
-
-		onPaging : function(pgButton) {
-			var gridPage = $("jqgrid").getGridParam("page");
-			var totalPage = $("jqgrid").getGridParam("total");
-
-		},
+		// emptyrecords: "Nothing to display", // 그리드 조회결과아 없을 때, 하단 오른쪽 text
 		jsonReader : {
 			root : "resultList",
 			id : "logId",
@@ -135,18 +78,15 @@
 	};
 
 	var fv_event = {
-		loadComplete : fn_loadComplete,
-		onSelectRow : fn_editRow,
-		ondblClickRow : fn_ondblClickRow,
+		loadComplete	: fn_loadComplete,
+		onSelectRow		: fn_editRow,
+		ondblClickRow	: fn_ondblClickRow,
 		onRightClickRow : fn_onRightClickRow,
-		paging : fn_onPaging,
-
+		paging			: fn_onPaging,
 	};
 
 	function fn_loadComplete() {
-	
 		var ids = $("#jqGrid").jqGrid('getDataIDs');
-
 		//Paging 
 		var currentPage = $('#jqGrid').grid('getGridParam', 'page'); //현재 페이지
 		var pageSize = $('#jqGrid').grid('getGridParam', 'rowNum'); //한 페이지당 보여 주는 row수
@@ -158,16 +98,13 @@
 	}
 	
 	function fn_editRow(id) {
-		
 		if (id && id !== fv_lastSelection) {
 			var grid = $("#jqGrid");
 			grid.jqGrid('restoreRow', fv_lastSelection);
 			grid.jqGrid('editRow', id, {
 				keys : true,
 				onEnter : function(rowid, options, event) {
-					
 					console.log("#onEnter(" + rowid + "," + options + "," + event + ")");
-					
 					if (confirm("Save the row with ID: " + rowid) === true) {
 						$(this).jqGrid("saveRow", rowid, options);
 					}
@@ -189,11 +126,13 @@
 	
 	function fn_onPaging (action) {
 		console.log("#fn_onPaging  :" + action);
+		
 		$("#jqGrid").grid("onPaging", action, fv_uurl);
+		
+		$("#jqGrid").grid("setGridParam", { page : 2 });
+		$("#jqGrid").grid("setGridParam", { postData : 2 });
 	}
 	
-	var fv_lastSelection;
-	var fv_uurl = "/sym/log/clg/SelectLoginLogList.ax";
 
 	/*
 	 * 화면로드 이벤트. 지역(page)함수는 fn_ , 전역(grobal, 공통)함수는 gfn_ 으로 작성
@@ -201,33 +140,31 @@
 	$(document).ready(function(event) {
 
 		// 조회조건 발생일자
+		/* $("#searchBgnDe").datepicker();
+		$("#searchEndDe").datepicker(); */
 		
-		$("#searchBgnDe").datepicker();
+		/* defaultDate: '01/01/01',
+		dateFormat : 'yy-mm-dd', */
 		
-		$("#searchEndDe").datepicker();
+		$("#searchEndDe").datepicker({
+			id : 'searchEndDe_datePicker',
+			dateFormat : 'yy-mm-dd',
+			minDate : new Date(1910, 0, 1),
+			maxDate : new Date(2025, 0, 1),
+			showOn : 'focus'
+		});//.datepicker("setDate", new Date());
 		
-		/*
-		defaultDate: '01/01/01',
-		dateFormat : 'yy-mm-dd',
-			
 		$("#searchBgnDe").datepicker({
 			id : 'searchBgnDe_datePicker',
 			dateFormat : 'yy-mm-dd',
 			minDate : new Date(1910, 0, 1),
 			maxDate : new Date(2025, 0, 1),
 			showOn : 'focus'
-		}).datepicker("setDate", $.date.diffDate($("#searchEndDe").val(), -4));
-
-		$("#searchBgnDe").datepicker({
-			id : 'searchBgnDe_datePicker',
-			dateFormat : 'yy-mm-dd',
-			minDate : new Date(1910, 0, 1),
-			maxDate : new Date(2025, 0, 1),
-			showOn : 'focus'
-		}).datepicker("setDate", $.date.diffDate($("#searchEndDe").val(), -4));
-		*/
+		});//.datepicker("setDate", $.date.diffDate($("#searchEndDe").val(), -4));
 		
 		$("#jqGrid").grid("init", fv_uurl, fv_colNames, fv_colModel, fv_option, fv_event);
+		
+		
 		
 		// 조회클릭
 		$('#search').bind('click', function() {
@@ -295,6 +232,24 @@
 
 		var openParam = "scrollbars=yes,toolbar=0,location=no,resizable=0,status=0,menubar=0,width=640,height=300,left=0,top=0";
 		window.open(url, "p_loginLogInqire", openParam);
+	}
+	
+	/* ********************************************************
+	 * PROTOTYPE JS FUNCTION
+	 ******************************************************** */
+	String.prototype.trim = function() {
+		return this.replace(/^\s+|\s+$/g, "");
+	}
+
+	String.prototype.replaceAll = function(src, repl) {
+		var str = this;
+		if (src == repl) {
+			return str;
+		}
+		while (str.indexOf(src) != -1) {
+			str = str.replace(src, repl);
+		}
+		return str;
 	}
 </script>
 <title>로그인 로그 목록</title>

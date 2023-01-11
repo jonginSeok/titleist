@@ -12,9 +12,9 @@
 	<!-- 시스템 로그 요약  트리거-->
 	<bean id="sysLogTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean">
 		<property name="jobDetail" ref="sysLogging" />
-		<!-- 시작하고 1분후에 실행한다. (milisecond) 60000-->
+		<!-- 시작하고 1분후에 실행한다. (millisecond) 60000-->
 		<property name="startDelay" value="30000" />
-		<!-- 매 24시간마다 실행한다.864000000 (milisecond) -->
+		<!-- 매 24시간마다 실행한다.864000000 (millisecond) -->
 		<property name="repeatInterval" value="864000000" />
 	</bean>
 
