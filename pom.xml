@@ -23,7 +23,7 @@
 		<egovframework.rte.version>3.10.0</egovframework.rte.version>
 		<org.apache.tiles-version>3.0.3</org.apache.tiles-version>
 		<slf4j-version>1.6.0</slf4j-version>
-		<jackson.version>2.14.1</jackson.version><!-- 2.11.3 -->
+		<jackson.version>2.14.1</jackson.version>
 	</properties>
 
 	<repositories>
@@ -78,7 +78,7 @@
 		<dependency>
 			<groupId>egovframework.rte</groupId>
 			<artifactId>egovframework.rte.fdl.excel</artifactId>
-			<version>${egovframework.rte.version}</version>
+			<version>${egovframework.rte.version}</version><!-- egovframework.rte.psl.dataaccess-3.10.0.jar - ibatis-sqlmap-2.3.4.726.jar -->
 		</dependency>
 		<dependency>
 			<groupId>egovframework.rte</groupId>
@@ -144,8 +144,8 @@
 			<artifactId>oro</artifactId>
 			<version>2.0.8</version>
 		</dependency>
-
         
+        <!-- mssql driver -->
 		<dependency>
 		    <groupId>com.microsoft.sqlserver</groupId>
 		    <artifactId>mssql-jdbc</artifactId>
@@ -247,37 +247,35 @@
 			<artifactId>tiles-core</artifactId>
 			<version>${org.apache.tiles-version}</version>
 		</dependency>
-		
 		<dependency>
 			<groupId>org.apache.tiles</groupId>
 			<artifactId>tiles-servlet</artifactId>
 			<version>${org.apache.tiles-version}</version>
 		</dependency>
-		
 		<dependency>
 			<groupId>org.apache.tiles</groupId>
 			<artifactId>tiles-jsp</artifactId>
 			<version>${org.apache.tiles-version}</version>
 		</dependency>
-		
 		<dependency>
 			<groupId>org.apache.tiles</groupId>
 			<artifactId>tiles-extras</artifactId>
 			<version>${org.apache.tiles-version}</version>
 		</dependency>
-
+		
+		<!-- logging -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 			<version>1.7.25</version>
 		</dependency>
-		
 		<dependency>
 		   <groupId>org.slf4j</groupId>
 		   <artifactId>jcl-over-slf4j</artifactId>
 		   <version>${slf4j-version}</version>
 		</dependency>
 		
+		<!-- Ajax -->
 		<dependency>
 		    <groupId>com.fasterxml.jackson.core</groupId>
 		    <artifactId>jackson-core</artifactId>
@@ -351,7 +349,7 @@
                     <artifactId>emma-maven-plugin</artifactId>
                     <version>1.0-alpha-3</version>
                 </plugin>
-                <!-- PMD manven plugin -->
+                <!-- PMD maven plugin -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-pmd-plugin</artifactId>

@@ -6,7 +6,7 @@
 	<typeAlias alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap" />
 	<!-- 로그인로그 VO -->
 	<typeAlias alias="loginLog" type="egovframework.let.sym.log.clg.service.LoginLog" />
-	
+	<!-- 
 	<sql id="paging_pre">
 	SELECT   *
 	FROM     (
@@ -25,11 +25,10 @@
 		ORDER BY $sidx$ $sord$
 		</isNotEmpty>
 	</isNotEmpty>
-	</sql>
+	</sql> -->
 
 	<!-- 로그인로그 맵 -->
 	<resultMap id="LoginLogVO" class="egovframework.let.sym.log.clg.service.LoginLog">
-		<result property="no" column="NO" />
 		<result property="logId" column="LOG_ID" />
 		<result property="creatDt" column="CREAT_DT" />
 		<result property="loginMthd" column="CONECT_MTHD" />
@@ -40,7 +39,7 @@
 
 	<!-- 로그인 로그 등록 -->
 	<insert id="LoginLogDAO.logInsertLoginLog" parameterClass="loginLog">
-		<![CDATA[
+		<![CDATA[/* LoginLogDAO.logInsertLoginLog */
 			INSERT INTO LETTNLOGINLOG 
 				( LOG_ID
 				  , CONECT_MTHD
@@ -61,7 +60,7 @@
 
 	<!-- 로그인 로그 상세  조회 -->
 	<select id="LoginLogDAO.selectLoginLog" parameterClass="loginLog" resultMap="LoginLogVO">
-		<![CDATA[	
+		<![CDATA[/* LoginLogDAO.selectLoginLog */
 			SELECT 
 				  a.LOG_ID
 				, FORMAT(CAST(a.CREAT_DT AS DATE), 'yyyy-MM-dd') CREAT_DT
@@ -80,12 +79,10 @@
 
 	<!-- 로그인 로그 목록  조회 -->
 	<select id="LoginLogDAO.selectLoginLogInf" parameterClass="loginLog" resultMap="LoginLogVO">
-		<include refid="paging_pre"/>
-		<![CDATA[	
+		<![CDATA[/* LoginLogDAO.selectLoginLogInf */
 			SELECT 
 				  a.LOG_ID
 				, FORMAT(CAST(a.CREAT_DT AS DATE), 'yyyy-MM-dd') CREAT_DT
-				, ROW_NUMBER() OVER(ORDER BY (SELECT 1)) AS NO
 				, LTRIM(RTRIM(a.CONECT_MTHD)) AS CONECT_MTHD
 				, a.CONECT_IP
 				, a.CONECT_ID
@@ -104,13 +101,14 @@
 				<!-- <![CDATA[	DATE_FORMAT(a.CREAT_DT, '%Y%m%d') BETWEEN #searchBgnDe# AND #searchEndDe# ORDER BY a.LOG_ID ]]> -->
 				<![CDATA[	convert(varchar, a.CREAT_DT, 112) BETWEEN FORMAT(CAST(#searchBgnDe# AS DATE), 'yyyyMMdd') AND FORMAT(CAST(#searchEndDe# AS DATE), 'yyyyMMdd') ]]>
 		</isNotEmpty>		
-		<![CDATA[ ORDER BY NO ]]>
-		<include refid="paging_sub"/>
+		<![CDATA[ ORDER BY a.LOG_ID ]]>
+		OFFSET #firstIndex# ROWS
+		FETCH FIRST #recordCountPerPage# ROWS ONLY
 	</select>
 
 	<!-- 로그인 로그 총건수 -->
 	<select id="LoginLogDAO.selectLoginLogInfCnt" parameterClass="loginLog"	resultClass="java.lang.Integer">
-		<![CDATA[ 
+		<![CDATA[/* LoginLogDAO.selectLoginLogInfCnt */
 			SELECT COUNT(a.LOG_ID) as cnt
 			FROM
 				LETTNLOGINLOG a

@@ -29,10 +29,7 @@ public class LoginLog implements Serializable {
 	 * serialVersionUID
 	 */
 	private static final long serialVersionUID = 1L;
-
-	/** 번호 */
-	private String no;
-
+	
 	/** 로그ID */
 	private String logId;
 
@@ -168,15 +165,7 @@ public class LoginLog implements Serializable {
 	public void setSord(String sord) {
 		this.sord = sord;
 	}
-
-	public String getNo() {
-		return no;
-	}
-
-	public void setNo(String no) {
-		this.no = no;
-	}
-
+	
 	public String getLogId() {
 		return logId;
 	}

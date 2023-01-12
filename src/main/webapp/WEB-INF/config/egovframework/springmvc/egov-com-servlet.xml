@@ -59,15 +59,7 @@
 
 	<!-- Annotation 을 사용하지 않는 경우에 대한 MVC 처리 설정 -->
 	<mvc:view-controller path="/cmmn/validator.do" view-name="cmmn/validator" />
-
-	<mvc:interceptors>
-        <mvc:interceptor>
-            <mvc:mapping path="/*.do"/>
-            <mvc:exclude-mapping path="/log*.do"/>
-            <bean class="egovframework.egov.util.AuthInterceptor" />
-        </mvc:interceptor>
-    </mvc:interceptors>
-    
+	
 	<mvc:annotation-driven />
 
 </beans>

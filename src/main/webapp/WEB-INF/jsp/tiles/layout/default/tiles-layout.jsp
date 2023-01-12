@@ -9,18 +9,15 @@
  
   author   : 다임정보 개발팀  석종인
   since    : 2022.12.16
---%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="java.text.SimpleDateFormat,java.util.Date"%>
-<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%><!-- 공통변수 처리 -->
-<% String version = "?version=" + new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()); %>
-
-<c:set var="CONTEXT_PATH" value="${pageContext.request.contextPath}" scope="application" />
-<c:set var="RESOURCES_PATH" value="${CONTEXT_PATH}/resources" scope="application" />
+--%><%@ 
+	page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%><%@ 
+	page import="java.text.SimpleDateFormat,java.util.Date"%><%@ 
+	taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%><%@ 
+	taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%><%@ 
+	taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%><%@ 
+	taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%><%@ 
+	taglib prefix="form" uri="http://www.springframework.org/tags/form"%><% 
+	String version = "?version=" + new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()); %><!-- 공통변수 처리 -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -28,12 +25,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv="Content-Language" content="ko">
-
 <link rel="shortcut icon" href="//localhost/favicon.ico" />
-<link type="text/css" rel="stylesheet" href="/css/egovframework/common.css" />
-
-<script type="text/javascript" src="/js/plugin/jquery-1.7.2.min.js<%=version%>"></script>
-<script type="text/javascript" src="/js/plugin/jquery-ui-1.7.3.custom.min.js<%=version%>"></script>
+<link type="text/css" rel="stylesheet" href="/js/plugin/jquery-ui-1.13.2/jquery-ui.min.css<%=version%>" />
+<link type="text/css" rel="stylesheet" href="/css/egovframework/common.css<%=version%>" />
+<script type="text/javascript" src="/js/plugin/jquery-3.6.3/jquery.min.js<%=version%>"></script>
+<script type="text/javascript" src="/js/plugin/jquery-ui-1.13.2/jquery-ui.min.js<%=version%>"></script><c:set var="CONTEXT_PATH" value="${pageContext.request.contextPath}" scope="application" /><c:set var="RESOURCES_PATH" value="${CONTEXT_PATH}/resources" scope="application" />
 <script type="text/javascript">
 jQuery.browser = {};
 (function () {
