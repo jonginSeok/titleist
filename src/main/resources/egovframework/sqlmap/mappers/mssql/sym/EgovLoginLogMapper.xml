@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="egovframework.let.sym.log.clg.service.impl.EgovLoginLogMapper">
+	
+	<!-- 로그인로그 맵 -->
+	<resultMap id="LoginLogVO" type="egovframework.let.sym.log.clg.service.LoginLog">
+		<result property="logId" column="LOG_ID" />
+		<result property="creatDt" column="CREAT_DT" />
+		<result property="loginMthd" column="CONECT_MTHD" />
+		<result property="loginIp" column="CONECT_IP" />
+		<result property="loginId" column="CONECT_ID" />
+		<result property="loginNm" column="LOGIN_NM" />
+	</resultMap>
+		
+	<select id="selectLoginLogInf" parameterType="loginLog" resultMap="LoginLogVO">
+	<![CDATA[/* EgovLoginLogMapper.selectLoginLogInf */
+			SELECT 
+				  a.LOG_ID
+				, FORMAT(CAST(a.CREAT_DT AS DATE), 'yyyy-MM-dd') CREAT_DT
+				, LTRIM(RTRIM(a.CONECT_MTHD)) AS CONECT_MTHD
+				, a.CONECT_IP
+				, a.CONECT_ID
+				, b.USER_NM AS LOGIN_NM
+			FROM
+				LETTNLOGINLOG a
+			LEFT OUTER JOIN COMVNUSERMASTER b
+				ON a.CONECT_ID = b.ESNTL_ID
+			WHERE 
+				1 = 1
+		]]>
+		<if test="searchWrd != null and searchWrd != ''">
+		<![CDATA[AND	a.CONECT_MTHD LIKE CONCAT ('%', #{searchWrd},'%') ]]>
+		</if>
+		<if test="searchBgnDe != null and searchBgnDe != ''">
+		<![CDATA[AND	convert(varchar, a.CREAT_DT, 112) BETWEEN FORMAT(CAST(#{searchBgnDe} AS DATE), 'yyyyMMdd') AND FORMAT(CAST(#{searchEndDe} AS DATE), 'yyyyMMdd') ]]>
+		</if>
+		<![CDATA[ ORDER BY a.LOG_ID ]]>
+		OFFSET #{firstIndex} ROWS
+		FETCH FIRST #{recordCountPerPage} ROWS ONLY
+	</select>
+	
+</mapper>

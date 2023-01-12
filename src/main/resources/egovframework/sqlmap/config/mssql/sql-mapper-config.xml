@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+	<typeAliases>
+		<typeAlias alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap" />
+		<!-- 로그인로그 VO -->
+		<typeAlias alias="loginLog" type="egovframework.let.sym.log.clg.service.LoginLog" />
+	</typeAliases>
+
+	<!-- 
+	<mappers>
+		<mapper resource="META-INF/sqlmap/mappers/mysql/department_mysql.xml" />
+		<mapper resource="META-INF/sqlmap/mappers/mysql/employee_mysql.xml" /> 
+	</mappers>
+	 -->
+
+</configuration>

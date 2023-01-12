@@ -27,5 +27,5 @@
         <property name="dataSource" ref="dataSource-${Globals.DbType}"/>
         <property name="lobHandler" ref="lobHandler"/>
     </bean>
-
+    
 </beans>    
